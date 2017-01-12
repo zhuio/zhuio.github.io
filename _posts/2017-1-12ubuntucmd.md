@@ -1,3 +1,12 @@
+---
+layout: post
+title:  "ubuntu安装的软件"
+date:   2017-01-12
+excerpt: "ubuntu安装的软件"
+tag:
+- ubuntu
+comments: true
+---
 ## ubuntu安装的软件
 
 ### shadowsocks
