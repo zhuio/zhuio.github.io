@@ -7,6 +7,7 @@ tag:
 - ubuntu
 comments: true
 ---
+
 ## ubuntu安装的软件
 
 ### shadowsocks
