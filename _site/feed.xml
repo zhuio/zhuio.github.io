@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-12T14:16:40+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">node.js实践</title><link href="https://zhuio.github.io/node0/" rel="alternate" type="text/html" title="node.js实践" /><published>2017-01-11T00:00:00+08:00</published><updated>2017-01-11T00:00:00+08:00</updated><id>https://zhuio.github.io/node0</id><content type="html" xml:base="https://zhuio.github.io/node0/">&lt;h2 id=&quot;nodejs实践&quot;&gt;node.js实践&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-12T14:19:24+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">ubuntu安装的软件</title><link href="https://zhuio.github.io/ubuntucmd/" rel="alternate" type="text/html" title="ubuntu安装的软件" /><published>2017-01-12T00:00:00+08:00</published><updated>2017-01-12T00:00:00+08:00</updated><id>https://zhuio.github.io/ubuntucmd</id><content type="html" xml:base="https://zhuio.github.io/ubuntucmd/">&lt;h2 id=&quot;ubuntu安装的软件&quot;&gt;ubuntu安装的软件&lt;/h2&gt;
+
+&lt;h3 id=&quot;shadowsocks&quot;&gt;shadowsocks&lt;/h3&gt;
+&lt;p&gt;https://github.com/shadowsocks/shadowsocks-qt5/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97&lt;/p&gt;
+
+&lt;h3 id=&quot;vscode&quot;&gt;vscode&lt;/h3&gt;
+&lt;p&gt;https://code.visualstudio.com/&lt;/p&gt;
+
+&lt;h3 id=&quot;sublime&quot;&gt;sublime&lt;/h3&gt;
+&lt;p&gt;https://www.sublimetext.com/&lt;/p&gt;
+
+&lt;h3 id=&quot;chrome&quot;&gt;chrome&lt;/h3&gt;
+&lt;p&gt;http://www.ubuntuchrome.com/&lt;/p&gt;</content><category term="ubuntu" /><summary type="html">ubuntu安装的软件</summary></entry><entry><title type="html">tensorflow资源</title><link href="https://zhuio.github.io/tensorflow0/" rel="alternate" type="text/html" title="tensorflow资源" /><published>2017-01-12T00:00:00+08:00</published><updated>2017-01-12T00:00:00+08:00</updated><id>https://zhuio.github.io/tensorflow0</id><content type="html" xml:base="https://zhuio.github.io/tensorflow0/">&lt;h2 id=&quot;tensorflow资源&quot;&gt;tensorflow资源&lt;/h2&gt;
+&lt;p&gt;https://github.com/CreatCodeBuild&lt;/p&gt;
+
+&lt;p&gt;https://www.kaggle.com/&lt;/p&gt;
+
+&lt;p&gt;https://www.openai.com/blog/&lt;/p&gt;
+
+&lt;p&gt;https://gitter.im&lt;/p&gt;</content><category term="tensorflow" /><summary type="html">tensorflow资源</summary></entry><entry><title type="html">node.js实践</title><link href="https://zhuio.github.io/node0/" rel="alternate" type="text/html" title="node.js实践" /><published>2017-01-11T00:00:00+08:00</published><updated>2017-01-11T00:00:00+08:00</updated><id>https://zhuio.github.io/node0</id><content type="html" xml:base="https://zhuio.github.io/node0/">&lt;h2 id=&quot;nodejs实践&quot;&gt;node.js实践&lt;/h2&gt;
 
 &lt;h3 id=&quot;应用不同模块分析&quot;&gt;应用不同模块分析&lt;/h3&gt;
 &lt;ul&gt;
