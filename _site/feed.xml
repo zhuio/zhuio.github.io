@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-10T07:19:09+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">第一篇blog</title><link href="https://zhuio.github.io/firstblog/" rel="alternate" type="text/html" title="第一篇blog" /><published>2017-01-10T00:00:00+08:00</published><updated>2017-01-10T00:00:00+08:00</updated><id>https://zhuio.github.io/firstblog</id><content type="html" xml:base="https://zhuio.github.io/firstblog/">&lt;h2 id=&quot;简单用jekyll搭建的一个blog&quot;&gt;简单用jekyll搭建的一个blog&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-12T13:21:13+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">Node0</title><link href="https://zhuio.github.io/node0/" rel="alternate" type="text/html" title="Node0" /><published>2017-01-10T00:00:00+08:00</published><updated>2017-01-10T00:00:00+08:00</updated><id>https://zhuio.github.io/node0</id><content type="html" xml:base="https://zhuio.github.io/node0/">&lt;h2 id=&quot;nodejs实践&quot;&gt;node.js实践&lt;/h2&gt;
+
+&lt;h3 id=&quot;应用不同模块分析&quot;&gt;应用不同模块分析&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;我们需要提供 Web ⻚面,因此需要一个 HTTP 服务器
+对于不同的请求,根据请求的 URL ,我们的服务器需要给予不同的响应,因此&lt;/li&gt;
+  &lt;li&gt;我们需要一个 路由 ,用于把请求对应到请求处理程序( request handler )
+当请求被服务器接收并通过路由传递之后,需要可以对其进行处理,因此我们
+需要最终的 请求处理程序&lt;/li&gt;
+  &lt;li&gt;路由还应该能处理 POST 数据,并且把数据封装成更友好的格式传递给请求处
+理入程序,因此需要 请求数据处理功能&lt;/li&gt;
+  &lt;li&gt;我们不仅仅要处理 URL 对应的请求,还要把内容显示出来,这意味着我们需要
+一些 视图逻辑 供请求处理程序使用,以便将内容发送给用戶的浏览器&lt;/li&gt;
+  &lt;li&gt;最后,用戶需要上传图片,所以我们需要 上传处理功能 来处理这方面的细节&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;一个基础的-http-服务器&quot;&gt;一个基础的 HTTP 服务器&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;http&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.createServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;response.writeHead(200,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&quot;Content-Type&quot;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;text/plain&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.listen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;8888&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><summary type="html">node.js实践</summary></entry><entry><title type="html">第一篇blog</title><link href="https://zhuio.github.io/firstblog/" rel="alternate" type="text/html" title="第一篇blog" /><published>2017-01-10T00:00:00+08:00</published><updated>2017-01-10T00:00:00+08:00</updated><id>https://zhuio.github.io/firstblog</id><content type="html" xml:base="https://zhuio.github.io/firstblog/">&lt;h2 id=&quot;简单用jekyll搭建的一个blog&quot;&gt;简单用jekyll搭建的一个blog&lt;/h2&gt;
 &lt;p&gt;原先用HTML5搭建的首页不能写BLOG，改用jekyll搭建，简单又好看，不错。
   早上6：53&lt;/p&gt;</content><category term="test" /><category term="useless" /><category term="sample" /><category term="first" /><category term="jekyll" /><summary type="html">朱智博的BLOG上线了，随便写点什么，做个测试</summary></entry><entry><title type="html">Markdown Syntax</title><link href="https://zhuio.github.io/markdown-syntax/" rel="alternate" type="text/html" title="Markdown Syntax" /><published>2016-03-15T00:00:00+08:00</published><updated>2016-03-15T00:00:00+08:00</updated><id>https://zhuio.github.io/markdown-syntax</id><content type="html" xml:base="https://zhuio.github.io/markdown-syntax/">&lt;h2 id=&quot;html-elements&quot;&gt;HTML Elements&lt;/h2&gt;
 

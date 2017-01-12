@@ -1,14 +1,14 @@
-# ubuntu安装的软件
+## ubuntu安装的软件
 
-## shadowsocks
+### shadowsocks
 https://github.com/shadowsocks/shadowsocks-qt5/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97
 
-## vscode
+### vscode
 https://code.visualstudio.com/
 
-## sublime
+### sublime
 https://www.sublimetext.com/
 
-## chrome
+### chrome
 http://www.ubuntuchrome.com/
 
