@@ -1,0 +1,57 @@
+---
+layout: "post"
+title: "sqlite3"
+date: "2017-01-15 01:59"
+tags:
+- sqlite3
+comments: true
+---
+### sqlite3使用
+#### sqlite3基本使用方法
+
+
+import sqlite3
+
+conn = sqlite3.connect('tutorial.db')
+c = conn.cursor()
+
+def creat_table():
+	c.execute("CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)")
+
+def data_entry():
+	c.execute("INSERT INTO stuffToPlot VALUES(141313141,'2017-1-14 00:37:24','python',5)")
+	conn.commit()
+	c.close()
+	conn.close()
+
+creat_table()
+data_entry()
+
+
+#### 動態添加數據庫
+
+
+import sqlite3
+import time
+import datetime
+import random
+
+conn = sqlite3.connect('tutor1.db')
+c = conn.cursor()
+
+def creat_table():
+	c.execute("CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)")
+
+def data_entry():
+	for i in range(10):
+		unix = time.time()
+		date = str(datetime.datetime.fromtimestamp(unix).strftime('%Y-%m-%d %H-%M-%S'))
+		keyword = 'python'
+		value = random.randrange(0,10)
+
+		c.execute("INSERT INTO stuffToPlot (unix,timeStamp,keyword,value) VALUES(?,?,?,?)",(unix,date,keyword,value))
+		conn.commit()
+
+creat_table()
+data_entry()
+conn.close()
