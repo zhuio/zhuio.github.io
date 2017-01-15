@@ -7,8 +7,9 @@ tags:
 comments: true
 ---
 ### sqlite3使用
-#### sqlite3基本使用方法
 
+#### sqlite3基本使用方法
+{% highlight css %}
 
 import sqlite3
 
@@ -27,9 +28,9 @@ def data_entry():
 creat_table()
 data_entry()
 
-
+{% endhighlight %}
 #### 動態添加數據庫
-
+{% highlight css %}
 
 import sqlite3
 import time
@@ -55,3 +56,4 @@ def data_entry():
 creat_table()
 data_entry()
 conn.close()
+{% endhighlight %}

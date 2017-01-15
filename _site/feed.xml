@@ -1,52 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-15T15:32:19+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">sqlite3</title><link href="https://zhuio.github.io/sqlite3/" rel="alternate" type="text/html" title="sqlite3" /><published>2017-01-15T01:59:00+08:00</published><updated>2017-01-15T01:59:00+08:00</updated><id>https://zhuio.github.io/sqlite3</id><content type="html" xml:base="https://zhuio.github.io/sqlite3/">&lt;h3 id=&quot;sqlite3使用&quot;&gt;sqlite3使用&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-15T15:40:30+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">sqlite3</title><link href="https://zhuio.github.io/sqlite3/" rel="alternate" type="text/html" title="sqlite3" /><published>2017-01-15T01:59:00+08:00</published><updated>2017-01-15T01:59:00+08:00</updated><id>https://zhuio.github.io/sqlite3</id><content type="html" xml:base="https://zhuio.github.io/sqlite3/">&lt;h3 id=&quot;sqlite3使用&quot;&gt;sqlite3使用&lt;/h3&gt;
+
 &lt;h4 id=&quot;sqlite3基本使用方法&quot;&gt;sqlite3基本使用方法&lt;/h4&gt;
 
-&lt;p&gt;import sqlite3&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;
 
-&lt;p&gt;conn = sqlite3.connect(‘tutorial.db’)
-c = conn.cursor()&lt;/p&gt;
+&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'tutorial.db'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.cursor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 
-&lt;p&gt;def creat_table():
-	c.execute(“CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)”)&lt;/p&gt;
+&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 
-&lt;p&gt;def data_entry():
-	c.execute(“INSERT INTO stuffToPlot VALUES(141313141,’2017-1-14 00:37:24’,’python’,5)”)
-	conn.commit()
-	c.close()
-	conn.close()&lt;/p&gt;
+&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;INSERT INTO stuffToPlot VALUES(141313141,'2017-1-14 00:37:24','python',5)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.commit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 
-&lt;p&gt;creat_table()
-data_entry()&lt;/p&gt;
+&lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;動態添加數據庫&quot;&gt;動態添加數據庫&lt;/h4&gt;
 
-&lt;p&gt;import sqlite3
-import time
-import datetime
-import random&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;time&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;datetime&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;random&lt;/span&gt;
 
-&lt;p&gt;conn = sqlite3.connect(‘tutor1.db’)
-c = conn.cursor()&lt;/p&gt;
+&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'tutor1.db'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.cursor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 
-&lt;p&gt;def creat_table():
-	c.execute(“CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)”)&lt;/p&gt;
+&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 
-&lt;p&gt;def data_entry():
-	for i in range(10):
-		unix = time.time()
-		date = str(datetime.datetime.fromtimestamp(unix).strftime(‘%Y-%m-%d %H-%M-%S’))
-		keyword = ‘python’
-		value = random.randrange(0,10)&lt;/p&gt;
+&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;unix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.datetime.fromtimestamp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;unix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.strftime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'%Y-%m-%d %H-%M-%S'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;keyword&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'python'&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.randrange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	c.execute(&quot;INSERT INTO stuffToPlot (unix,timeStamp,keyword,value) VALUES(?,?,?,?)&quot;,(unix,date,keyword,value))
-	conn.commit()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+		&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;INSERT INTO stuffToPlot (unix,timeStamp,keyword,value) VALUES(?,?,?,?)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;unix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;keyword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.commit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 
-&lt;p&gt;creat_table()
-data_entry()
-conn.close()&lt;/p&gt;</content><category term="sqlite3" /><summary type="html">sqlite3使用
-sqlite3基本使用方法</summary></entry><entry><title type="html">ubuntu安装的软件</title><link href="https://zhuio.github.io/ubuntucmd/" rel="alternate" type="text/html" title="ubuntu安装的软件" /><published>2017-01-12T00:00:00+08:00</published><updated>2017-01-12T00:00:00+08:00</updated><id>https://zhuio.github.io/ubuntucmd</id><content type="html" xml:base="https://zhuio.github.io/ubuntucmd/">&lt;h2 id=&quot;ubuntu安装的软件&quot;&gt;ubuntu安装的软件&lt;/h2&gt;
+&lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="sqlite3" /><summary type="html">sqlite3使用</summary></entry><entry><title type="html">ubuntu安装的软件</title><link href="https://zhuio.github.io/ubuntucmd/" rel="alternate" type="text/html" title="ubuntu安装的软件" /><published>2017-01-12T00:00:00+08:00</published><updated>2017-01-12T00:00:00+08:00</updated><id>https://zhuio.github.io/ubuntucmd</id><content type="html" xml:base="https://zhuio.github.io/ubuntucmd/">&lt;h2 id=&quot;ubuntu安装的软件&quot;&gt;ubuntu安装的软件&lt;/h2&gt;
 
 &lt;h3 id=&quot;shadowsocks&quot;&gt;shadowsocks&lt;/h3&gt;
 &lt;p&gt;https://github.com/shadowsocks/shadowsocks-qt5/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97&lt;/p&gt;
