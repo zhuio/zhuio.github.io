@@ -9,7 +9,8 @@ comments: true
 ## Flask 的使用方法
 
 ### Flask on youtube
-#### templates
+
+#### Templates
 
 {% highlight css %}
 <!DOCTYPE html>

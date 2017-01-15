@@ -1,7 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-15T22:13:17+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">flask</title><link href="https://zhuio.github.io/flask/" rel="alternate" type="text/html" title="flask" /><published>2017-01-15T21:57:00+08:00</published><updated>2017-01-15T21:57:00+08:00</updated><id>https://zhuio.github.io/flask</id><content type="html" xml:base="https://zhuio.github.io/flask/">&lt;h2 id=&quot;flask-的使用方法&quot;&gt;Flask 的使用方法&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-16T02:19:29+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">pygame0</title><link href="https://zhuio.github.io/pygame/" rel="alternate" type="text/html" title="pygame0" /><published>2017-01-16T02:12:00+08:00</published><updated>2017-01-16T02:12:00+08:00</updated><id>https://zhuio.github.io/pygame</id><content type="html" xml:base="https://zhuio.github.io/pygame/">&lt;h3 id=&quot;pygame-lts&quot;&gt;pygame lts&lt;/h3&gt;
+
+&lt;h4 id=&quot;pygame-in-youtube&quot;&gt;pygame in youtube&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/playlist?list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO&quot; title=&quot;pygame&quot;&gt;pygame in py3&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;pygame-init&quot;&gt;pygame init&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;display&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.display.set_mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.display.set_caption&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'my video game'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;clock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.time.Clock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;crashed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;False&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;crashed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.event.get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.QUIT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;crashed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;True&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.display.update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;clock&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.tick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.quit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="pygame" /><summary type="html">pygame lts</summary></entry><entry><title type="html">flask</title><link href="https://zhuio.github.io/flask/" rel="alternate" type="text/html" title="flask" /><published>2017-01-15T21:57:00+08:00</published><updated>2017-01-15T21:57:00+08:00</updated><id>https://zhuio.github.io/flask</id><content type="html" xml:base="https://zhuio.github.io/flask/">&lt;h2 id=&quot;flask-的使用方法&quot;&gt;Flask 的使用方法&lt;/h2&gt;
 
 &lt;h3 id=&quot;flask-on-youtube&quot;&gt;Flask on youtube&lt;/h3&gt;
-&lt;h4 id=&quot;templates&quot;&gt;templates&lt;/h4&gt;
+
+&lt;h4 id=&quot;templates&quot;&gt;Templates&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;

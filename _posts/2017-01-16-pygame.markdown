@@ -1,0 +1,40 @@
+---
+layout: "post"
+title: "pygame0"
+date: "2017-01-16 02:12"
+tags:
+- pygame
+comments: true
+---
+
+### pygame lts
+
+#### pygame in youtube
+[pygame in py3][8a50bc72]
+
+  [8a50bc72]: https://www.youtube.com/playlist?list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO "pygame"
+
+#### pygame init
+{% highlight css %}
+
+import pygame
+
+pygame.init()
+display = pygame.display.set_mode((800,600))
+pygame.display.set_caption('my video game')
+clock = pygame.time.Clock()
+
+crashed = False
+
+while not crashed:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            crashed = True
+        print(event)
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
+
+
+{% endhighlight %}
