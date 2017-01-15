@@ -29,7 +29,7 @@ creat_table()
 data_entry()
 
 {% endhighlight %}
-#### 動態添加數據庫
+#### 动态添加数据库
 {% highlight css %}
 
 import sqlite3

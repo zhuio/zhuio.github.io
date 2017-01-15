@@ -1,0 +1,69 @@
+---
+layout: "post"
+title: "flask"
+date: "2017-01-15 21:57"
+tags:
+- flask
+comments: true
+---
+## Flask 的使用方法
+
+### Flask on youtube
+#### templates
+
+{% highlight css %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body class="body">
+	<header>
+
+	</header>
+	 <body>
+	   <h3>{{ title }}</h3>
+	   <br>
+		{% for p in paragraph %}
+		<p>{{ p }}</p>
+		{% endfor %}
+	 </body>
+
+</html>
+{% endhighlight %}
+
+#### __init__
+{% highlight css %}
+from flask import Flask,render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def homepage():
+   try:
+       x += 5
+       return "Hi there"
+   except Exception, e:
+       return str(e)
+
+if __name__ == "__main__":
+   app.run()
+{% endhighlight %}
+
+[ Flask tutor][c8d8b657]
+
+  [c8d8b657]: https://www.youtube.com/playlist?list=PLQVvvaa0QuDcOS4l8RCWh0olq_je0OKaP "FLASK"
+
+### 做一个漂亮的Chart
+
+[make great charts][797fd254]
+
+  [797fd254]: http://www.highcharts.com/ "charts"
+
+### bootstrap
+
+[Bootstrap][6c7aa1ca]
+
+  [6c7aa1ca]: http://getbootstrap.com/ "use bootstrap"
