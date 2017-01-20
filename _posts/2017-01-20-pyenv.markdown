@@ -1,0 +1,50 @@
+---
+layout: "post"
+title: "pyenv"
+date: "2017-01-20 21:41"
+tags:
+- python pyenv
+comments: true
+---
+
+### pyenv 安装
+
+[pyenv github主页][e762ec4e]
+
+  [e762ec4e]: https://github.com/yyuu/pyenv "pyenv"
+
+[pyenv-installer][5259600d]
+
+  [5259600d]: https://github.com/yyuu/pyenv-installer "pyenv-installer"
+
+#### Github way (recommended)
+
+  Install:
+
+  $ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+  Update:
+
+  $ pyenv update
+  Uninstall: pyenv is installed within $PYENV_ROOT (default: ~/.pyenv). To uninstall, just remove it:
+
+  $ rm -fr ~/.pyenv
+  and remove these three lines from .bashrc:
+
+  export PATH="~/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  If you need, export USE_GIT_URI to use git:// instad of https// for git clone.
+
+
+
+#### 设置 pyenv 环境变量
+{% highlight css %}
+$ cat>>.bashrc<<EOF
+export PYENV_ROOT="\$HOME/.pyenv"
+export PATH="\$PYENV_ROOT/bin:\$PATH"
+eval "\$(pyenv init -)"
+eval "\$(pyenv virtualenv-init -)"
+EOF
+
+$ source .bashrc
+{% endhighlight %}

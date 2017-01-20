@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-16T02:19:29+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">pygame0</title><link href="https://zhuio.github.io/pygame/" rel="alternate" type="text/html" title="pygame0" /><published>2017-01-16T02:12:00+08:00</published><updated>2017-01-16T02:12:00+08:00</updated><id>https://zhuio.github.io/pygame</id><content type="html" xml:base="https://zhuio.github.io/pygame/">&lt;h3 id=&quot;pygame-lts&quot;&gt;pygame lts&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-20T21:53:00+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">pyenv</title><link href="https://zhuio.github.io/pyenv/" rel="alternate" type="text/html" title="pyenv" /><published>2017-01-20T21:41:00+08:00</published><updated>2017-01-20T21:41:00+08:00</updated><id>https://zhuio.github.io/pyenv</id><content type="html" xml:base="https://zhuio.github.io/pyenv/">&lt;h3 id=&quot;pyenv-安装&quot;&gt;pyenv 安装&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/yyuu/pyenv&quot; title=&quot;pyenv&quot;&gt;pyenv github主页&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/yyuu/pyenv-installer&quot; title=&quot;pyenv-installer&quot;&gt;pyenv-installer&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;github-way-recommended&quot;&gt;Github way (recommended)&lt;/h4&gt;
+
+&lt;p&gt;Install:&lt;/p&gt;
+
+&lt;p&gt;$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+  Update:&lt;/p&gt;
+
+&lt;p&gt;$ pyenv update
+  Uninstall: pyenv is installed within $PYENV_ROOT (default: ~/.pyenv). To uninstall, just remove it:&lt;/p&gt;
+
+&lt;p&gt;$ rm -fr ~/.pyenv
+  and remove these three lines from .bashrc:&lt;/p&gt;
+
+&lt;p&gt;export PATH=”~/.pyenv/bin:$PATH”
+  eval “$(pyenv init -)”
+  eval “$(pyenv virtualenv-init -)”
+  If you need, export USE_GIT_URI to use git:// instad of https// for git clone.&lt;/p&gt;
+
+&lt;h4 id=&quot;设置-pyenv-环境变量&quot;&gt;设置 pyenv 环境变量&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.bashrc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;EOF&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;PYENV_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;\$HOME/.pyenv&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;\$PYENV_ROOT/bin:\$PATH&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;\$(pyenv init -)&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;\$(pyenv virtualenv-init -)&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;EOF&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.bashrc&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="python pyenv" /><summary type="html">pyenv 安装</summary></entry><entry><title type="html">pygame0</title><link href="https://zhuio.github.io/pygame/" rel="alternate" type="text/html" title="pygame0" /><published>2017-01-16T02:12:00+08:00</published><updated>2017-01-16T02:12:00+08:00</updated><id>https://zhuio.github.io/pygame</id><content type="html" xml:base="https://zhuio.github.io/pygame/">&lt;h3 id=&quot;pygame-lts&quot;&gt;pygame lts&lt;/h3&gt;
 
 &lt;h4 id=&quot;pygame-in-youtube&quot;&gt;pygame in youtube&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/playlist?list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO&quot; title=&quot;pygame&quot;&gt;pygame in py3&lt;/a&gt;&lt;/p&gt;
