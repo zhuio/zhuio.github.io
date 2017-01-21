@@ -1,4 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-20T21:53:00+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">pyenv</title><link href="https://zhuio.github.io/pyenv/" rel="alternate" type="text/html" title="pyenv" /><published>2017-01-20T21:41:00+08:00</published><updated>2017-01-20T21:41:00+08:00</updated><id>https://zhuio.github.io/pyenv</id><content type="html" xml:base="https://zhuio.github.io/pyenv/">&lt;h3 id=&quot;pyenv-安装&quot;&gt;pyenv 安装&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator>
+<link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" />
+<link href="https://zhuio.github.io/" rel="alternate" type="text/html" />
+<updated>2017-01-21T22:56:26+08:00</updated>
+<id>https://zhuio.github.io/</id>
+<subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle>
+<entry>
+<title>煎蛋妹子图爬虫</title>
+<link href="https://zhuio.github.io/%E7%85%8E%E8%9B%8B%E5%A6%B9%E5%AD%90%E5%9B%BE%E7%88%AC%E8%99%AB/" rel="alternate" type="text/html" title="煎蛋妹子图爬虫" />
+<published>2017-01-21T16:52:00+08:00</published>
+<updated>2017-01-21T16:52:00+08:00</updated>
+<id>https://zhuio.github.io/煎蛋妹子图爬虫</id>
+<content type="html" xml:base="https://zhuio.github.io/%E7%85%8E%E8%9B%8B%E5%A6%B9%E5%AD%90%E5%9B%BE%E7%88%AC%E8%99%AB/">&lt;h3 id=&quot;python&quot;&gt;用python爬取煎蛋上妹子图&lt;/h3&gt;
+
+&lt;p&gt;用到beautifulsoup4
+requests
+time
+urllib.request.urlopen&lt;/p&gt;
+
+&lt;p&gt;{% highlight css %}
+import urllib.request
+import bs4 as bs
+import requests
+import re
+import time
+import random&lt;/p&gt;
+
+&lt;p&gt;def parser(page):
+    urls = []
+    for i in range(2000,page):
+        url = ‘http://jandan.net/ooxx/page-{}’.format(str(i))
+        urls.append(url)
+    for a in urls:
+        sauce = urllib.request.urlopen(a)
+        soup = bs.BeautifulSoup(sauce,’lxml’)
+        imgs = soup.find_all(‘img’)
+        for img in imgs:
+            src = re.compile(‘src=”//(.&lt;em&gt;)”.&lt;/em&gt;/&amp;gt;’)
+            findsrc = re.findall(src,str(img))
+            try:
+                for i in findsrc:
+                    time.sleep(0.05)
+                    headers = {‘User-Agent’:’Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0’}
+                    req = urllib.request.Request(url=’https://’+i, headers=headers)
+                    data = urllib.request.urlopen(req).read()
+                    path = ‘images/’+str(random.random())
+                    with open(path,’wb’) as f:
+                        f.write(data)
+            except urllib.error.URLError as e:
+                print(‘except:’, e)
+            finally:
+                print(‘完成了’)&lt;/p&gt;
+
+&lt;p&gt;if &lt;strong&gt;name&lt;/strong&gt; == ‘&lt;strong&gt;main&lt;/strong&gt;’:
+    parser(2200)&lt;/p&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+</content>
+<summary>用python爬取煎蛋上妹子图</summary>
+</entry>
+<entry>
+<title>pyenv</title>
+<link href="https://zhuio.github.io/pyenv/" rel="alternate" type="text/html" title="pyenv" />
+<published>2017-01-20T21:41:00+08:00</published>
+<updated>2017-01-20T21:41:00+08:00</updated>
+<id>https://zhuio.github.io/pyenv</id>
+<content type="html" xml:base="https://zhuio.github.io/pyenv/">&lt;h3 id=&quot;pyenv-&quot;&gt;pyenv 安装&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/yyuu/pyenv&quot; title=&quot;pyenv&quot;&gt;pyenv github主页&lt;/a&gt;&lt;/p&gt;
 
@@ -22,136 +90,201 @@
   eval “$(pyenv virtualenv-init -)”
   If you need, export USE_GIT_URI to use git:// instad of https// for git clone.&lt;/p&gt;
 
-&lt;h4 id=&quot;设置-pyenv-环境变量&quot;&gt;设置 pyenv 环境变量&lt;/h4&gt;
+&lt;h4 id=&quot;pyenv--1&quot;&gt;设置 pyenv 环境变量&lt;/h4&gt;
+&lt;p&gt;{% highlight css %}
+$ cat».bashrc«EOF
+export PYENV_ROOT=”$HOME/.pyenv”
+export PATH=”$PYENV_ROOT/bin:$PATH”
+eval “$(pyenv init -)”
+eval “$(pyenv virtualenv-init -)”
+EOF&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.bashrc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;EOF&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;PYENV_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;\$HOME/.pyenv&quot;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;\$PYENV_ROOT/bin:\$PATH&quot;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;\$(pyenv init -)&quot;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;\$(pyenv virtualenv-init -)&quot;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;EOF&lt;/span&gt;
-
-&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.bashrc&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="python pyenv" /><summary type="html">pyenv 安装</summary></entry><entry><title type="html">pygame0</title><link href="https://zhuio.github.io/pygame/" rel="alternate" type="text/html" title="pygame0" /><published>2017-01-16T02:12:00+08:00</published><updated>2017-01-16T02:12:00+08:00</updated><id>https://zhuio.github.io/pygame</id><content type="html" xml:base="https://zhuio.github.io/pygame/">&lt;h3 id=&quot;pygame-lts&quot;&gt;pygame lts&lt;/h3&gt;
+&lt;p&gt;$ source .bashrc
+{% endhighlight %}&lt;/p&gt;
+</content>
+<category term="python pyenv" />
+<summary>pyenv 安装</summary>
+</entry>
+<entry>
+<title>pygame0</title>
+<link href="https://zhuio.github.io/pygame/" rel="alternate" type="text/html" title="pygame0" />
+<published>2017-01-16T02:12:00+08:00</published>
+<updated>2017-01-16T02:12:00+08:00</updated>
+<id>https://zhuio.github.io/pygame</id>
+<content type="html" xml:base="https://zhuio.github.io/pygame/">&lt;h3 id=&quot;pygame-lts&quot;&gt;pygame lts&lt;/h3&gt;
 
 &lt;h4 id=&quot;pygame-in-youtube&quot;&gt;pygame in youtube&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/playlist?list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO&quot; title=&quot;pygame&quot;&gt;pygame in py3&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;pygame-init&quot;&gt;pygame init&lt;/h4&gt;
+&lt;p&gt;{% highlight css %}&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;
+&lt;p&gt;import pygame&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;display&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.display.set_mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.display.set_caption&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'my video game'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;clock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.time.Clock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;p&gt;pygame.init()
+display = pygame.display.set_mode((800,600))
+pygame.display.set_caption(‘my video game’)
+clock = pygame.time.Clock()&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;crashed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;False&lt;/span&gt;
+&lt;p&gt;crashed = False&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;crashed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.event.get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.QUIT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;crashed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;True&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.display.update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;clock&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.tick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;while not crashed:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            crashed = True
+        print(event)
+    pygame.display.update()
+    clock.tick(60)&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;pygame&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.quit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="pygame" /><summary type="html">pygame lts</summary></entry><entry><title type="html">flask</title><link href="https://zhuio.github.io/flask/" rel="alternate" type="text/html" title="flask" /><published>2017-01-15T21:57:00+08:00</published><updated>2017-01-15T21:57:00+08:00</updated><id>https://zhuio.github.io/flask</id><content type="html" xml:base="https://zhuio.github.io/flask/">&lt;h2 id=&quot;flask-的使用方法&quot;&gt;Flask 的使用方法&lt;/h2&gt;
+&lt;p&gt;pygame.quit()&lt;/p&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+</content>
+<category term="pygame" />
+<summary>pygame lts</summary>
+</entry>
+<entry>
+<title>flask</title>
+<link href="https://zhuio.github.io/flask/" rel="alternate" type="text/html" title="flask" />
+<published>2017-01-15T21:57:00+08:00</published>
+<updated>2017-01-15T21:57:00+08:00</updated>
+<id>https://zhuio.github.io/flask</id>
+<content type="html" xml:base="https://zhuio.github.io/flask/">&lt;h2 id=&quot;flask-&quot;&gt;Flask 的使用方法&lt;/h2&gt;
 
 &lt;h3 id=&quot;flask-on-youtube&quot;&gt;Flask on youtube&lt;/h3&gt;
 
 &lt;h4 id=&quot;templates&quot;&gt;Templates&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;p&gt;{% highlight css %}
+&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
+&lt;html lang=&quot;en&quot;&gt;
 
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;head&gt;
 
-&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/head&gt;
 
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;body class=&quot;body&quot;&gt;
+	&lt;header&gt;
 
-	&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-	 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-	   &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-	   &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;br&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-		
-	 &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;/header&gt;
+	 &lt;body&gt;
+	   &lt;h3&gt;{{ title }}&lt;/h3&gt;
+	   &lt;br /&gt;
+		{% for p in paragraph %}
+		&lt;p&gt;{{ p }}&lt;/p&gt;
+		{% endfor %}
+	 &lt;/body&gt;
 
-&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&amp;lt;/html&amp;gt;
+{% endhighlight %}
 
-&lt;h4 id=&quot;init&quot;&gt;&lt;strong&gt;init&lt;/strong&gt;&lt;/h4&gt;
+#### __init__
+{% highlight css %}
+from flask import Flask,render_template
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;flask&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Flask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;render_template&lt;/span&gt;
+app = Flask(__name__)
 
-&lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Flask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+@app.route(&#39;/&#39;)
+def homepage():
+   try:
+       x += 5
+       return &quot;Hi there&quot;
+   except Exception, e:
+       return str(e)
 
-&lt;span class=&quot;k&quot;&gt;@app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;homepage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-   &lt;span class=&quot;n&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Hi there&quot;&lt;/span&gt;
-   &lt;span class=&quot;n&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-       &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+if __name__ == &quot;__main__&quot;:
+   app.run()
+{% endhighlight %}
 
-&lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-   &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+[ Flask tutor][c8d8b657]
 
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/playlist?list=PLQVvvaa0QuDcOS4l8RCWh0olq_je0OKaP&quot; title=&quot;FLASK&quot;&gt; Flask tutor&lt;/a&gt;&lt;/p&gt;
+  [c8d8b657]: https://www.youtube.com/playlist?list=PLQVvvaa0QuDcOS4l8RCWh0olq_je0OKaP &quot;FLASK&quot;
 
-&lt;h3 id=&quot;做一个漂亮的chart&quot;&gt;做一个漂亮的Chart&lt;/h3&gt;
+### 做一个漂亮的Chart
 
-&lt;p&gt;&lt;a href=&quot;http://www.highcharts.com/&quot; title=&quot;charts&quot;&gt;make great charts&lt;/a&gt;&lt;/p&gt;
+[make great charts][797fd254]
 
-&lt;h3 id=&quot;bootstrap&quot;&gt;bootstrap&lt;/h3&gt;
+  [797fd254]: http://www.highcharts.com/ &quot;charts&quot;
 
-&lt;p&gt;&lt;a href=&quot;http://getbootstrap.com/&quot; title=&quot;use bootstrap&quot;&gt;Bootstrap&lt;/a&gt;&lt;/p&gt;</content><category term="flask" /><summary type="html">Flask 的使用方法</summary></entry><entry><title type="html">sqlite3</title><link href="https://zhuio.github.io/sqlite3/" rel="alternate" type="text/html" title="sqlite3" /><published>2017-01-15T01:59:00+08:00</published><updated>2017-01-15T01:59:00+08:00</updated><id>https://zhuio.github.io/sqlite3</id><content type="html" xml:base="https://zhuio.github.io/sqlite3/">&lt;h3 id=&quot;sqlite3使用&quot;&gt;sqlite3使用&lt;/h3&gt;
+### bootstrap
 
-&lt;h4 id=&quot;sqlite3基本使用方法&quot;&gt;sqlite3基本使用方法&lt;/h4&gt;
+[Bootstrap][6c7aa1ca]
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;
+  [6c7aa1ca]: http://getbootstrap.com/ &quot;use bootstrap&quot;
+&lt;/body&gt;&lt;/html&gt;
+</content>
+<category term="flask" />
+<summary>Flask 的使用方法</summary>
+</entry>
+<entry>
+<title>sqlite3</title>
+<link href="https://zhuio.github.io/sqlite3/" rel="alternate" type="text/html" title="sqlite3" />
+<published>2017-01-15T01:59:00+08:00</published>
+<updated>2017-01-15T01:59:00+08:00</updated>
+<id>https://zhuio.github.io/sqlite3</id>
+<content type="html" xml:base="https://zhuio.github.io/sqlite3/">&lt;h3 id=&quot;sqlite3&quot;&gt;sqlite3使用&lt;/h3&gt;
 
-&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'tutorial.db'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.cursor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;h4 id=&quot;sqlite3-1&quot;&gt;sqlite3基本使用方法&lt;/h4&gt;
+&lt;p&gt;{% highlight css %}&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;import sqlite3&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;INSERT INTO stuffToPlot VALUES(141313141,'2017-1-14 00:37:24','python',5)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.commit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;p&gt;conn = sqlite3.connect(‘tutorial.db’)
+c = conn.cursor()&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;def creat_table():
+	c.execute(“CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)”)&lt;/p&gt;
 
-&lt;h4 id=&quot;动态添加数据库&quot;&gt;动态添加数据库&lt;/h4&gt;
+&lt;p&gt;def data_entry():
+	c.execute(“INSERT INTO stuffToPlot VALUES(141313141,’2017-1-14 00:37:24’,’python’,5)”)
+	conn.commit()
+	c.close()
+	conn.close()&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;time&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;datetime&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;random&lt;/span&gt;
+&lt;p&gt;creat_table()
+data_entry()&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sqlite3&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'tutor1.db'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.cursor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;p&gt;{% endhighlight %}
+#### 动态添加数据库
+{% highlight css %}&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;import sqlite3
+import time
+import datetime
+import random&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;unix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.datetime.fromtimestamp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;unix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.strftime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'%Y-%m-%d %H-%M-%S'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;keyword&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'python'&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.randrange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;conn = sqlite3.connect(‘tutor1.db’)
+c = conn.cursor()&lt;/p&gt;
 
-		&lt;span class=&quot;nt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;INSERT INTO stuffToPlot (unix,timeStamp,keyword,value) VALUES(?,?,?,?)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;unix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;keyword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.commit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;p&gt;def creat_table():
+	c.execute(“CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL,timeStamp TEXT,keyword TEXT,value REAL)”)&lt;/p&gt;
 
-&lt;span class=&quot;nt&quot;&gt;creat_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;data_entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="sqlite3" /><summary type="html">sqlite3使用</summary></entry><entry><title type="html">ubuntu安装的软件</title><link href="https://zhuio.github.io/ubuntucmd/" rel="alternate" type="text/html" title="ubuntu安装的软件" /><published>2017-01-12T00:00:00+08:00</published><updated>2017-01-12T00:00:00+08:00</updated><id>https://zhuio.github.io/ubuntucmd</id><content type="html" xml:base="https://zhuio.github.io/ubuntucmd/">&lt;h2 id=&quot;ubuntu安装的软件&quot;&gt;ubuntu安装的软件&lt;/h2&gt;
+&lt;p&gt;def data_entry():
+	for i in range(10):
+		unix = time.time()
+		date = str(datetime.datetime.fromtimestamp(unix).strftime(‘%Y-%m-%d %H-%M-%S’))
+		keyword = ‘python’
+		value = random.randrange(0,10)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;	c.execute(&quot;INSERT INTO stuffToPlot (unix,timeStamp,keyword,value) VALUES(?,?,?,?)&quot;,(unix,date,keyword,value))
+	conn.commit()
+&lt;/div&gt;
+
+&lt;p&gt;creat_table()
+data_entry()
+conn.close()
+{% endhighlight %}&lt;/p&gt;
+</content>
+<category term="sqlite3" />
+<summary>sqlite3使用</summary>
+</entry>
+<entry>
+<title>ubuntu安装的软件</title>
+<link href="https://zhuio.github.io/ubuntucmd/" rel="alternate" type="text/html" title="ubuntu安装的软件" />
+<published>2017-01-12T00:00:00+08:00</published>
+<updated>2017-01-12T00:00:00+08:00</updated>
+<id>https://zhuio.github.io/ubuntucmd</id>
+<content type="html" xml:base="https://zhuio.github.io/ubuntucmd/">&lt;h2 id=&quot;ubuntu&quot;&gt;ubuntu安装的软件&lt;/h2&gt;
 
 &lt;h3 id=&quot;shadowsocks&quot;&gt;shadowsocks&lt;/h3&gt;
 &lt;p&gt;https://github.com/shadowsocks/shadowsocks-qt5/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97&lt;/p&gt;
@@ -163,16 +296,39 @@
 &lt;p&gt;https://www.sublimetext.com/&lt;/p&gt;
 
 &lt;h3 id=&quot;chrome&quot;&gt;chrome&lt;/h3&gt;
-&lt;p&gt;http://www.ubuntuchrome.com/&lt;/p&gt;</content><category term="ubuntu" /><summary type="html">ubuntu安装的软件</summary></entry><entry><title type="html">tensorflow资源</title><link href="https://zhuio.github.io/tensorflow0/" rel="alternate" type="text/html" title="tensorflow资源" /><published>2017-01-12T00:00:00+08:00</published><updated>2017-01-12T00:00:00+08:00</updated><id>https://zhuio.github.io/tensorflow0</id><content type="html" xml:base="https://zhuio.github.io/tensorflow0/">&lt;h2 id=&quot;tensorflow资源&quot;&gt;tensorflow资源&lt;/h2&gt;
+&lt;p&gt;http://www.ubuntuchrome.com/&lt;/p&gt;
+
+</content>
+<category term="ubuntu" />
+<summary>ubuntu安装的软件</summary>
+</entry>
+<entry>
+<title>tensorflow资源</title>
+<link href="https://zhuio.github.io/tensorflow0/" rel="alternate" type="text/html" title="tensorflow资源" />
+<published>2017-01-12T00:00:00+08:00</published>
+<updated>2017-01-12T00:00:00+08:00</updated>
+<id>https://zhuio.github.io/tensorflow0</id>
+<content type="html" xml:base="https://zhuio.github.io/tensorflow0/">&lt;h2 id=&quot;tensorflow&quot;&gt;tensorflow资源&lt;/h2&gt;
 &lt;p&gt;https://github.com/CreatCodeBuild&lt;/p&gt;
 
 &lt;p&gt;https://www.kaggle.com/&lt;/p&gt;
 
 &lt;p&gt;https://www.openai.com/blog/&lt;/p&gt;
 
-&lt;p&gt;https://gitter.im&lt;/p&gt;</content><category term="tensorflow" /><summary type="html">tensorflow资源</summary></entry><entry><title type="html">node.js实践</title><link href="https://zhuio.github.io/node0/" rel="alternate" type="text/html" title="node.js实践" /><published>2017-01-11T00:00:00+08:00</published><updated>2017-01-11T00:00:00+08:00</updated><id>https://zhuio.github.io/node0</id><content type="html" xml:base="https://zhuio.github.io/node0/">&lt;h2 id=&quot;nodejs实践&quot;&gt;node.js实践&lt;/h2&gt;
+&lt;p&gt;https://gitter.im&lt;/p&gt;
+</content>
+<category term="tensorflow" />
+<summary>tensorflow资源</summary>
+</entry>
+<entry>
+<title>node.js实践</title>
+<link href="https://zhuio.github.io/node0/" rel="alternate" type="text/html" title="node.js实践" />
+<published>2017-01-11T00:00:00+08:00</published>
+<updated>2017-01-11T00:00:00+08:00</updated>
+<id>https://zhuio.github.io/node0</id>
+<content type="html" xml:base="https://zhuio.github.io/node0/">&lt;h2 id=&quot;nodejs&quot;&gt;node.js实践&lt;/h2&gt;
 
-&lt;h3 id=&quot;应用不同模块分析&quot;&gt;应用不同模块分析&lt;/h3&gt;
+&lt;h3 id=&quot;section&quot;&gt;应用不同模块分析&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;我们需要提供 Web ⻚面,因此需要一个 HTTP 服务器
 对于不同的请求,根据请求的 URL ,我们的服务器需要给予不同的响应,因此&lt;/li&gt;
@@ -186,16 +342,45 @@
   &lt;li&gt;最后,用戶需要上传图片,所以我们需要 上传处理功能 来处理这方面的细节&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;一个基础的-http-服务器&quot;&gt;一个基础的 HTTP 服务器&lt;/h4&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;http&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.createServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;err&quot;&gt;response.writeHead(200,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&quot;Content-Type&quot;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;text/plain&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.listen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;8888&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="sample" /><category term="nodw" /><category term="jekyll" /><summary type="html">node.js实践</summary></entry><entry><title type="html">第一篇blog</title><link href="https://zhuio.github.io/firstblog/" rel="alternate" type="text/html" title="第一篇blog" /><published>2017-01-10T00:00:00+08:00</published><updated>2017-01-10T00:00:00+08:00</updated><id>https://zhuio.github.io/firstblog</id><content type="html" xml:base="https://zhuio.github.io/firstblog/">&lt;h2 id=&quot;简单用jekyll搭建的一个blog&quot;&gt;简单用jekyll搭建的一个blog&lt;/h2&gt;
+&lt;h4 id=&quot;http-&quot;&gt;一个基础的 HTTP 服务器&lt;/h4&gt;
+&lt;p&gt;{% highlight css %}
+var http = require(“http”);
+http.createServer(function(request, response) {
+  response.writeHead(200, {“Content-Type”: “text/plain”});
+  response.write(“Hello World”);
+  response.end();
+}).listen(8888);
+{% endhighlight %}&lt;/p&gt;
+</content>
+<category term="sample" />
+<category term="nodw" />
+<category term="jekyll" />
+<summary>node.js实践</summary>
+</entry>
+<entry>
+<title>第一篇blog</title>
+<link href="https://zhuio.github.io/firstblog/" rel="alternate" type="text/html" title="第一篇blog" />
+<published>2017-01-10T00:00:00+08:00</published>
+<updated>2017-01-10T00:00:00+08:00</updated>
+<id>https://zhuio.github.io/firstblog</id>
+<content type="html" xml:base="https://zhuio.github.io/firstblog/">&lt;h2 id=&quot;jekyllblog&quot;&gt;简单用jekyll搭建的一个blog&lt;/h2&gt;
 &lt;p&gt;原先用HTML5搭建的首页不能写BLOG，改用jekyll搭建，简单又好看，不错。
-  早上6：53&lt;/p&gt;</content><category term="test" /><category term="useless" /><category term="sample" /><category term="first" /><category term="jekyll" /><summary type="html">朱智博的BLOG上线了，随便写点什么，做个测试</summary></entry><entry><title type="html">Markdown Syntax</title><link href="https://zhuio.github.io/markdown-syntax/" rel="alternate" type="text/html" title="Markdown Syntax" /><published>2016-03-15T00:00:00+08:00</published><updated>2016-03-15T00:00:00+08:00</updated><id>https://zhuio.github.io/markdown-syntax</id><content type="html" xml:base="https://zhuio.github.io/markdown-syntax/">&lt;h2 id=&quot;html-elements&quot;&gt;HTML Elements&lt;/h2&gt;
+  早上6：53&lt;/p&gt;
+</content>
+<category term="test" />
+<category term="useless" />
+<category term="sample" />
+<category term="first" />
+<category term="jekyll" />
+<summary>朱智博的BLOG上线了，随便写点什么，做个测试</summary>
+</entry>
+<entry>
+<title>Markdown Syntax</title>
+<link href="https://zhuio.github.io/markdown-syntax/" rel="alternate" type="text/html" title="Markdown Syntax" />
+<published>2016-03-15T00:00:00+08:00</published>
+<updated>2016-03-15T00:00:00+08:00</updated>
+<id>https://zhuio.github.io/markdown-syntax</id>
+<content type="html" xml:base="https://zhuio.github.io/markdown-syntax/">&lt;h2 id=&quot;html-elements&quot;&gt;HTML Elements&lt;/h2&gt;
 
 &lt;p&gt;Below is just about everything you’ll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.&lt;/p&gt;
 
@@ -295,17 +480,21 @@
 
 &lt;h2 id=&quot;code-snippets&quot;&gt;Code Snippets&lt;/h2&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nf&quot;&gt;#container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-240px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;{% highlight css %}
+#container {
+  float: left;
+  margin: 0 -240px 0 0;
+  width: 100%;
+}
+{% endhighlight %}&lt;/p&gt;
 
 &lt;h2 id=&quot;buttons&quot;&gt;Buttons&lt;/h2&gt;
 
 &lt;p&gt;Make any link standout more when applying the &lt;code class=&quot;highlighter-rouge&quot;&gt;.btn&lt;/code&gt; class.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-success&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Success Button&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;{% highlight html %}
+&lt;a href=&quot;#&quot; class=&quot;btn btn-success&quot;&gt;Success Button&lt;/a&gt;
+{% endhighlight %}&lt;/p&gt;
 
 &lt;div&gt;&lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;Primary Button&lt;/a&gt;&lt;/div&gt;
 &lt;div&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-success&quot;&gt;Success Button&lt;/a&gt;&lt;/div&gt;
@@ -317,10 +506,21 @@
 
 &lt;p&gt;You can also use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; tag for keyboard buttons.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;kbd&amp;gt;&lt;/span&gt;W&lt;span class=&quot;nt&quot;&gt;&amp;lt;/kbd&amp;gt;&amp;lt;kbd&amp;gt;&lt;/span&gt;A&lt;span class=&quot;nt&quot;&gt;&amp;lt;/kbd&amp;gt;&amp;lt;kbd&amp;gt;&lt;/span&gt;S&lt;span class=&quot;nt&quot;&gt;&amp;lt;/kbd&amp;gt;&amp;lt;kbd&amp;gt;&lt;/span&gt;D&lt;span class=&quot;nt&quot;&gt;&amp;lt;/kbd&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;{% highlight html %}
+&lt;kbd&gt;W&lt;/kbd&gt;&lt;kbd&gt;A&lt;/kbd&gt;&lt;kbd&gt;S&lt;/kbd&gt;&lt;kbd&gt;D&lt;/kbd&gt;
+{% endhighlight %}&lt;/p&gt;
 
 &lt;p&gt;Press &lt;kbd&gt;W&lt;/kbd&gt;&lt;kbd&gt;A&lt;/kbd&gt;&lt;kbd&gt;S&lt;/kbd&gt;&lt;kbd&gt;D&lt;/kbd&gt; to move your car. &lt;strong&gt;Midtown Maddness!!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;notices&quot;&gt;Notices&lt;/h2&gt;
 
-&lt;p class=&quot;notice&quot;&gt;&lt;strong&gt;Watch out!&lt;/strong&gt; You can also add notices by appending &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.notice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; to a paragraph.&lt;/p&gt;</content><category term="markdown" /><category term="syntax" /><category term="sample" /><category term="test" /><category term="jekyll" /><summary type="html">Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more.</summary></entry></feed>
+&lt;p class=&quot;notice&quot;&gt;&lt;strong&gt;Watch out!&lt;/strong&gt; You can also add notices by appending &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.notice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; to a paragraph.&lt;/p&gt;
+</content>
+<category term="markdown" />
+<category term="syntax" />
+<category term="sample" />
+<category term="test" />
+<category term="jekyll" />
+<summary>Just about everything you’ll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more.</summary>
+</entry>
+</feed>
