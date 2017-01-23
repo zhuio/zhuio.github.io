@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://zhuio.github.io/ml%E5%9B%9E%E5%BD%92/</loc>
+<lastmod>2017-01-23T01:25:00+08:00</lastmod>
+</url>
+<url>
+<loc>https://zhuio.github.io/jekyll-%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</loc>
+<lastmod>2017-01-21T23:09:00+08:00</lastmod>
+</url>
+<url>
 <loc>https://zhuio.github.io/%E7%85%8E%E8%9B%8B%E5%A6%B9%E5%AD%90%E5%9B%BE%E7%88%AC%E8%99%AB/</loc>
 <lastmod>2017-01-21T16:52:00+08:00</lastmod>
 </url>
@@ -50,13 +58,13 @@
 <loc>https://zhuio.github.io/</loc>
 </url>
 <url>
-<loc>https://zhuio.github.io/posts/</loc>
+<loc>https://zhuio.github.io/about/</loc>
 </url>
 <url>
 <loc>https://zhuio.github.io/projects/</loc>
 </url>
 <url>
-<loc>https://zhuio.github.io/about/</loc>
+<loc>https://zhuio.github.io/posts/</loc>
 </url>
 <url>
 <loc>https://zhuio.github.io/baidu_verify_t9Z4X0kEKB.html</loc>

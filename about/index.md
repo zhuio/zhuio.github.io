@@ -5,14 +5,15 @@ tags: [about, zhuio, who am i, stuff i do]
 date: 2016-03-21
 comments: false
 ---
-    
+
 <center><a href="https://zhuio.github.io"><b>This blog</b></a> is a record of my life.</center>
 
 ## who am i
 * 一个喜欢新事物的家伙
-* 喜欢挑战，有一点ZZ
+* 喜欢挑战，喜欢琢磨
 * 崇拜大牛
 * 乐于分享
+* Python的追随者
 
 ## About blog
 * 关于python的一些浅薄的见解
@@ -26,7 +27,7 @@ comments: false
 * this blog powered by jekyll
 * ruby
 
-## stuff i do 
+## stuff i do
 
 * 做一些机器学习和虚拟现实的入门
 * 写一些python的django,和爬虫

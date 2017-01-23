@@ -15,6 +15,7 @@ time
 urllib.request.urlopen
 
 {% highlight css %}
+
 import urllib.request
 import bs4 as bs
 import requests
@@ -40,15 +41,15 @@ def parser(page):
                     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
                     req = urllib.request.Request(url='https://'+i, headers=headers)
                     data = urllib.request.urlopen(req).read()
-                    path = 'images/'+str(random.random())
+                    path = 'images/'+str(random.randint(1,10000))+'.jpg'
                     with open(path,'wb') as f:
                         f.write(data)
             except urllib.error.URLError as e:
-                print('except:', e)
+                print('except:', '有张图片失效了')
             finally:
-                print('完成了')
+                print('图片正在生成')
 
 if __name__ == '__main__':
-    parser(2200)
+    parser(2323)
 
 {% endhighlight %}

@@ -1,0 +1,90 @@
+---
+layout: "post"
+title: "ml回归"
+date: "2017-01-23 01:25"
+tags:
+- machine-learning
+comments: true
+---
+
+### 回归——介绍和数据
+  相关的库
+
+{% highlight css %}
+
+  pip install numpy
+
+  pip install scipy
+
+  pip install scikit-learn
+
+  pip install matplotlib
+
+  pip install pandas
+
+  pip install quandl
+
+{% endhighlight %}
+
+  首先,什么是回归的我们和机器学习使用它吗? 目标是将连续数据,找到最适合的方程数据,并能够预测出一个特定值。
+简单线性回归,你这样做只是简单地通过创建一个最适合线:
+![](https://pythonprogramming.net/static/images/machine-learning/linear-regression-algorithm-tutorial-test.png)
+
+从这里,我们可以用这条线的方程来预测到未来,“日期”的x轴,价格会是什么。
+
+一个受欢迎的使用回归来预测股票价格。 这样做,因为我们正在考虑价格随着时间的流动,并试图预测未来液体价格在未来使用一个连续的数据集。
+
+回归是监督机器学习的一种形式,这是科学家教机器通过展示功能然后显示正确答案是什么,一遍又一遍,教的机器。 一旦机器教授,科学家通常会“测试”的机器有些看不见的数据,科学家仍知道正确的答案是什么,但是机器没有。 机器的答案比较已知的答案,可以测量和机器的精度。 如果精度足够高,科学家可能会考虑实际使用算法在现实世界中。
+
+自回归是如此普遍使用股票价格,我们就可以有一个例子。 首先,我们需要的数据。 有时数据容易获得,有时你不得不去勉强在一起,就像我们所做的在一个年长的教程系列 用机器学习股票投资基础 。 在我们的案例中,至少我们可以从简单的从Quandl股票价格和数量信息。 首先,我们将从数据开始抓住字母(之前谷歌)的股价,股票的 GOOGL :
+
+{% highlight css %}
+
+import pandas as pd
+import Quandl
+
+df = Quandl.get("WIKI/GOOGL")
+
+print(df.head())
+
+{% endhighlight %}
+
+在我们的例子中,我们有相当多的列,很多冗余,不改变。 我们可以最有可能同意,同时拥有常规列和调整列是多余的。 调整列是最理想的。 常规列下面是价格,但股票称为股票分拆,突然1分享变得像2股,每股的价值减半,但公司的价值没有减半。 调整列调整的股票分拆随着时间的推移,这使得它们更可靠的进行分析。
+因此,让我们继续,对原来dataframe一点:
+
+{% highlight css %}
+
+df = df[['Adj. Open',  'Adj. High',  'Adj. Low',  'Adj. Close', 'Adj. Volume']]
+
+{% endhighlight %}
+
+现在我们只有调整列和列的体积。 这几个要点。 许多人谈论或听到机器学习好像是某种黑暗艺术,产生价值。 机器学习可以突出价值如果它是存在的,但它确实存在。 你需要有意义的数据。 所以你怎么知道如果你有有意义的数据吗? 我最好的建议就是简单地使用你的大脑。 想想。 历史价格代表未来的价格吗? 一些人是这样认为的,但这是随着时间的推移不断地否定了。 历史模式呢? 这一点值得当采取极端(机器学习可以帮助),但总体相当疲软。 什么价格变化和体积之间的关系随着时间的推移,随着历史模式? 可能好一点。 所以,你已经可以看到,它不是数据越多越快乐,而是我们要用有用的数据。 同时,原始数据有时应该改变了。
+
+考虑日常波动,比如高-低的变化百分比? 每日变化百分比呢? 你会考虑数据仅仅是吗 开放,高,低,接近 或数据 每天接近,传播/波动,变化百分比 是更好吗? 我认为后者更理想。 前都是非常相似的数据点。 创建后者从前者基于相同的数据,但它带来更有价值的信息。
+
+因此,并不是所有的数据都是有用的,有时你需要做进一步处理你的数据,使其更有价值在喂食前通过机器学习算法。 让我们继续和改变我们的数据:
+
+{% highlight css %}
+
+df['HL_PCT'] = (df['Adj. High'] - df['Adj. Low']) / df['Adj. Close'] * 100.0
+
+{% endhighlight %}
+
+接下来,我们要做的日常变化百分比:
+
+{% highlight css %}
+
+df['PCT_change'] = (df['Adj. Close'] - df['Adj. Open']) / df['Adj. Open'] * 100.0
+
+{% endhighlight %}
+
+
+现在,我们将定义一个新的dataframe:
+
+{% highlight css %}
+
+
+df = df[['Adj. Close', 'HL_PCT', 'PCT_change', 'Adj. Volume']]
+print(df.head())
+
+{% endhighlight %}
