@@ -1,0 +1,220 @@
+---
+layout: "post"
+title: "回归预测"
+date: "2017-01-24 02:07"
+tags:
+- machine-learning
+comments: true
+---
+
+欢迎来到的第5部分 机器学习与Python教程系列 ,目前负责的回归。 这一点,我们已经收集的数据,修改一下,训练一个分类器甚至测试分类器。 在本部分中,我们将使用我们的分类器来为我们做一些预测! 这一点,我们将使用代码:
+
+{% highlight css %}
+
+import Quandl, math
+import numpy as np
+import pandas as pd
+from sklearn import preprocessing, cross_validation, svm
+from sklearn.linear_model import LinearRegression
+
+df = Quandl.get("WIKI/GOOGL")
+df = df[['Adj. Open',  'Adj. High',  'Adj. Low',  'Adj. Close', 'Adj. Volume']]
+df['HL_PCT'] = (df['Adj. High'] - df['Adj. Low']) / df['Adj. Close'] * 100.0
+df['PCT_change'] = (df['Adj. Close'] - df['Adj. Open']) / df['Adj. Open'] * 100.0
+
+df = df[['Adj. Close', 'HL_PCT', 'PCT_change', 'Adj. Volume']]
+forecast_col = 'Adj. Close'
+df.fillna(value=-99999, inplace=True)
+forecast_out = int(math.ceil(0.01 * len(df)))
+df['label'] = df[forecast_col].shift(-forecast_out)
+
+X = np.array(df.drop(['label'], 1))
+X = preprocessing.scale(X)
+X = X[:-forecast_out]
+df.dropna(inplace=True)
+y = np.array(df['label'])
+X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
+
+clf = LinearRegression(n_jobs=-1)
+clf.fit(X_train, y_train)
+confidence = clf.score(X_test, y_test)
+print(confidence)
+
+{% endhighlight %}
+
+我将强调建立一个线性模型说> 95%的准确率也不是很大。 我当然不会交易股票。 仍有许多问题需要考虑,尤其是在不同的公司有不同的价格的轨迹。 谷歌真的非常线性:向右。 许多公司没有,所以牢记这一点。 现在,预测,我们需要一些数据。 我们决定,我们预测1%的数据,因此我们想要,或者至少可以生成预期的最后1%的数据集。 所以,当我们可以这样做吗? 当我们确定这些数据吗? 现在我们可以叫它,但是考虑我们试图预测的数据是不按比例缩小的像训练数据。 好,然后呢? 我们只做 preprocessing.scale() 对过去的1% ? 规模尺度方法基于所有的已知的数据输入。 理想情况下,您将规模培训、测试和预测/预测数据。 这是总是可能的或合理吗? 不。 然而,如果你能做到,你应该。 在我们的例子中,目前,我们能做到。 我们的数据是足够小,处理时间足够低,所以我们的数据预处理和规模。
+
+在许多情况下,你不可以这样做。 想象一下,如果你是使用g的数据来训练分类器。 可能需要花费几天的时间来训练分类器,你不会想要这样做每一单… 你想做一个预测。 因此,您可能需要没有规模,或者你可能规模数据分开。 像往常一样,您需要测试两个选项,看它在特定情况下是最好的。
+
+考虑到这一点,让我们处理所有的定义的行 X 开始:
+
+{% highlight css %}
+
+X = np.array(df.drop(['label'], 1))
+X = preprocessing.scale(X)
+X_lately = X[-forecast_out:]
+X = X[:-forecast_out]
+
+df.dropna(inplace=True)
+
+y = np.array(df['label'])
+
+X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
+clf = LinearRegression(n_jobs=-1)
+clf.fit(X_train, y_train)
+confidence = clf.score(X_test, y_test)
+print(confidence)
+
+{% endhighlight %}
+
+注意,首先,我们把所有的数据进行预处理,然后我们把它。 我们的 X_lately 变量包含最新的特性,我们将预测。 到目前为止你应该看到,定义一个分类器,训练和测试都是极其简单的。 预测也超级简单:
+
+{% highlight css %}
+
+forecast_set = clf.predict(X_lately)
+
+{% endhighlight %}
+
+的 forecast_set 不仅是一个数组的预测,表明你可以寻找一个单一的预测,但你可以寻找许多。 看看我们迄今为止:
+
+{% highlight css %}
+
+print(forecast_set, confidence, forecast_out)
+[ 745.67829395  737.55633261  736.32921413  717.03929303  718.59047951
+  731.26376715  737.84381394  751.28161162  756.31775293  756.76751056
+  763.20185946  764.52651181  760.91320031  768.0072636   766.67038016
+  763.83749414  761.36173409  760.08514166  770.61581391  774.13939706
+  768.78733341  775.04458624  771.10782342  765.13955723  773.93369548
+  766.05507556  765.4984563   763.59630529  770.0057166   777.60915879]
+
+  0.956987938167 30
+
+{% endhighlight %}
+
+这些是我们的预测。 现在怎么办呢? 嗯,你基本上是完成了,但我们可以想象这些信息。 所以股票价格是每天5天,然后在周末没有价格。 我承认这个事实,但是我们会让事情变得简单,情节每个预测如果只是1天。 如果你想在周末工作差距(不要忘记假期),但我们会保持简单。 开始,我们将添加两个新的进口:
+
+{% highlight css %}
+
+import datetime
+import matplotlib.pyplot as plt
+from matplotlib import style
+
+{% endhighlight %}
+
+我们进口datetime处理datetime对象,matplotlib pyplot包的图形,和风格让我们的图表看起来体面的。 让我们制定一个风格:
+
+{% highlight css %}
+
+style.use('ggplot')
+
+{% endhighlight %}
+
+接下来,我们将添加一个新列dataframe,预估列:
+
+{% highlight css %}
+
+df['Forecast'] = np.nan
+
+{% endhighlight %}
+
+我们首先将值设置为南,但不久我们将填充一些。 我们说我们要开始预测,明天(回想一下,我们预测10%的未来,我们保存,最后10%的数据,因此,我们可以立即开始预测-10%以来的数据我们可以预测10%,成为下一个预测)。 我们需要首先抓住dataframe中的最后一天,并开始分配每个新预测新的一天。 我们将开始像这样:
+
+{% highlight css %}
+
+last_date = df.iloc[-1].name
+last_unix = last_date.timestamp()
+one_day = 86400
+next_unix = last_unix + one_day
+
+{% endhighlight %}
+
+现在我们有了第二天我们希望使用,一天是86400秒。 现在我们预测添加到现有dataframe:
+
+{% highlight css %}
+
+for i in forecast_set:
+    next_date = datetime.datetime.fromtimestamp(next_unix)
+    next_unix += 86400
+    df.loc[next_date] = [np.nan for _ in range(len(df.columns)-1)]+[i]
+
+{% endhighlight %}
+
+这里我们做的是遍历预报,预报和一天,然后设置这些值dataframe(使未来的“特性”nan)。 最后一行的代码仅仅需要所有的第一列,设置nan,然后最后一列是什么 我 预计(在本例中)。 我选择做这一行程序这样的for循环,如果我们决定改变dataframe和特性,还能工作的代码。 剩下? 图!
+
+{% highlight css %}
+
+df['Adj. Close'].plot()
+df['Forecast'].plot()
+plt.legend(loc=4)
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.show()
+
+{% endhighlight %}
+
+完整代码到目前为止:
+
+{% highlight css %}
+
+import Quandl, math
+import numpy as np
+import pandas as pd
+from sklearn import preprocessing, cross_validation, svm
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+from matplotlib import style
+import datetime
+
+style.use('ggplot')
+
+df = Quandl.get("WIKI/GOOGL")
+df = df[['Adj. Open',  'Adj. High',  'Adj. Low',  'Adj. Close', 'Adj. Volume']]
+df['HL_PCT'] = (df['Adj. High'] - df['Adj. Low']) / df['Adj. Close'] * 100.0
+df['PCT_change'] = (df['Adj. Close'] - df['Adj. Open']) / df['Adj. Open'] * 100.0
+
+df = df[['Adj. Close', 'HL_PCT', 'PCT_change', 'Adj. Volume']]
+forecast_col = 'Adj. Close'
+df.fillna(value=-99999, inplace=True)
+forecast_out = int(math.ceil(0.01 * len(df)))
+df['label'] = df[forecast_col].shift(-forecast_out)
+
+X = np.array(df.drop(['label'], 1))
+X = preprocessing.scale(X)
+X_lately = X[-forecast_out:]
+X = X[:-forecast_out]
+
+df.dropna(inplace=True)
+
+y = np.array(df['label'])
+
+X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
+clf = LinearRegression(n_jobs=-1)
+clf.fit(X_train, y_train)
+confidence = clf.score(X_test, y_test)
+
+forecast_set = clf.predict(X_lately)
+df['Forecast'] = np.nan
+
+last_date = df.iloc[-1].name
+last_unix = last_date.timestamp()
+one_day = 86400
+next_unix = last_unix + one_day
+
+for i in forecast_set:
+    next_date = datetime.datetime.fromtimestamp(next_unix)
+    next_unix += 86400
+    df.loc[next_date] = [np.nan for _ in range(len(df.columns)-1)]+[i]
+
+df['Adj. Close'].plot()
+df['Forecast'].plot()
+plt.legend(loc=4)
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.show()
+
+{% endhighlight %}
+
+结果(我放大一点):
+
+machine learning forecast stock prices
+你有它,你现在有一个稍微像样的方法预测股票价格的未来! 在接下来的教程中,我们将总结回归与一些储蓄信息分类器以及使用价值数百万美元的计算能力几美元。

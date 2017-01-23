@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://zhuio.github.io/%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B/</loc>
+<lastmod>2017-01-24T02:07:00+08:00</lastmod>
+</url>
+<url>
+<loc>https://zhuio.github.io/ml%E5%9B%9E%E5%BD%922/</loc>
+<lastmod>2017-01-24T02:01:00+08:00</lastmod>
+</url>
+<url>
+<loc>https://zhuio.github.io/ml%E5%9B%9E%E5%BD%92/</loc>
+<lastmod>2017-01-24T01:58:00+08:00</lastmod>
+</url>
+<url>
+<loc>https://zhuio.github.io/shadowsocks%E8%87%AA%E5%8A%A8%E4%BB%A3%E7%90%86/</loc>
+<lastmod>2017-01-24T01:47:00+08:00</lastmod>
+</url>
+<url>
 <loc>https://zhuio.github.io/ml%E5%9B%9E%E5%BD%92/</loc>
 <lastmod>2017-01-23T01:25:00+08:00</lastmod>
 </url>

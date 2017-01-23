@@ -1,0 +1,163 @@
+---
+layout: "post"
+title: "ml回归2"
+date: "2017-01-24 02:01"
+tags:
+- machine-learning
+comments: true
+---
+
+欢迎来到四个部分 机器学习与Python教程系列 。 在前面的教程中,我们得到了我们的初始数据,我们转换和操作有点喜欢,然后我们开始定义我们的特性。 Scikit-Learn并不从根本上需要使用熊猫和dataframes,我只是喜欢做数据处理,因为它是快速和有效的。 相反,Scikit-learn实际上从根本上需要numpy数组。 熊猫dataframes可以很容易地转换成NumPy数组,所以它只是发生在为我们工作!
+
+我们的代码到目前为止:
+
+{% highlight css %}
+
+import Quandl, math
+import numpy as np
+import pandas as pd
+from sklearn import preprocessing, cross_validation, svm
+from sklearn.linear_model import LinearRegression
+
+df = Quandl.get("WIKI/GOOGL")
+
+print(df.head())
+#print(df.tail())
+
+df = df[['Adj. Open',  'Adj. High',  'Adj. Low',  'Adj. Close', 'Adj. Volume']]
+
+df['HL_PCT'] = (df['Adj. High'] - df['Adj. Low']) / df['Adj. Close'] * 100.0
+df['PCT_change'] = (df['Adj. Close'] - df['Adj. Open']) / df['Adj. Open'] * 100.0
+
+df = df[['Adj. Close', 'HL_PCT', 'PCT_change', 'Adj. Volume']]
+print(df.head())
+
+forecast_col = 'Adj. Close'
+df.fillna(value=-99999, inplace=True)
+forecast_out = int(math.ceil(0.01 * len(df)))
+
+df['label'] = df[forecast_col].shift(-forecast_out)
+
+{% endhighlight %}
+
+然后我们将放弃任何仍然从dataframe南信息:
+
+{% highlight css %}
+
+df.dropna(inplace=True)
+
+{% endhighlight %}
+
+它是一个典型的标准与机器学习在代码中定义X(X)的特性,和y(小写字母y)的标签对应的功能。 这样,我们可以定义特性和标签如下所示:
+
+{% highlight css %}
+
+X = np.array(df.drop(['label'], 1))
+y = np.array(df['label'])
+
+{% endhighlight %}
+
+以上,我们所做的,是定义X(特性),作为我们整个dataframe除了标签列,转换为numpy数组。 我们使用 .drop 方法,可以应用于dataframes返回一个新的dataframe。 接下来,我们定义y变量,这是我们的标签,只是标签列dataframe,转换为numpy数组。
+
+我们可以把它在这,继续训练和测试,但是我们要做一些预处理。 一般来说,你希望你的功能在机器学习的1比1。 这可能什么都不做,但它通常和精度也可以帮助加速处理。 因为这个范围太广泛使用,它是包含在 预处理 Scikit-Learn模块。 利用这一点,您可以应用 preprocessing.scale 你的X变量:
+
+{% highlight css %}
+
+X = preprocessing.scale(X)
+
+{% endhighlight %}
+
+接下来,创建标签,y:
+
+{% highlight css %}
+
+y = np.array(df['label'])
+
+{% endhighlight %}
+
+现在的训练和测试。 这是你需要的方式,例如,75%的数据,并使用这个机器学习分类器训练。 然后你把剩下的25%的数据,并测试分类器。 既然这是你的样本数据,你应该有功能和已知的标签。 因此,如果你测试最后25%的数据,你可以得到一种准确性和可靠性,通常被称为信心得分。 有很多方法可以做到这一点,但是,可能最好的方法就是使用构建cross_validation提供,因为这也打乱你的数据。 这样的代码:
+
+{% highlight css %}
+
+X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
+
+{% endhighlight %}
+
+返回这里的训练集特性,测试组功能,标签的训练集和测试集的标签。 现在,我们准备定义我们的分类器。 有许多分类器通常可以通过Scikit-Learn,甚至一些专门为回归。 我们将展示一些在这个例子中,但是现在,我们用支持向量回归Scikit-Learn的 支持向量机 包:
+
+{% highlight css %}
+
+clf = svm.SVR()
+
+{% endhighlight %}
+
+我们将使用所有的默认值为简单起见在这里,但是你可以了解更多关于支持向量回归的 sklearn.svm.SVR 文档。
+
+一旦您已经定义了classifer,你准备训练它。 Scikit-Learn(sklearn),你的火车 .fit :
+
+{% highlight css %}
+
+clf.fit(X_train, y_train)
+
+{% endhighlight %}
+
+在这里,我们“拟合”培训特点和标签。
+
+我们现在训练分类器。 哇,很简单。 现在我们可以测试它!
+
+{% highlight css %}
+
+confidence = clf.score(X_test, y_test)
+
+{% endhighlight %}
+
+繁荣的测试,然后:
+
+{% highlight css %}
+
+print(confidence)0.960075071072
+
+{% endhighlight %}
+
+这里,我们可以看到精度约为96%。 不值得大书特书。 让我们试试另一个分类器,这一次使用 LinearRegression 从sklearn:
+
+{% highlight css %}
+
+clf = LinearRegression()0.963311624499
+
+{% endhighlight %}
+
+
+好一点,但基本上是一样的。 所以我们怎么可能知道,作为科学家,算法选择哪一个? 一段时间后,你会习惯在大多数情况下,哪些没有工作。 你也可以看看: 选择正确的估计量 从scikit-learn的网站。 这可以帮助你走过一些基本的选择。 如果你问人们经常使用机器学习,真是试验和错误。 你会尝试一些算法和简单的效果最好。 另一个要注意的是,一些算法必须运行线性,其他人没有。 请不要将线性回归与线性的要求运行,。 所以,是什么意思? 一些机器学习算法的流程一步一个脚印,没有线程,其他线程,可以使用所有可用的CPU核。 你可以学到很多关于每个算法来找出哪些线程,或者你可以访问文档,寻找n_jobs参数。 如果它有n_jobs,你有一个算法,可以对高性能螺纹。 如果不是这样,真不走运! 因此,如果你正在处理大量的数据,或者您需要过程中数据,但在一个非常高的速度,你就会想要螺纹。 让我们检查两个算法。
+
+文档的标题 sklearn.svm.SVR ,并通过参数,你看到n_jobs吗? 不是我。 所以,没有线程。 你可以看到,在我们的小数据,区别不大,但是,说甚至20 mb的数据,它使一个巨大的差异。 接下来,让我们看看 LinearRegression 算法。 你看到n_jobs吗? 确实! 这里,您可以指定你要多少线程。 如果你把在 1 的价值,那么算法将使用所有可用的线程。
+
+要做到这一点:
+
+{% highlight css %}
+
+clf = LinearRegression(n_jobs=-1)
+
+{% endhighlight %}
+
+
+这是所有。 当我你做这样一个罕见的事(看文档),让我吸引你的注意力,因为机器学习算法使用缺省参数,这并不意味着你可以忽略它们。 例如,让我们重新审视svm.SVR。 SVR支持向量回归,这是一种架构… 当进行机器学习。 我强烈建议任何有兴趣学习更多的研究主题和学习更多受过教育的人比我对基本面,顺便说一下,我将尽力解释事情简单,但我不是专家。 然而,回到正题上来。 支持向量机是一个参数。 例如SVR的 内核 。 那到底是什么? 想一个内核的数据转换。 这是一个严重的方式,和我的意思是严重,简化您的数据。 这使得加工快得多。 在的情况下 svm.SVR ,默认是rbf,它是一种内核。 你有一些其他的选择。 检查文档,你有“线性”,“聚”,“rbf”、“乙状”,“预计”或一个可调用的。 再次,就像建议尝试各种ML算法,可以做你想做的事,尝试内核。 让我们做一些:
+
+{% highlight css %}
+
+for k in ['linear','poly','rbf','sigmoid']:
+    clf = svm.SVR(kernel=k)
+    clf.fit(X_train, y_train)
+    confidence = clf.score(X_test, y_test)
+    print(k,confidence)
+linear 0.960075071072
+poly 0.63712232551
+rbf 0.802831714511
+sigmoid -0.125347960903
+
+{% endhighlight %}
+
+
+我们可以看到,线性内核执行最好的,由rbf密切,保利、乙状结肠显然只是滥竽充数,肯定需要从团队踢。
+
+我们有训练,和测试。 假设我们满意71%在这一点上,我们下一步做什么? 我们训练和测试,但现在我们要前进和预测出,这就是我们将会覆盖在接下来的教程。
