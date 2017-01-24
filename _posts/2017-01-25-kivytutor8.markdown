@@ -1,0 +1,39 @@
+---
+layout: "post"
+title: "kivytutor8"
+date: "2017-01-25 02:18"
+tags:
+- kivy
+comments: true
+---
+
+### 构建器加载.kv文件
+
+本教程将覆盖Kivy构建器,用于构建。 kv信息。 而不是使用app /有些奇怪的命名约定。 kv文件,您可以显式地指定。 kv文件,甚至只是。 kv代码字符串不需要一个文件。
+
+{% highlight css %}
+
+from kivy.app import App
+from kivy.lang import Builder
+
+presentation = Builder.load_file("main.kv")
+
+class MainApp(App):
+
+    def build(self):
+        return presentation
+
+
+if __name__ == "__main__":
+
+    MainApp().run()
+
+    {% endhighlight %}
+		
+首先,使用builder,我们需要导入它。
+
+然后,我们使用Builder.load_file()加载文件要使用,明确。 在我们的例子中,我们装载在“main.kv。”
+
+虽然我们仍然被称为MainApp根应用类,我们可以称之为长条木板,例如,事情仍然会工作的很好。
+
+您还可以使用Builder.load_string(),然后您可以使用一个多行字符串,编写所有的kv代码在py文件。

@@ -1,0 +1,51 @@
+---
+layout: "post"
+title: "kivytutor7"
+date: "2017-01-25 02:16"
+tags:
+- kivy
+comments: true
+---
+
+### 简单的绘图应用程序
+
+{% highlight css %}
+
+from kivy.app import App
+from kivy.uix.widget import Widget
+from kivy.graphics import Line
+
+class DrawInput(Widget):
+
+    def on_touch_down(self, touch):
+        print(touch)
+        with self.canvas:
+            touch.ud["line"] = Line(points=(touch.x, touch.y))
+
+    def on_touch_move(self, touch):
+        print(touch)
+        touch.ud["line"].points += (touch.x, touch.y)
+
+    def on_touch_up(self, touch):
+        print("RELEASED!",touch)
+
+
+class SimpleKivy4(App):
+
+    def build(self):
+        return DrawInput()
+
+if __name__ == "__main__":
+    SimpleKivy4().run()
+
+    {% endhighlight %}
+
+在这里,我们首先从Kivy导入一个新的方面,线。 这是我们可以画一条线。
+
+现在,我们修改on_touch_down使用画布,我们继承了小部件的一部分,我们要开始直线定义为一条线元素,点在哪里现在,只有一个点的x,y坐标touch_down。
+
+接下来,我们修改on_touch_move方法来修改我们的联系。 ud(“行”)通过添加新的联系。 x和触摸。 y坐标,现在我们有了更多的坐标,画一条线使用它们。
+
+最后,我们修改SimpleKivy4根应用返回我们的新DrawInput类,这将给我们一个应用程序,允许我们画!
+
+Python Kivy Application Development

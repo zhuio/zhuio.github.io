@@ -1,0 +1,87 @@
+---
+layout: "post"
+title: "kivytutor9"
+date: "2017-01-25 02:19"
+tags:
+- kivy
+comments: true
+---
+
+### 多屏幕的屏幕管理器
+在这个Kivy教程中,我们将介绍Kivy屏幕经理。 任何中型到大型应用程序有多个窗口。 即使是一些简单的登录屏幕,导致主屏幕允许您访问设置屏幕,你会需要一种方法来移动的屏幕。
+
+Kivy工作有点像Tkinter,你只是简单地将主屏幕前台,但是,幸运的是,Kivy这是否对我们来说更容易比Tkinter !
+
+我们可以使用屏幕管理器存储可能的屏幕,并将当前屏幕前的观众。 不仅如此,但Kivy也有一些基本的转换让屏幕之间的运动感觉好一点给用户。 我们将使用这里的“渐过渡”。
+
+首先,让我们编写python文件:
+
+{% highlight css %}
+
+from kivy.app import App kivy.app import App
+from kivy.lang import Builderfrom kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransitionfrom kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
+
+class MainScreen(Screen):class MainScreen(Screen):
+    passpass
+
+class AnotherScreen(Screen):class AnotherScreen(Screen):
+    passpass
+
+class ScreenManagement(ScreenManager):class ScreenManagement(ScreenManager):
+    passpass
+
+presentation = Builder.load_file("main.kv")= Builder.load_file("main.kv")
+
+class MainApp(App):class MainApp(App):
+    def build(self):def build(self):
+        return presentationreturn presentation
+
+MainApp().run()MainApp().run()
+
+{% endhighlight %}
+  
+导入ScreenManager上面,我们现在,屏幕,FadeTransition,我们打算使用
+
+接下来,我们创建MainScreen类,我们AnotherScreen类。 这将是两个“屏幕”为我们的应用程序。
+
+然后我们创建ScreenManagement类,它将从ScreenManager inhereit类。 我们将使用这个类的屏幕管理。
+
+剩下的代码是一样的以前的教程到目前为止。
+
+现在我们参观。 kv文件,我们明确地称为主要。 kv的python脚本。
+
+{% highlight css %}
+
+ScreenManagement::
+    transition: FadeTransition(): FadeTransition()
+    MainScreen:MainScreen:
+    AnotherScreen:AnotherScreen:
+
+<MainScreen>:<MainScreen>:
+    name: 'main': 'main'
+
+    Button:Button:
+        on_release: app.root.current = 'other': app.root.current = 'other'
+        text: 'Another Screen': 'Another Screen'
+        font_size: 50: 50
+
+<AnotherScreen>:<AnotherScreen>:
+    name: 'other': 'other'
+
+    Button:Button:
+        on_release: app.root.current = 'main': app.root.current = 'main'
+        text: 'back to the home screen': 'back to the home screen'
+        font_size: 50: 50
+
+        {% endhighlight %}
+
+在这里,我们定义屏幕经理作为一个家长,给它FadeTransition类型,和分配两个屏幕。
+
+在这之后,我们添加屏幕的父母。 在这,我们给每个人一个名字。 这个名字是一个关联的名字,我们可以参考在屏幕经理为了开关。
+
+接下来,我们添加一个按钮在屏幕,导致其他屏幕。 按钮的参数,我们已经看到了到目前为止,除了on_release参数。
+
+On_release使我们能够编写一些代码,当按钮被释放。 在这种情况下,我们要求app.root改变当前属性到其他页面。 app.root引用ScreenManagement类,继承自ScreenManager,这就是”。 当前的”方法。
+
+,你应该有一个生成的程序,知道切换屏幕的点击一个按钮。

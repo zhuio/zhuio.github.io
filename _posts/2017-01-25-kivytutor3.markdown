@@ -1,0 +1,76 @@
+---
+layout: "post"
+title: "kivytutor3"
+date: "2017-01-25 02:06"
+tags:
+- kivy
+comments: true
+---
+
+### Kivy.kv语言content
+
+在本教程中,我们将介绍如何组织你的演讲结构。 到目前为止,我们已经展示了如何添加一个标签,但是有比这更Kivy语言。 例如,您可以决定所有的按钮都是什么样子,对于特定的按钮在特定的部件是什么样子,或者两者都有!
+
+显示这个,我们将添加另一个类,小部件,然后我们将看到如何描述一个按钮在一个特定的类应该是什么样子:
+
+KivyVideo4。 py文件:
+
+{% highlight css %}
+
+from kivy.app import App
+#kivy.require("1.8.0")
+from kivy.uix.label import Label
+from kivy.uix.widget import Widget
+
+
+class Widgets(Widget):
+    pass
+
+
+class SimpleKivy2(App):
+    def build(self):
+        return Widgets()
+
+
+if __name__ == "__main__":
+    SimpleKivy2().run()
+
+{% endhighlight %}
+
+我们现在进口部件,然后我们制作这个小部件类,继承从Kivy Widget类。
+
+现在,我们用来返回一个不同的Kivy类,我们要相反SimpleKivy(现在叫SimpleKivy2,SimpleKivy2对应。 kv文件)现在返回窗口小部件类。
+
+这是所有的Python代码。 我们通过与小部件类,因为只有“代码”,我们希望现在只是演示代码。 因为我们目前使用。 kv文件表示,我们的代码的其余部分将会。
+
+SimpleKivy2。 kv文件:
+
+{% highlight css %}
+
+<Widgets>:
+	Button:
+		size: 100,75
+		pos: 0,0
+		text: "Kivy"
+		color: 0,1,0,1
+		font_size: 40
+
+	Button:
+		size: 170,75
+		pos: 100,0
+		text: "Tutorials"
+		color: 1,0,0,1
+		font_size: 40
+
+{% endhighlight %}
+
+现在,这里所发生的是 从主python文件引用我们的窗口小部件类。 有小部件作为一个家长,现在,使用标签,我们可以定义一些孩子的小部件。
+
+首先,我们看到两个按钮的孩子。 在那之后,我们看到这些按钮的另一个选项卡的一些参数。
+
+会很容易忘记所需的冒号后的父母,,你并不是真的在任何显式的错误。
+
+结果:
+
+Python Kivy Application Development
+按钮:大小按钮的宽度和高度以像素为单位。 然后,pos元素的位置,使用左上角点作为指南。 接下来,“文本”是说无论我们希望按钮。 然后我们有颜色,这是衡量RGB-A,或红色,绿色,蓝色,α,这些值在0和1之间。 0,1,0,1是没有红色的,完整的绿色,没有蓝色,α(即颜色是固体)。 最后,“font_size”字体的大小。 我知道你没看到来了!

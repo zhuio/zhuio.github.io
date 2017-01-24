@@ -1,0 +1,57 @@
+---
+layout: "post"
+title: "kivytutor6"
+date: "2017-01-25 02:13"
+tags:
+- kivy
+comments: true
+---
+
+### 获取鼠标/按/触摸输入
+
+我们的下一个目标是如何获取鼠标/手指输入。 在Kivy,这些事件只是简单地称为“联系。 “现在,我们要覆盖一个简单的触摸,触摸只是一个触摸的地方。 也就是说,Kivy还支持多点触控操作,比如“放大”和“自旋”运动,你可能会熟悉做在你的手机或平板电脑。
+
+现在让我们跳入代码:
+
+{% highlight css %}
+
+from kivy.app import App
+from kivy.uix.widget import Widget
+
+class TouchInput(Widget):
+
+    def on_touch_down(self, touch):
+        print(touch)
+    def on_touch_move(self, touch):
+        print(touch)
+    def on_touch_up(self, touch):
+        print("RELEASED!",touch)
+
+class SimpleKivy4(App):
+
+    def build(self):
+        return TouchInput()
+
+if __name__ == "__main__":
+    SimpleKivy4().run()
+
+    {% endhighlight %}
+
+现在我们已经定义了一个新类,叫做TouchInput,继承自小部件。
+
+在这里,我们有三种方法on_touch_down(最初的新闻),on_touch_move(运动后虽然有一个出版社)和on_touch_up(出版社)的“释放”。 然后我们打印出这些事件。
+
+接下来,在我们的根类,我们返回这个TouchInput类。
+
+因为我们只关心鼠标/触控在本教程中,我们并不担心。 kv文件。 它仍被加载,但由于没有一个元素被称为上映,我们没有看到的东西。 kv文件。
+
+在运行时,您可以测试的代码在屏幕上通过点击和拖动。 您应该看到打印出您的鼠标的位置对所有运动和紧迫。
+
+半场进攻时可能看到的输出的一个例子是:
+
+< MouseMotionEvent检测=(0.665,0.3533333333333334)pos =(532.0,212.00000000000003)>
+在这里,我们可以看到两种形式的输出位置。 “比较”更多的是一种相对的位置。 还记得浮动布局吗? 0 = 0和1是“完全。 “所以,如果鼠标是为0.5,0.5,这是屏幕的中间。
+
+我们也有实际的坐标位置(pos)。
+
+这些都是有用的但你可能会使用检测更多的如果你计划在您的应用程序能够运行全屏在许多设备和类型的设备。

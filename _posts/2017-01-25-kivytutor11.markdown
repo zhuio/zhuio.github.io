@@ -1,0 +1,96 @@
+---
+layout: "post"
+title: "kivytutor11"
+date: "2017-01-25 02:23"
+tags:
+- kivy
+comments: true
+---
+
+### 添加更好的导航
+在这个视频中,我们添加了另一个按钮,将使我们从我们的图画应用回“主要”屏幕。
+
+唯一的重大变化,这是需要添加的按钮。 kv文件,几乎它!
+
+python文件:
+
+{% highlight css %}
+
+from kivy.app import App
+#kivy.require("1.8.0")
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
+
+from kivy.uix.widget import Widget
+from kivy.graphics import Line
+
+
+class Painter(Widget):
+
+    def on_touch_down(self, touch):
+        with self.canvas:
+            touch.ud["line"] = Line(points=(touch.x, touch.y))
+
+    def on_touch_move(self,touch):
+        touch.ud["line"].points += [touch.x, touch.y]
+
+
+class MainScreen(Screen):
+    pass
+
+class AnotherScreen(Screen):
+    pass
+
+class ScreenManagement(ScreenManager):
+    pass
+
+
+presentation = Builder.load_file("main3.kv")
+
+class MainApp(App):
+
+    def build(self):
+        return presentation
+
+if __name__ == "__main__":
+    MainApp().run()
+
+
+
+    {% endhighlight %}
+
+
+
+的.kv文件:
+
+{% highlight css %}
+
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+ScreenManagement:
+	transition: FadeTransition()
+	MainScreen:
+	AnotherScreen:
+
+<MainScreen>:
+	name: "main"
+	Button:
+		on_release: app.root.current = "other"
+		text: "Next Screen"
+		font_size: 50
+
+<AnotherScreen>:
+	name: "other"
+
+	FloatLayout:
+		Painter
+		Button:
+			color: 0,1,0,1
+			font_size: 25
+			size_hint: 0.3,0.2
+			text: "Back Home"
+			on_release: app.root.current = "main"
+			pos_hint: {"right":1, "top":1}
+
+      {% endhighlight %}
+	

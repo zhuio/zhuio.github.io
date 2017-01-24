@@ -1,0 +1,35 @@
+---
+layout: "post"
+title: "kivytutor0"
+date: "2017-01-25 01:55"
+tags:
+- kivy
+comments: true
+---
+
+### Kivy与Python教程第1部分为移动应用程序开发
+
+欢迎来到介绍 Kivy 教程。 首先,Kivy是什么? Kivy是一个多平台的应用程序开发工具,使用Python。
+
+这意味着Kivy上运行iOS、Android MacOS,Windows和Linux ! 这是不少! 更重要的是,它不仅遇到这样的董事会,但你也可以利用多点触摸,这是常见的移动设备上。
+
+Kivy,您还可以访问移动API,如Android API操作手机摄像头上的,陀螺传感器、GPS、振动器等。
+
+我假设你已经Python。 如果你是新到Python,你应该 学习基本的Python 第一。
+
+相信吗? 太好了,让我们Kivy !
+
+为了使用Kivy,你要还需要PyGame,并可能Cython,虽然我们现在就离开了。
+
+{% highlight css %}
+
+from kivy.app import App
+from kivy.uix.button import Button
+
+class TestApp(App):
+    def build(self):
+        return Button(text='Hello World')
+
+TestApp().run()
+
+{% endhighlight %}

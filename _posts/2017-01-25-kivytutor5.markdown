@@ -1,0 +1,68 @@
+---
+layout: "post"
+title: "kivytutor5"
+date: "2017-01-25 02:12"
+tags:
+- kivy
+comments: true
+---
+
+### 布局:浮动布局
+在这个Kivy基础教程中,我们将讨论另一种类型的布局:浮动布局。
+
+{% highlight css %}
+
+from kivy.app import App
+#kivy.require("1.8.0")
+from kivy.uix.floatlayout import FloatLayout
+
+class SimpleKivy4(App):
+    def build(self):
+        return FloatLayout()
+
+if __name__ == "__main__":
+    SimpleKivy4().run()
+
+    {% endhighlight %}
+
+这段代码应该主要是熟悉的。
+
+这里唯一的重大变化,我们导入FloatLayout,我们拥有SimpleKivy4返回FloatLayout(我们这里的主类)。
+
+现在我们的SimpleKivy4。 kv文件:
+
+{% highlight css %}
+
+<Button>:
+    font_size: 40
+	color: 0,1,0,1
+	size_hint: 0.3, 0.2
+
+<FloatLayout>:
+    Button:
+	    text: "Kivy"
+		pos_hint: {"x": 0, 'y':0}
+
+	Button:
+	    text: "Tutorials"
+		pos_hint: {"right": 0.5, 'top':1}
+
+    {% endhighlight %}
+
+现在,我们看到在我们的一些新条款。 kv文件。
+
+首先,我们看到这个size_hint变量。 Size_hint暗示一个元素的大小,根据部分可用的“总”。 0.3、0.2意味着元素将30%的窗宽,窗和20%的高。
+
+接下来,我们发现pos_hint。 Pos_hint给出了一个暗示的位置,测量相对在0和1之间,1是“完全”,0是“不”。
+
+Pos_hint只是迷惑我,我还有一点思考它实际上意味着什么…… 我只是添加“洛克”这个词我修改。 如果我们说pos_hint {“正确”:0.5和“顶级”:1 },然后我们说它有“半right-ness”和“top-ness。”
+
+使用这些术语,浮动布局,让你现在的能力有一个窗口小部件,按钮、标签和其他调整得很好,无论什么是窗口的大小,或窗口的方向(横向和纵向)。
+
+现在,我们的应用程序可以做:
+
+Python Kivy Application Development
+还是……
+
+Python Kivy Application Development
+正如你所看到的,我们可以调整像素位置,以及大小,完全相对根据实际的窗口本身的大小和形状。 很酷!

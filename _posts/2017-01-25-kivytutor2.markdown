@@ -1,0 +1,57 @@
+---
+layout: "post"
+title: "kivytutor2"
+date: "2017-01-25 02:03"
+tags:
+- kivy
+comments: true
+---
+
+### Kivy kv语言
+
+虽然你可以通过编写Kivy应用程序,而无需编写Kivy语言(.kv),使用Kivy语言可能会对你有用组织和表示的分离应用程序逻辑。
+
+它也可能最终归结为优先。 试一试,看看你最喜欢什么。
+
+这里,我们将展示一个非常基本的实现Kivy语言。
+
+KivyVideo3. py文件:
+
+{% highlight css %}
+
+from kivy.app import App
+#kivy.require("1.8.0")
+from kivy.uix.label import Label
+
+
+class SimpleKivy(App):
+    def build(self):
+        return Label()
+
+if __name__ == "__main__":
+    SimpleKivy().run()
+
+{% endhighlight %}
+
+这段代码应该容易遵循如果你已经在按照系列。 这里没有最新进展。
+
+给什么? 这是如何。 kv东西工作吗?
+
+的命名约定。 kv文件需要遵循的主要应用程序类,所以SimpleKivy应该是我们的名字。 kv文件。
+
+现在,让我们把kivy文件,称之为SimpleKivy.kv:
+
+{% highlight css %}
+
+#:kivy 1.8.0
+
+<Label>
+    text: 'Hello'+' World!'
+
+{% endhighlight %}
+
+这是我们Kivy语言。 标记符号只注意,这是家长,然后我们有以下的儿童。 在这里,我们只是说我们要有一个标签,说“你好”+“世界!”
+
+你也可以说:“Hello world ! “我选择显示,也可以包括一些基本的Python代码中Kivy文件。
+
+这只是一个基本的例子,显示相同的结果与前面的教程。 使用Kivy语言的主要优势是组织。 如果你有50个标签总共20按钮,和其他各种小部件,它会打乱您的Python脚本有点做的所有样式。 它可以帮助清晰地分离的两个。 Kivy语言提醒我很多CSS,HTML或样式表。 当你可以写你所有的风格符合你的HTML,只是单独的更有意义。

@@ -1,0 +1,84 @@
+---
+layout: "post"
+title: "kivytutor1"
+date: "2017-01-25 01:58"
+tags:
+- kivy
+comments: true
+---
+
+### Kivy部件和标签
+在这个Kivy教程中,我们将讨论的概念“标签”和“小部件。 “小部件的想法是有一些不同类型的元素,然后我们可以为一个应用程序把它们放在一起。 想到一个主页登录。 你可能有一个主页,有一些文本说类似“用户名”和“密码。 “那你还需要输入一些文本字段。 与Kivy要做到这一点,我们将使用标签的文本,然后我们将使用一个文本输入小部件为让用户实际类型。
+
+让我们上车吧!
+
+KivyVideo2.py文件:
+
+{% highlight css %}
+
+from kivy.app import App
+#kivy.require("1.8.0")
+from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.textinput import TextInput
+
+{% endhighlight %}
+
+导入应用程序像往常一样,和标签之前。 然后我们导入GridLayout,这是许多类型的布局之一。 最后,我们抓住TextInput Kivy的一部分。
+
+{% highlight css %}
+
+class LoginScreen(GridLayout):
+    def __init__(self, **kwargs):
+        super(LoginScreen, self).__init__(**kwargs)
+        self.cols = 2
+
+{% endhighlight %}
+
+从GridLayout LoginScreen类,这个类将继承。 我们使用超级避免需要引用基类,以及利用多重。
+
+如果你困惑于OOP,查看 面向对象编程的速成课 。
+
+{% highlight css %}
+
+        self.add_widget(Label(text="Username:"))
+        self.username = TextInput(multiline=False)
+        self.add_widget(self.username)
+
+{% endhighlight %}
+
+添加一个标签窗口小部件与用户名的文本。 然后我们添加一个文本输入保存为一个用户名,然后添加小部件。
+
+{% highlight css %}
+
+        self.add_widget(Label(text="Password:"))
+        self.password = TextInput(multiline=False, password=True)
+        self.add_widget(self.password)
+
+        self.add_widget(Label(text="Two Factor Auth:"))
+        self.tfa = TextInput(multiline=False)
+        self.add_widget(self.tfa)
+
+{% endhighlight %}
+
+在看到标签如何添加用户名和用户名文本输入字段,然后,我们可以使用一个相同的结构来创建一个密码标签,然后向。 然后我们再做一次另一个领域,这一次two-factor-authentication作为一个例子。
+
+注意密码部件我们还有另一个参数,就是这个“密码= True。 ”在运行,您将看到该参数将文本输入转换为星号,nosey-onlookers面具的密码。
+
+{% highlight css %}
+
+class SimpleKivy(App):
+    def build(self):
+        return LoginScreen()
+
+if __name__ == "__main__":
+    SimpleKivy().run()
+
+{% endhighlight %}
+
+现在我们结束脚本与一些熟悉的代码,主要改变SimpleKivy的回归。 构建是返回LoginScreen(我们刚刚写的类)
+
+就是这样! 现在,您可以运行它,您应当会看到类似:
+
+Python Kivy Application Development
+到目前为止,我们已经在Python中编码的一切。 你可以在Python代码Kivy应用程序所有的,但你可能会错过Kivy语言(不使用。 kv文件)。
