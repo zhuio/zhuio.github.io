@@ -56,3 +56,12 @@
     {% unless feature contains 'http://' or feature contains 'https://' %}{% capture feature %}{{ site.url }}/{{ feature }}{% endcapture %}{% endunless %}
     <style type="text/css">.feature {background-image:url({{ feature }});}</style>
     {% endif %}
+    <style type="text/css">
+    h100
+    {
+    position:absolute;
+    top: 10px;
+    right:40px;
+    }
+    </style>
+    <h100><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=281 height=52 src="//music.163.com/outchain/player?type=0&id=583159878&auto=1&height=32"></iframe></h100>
