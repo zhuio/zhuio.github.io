@@ -1,0 +1,24 @@
+---
+layout: "post"
+title: "pip加速"
+date: "2017-01-30 18:04"
+tags:
+- python
+comments: true
+---
+
+### 使用国内镜像加速 pip
+
+##### 配置文件指定镜像
+
+pip 的配置文件为 ~/.pip/pip.conf
+
+{% highlight css %}
+
+[global]
+index-url = http://mirrors.aliyun.com/pypi/simple/
+
+[install]
+trusted-host = mirrors.aliyun.com
+
+{% endhighlight %}

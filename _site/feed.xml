@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-27T15:24:18+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">kivytutor11</title><link href="https://zhuio.github.io/kivytutor11/" rel="alternate" type="text/html" title="kivytutor11" /><published>2017-01-25T02:23:00+08:00</published><updated>2017-01-25T02:23:00+08:00</updated><id>https://zhuio.github.io/kivytutor11</id><content type="html" xml:base="https://zhuio.github.io/kivytutor11/">&lt;h3 id=&quot;添加更好的导航&quot;&gt;添加更好的导航&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-30T18:06:44+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">pip加速</title><link href="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/" rel="alternate" type="text/html" title="pip加速" /><published>2017-01-30T18:04:00+08:00</published><updated>2017-01-30T18:04:00+08:00</updated><id>https://zhuio.github.io/pip加速</id><content type="html" xml:base="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/">&lt;h3 id=&quot;使用国内镜像加速-pip&quot;&gt;使用国内镜像加速 pip&lt;/h3&gt;
+
+&lt;h5 id=&quot;配置文件指定镜像&quot;&gt;配置文件指定镜像&lt;/h5&gt;
+
+&lt;p&gt;pip 的配置文件为 ~/.pip/pip.conf&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;index-url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;://&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;mirrors&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.aliyun.com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;pypi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;trusted-host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;mirrors&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.aliyun.com&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="python" /><summary type="html">使用国内镜像加速 pip</summary></entry><entry><title type="html">kivytutor11</title><link href="https://zhuio.github.io/kivytutor11/" rel="alternate" type="text/html" title="kivytutor11" /><published>2017-01-25T02:23:00+08:00</published><updated>2017-01-25T02:23:00+08:00</updated><id>https://zhuio.github.io/kivytutor11</id><content type="html" xml:base="https://zhuio.github.io/kivytutor11/">&lt;h3 id=&quot;添加更好的导航&quot;&gt;添加更好的导航&lt;/h3&gt;
 &lt;p&gt;在这个视频中,我们添加了另一个按钮,将使我们从我们的图画应用回“主要”屏幕。&lt;/p&gt;
 
 &lt;p&gt;唯一的重大变化,这是需要添加的按钮。 kv文件,几乎它!&lt;/p&gt;
@@ -491,43 +501,4 @@
 &lt;p&gt;结果:&lt;/p&gt;
 
 &lt;p&gt;Python Kivy Application Development
-按钮:大小按钮的宽度和高度以像素为单位。 然后,pos元素的位置,使用左上角点作为指南。 接下来,“文本”是说无论我们希望按钮。 然后我们有颜色,这是衡量RGB-A,或红色,绿色,蓝色,α,这些值在0和1之间。 0,1,0,1是没有红色的,完整的绿色,没有蓝色,α(即颜色是固体)。 最后,“font_size”字体的大小。 我知道你没看到来了!&lt;/p&gt;</content><category term="kivy" /><summary type="html">Kivy.kv语言content</summary></entry><entry><title type="html">kivytutor2</title><link href="https://zhuio.github.io/kivytutor2/" rel="alternate" type="text/html" title="kivytutor2" /><published>2017-01-25T02:03:00+08:00</published><updated>2017-01-25T02:03:00+08:00</updated><id>https://zhuio.github.io/kivytutor2</id><content type="html" xml:base="https://zhuio.github.io/kivytutor2/">&lt;h3 id=&quot;kivy-kv语言&quot;&gt;Kivy kv语言&lt;/h3&gt;
-
-&lt;p&gt;虽然你可以通过编写Kivy应用程序,而无需编写Kivy语言(.kv),使用Kivy语言可能会对你有用组织和表示的分离应用程序逻辑。&lt;/p&gt;
-
-&lt;p&gt;它也可能最终归结为优先。 试一试,看看你最喜欢什么。&lt;/p&gt;
-
-&lt;p&gt;这里,我们将展示一个非常基本的实现Kivy语言。&lt;/p&gt;
-
-&lt;p&gt;KivyVideo3. py文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;1.8.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.label&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Label&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;SimpleKivy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;SimpleKivy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这段代码应该容易遵循如果你已经在按照系列。 这里没有最新进展。&lt;/p&gt;
-
-&lt;p&gt;给什么? 这是如何。 kv东西工作吗?&lt;/p&gt;
-
-&lt;p&gt;的命名约定。 kv文件需要遵循的主要应用程序类,所以SimpleKivy应该是我们的名字。 kv文件。&lt;/p&gt;
-
-&lt;p&gt;现在,让我们把kivy文件,称之为SimpleKivy.kv:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:kivy&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.8.0&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Hello'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;' World!'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这是我们Kivy语言。 标记符号只注意,这是家长,然后我们有以下的儿童。 在这里,我们只是说我们要有一个标签,说“你好”+“世界!”&lt;/p&gt;
-
-&lt;p&gt;你也可以说:“Hello world ! “我选择显示,也可以包括一些基本的Python代码中Kivy文件。&lt;/p&gt;
-
-&lt;p&gt;这只是一个基本的例子,显示相同的结果与前面的教程。 使用Kivy语言的主要优势是组织。 如果你有50个标签总共20按钮,和其他各种小部件,它会打乱您的Python脚本有点做的所有样式。 它可以帮助清晰地分离的两个。 Kivy语言提醒我很多CSS,HTML或样式表。 当你可以写你所有的风格符合你的HTML,只是单独的更有意义。&lt;/p&gt;</content><category term="kivy" /><summary type="html">Kivy kv语言</summary></entry></feed>
+按钮:大小按钮的宽度和高度以像素为单位。 然后,pos元素的位置,使用左上角点作为指南。 接下来,“文本”是说无论我们希望按钮。 然后我们有颜色,这是衡量RGB-A,或红色,绿色,蓝色,α,这些值在0和1之间。 0,1,0,1是没有红色的,完整的绿色,没有蓝色,α(即颜色是固体)。 最后,“font_size”字体的大小。 我知道你没看到来了!&lt;/p&gt;</content><category term="kivy" /><summary type="html">Kivy.kv语言content</summary></entry></feed>
