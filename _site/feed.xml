@@ -1,4 +1,205 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-01-30T18:06:44+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">pip加速</title><link href="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/" rel="alternate" type="text/html" title="pip加速" /><published>2017-01-30T18:04:00+08:00</published><updated>2017-01-30T18:04:00+08:00</updated><id>https://zhuio.github.io/pip加速</id><content type="html" xml:base="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/">&lt;h3 id=&quot;使用国内镜像加速-pip&quot;&gt;使用国内镜像加速 pip&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-02-10T22:46:14+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">vps加速</title><link href="https://zhuio.github.io/vps%E5%8A%A0%E9%80%9F/" rel="alternate" type="text/html" title="vps加速" /><published>2017-02-10T22:39:00+08:00</published><updated>2017-02-10T22:39:00+08:00</updated><id>https://zhuio.github.io/vps加速</id><content type="html" xml:base="https://zhuio.github.io/vps%E5%8A%A0%E9%80%9F/">&lt;h1 id=&quot;一步一步教你用kcptun给shadowsocks加速看youtube1080p一点都不卡&quot;&gt;一步一步教你用Kcptun给Shadowsocks加速！看YouTube1080P一点都不卡！&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;/u/7fccdb4dfef8&quot;&gt;&lt;img src=&quot;http://upload.jianshu.io/users/upload_avatars/957246/638f206fc01c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144&quot; alt=&quot;144&quot; /&gt;&lt;/a&gt;
+作者&lt;a href=&quot;/u/7fccdb4dfef8&quot;&gt;刘颙&lt;/a&gt;
+2016.09.18 01:05字数 1791&lt;/p&gt;
+
+&lt;p&gt;上次教了大家怎么用影梭+VPS翻墙：&lt;a href=&quot;http://hohothink.com/archives/202&quot;&gt;hohothink.com/archives/202&lt;/a&gt;，这次来说说如何让翻墙速度更快，用起来就像墙内一样。这里介绍一个免费的工具Kcptun，它是一个非常简单和快速的，基于 KCP 协议的 UDP 隧道，它可以将 TCP 流转换为 KCP+UDP 流。而 KCP 是一个快速可靠协议，能以比 TCP 浪费10%-20%的带宽的代价，换取平均延迟降低 30%-40%，且最大延迟降低三倍的传输效果。（效果可见下图，YouTube上1080P流畅）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/1.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/1.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-84844a576e89c657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;工作原理是这样滴：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/Kcptun_ports.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/Kcptun_ports.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-707c314e6015b72b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那么下面就开始喽！&lt;/p&gt;
+
+&lt;p&gt;首先我们得下载XShell，为什么要下载这个？你可以想象VPS就是一个放在大洋彼岸永不关机的电脑，而VPS上影梭一般都装在CentOS这样的linux系统上，如果我们想安装软件，就需要XShell这样的工具登录VPS后台linux去操作。&lt;/p&gt;
+
+&lt;p&gt;XShell5下载：&lt;a href=&quot;http://rj.baidu.com/soft/detail/15201.html?ald&quot;&gt;http://rj.baidu.com/soft/detail/15201.html?ald&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;安装完新建会话属性，点击连接，填入你搬瓦工后台main controls的IPaddress和SSH port.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/2.jpg&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/2.jpg&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-613fd279bfb8ce7a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后点击用户身份验证，用户名为root,密码在搬瓦工后台的root password modification里面随机生成。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/3.jpg&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/3.jpg&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-16d5ad890db5f228.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;弄好后就可以连接服务器了，开始安装Kcptun。&lt;/p&gt;
+
+&lt;p&gt;首先在xshell登录后的Linux页面一段一段的粘贴下面代码，毎粘贴一段要回车一下再粘贴下一段。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-eb9ee64238d51f5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;wget https://raw.githubusercontent.com/kuoruan/kcptun_installer/master/kcptun.sh&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;chmod +x ./kcptun.sh&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;./kcptun.sh&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;上面代码都正确执行后，会出现下面界面：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/5.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/5.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-208646bd54b2fc68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;下面教你怎么一步一步设置：&lt;/p&gt;
+
+&lt;p&gt;1.设置 Kcptun 的服务端端口：&lt;/p&gt;
+
+&lt;p&gt;请输入一个未被占用的端口，Kcptun 运行时将使用此端口。&lt;/p&gt;
+
+&lt;p&gt;2.设置加速的 IP：&lt;/p&gt;
+
+&lt;p&gt;如果你想加速 Shadowsocks，而 Shadowsocks 就在运行在当前服务器上，直接回车即可。如果 Shadowsocks 运行在其他服务器，请输入服务器的 IP 地址。这也就是说，Kcptun 不仅能加速本地的端口，也能加速远端的端口。&lt;/p&gt;
+
+&lt;p&gt;3.设置需要加速的端口：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/6.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/6.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-b6d14395c6eb1800.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里设置的是需要加速的端口，和上面设置的 Kcptun 的端口不一样。比如我想加速当前服务器上的 Shadowsocks，而 Shadowsocks 运行占用的端口为 8388，那么这里就写入 8388。（即上图中的VPS后台shadowsocks的端口）程序会检查当前是不是有程序占用着此端口，如果你的 Shadowsocks 没在运行，或者没有软件使用此端口，会弹出如下提示：&lt;/p&gt;
+
+&lt;p&gt;1当前没有软件使用此端口, 确定加速此端口?(y/n)&lt;/p&gt;
+
+&lt;p&gt;如果你确认 Shadowsocks 运行时会使用此端口，那么输入 “y” 回车即可。&lt;/p&gt;
+
+&lt;p&gt;4.设置 Kcptun 密码：&lt;/p&gt;
+
+&lt;p&gt;如果你这里选择直接回车，也就是代表你不自定义密码。但是 Kcptun 有一个默认的密码，是： it’s a secrect 。如果你这里选择不设置密码，那么客户端的参数里边就不需要加 –key 这一参数，但是 Kcptun 还是会用上面一个密码做默认值。&lt;/p&gt;
+
+&lt;p&gt;剩下的配置项不用我说了，如果你了解它是干什么的，可以自定义配置，如果不知道，那么直接回车使用默认参数。&lt;/p&gt;
+
+&lt;p&gt;如果安装成功，应该能看到如下输出信息：&lt;/p&gt;
+
+&lt;p&gt;恭喜, Kcptun Server 配置完毕！&lt;/p&gt;
+
+&lt;p&gt;服务器IP:  10.10.10.10&lt;/p&gt;
+
+&lt;p&gt;端口:  554&lt;/p&gt;
+
+&lt;p&gt;加速地址: 10.10.10.10:8388&lt;/p&gt;
+
+&lt;p&gt;加密方式 Crypt:  none&lt;/p&gt;
+
+&lt;p&gt;加速模式 Mode:  fast2&lt;/p&gt;
+
+&lt;p&gt;……….&lt;/p&gt;
+
+&lt;p&gt;……&lt;/p&gt;
+
+&lt;p&gt;这些数据很重要，建议截图下来，等一下设置客户端有用。&lt;/p&gt;
+
+&lt;p&gt;如需更新：&lt;/p&gt;
+
+&lt;p&gt;./kcptun.sh update&lt;/p&gt;
+
+&lt;p&gt;注：全面支持脚本、Kcptun和配置的更新！&lt;/p&gt;
+
+&lt;p&gt;如需重新配置：&lt;/p&gt;
+
+&lt;p&gt;./kcptun.sh reconfig&lt;/p&gt;
+
+&lt;p&gt;卸载：&lt;/p&gt;
+
+&lt;p&gt;./kcptun.sh uninstall&lt;/p&gt;
+
+&lt;p&gt;PC客户端的设置方法：&lt;/p&gt;
+
+&lt;p&gt;本地 Windows 64位系统为例，首先下载 Kcptun 的 Windows 版本。&lt;/p&gt;
+
+&lt;p&gt;1.我这里先新建一个文件夹，命名为 Kcptun，然后下载：&lt;/p&gt;
+
+&lt;p&gt;https://github.com/xtaci/kcptun/releases/download/v20160906/kcptun-windows-amd64-20160906.tar.gz&lt;/p&gt;
+
+&lt;p&gt;解压到文件夹下。&lt;/p&gt;
+
+&lt;p&gt;2.下载Kcptun客户端配置管理工具，然后导入刚才解压的客户端，Kcptun如何设置，就是把刚才教你截图的那些，输入到下图中，不会输的话看汉字后面的英文对应上去。&lt;/p&gt;
+
+&lt;p&gt;Kcptun客户端配置管理工具下载地址：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-cd2c5c6c854efae5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注：本地侦听端口是你搬瓦工后台影梭的端口，端口才是你自己设置的Kcptun的端口，kcp服务器地址为你搬瓦工的地址。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/dfdragon/kcptun_gclient/releases&quot;&gt;https://github.com/dfdragon/kcptun_gclient/releases&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/7.jpg&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/7.jpg&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;影梭设置如下，IP为127.0.0.1，端口为搬瓦工后台影梭的端口不是你自己设置的Kcptund的端口（即本地侦听端口），密码为搬瓦工后台影梭的密码（不是kcp的密码），设置好后勾选这个服务器看看能不能翻墙：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/8.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/8.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-77002280c08d3859.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安卓的设置方法如下：&lt;/p&gt;
+
+&lt;p&gt;首先下载安装最新的 Shadowsocks Android：&lt;a href=&quot;https://github.com/shadowsocks/shadowsocks-android/releases&quot;&gt;官方新版发布页&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;现在打开你的 Shadowsocks Android 客户端，开始配置：&lt;/p&gt;
+
+&lt;p&gt;服务器，填写你的服务器 IP 地址，我这里应该填写 10.10.10.10，即“服务器 IP”；&lt;/p&gt;
+
+&lt;p&gt;远程端口，填写你的 Shadowsocks 端口，我这里应该填写 8388，即“加速地址”里的那个端口号；&lt;/p&gt;
+
+&lt;p&gt;本地端口，使用默认值 1080；&lt;/p&gt;
+
+&lt;p&gt;密码，填写你的 Shadowsocks 密码；&lt;/p&gt;
+
+&lt;p&gt;加密方法，选择你 Shadowsocks 的加密方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/10.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/10.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-143b5055c5b0276f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;到这里，你可以在关闭 KCP 协议的情况下，测试一下配置是不是正常。如果能正常联网，可以继续下一步，配置 KCP 协议。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/11.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/11.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-afb8e5f8523daf06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;KCP 端口，就是之前根据提示设置的端口，不是 Shadowsocks的端口 。比如我这里应该填写 554，即 “端口”。&lt;/p&gt;
+
+&lt;p&gt;KCP 参数按下面填就行了，其他不用填：&lt;/p&gt;
+
+&lt;p&gt;-autoexpire 60 -key “你设的密码”&lt;/p&gt;
+
+&lt;p&gt;在路由器上使用：&lt;/p&gt;
+
+&lt;p&gt;如果需要在路由器上使用 Kcptun，首先你得有个智能路由器，然后能进入shell。&lt;/p&gt;
+
+&lt;p&gt;编译好的客户端文件在这里下载：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/bettermanbao/openwrt-kcptun/releases&quot;&gt;https://github.com/bettermanbao/openwrt-kcptun/releases&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;小米路由器、极路由等一大批国产智能路由器都是 MT7620 的芯片，请下载 ramips 版本。&lt;/p&gt;
+
+&lt;p&gt;到这里都设好了，好好感受下速度的飙升吧！&lt;/p&gt;
+
+&lt;p&gt;本文涉及到的软件及设置可能会有变化，建议您关注软件作者的网站：&lt;a href=&quot;https://blog.kuoruan.com/110.html&quot;&gt;[v15]Kcptun 服务端一键安装脚本&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/3403aa32d1e3aa5787c648986913e805.gif&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/3403aa32d1e3aa5787c648986913e805.gif&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-ce246a4d0d5cc69e.gif?imageMogr2/auto-orient/strip&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/nb/6347182&quot;&gt;翻墙达人&lt;/a&gt;
+© 著作权归作者所有&lt;/p&gt;</content><category term="vps" /><summary type="html">一步一步教你用Kcptun给Shadowsocks加速！看YouTube1080P一点都不卡！</summary></entry><entry><title type="html">pip加速</title><link href="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/" rel="alternate" type="text/html" title="pip加速" /><published>2017-01-30T18:04:00+08:00</published><updated>2017-01-30T18:04:00+08:00</updated><id>https://zhuio.github.io/pip加速</id><content type="html" xml:base="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/">&lt;h3 id=&quot;使用国内镜像加速-pip&quot;&gt;使用国内镜像加速 pip&lt;/h3&gt;
 
 &lt;h5 id=&quot;配置文件指定镜像&quot;&gt;配置文件指定镜像&lt;/h5&gt;
 
@@ -443,62 +644,4 @@
 
 &lt;p&gt;同时,我们在这里说明的使用将事情动态,使用根之类的东西。 x(引用应用程序),然后自我(引用按钮本身)特别是如果你想要的位置按钮顶部附近。&lt;/p&gt;
 
-&lt;p&gt;这里的输出应该类似:&lt;/p&gt;</content><category term="kivy" /><summary type="html">动态可调整大小的位置</summary></entry><entry><title type="html">kivytutor3</title><link href="https://zhuio.github.io/kivytutor3/" rel="alternate" type="text/html" title="kivytutor3" /><published>2017-01-25T02:06:00+08:00</published><updated>2017-01-25T02:06:00+08:00</updated><id>https://zhuio.github.io/kivytutor3</id><content type="html" xml:base="https://zhuio.github.io/kivytutor3/">&lt;h3 id=&quot;kivykv语言content&quot;&gt;Kivy.kv语言content&lt;/h3&gt;
-
-&lt;p&gt;在本教程中,我们将介绍如何组织你的演讲结构。 到目前为止,我们已经展示了如何添加一个标签,但是有比这更Kivy语言。 例如,您可以决定所有的按钮都是什么样子,对于特定的按钮在特定的部件是什么样子,或者两者都有!&lt;/p&gt;
-
-&lt;p&gt;显示这个,我们将添加另一个类,小部件,然后我们将看到如何描述一个按钮在一个特定的类应该是什么样子:&lt;/p&gt;
-
-&lt;p&gt;KivyVideo4。 py文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;1.8.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.label&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Label&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.widget&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Widgets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pass&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;SimpleKivy2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Widgets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;SimpleKivy2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;我们现在进口部件,然后我们制作这个小部件类,继承从Kivy Widget类。&lt;/p&gt;
-
-&lt;p&gt;现在,我们用来返回一个不同的Kivy类,我们要相反SimpleKivy(现在叫SimpleKivy2,SimpleKivy2对应。 kv文件)现在返回窗口小部件类。&lt;/p&gt;
-
-&lt;p&gt;这是所有的Python代码。 我们通过与小部件类,因为只有“代码”,我们希望现在只是演示代码。 因为我们目前使用。 kv文件表示,我们的代码的其余部分将会。&lt;/p&gt;
-
-&lt;p&gt;SimpleKivy2。 kv文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Widgets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;75&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Kivy&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;40&lt;/span&gt;
-
-	&lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;170&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;75&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Tutorials&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;40&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;现在,这里所发生的是 从主python文件引用我们的窗口小部件类。 有小部件作为一个家长,现在,使用标签,我们可以定义一些孩子的小部件。&lt;/p&gt;
-
-&lt;p&gt;首先,我们看到两个按钮的孩子。 在那之后,我们看到这些按钮的另一个选项卡的一些参数。&lt;/p&gt;
-
-&lt;p&gt;会很容易忘记所需的冒号后的父母,,你并不是真的在任何显式的错误。&lt;/p&gt;
-
-&lt;p&gt;结果:&lt;/p&gt;
-
-&lt;p&gt;Python Kivy Application Development
-按钮:大小按钮的宽度和高度以像素为单位。 然后,pos元素的位置,使用左上角点作为指南。 接下来,“文本”是说无论我们希望按钮。 然后我们有颜色,这是衡量RGB-A,或红色,绿色,蓝色,α,这些值在0和1之间。 0,1,0,1是没有红色的,完整的绿色,没有蓝色,α(即颜色是固体)。 最后,“font_size”字体的大小。 我知道你没看到来了!&lt;/p&gt;</content><category term="kivy" /><summary type="html">Kivy.kv语言content</summary></entry></feed>
+&lt;p&gt;这里的输出应该类似:&lt;/p&gt;</content><category term="kivy" /><summary type="html">动态可调整大小的位置</summary></entry></feed>

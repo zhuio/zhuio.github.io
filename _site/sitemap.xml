@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://zhuio.github.io/vps%E5%8A%A0%E9%80%9F/</loc>
+<lastmod>2017-02-10T22:39:00+08:00</lastmod>
+</url>
+<url>
 <loc>https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/</loc>
 <lastmod>2017-01-30T18:04:00+08:00</lastmod>
 </url>
@@ -126,20 +130,20 @@
 <loc>https://zhuio.github.io/</loc>
 </url>
 <url>
-<loc>https://zhuio.github.io/about/</loc>
-</url>
-<url>
 <loc>https://zhuio.github.io/posts/</loc>
 </url>
 <url>
 <loc>https://zhuio.github.io/projects/</loc>
 </url>
 <url>
+<loc>https://zhuio.github.io/about/</loc>
+</url>
+<url>
 <loc>https://zhuio.github.io/baidu_verify_t9Z4X0kEKB.html</loc>
-<lastmod>2017-01-26T20:42:21+08:00</lastmod>
+<lastmod>2017-02-02T00:18:56+08:00</lastmod>
 </url>
 <url>
 <loc>https://zhuio.github.io/googlebe2bed3d01681e2f.html</loc>
-<lastmod>2017-01-26T20:42:21+08:00</lastmod>
+<lastmod>2017-02-02T00:18:56+08:00</lastmod>
 </url>
 </urlset>
