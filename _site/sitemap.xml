@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://zhuio.github.io/shadowinstaller/</loc>
+<lastmod>2017-02-11T00:04:00+08:00</lastmod>
+</url>
+<url>
 <loc>https://zhuio.github.io/vps%E5%8A%A0%E9%80%9F/</loc>
 <lastmod>2017-02-10T22:39:00+08:00</lastmod>
 </url>

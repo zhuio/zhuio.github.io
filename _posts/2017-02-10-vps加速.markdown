@@ -11,10 +11,7 @@ comments: true
 # 一步一步教你用Kcptun给Shadowsocks加速！看YouTube1080P一点都不卡！
 
 [![144](http://upload.jianshu.io/users/upload_avatars/957246/638f206fc01c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144)](/u/7fccdb4dfef8)
-作者[刘颙](/u/7fccdb4dfef8)
-2016.09.18 01:05字数 1791
-
-上次教了大家怎么用影梭+VPS翻墙：[hohothink.com/archives/202](http://hohothink.com/archives/202)，这次来说说如何让翻墙速度更快，用起来就像墙内一样。这里介绍一个免费的工具Kcptun，它是一个非常简单和快速的，基于 KCP 协议的 UDP 隧道，它可以将 TCP 流转换为 KCP+UDP 流。而 KCP 是一个快速可靠协议，能以比 TCP 浪费10%-20%的带宽的代价，换取平均延迟降低 30%-40%，且最大延迟降低三倍的传输效果。（效果可见下图，YouTube上1080P流畅）
+影梭+VPS翻墙：[hohothink.com/archives/202](http://hohothink.com/archives/202)，这次来说说如何让翻墙速度更快，用起来就像墙内一样。这里介绍一个免费的工具Kcptun，它是一个非常简单和快速的，基于 KCP 协议的 UDP 隧道，它可以将 TCP 流转换为 KCP+UDP 流。而 KCP 是一个快速可靠协议，能以比 TCP 浪费10%-20%的带宽的代价，换取平均延迟降低 30%-40%，且最大延迟降低三倍的传输效果。（效果可见下图，YouTube上1080P流畅）
 
 [http://hohothink.com/wp-content/uploads/2016/09/1.png](http://hohothink.com/wp-content/uploads/2016/09/1.png)
 
