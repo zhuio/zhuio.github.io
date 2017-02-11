@@ -1,0 +1,83 @@
+---
+layout: "post"
+title: "HASH2"
+date: "2017-02-12 02:02"
+tags:
+- HASH
+comments: true
+---
+
+
+## Flask Registration Code Tutorial
+
+在本教程中，我们将在__init__.py中对我们的注册代码进行更多工作。
+
+在我们再进一步之前，让我们安装passlib：
+`pip install passlib`
+然后，向我们的__init__.py文件中添加一些导入：
+
+
+    from flask import Flask, render_template, flash, request, url_for, redirect, session
+    from wtforms import Form, BooleanField, TextField, PasswordField, validators
+    from passlib.hash import sha256_crypt
+    from MySQLdb import escape_string as thwart
+    import gc
+
+
+Passlib将用于密码加密，而escape_string用于防止SQL注入尝试（黑客）。gc模块用于垃圾回收（内存问题）。我们还将会话添加到flask导入，用于访问用户特定的会话/ cookie信息。我们还从wtforms导入一堆字段的东西。
+
+现在我们有一些新的register_page函数代码：
+
+
+    @app.route('/register/', methods=["GET","POST"])
+    def register_page():
+        try:
+            form = RegistrationForm(request.form)
+
+            if request.method == "POST" and form.validate():
+                username  = form.username.data
+                email = form.email.data
+                password = sha256_crypt.encrypt((str(form.password.data)))
+                c, conn = connection()
+
+                x = c.execute("SELECT * FROM users WHERE username = (%s)",
+                              (thwart(username)))
+
+                if int(x) > 0:
+                    flash("That username is already taken, please choose another")
+                    return render_template('register.html', form=form)
+
+                else:
+                    c.execute("INSERT INTO users (username, password, email, tracking) VALUES (%s, %s, %s, %s)",
+                              (thwart(username), thwart(password), thwart(email), thwart("/introduction-to-python-programming/")))
+
+                    conn.commit()
+                    flash("Thanks for registering!")
+                    c.close()
+                    conn.close()
+                    gc.collect()
+
+                    session['logged_in'] = True
+                    session['username'] = username
+
+                    return redirect(url_for('dashboard'))
+
+            return render_template("register.html", form=form)
+
+        except Exception as e:
+            return(str(e))
+
+
+简单的，代码首先会检查方法是否是POST。请记住，用户可能只是简单地加载注册页面。如果有一个POST请求，那么我们要收集表单中的信息。
+
+一旦我们获得表单中的信息，接下来我们要做的就是连接到数据库。现在我们不希望有两个用户使用相同的用户名，因此我们首先要查看该用户名是否已经存在。如果是，我们想告诉他们用户名已经存在，让他们再试一次。
+
+如果用户名不存在，我们已经做到了这一点，这意味着我们有一个唯一的用户名，匹配的密码和一封电子邮件，可以插入我们的数据库。
+
+所以我们插入数据库，向用户发送一条消息，感谢他们注册，你就完成了。
+
+当所有设置插入，你需要确保你总是运行conn.commit（），这是“保存”您的更改到数据库。如果您忘记这样做，那么您的更改将不会保存。
+
+最后，我们使用gc.collect（）来帮助减少内存浪费。
+
+注意，我们恰好在注册后登录我们的用户，使用烧录器会话功能。

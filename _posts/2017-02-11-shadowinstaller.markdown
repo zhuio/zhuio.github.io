@@ -20,7 +20,7 @@ comments: true
 使用方法：
 使用root用户登录，运行以下命令：
 
-    wget --no-check-certificate https://github.com/zhuio/shadowsocksinstaller/blob/master/shadowsocks.sh
+    wget --no-check-certificate https://raw.githubusercontent.com/zhuio/shadowsocksinstaller/master/shadowsocks.sh
     chmod +x shadowsocks.sh
     ./shadowsocks.sh 2>&1 | tee shadowsocks.log
 
@@ -33,8 +33,6 @@ comments: true
     Your Local IP:127.0.0.1
     Your Local Port:1080
     Your Encryption Method:aes-256-cfb
-
-    Welcome to visit:https://teddysun.com/342.html
     Enjoy it!
 
 卸载方法：
@@ -47,7 +45,7 @@ comments: true
 
     {
         "server":"0.0.0.0",
-        "server_port":8989,
+        "server_port":6565,
         "local_address":"127.0.0.1",
         "local_port":1080,
         "password":"yourpassword",
@@ -56,7 +54,7 @@ comments: true
         "fast_open": false
     }
 
-多用户多端口配置文件 Sample（2015 年 08 月 28 日修正）：
+多用户多端口配置文件 ：
 配置文件路径：/etc/shadowsocks.json
 
     {

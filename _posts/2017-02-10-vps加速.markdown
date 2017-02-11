@@ -8,7 +8,7 @@ comments: true
 ---
 
 
-# 一步一步教你用Kcptun给Shadowsocks加速！看YouTube1080P一点都不卡！
+# Kcptun给Shadowsocks加速！
 
 [![144](http://upload.jianshu.io/users/upload_avatars/957246/638f206fc01c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144)](/u/7fccdb4dfef8)
 影梭+VPS翻墙：[hohothink.com/archives/202](http://hohothink.com/archives/202)，这次来说说如何让翻墙速度更快，用起来就像墙内一样。这里介绍一个免费的工具Kcptun，它是一个非常简单和快速的，基于 KCP 协议的 UDP 隧道，它可以将 TCP 流转换为 KCP+UDP 流。而 KCP 是一个快速可靠协议，能以比 TCP 浪费10%-20%的带宽的代价，换取平均延迟降低 30%-40%，且最大延迟降低三倍的传输效果。（效果可见下图，YouTube上1080P流畅）
@@ -23,25 +23,7 @@ comments: true
 
 ![](http://upload-images.jianshu.io/upload_images/957246-707c314e6015b72b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-那么下面就开始喽！
-
-首先我们得下载XShell，为什么要下载这个？你可以想象VPS就是一个放在大洋彼岸永不关机的电脑，而VPS上影梭一般都装在CentOS这样的linux系统上，如果我们想安装软件，就需要XShell这样的工具登录VPS后台linux去操作。
-
-XShell5下载：[http://rj.baidu.com/soft/detail/15201.html?ald](http://rj.baidu.com/soft/detail/15201.html?ald)
-
-安装完新建会话属性，点击连接，填入你搬瓦工后台main controls的IPaddress和SSH port.
-
-[http://hohothink.com/wp-content/uploads/2016/09/2.jpg](http://hohothink.com/wp-content/uploads/2016/09/2.jpg)
-
-![](http://upload-images.jianshu.io/upload_images/957246-613fd279bfb8ce7a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-然后点击用户身份验证，用户名为root,密码在搬瓦工后台的root password modification里面随机生成。
-
-[http://hohothink.com/wp-content/uploads/2016/09/3.jpg](http://hohothink.com/wp-content/uploads/2016/09/3.jpg)
-
-![](http://upload-images.jianshu.io/upload_images/957246-16d5ad890db5f228.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-弄好后就可以连接服务器了，开始安装Kcptun。
+开始安装Kcptun。
 
 首先在xshell登录后的Linux页面一段一段的粘贴下面代码，毎粘贴一段要回车一下再粘贴下一段。
 
@@ -188,16 +170,3 @@ KCP 参数按下面填就行了，其他不用填：
 编译好的客户端文件在这里下载：
 
 [https://github.com/bettermanbao/openwrt-kcptun/releases](https://github.com/bettermanbao/openwrt-kcptun/releases)
-
-小米路由器、极路由等一大批国产智能路由器都是 MT7620 的芯片，请下载 ramips 版本。
-
-到这里都设好了，好好感受下速度的飙升吧！
-
-本文涉及到的软件及设置可能会有变化，建议您关注软件作者的网站：[[v15]Kcptun 服务端一键安装脚本](https://blog.kuoruan.com/110.html)
-
-[http://hohothink.com/wp-content/uploads/2016/09/3403aa32d1e3aa5787c648986913e805.gif](http://hohothink.com/wp-content/uploads/2016/09/3403aa32d1e3aa5787c648986913e805.gif)
-
-![](http://upload-images.jianshu.io/upload_images/957246-ce246a4d0d5cc69e.gif?imageMogr2/auto-orient/strip)
-
-[翻墙达人](/nb/6347182)
-© 著作权归作者所有

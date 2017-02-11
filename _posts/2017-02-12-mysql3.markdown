@@ -1,0 +1,35 @@
+---
+layout: "post"
+title: "HASH1"
+date: "2017-02-12 02:01"
+tags:
+- HASH
+comments: true
+---
+
+## User Registration Form Flask Tutorial
+
+
+在本教程中，我们将讨论创建我们的注册表单。虽然不需要，Flask有一个内置的窗体模块称为WTForms。要得到这个，运行：
+`pip install flask-wtf`
+现在，由于我们使用这个模块来创建表单，我们要做的是创建一个表单类，这将给我们一个注册表单对象，然后我们将传递给我们的模板。这听起来很困惑，但它不是那么糟！
+
+在我们的__init__.py文件中，我们将添加以下类。这是我的建议，组织和功能，你把所有的课程放在你的脚本的顶部，如果他们在许多地方使用，或者你可以把它们的功能，他们将被使用。
+
+窗体类，包含用户名，电子邮件，密码和确认密码字段。然后我们有一个“接受条件”要求的复选框。
+
+在这里注意“验证器”参数，其中我们可以指定所有类型的东西，但是我们需要各种长度规则，以及要求两个密码匹配。
+
+    class RegistrationForm(Form):
+        username = TextField('Username', [validators.Length(min=4, max=20)])
+        email = TextField('Email Address', [validators.Length(min=6, max=50)])
+        password = PasswordField('New Password', [
+            validators.Required(),
+            validators.EqualTo('confirm', message='Passwords must match')
+        ])
+        confirm = PasswordField('Repeat Password')
+        accept_tos = BooleanField('I accept the [Terms of Service](/about/tos) and [Privacy Notice](/about/privacy-policy) (updated Jan 22, 2015)', [validators.Required()])
+
+
+
+还要注意“布尔”字段，意味着它可以是开或关，或1或0.注意，如果您希望此框是必需的复选框，您还需要在这里有验证器。如果你在这里运行一个餐厅的应用程序，人们只是选择他们的食材三明治，那么你不需要检查所有的成分。在这里，我们希望确保用户已同意我们的条款。

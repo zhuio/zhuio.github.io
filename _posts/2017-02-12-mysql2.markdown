@@ -1,0 +1,65 @@
+---
+layout: "post"
+title: "MySQL2"
+date: "2017-02-12 02:01"
+tags:
+- MySQL
+comments: true
+---
+
+
+## 使用MySQLdb连接到MySQL数据库
+
+
+
+在本教程中，我们将介绍如何使用Python与MySQL数据库交互。我们使用的模块称为MySQLdb。要获得此，请在您的服务器上运行以下命令：
+`sudo apt-get install python-MySQLdb`
+一旦你有，请确保它都工作通过键入：
+`python`
+这应该打开一个python实例在你的服务器，所以然后做：
+
+    import MySQLdb
+
+只要有效，就快速control+d退出python实例。
+
+接下来，我们要创建一个可以连接到数据库的Python文件。通常你将有一个单独的“连接”文件，在任何主要文件之外你可能有。这通常是跨语言的，这是为什么。最初，您可能只有一个简单的__init__.py，或app.py或任何，并且该文件将执行所有操作。然而，可能发生的时间，但是，你的网站做其他的事情。例如，我的一个网站，Sentdex.com，我执行大量的分析，将分析存储到数据库，我还操作网站供用户使用。一般来说，对于任务，你将使用所谓的“cron”。cron是在您编程运行时运行的计划任务。通常这运行另一个文件，几乎肯定不是您的网站的文件。因此，要连接到数据库，您必须在由cron运行的文件中再次写入连接代码的数据库。
+
+随着时间的推移，这些种类的需求累积起来，你有一些文件修改数据库，但你仍然希望网站能够访问它，也可以修改它。然后，考虑如果更改数据库密码可能会发生什么。然后，您需要转到连接到数据库的每个文件，并更改它。所以，通常，你会发现最聪明的事情是只创建一个文件，其中包含连接代码。这就是我们今天要建立的。
+
+
+    import MySQLdb
+
+    def connection():
+        conn = MySQLdb.connect(host="localhost",
+                               user = "root",
+                               passwd = "cookies!",
+                               db = "pythonprogramming")
+        c = conn.cursor()
+
+        return c, conn
+
+
+导入模块。
+
+创建一个连接函数来运行我们的代码。在这里，我们指定我们连接到的位置，用户，用户的密码，然后指定我们要连接到的数据库。
+
+引用表将在实际使用表的代码中完成。
+请注意，我们使用“localhost”作为我们的主机。这只是意味着我们将使用与运行此代码相同的服务器。您也可以远程连接到数据库，这可以很漂亮。为此，您可以通过其IP或其域来连接到主机。要远程连接到数据库，您需要首先从将被访问/修改的远程数据库中允许它。
+
+接下来，让我们继续编辑我们的__init__.py文件，添加一个寄存器函数。现在我们将保持简单，大多只是为了测试我们的连接功能。
+
+
+    from dbconnect import connection
+
+    ...		
+
+    @app.route('/register/', methods=["GET","POST"])
+    def register_page():
+        try:
+            c, conn = connection()
+            return("okay")
+        except Exception as e:
+            return(str(e))
+
+
+接下来，让我们建立我们的注册页面。
