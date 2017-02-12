@@ -1,4 +1,490 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-02-11T00:05:42+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">shadowinstaller</title><link href="https://zhuio.github.io/shadowinstaller/" rel="alternate" type="text/html" title="shadowinstaller" /><published>2017-02-11T00:04:00+08:00</published><updated>2017-02-11T00:04:00+08:00</updated><id>https://zhuio.github.io/shadowinstaller</id><content type="html" xml:base="https://zhuio.github.io/shadowinstaller/">&lt;h1 id=&quot;shadowsocks一键配置脚本&quot;&gt;shadowsocks一键配置脚本&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://zhuio.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://zhuio.github.io/" rel="alternate" type="text/html" /><updated>2017-02-12T17:39:35+08:00</updated><id>https://zhuio.github.io/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">flask框架5</title><link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B65/" rel="alternate" type="text/html" title="flask框架5" /><published>2017-02-12T15:37:00+08:00</published><updated>2017-02-12T15:37:00+08:00</updated><id>https://zhuio.github.io/flask框架5</id><content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B65/">&lt;h2 id=&quot;动态基于用户的内容flask教程&quot;&gt;动态基于用户的内容Flask教程&lt;/h2&gt;
+
+&lt;p&gt;虽然我们可以使用装饰器来包围访问控制的函数，但我们也可以使用我们的Jinja模板逻辑来控制视图。例如，现在，当我们登录我们的网站时，我们仍然在右上角有一个“登录”按钮。&lt;/p&gt;
+
+&lt;p&gt;我们应该真的让登录按钮消失，与注册按钮一样，然后添加一个“注销”按钮。&lt;/p&gt;
+
+&lt;p&gt;我们实际上可以在我们的HTML文件中处理所有这些，所以让我们访问我们的header.html文件。&lt;/p&gt;
+
+&lt;p&gt;找到与navbar相关联的代码，然后替换为一些逻辑：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	  &amp;lt;ul class=&quot;nav navbar-nav navbar-right&quot;&amp;gt;
+		    &amp;lt;div style=&quot;margin-right: 10px; margin-left: 15px; margin-top: 5px; margin-bottom: 5px;&quot;  class=&quot;container-fluid&quot;&amp;gt;
+			&amp;lt;h5&amp;gt;
+				&amp;amp;#123;% if session.logged_in %}
+				&amp;lt;a href=&quot;/support-donate/&quot;&amp;gt; &amp;lt;span class=&quot;glyphicon glyphicon-heart&quot;&amp;gt;&amp;lt;/span&amp;gt; Support   &amp;lt;/a&amp;gt;
+				&amp;lt;a href=&quot;/logout/&quot;&amp;gt;&amp;lt;span class=&quot;glyphicon glyphicon-log-out&quot;&amp;gt;&amp;lt;/span&amp;gt; Logout   &amp;lt;/a&amp;gt;
+				&amp;amp;#123;% else %}
+				&amp;lt;a href=&quot;/support-donate/&quot;&amp;gt; &amp;lt;span class=&quot;glyphicon glyphicon-heart&quot;&amp;gt;&amp;lt;/span&amp;gt; Support   &amp;lt;/a&amp;gt;
+				&amp;lt;a href=&quot;/login/&quot;&amp;gt;&amp;lt;span class=&quot;glyphicon glyphicon-log-in&quot;&amp;gt;&amp;lt;/span&amp;gt; Login   &amp;lt;/a&amp;gt;
+				&amp;lt;a href=&quot;/register/&quot;&amp;gt;&amp;lt;span class=&quot;glyphicon glyphicon-pencil&quot;&amp;gt;&amp;lt;/span&amp;gt; Sign up&amp;lt;/a&amp;gt;
+				&amp;amp;#123;% endif %}
+			&amp;lt;/div&amp;gt;
+
+			&amp;lt;/h5&amp;gt;
+		  &amp;lt;/div&amp;gt;
+      &amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;需要注意的两件事：我们显然能够引用会话，我们不需要在我们的模板中“导入”它。这样的逻辑在你的HTML可以抛出一个循环的默认标签识别/突出显示！&lt;/p&gt;
+
+&lt;p&gt;Jinja模板基本上有一个“从烧瓶进口*”在幕后。您可以在模板中引用任何Flask内容，而无需将其导入模板或脚本。&lt;/p&gt;
+
+&lt;p&gt;当你构建这样的HTML逻辑，特别是当它影响用户看到什么，你可能会发现它破坏了自然的突出显示，你的编辑器可能会标记的东西，如标签没有关闭等。使用你更好的判断。有时，如果内容足够厚，并且是一种if / else类似上面，我将删除每个块，一次一个，并检查以确保一切连接正确。&lt;/p&gt;
+
+&lt;p&gt;不管什么，但是，它可以是混乱。注意它，特别是如果你让你的编辑器自动关闭或移动标签。&lt;/p&gt;</content><category term="flask" /><summary type="html">动态基于用户的内容Flask教程</summary></entry><entry><title type="html">flask框架4</title><link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B64/" rel="alternate" type="text/html" title="flask框架4" /><published>2017-02-12T15:36:00+08:00</published><updated>2017-02-12T15:36:00+08:00</updated><id>https://zhuio.github.io/flask框架4</id><content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B64/">&lt;h2 id=&quot;flask装饰器---login_required页面flask教程&quot;&gt;Flask装饰器 - Login_Required页面Flask教程&lt;/h2&gt;
+
+&lt;p&gt;现在我们可以让用户注册和登录，我们也允许他们注销。这是有一点意义，不让用户注销，除非他们登录！&lt;/p&gt;
+
+&lt;p&gt;您还可能会发现您想要保护各种页面，例如管理页面，或者您有订阅者内容或其他受保护或付费内容。&lt;/p&gt;
+
+&lt;p&gt;你可以使用包装函数。人们倾向于避开包装函数和装饰器，因为它们可能是混乱的。但是，看看你，你一直在使用他们这一次！Flask使用它们进行URL路由。让我们展示如何使我们自己的！这其实很简单！&lt;/p&gt;
+
+&lt;p&gt;首先，我们向我们的__init__.py文件添加一个login_required函数：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;login_required&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;@wraps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'logged_in'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;flash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;You need to login first&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url_for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'login_page'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这里，我们定义函数，其中参数是f，这是约定的事实，它包装一个函数。然后，我们定义包装器。&lt;/p&gt;
+
+&lt;p&gt;我们的包装器很简单，只是简单地检查用户在会话中是否有“logged_in”。如果是这样，伟大。如果没有，他们会收到一条Flash消息和重定向到登录页面。&lt;/p&gt;
+
+&lt;p&gt;现在我们有了包装器函数，我们准备好将它应用到任何我们想要的登录。例如，我们可以将其应用于我们的注销页面，如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route(&quot;/logout/&quot;)
+@login_required
+def logout():
+    session.clear()
+    flash(&quot;You have been logged out!&quot;)
+    gc.collect()
+    return redirect(url_for('dashboard'))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;很简单，在app.route包装器的下面，我们还添加了另一个包装器，它是login_required包装器。现在，为了甚至得到注销函数，用户必须首先尝试访问顶部包装器中的URL，然后他们还需要满足下一个包装器的条件，然后他们可以最终到达logout（）函数！&lt;/p&gt;</content><category term="flask" /><summary type="html">Flask装饰器 - Login_Required页面Flask教程</summary></entry><entry><title type="html">flask框架3</title><link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B63/" rel="alternate" type="text/html" title="flask框架3" /><published>2017-02-12T15:34:00+08:00</published><updated>2017-02-12T15:34:00+08:00</updated><id>https://zhuio.github.io/flask框架3</id><content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B63/">&lt;h2 id=&quot;flask用户登录系统教程&quot;&gt;Flask用户登录系统教程&lt;/h2&gt;
+
+&lt;p&gt;它让我们相当多，但在这里我们是：登录页面！如果你还没有，那么你应该注册一些用户，并记住其中之一，以测试我们的登录页面，当我们完成。&lt;/p&gt;
+
+&lt;p&gt;我们已经有了登录模板，我们可以保留，但现在验证过程需要验证我们的数据库中的用户，而不是硬编码的管理员用户。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Part of __init__.py file&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/login/', methods=[&quot;GET&quot;,&quot;POST&quot;])
+def login_page():
+    error = ''
+    try:
+        c, conn = connection()
+        if request.method == &quot;POST&quot;:
+
+            data = c.execute(&quot;SELECT * FROM users WHERE username = (%s)&quot;,
+                             thwart(request.form['username']))
+
+            data = c.fetchone()[2]
+
+            if sha256_crypt.verify(request.form['password'], data):
+                session['logged_in'] = True
+                session['username'] = request.form['username']
+
+                flash(&quot;You are now logged in&quot;)
+                return redirect(url_for(&quot;dashboard&quot;))
+
+            else:
+                error = &quot;Invalid credentials, try again.&quot;
+
+        gc.collect()
+
+        return render_template(&quot;login.html&quot;, error=error)
+
+    except Exception as e:
+        #flash(e)
+        error = &quot;Invalid credentials, try again.&quot;
+        return render_template(&quot;login.html&quot;, error = error)  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在这里，我们使用我们写的连接文件来连接到数据库（dbconnect.py），它有一个名为connection的函数。&lt;/p&gt;
+
+&lt;p&gt;我们对POST方法进行与前面相同的检查。如果是这样，我们将查询数据库以查看该人员输入的用户名是否在数据库中，而不是忘记使用thwart来防止SQL注入。&lt;/p&gt;
+
+&lt;p&gt;接下来，如果用户名存在，我们然后将尝试的用户名与我们记录的散列密码进行比较，验证存储的散列的来源是否与用户尝试的密码相同。&lt;/p&gt;
+
+&lt;p&gt;如果是这样，那么我们通过Flask的会话功能登录用户，然后我们将它们发送到仪表板，因为他们都完成了登录页面。&lt;/p&gt;
+
+&lt;p&gt;如果出现任何问题，我们给出的错误只是“凭据无效，请重试”。您可以提供自定义错误，例如该用户名不存在或密码错误，但有人试图破解您的网站或用户名可以使用它的优势，知道他们错了什么。&lt;/p&gt;</content><category term="flask" /><category term="hash" /><summary type="html">Flask用户登录系统教程</summary></entry><entry><title type="html">flask框架2</title><link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B62/" rel="alternate" type="text/html" title="flask框架2" /><published>2017-02-12T15:33:00+08:00</published><updated>2017-02-12T15:33:00+08:00</updated><id>https://zhuio.github.io/flask框架2</id><content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B62/">&lt;h2 id=&quot;flask教程的密码哈希&quot;&gt;Flask教程的密码哈希&lt;/h2&gt;
+
+&lt;p&gt;虽然我们已经将密码哈希加入我们的注册页面，我想花一些时间来讨论实际发生的事情。也许你最终使用另一种语言，或者也许passlib不支持你在未来使用的Python版本。正因为如此，你应该至少在高层了解它是如何工作的。&lt;/p&gt;
+
+&lt;p&gt;它不仅对安全实践很重要，它也只是很酷的工作原理！&lt;/p&gt;
+
+&lt;p&gt;首先，你可能会理解为什么对密码进行加密很重要。如果您的数据库存储纯文本密码，至少您将自己查看密码，因此任何有权访问您的服务器的人都可以看到密码。在一个完美的世界中，没有人会侵犯用户的隐私，但这个世界并不完美。不仅如果你使用虚拟专用服务器，或者共享主机，那么为你工作的人可能窃取用户密码，黑客可能，甚至是你的服务器的主机。&lt;/p&gt;
+
+&lt;p&gt;那么，我们如何掩盖密码？遮掩原始文本很容易，我们可以对一个随机的算法做到这一点。问题是，使用密码，我们实际上需要能够验证用户将来输入作为原始密码。&lt;/p&gt;
+
+&lt;p&gt;采取的更原始的措施之一是简单的密码哈希。这是一个哈希函数应用于用户输入的内容，该哈希是作为密码存储的内容。&lt;/p&gt;
+
+&lt;p&gt;这里有一个简单的哈希脚本来说明这一点，你可以运行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import hashlib
+password = 'pa$$w0rd'
+h = hashlib.md5(password.encode())
+print(h.hexdigest())
+
+
+	导入hashlib，设置示例密码，创建哈希对象，打印哈希：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;6c9b8b27dea1ddb845f96aa2567c6754&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;所以工作相当不错。如果你刚刚在数据库中看到了哈希，你不知道这是什么意思。但是，出现以下问题：运行脚本两次，或五次。你会发现每次的输出是相同的。最初，考虑到验证，你可能认为这不是一个要求吗？我们还能如何实现验证？&lt;/p&gt;
+
+&lt;p&gt;这里的问题是人们创建了大量的哈希表，特别是称为哈希查找表，在那里你可以搜索哈希，然后找到相应的明文密码。你也可以自己创建一个，只需为字符组合生成哈希。生成表需要更长的时间。这些表是大的，但不是太大，不能存储在你的笔记本电脑或上网本。&lt;/p&gt;
+
+&lt;p&gt;我们需要的是一种生成唯一哈希的方法，但是通过询问两个哈希是否来自同一个输入，尽管它们是非常不同的哈希，仍然找到一种验证哈希的方法。&lt;/p&gt;
+
+&lt;p&gt;然而，在到达之前，人们提出了一个更简单的解决方案：为什么不放置一个秘密模式的文本到每个输入的密码，只有我们的服务器知道。这就是所谓的“盐析”。&lt;/p&gt;
+
+&lt;p&gt;盐渍，虽然仍然使用，最初开始很简单。这里有一个例子说明如何盐化工作，建立我们最后的例子：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import hashlib
+
+user_entered_password = 'pa$$w0rd'
+salt = &quot;5gz&quot;
+db_password = user_entered_password+salt
+h = hashlib.md5(db_password.encode())
+print(h.hexdigest())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在这里，唯一的主要区别是我们只有一个盐，我们追加到最后。然后，任何时候用户输入他们的密码，我们添加salt，哈希，然后比较这些哈希。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;de6e389819bdaa9e0ca60bb52cabccae&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;现在，盐可以在任何地方添加。也许是在中间的输入，也许在开始，也许在结束。你可以在开始时有一个盐，另一个在密码的中间，另一个在最后甚至。&lt;/p&gt;
+
+&lt;p&gt;这是很好，但有固有的风险，仍然，这里是为什么：&lt;/p&gt;
+
+&lt;p&gt;对于相同的密码，哈希始终相同。这意味着如果有人破解你生成的盐，那么他们现在通过生成哈希表破解了所有密码。这又可以进行大量的处理，但这绝不是今天的标准所无法达到的。&lt;/p&gt;
+
+&lt;p&gt;加密的一句话是，你不能依赖于安全的保密性。对加密的一个很好的测试是问自己：“如果有人发现我的加密方法，我的安全性是否受损？在许多情况下，例如用密码，对此的答案是“是的！这是一个问题。考虑有人访问您的数据库的许多原因也意味着他们有权访问您的源代码。这意味着有人可以找到你的盐。从这里，打破加密密码的整个数据库是相对快速的工作。&lt;/p&gt;
+
+&lt;p&gt;我们想要的是一种生成唯一哈希的方法，它们的源可以容易地验证，但是暴力强制将需要每个密码的强制强制，而不是整个数据库的暴力强制。让我们带上passlib的大枪。&lt;/p&gt;
+
+&lt;p&gt;如果你没有passlib，你可能不会，因为它不是标准库的一部分，做一个快速：&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install passlib&lt;/code&gt;
+or…
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install python-passlib&lt;/code&gt;
+Once you have passlib, let’s play!&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from passlib.hash import sha256_crypt
+
+password = sha256_crypt.encrypt(&quot;password&quot;)
+password2 = sha256_crypt.encrypt(&quot;password&quot;)
+
+print(password)
+print(password2)
+
+print(sha256_crypt.verify(&quot;password&quot;, password))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这里我们引入passlib的哈希能力，并使用SHA256作为算法。SHA256本质上优于md5，但是在上面的例子中你可以用“sha256”替换“md5”，看到输出的哈希值保持不变，只是稍长一些。&lt;/p&gt;
+
+&lt;p&gt;接下来，我们显示我们使用sha256_crypt从passlib哈希“密码”两次。一次到密码的变量，再一次到password2。&lt;/p&gt;
+
+&lt;p&gt;然后我们输出两者的哈希，注意他们是不同的。&lt;/p&gt;
+
+&lt;p&gt;最后，我们验证两个单独的哈希值来自同一个源。&lt;/p&gt;
+
+&lt;p&gt;果然，布尔环响了，我们有一个匹配！&lt;/p&gt;
+
+&lt;p&gt;现在，我们有一个很好的方法来保护用户密码，同时仍然能够在用户登录时验证用户。&lt;/p&gt;
+
+&lt;p&gt;现在，考虑黑客违反我们的服务器并获得对我们的源代码和我们的数据库的要求。他们可以看到一切，但现在什么？&lt;/p&gt;
+
+&lt;p&gt;现在，他们将不得不通过暴力破解密码，与以前一样，只是现在它是一次一个密码。Yikes。他们可以做的是获取他们的密码字典（通常是可能的密码的大量列表），生成一个散列，然后尝试验证这个散列对数据库中的所有密码，通过迭代每个并运行sha256_crypt.verify他们真/假反应。然而，这个过程是非常麻烦的，并且结果是缓慢的。这将需要很长时间，并且没有办法预先准备这里。你可能会想，他们不能通过生成SHA256哈希在高级准备？不，因为sha256_crypt也使用独特的盐。&lt;/p&gt;
+
+&lt;p&gt;在我写这篇文章的时候，这个方法没有已知的弱点。&lt;/p&gt;
+
+&lt;p&gt;现在，我想强调使用上面的“方法”。在方法和方法的应用之间存在主要区别。&lt;/p&gt;
+
+&lt;p&gt;另一个加密和安全性的格言通常如下：&lt;/p&gt;
+
+&lt;p&gt;“你可以在地球上拥有最坚固，最不可穿透的加固门保护一个房间，但如果墙仍然薄弱，那就没有好处。&lt;/p&gt;
+
+&lt;p&gt;忘记墙壁，天花板，甚至地面都很简单。&lt;/p&gt;
+
+&lt;p&gt;考虑你写了一个程序的逻辑多少次，认为它是坚实的，然后遇到一个错误，并“当然！你会不断犯错误，你可能知道你做了很多。有安全性，这些错误通常是未经检查，未经测试。尝试你最好的想像一个黑客，但永远记住&lt;em&gt;每个&lt;/em&gt;系统，连接到万维网，是可以攻击。只接受它，并在这个前提下工作。&lt;/p&gt;
+
+&lt;p&gt;接受passlib可能有缺陷，有一天，或者已经有人知道SHA256的缺陷。此外，大量的密码加密系统被黑客与服务器访问极其简单：&lt;/p&gt;
+
+&lt;p&gt;如果黑客获得对你的服务器的访问，并发现你的数据库被安全加密，他们可以做一些简单的事情，在登录表单上创建一个日志记录功能，它只是简单地保存用户键入的字段，到文本文件，或在别处传输数据。这显然不像一次获得整个数据库那么大，但是这种事情发生了。&lt;/p&gt;
+
+&lt;p&gt;很多人也对2FA（双因素身份验证）等事情给予了很大的信任。我讨厌爆破你的泡沫，但是，虽然这种方法使很多道理，这种方法的应用程序，你，客户端和你使用的网站非常重要。&lt;/p&gt;
+
+&lt;p&gt;作为一个开发人员，我已经设置了2FA几次。有很多选项，您可以选择安装2FA时，可以增加或阻碍安全。一个特别的，非常受欢迎的比特币钱包网站，例如，重新使用公共密钥为您的2FA。我发现这个，当我换手机。其结果是，有人可以暂时访问您的手机，访问您的帐户，重新验证2FA，您会发现在您的设备上没有任何更改。他们正在回收生成代码的公钥。现在他们只是等待你存了一大笔钱，然后他们带你。你永远不会知道你甚至是脆弱的。如果黑客也可以伪造你的会话cookie，这是另一种方式，他们可以做到这一点，他们甚至不需要你的代码。虚拟会话很难，但仍然可能。这就是为什么网站通常要求您在对帐户进行安全更改时重新输入密码。这个流行的比特币钱包网站？不，不需要重新输入您的密码。&lt;/p&gt;
+
+&lt;p&gt;尼斯安全的门，但薄弱的墙壁。&lt;/p&gt;
+
+&lt;p&gt;2FA错误的另一个很好的例子是当人们通过像Google一样使用2FA。很好，但如果你有你的2FA设置与谷歌验证器的Gmail帐户也不受2FA保护，你拧紧了。&lt;/p&gt;
+
+&lt;p&gt;大门，薄弱的墙壁。&lt;/p&gt;
+
+&lt;p&gt;最后，在让你感到脆弱之前，我将解决所有企业和服务器的最薄弱点：&lt;/p&gt;
+
+&lt;p&gt;运行他们的人。&lt;/p&gt;
+
+&lt;p&gt;最弱的环节总是人民。无论是因为他们犯错误，还是因为他们可以很容易地进行社交工程，人们通常是主要目标，或者至少是漏洞的原因。&lt;/p&gt;
+
+&lt;p&gt;我甚至不能计算我看到有多少网站被黑客入侵，因为有人提出了一个管理员，并能够获得访问。这听起来很蠢，但这个骗局很容易跌倒，特别是考虑到我们生活在今天的世界，开发人员分散，通常不是所有的本地。我个人是成功版本的受害者，我有网站的开发人员是黑客，我有无尽的尝试。这是黑客做的，他们黑客。他们不断尝试，最终他们可以通过。你的工作是使它尽可能具有挑战性。&lt;/p&gt;
+
+&lt;p&gt;这就像大多数犯罪。大多数犯罪是机会犯罪，你的工作不是最慢，最胖，最可怕的孩子从熊跑。&lt;/p&gt;</content><category term="flask" /><summary type="html">Flask教程的密码哈希</summary></entry><entry><title type="html">flask框架注册登录结构</title><link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/" rel="alternate" type="text/html" title="flask框架注册登录结构" /><published>2017-02-12T15:32:00+08:00</published><updated>2017-02-12T15:32:00+08:00</updated><id>https://zhuio.github.io/flask框架注册登录结构</id><content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/">&lt;h2 id=&quot;完成用户注册flask教程&quot;&gt;完成用户注册Flask教程&lt;/h2&gt;
+
+&lt;p&gt;在这个Flask教程中，我们将包装这个注册系统。&lt;/p&gt;
+
+&lt;p&gt;为了做到这一点，我们可能需要一个register.html页面。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;File: register.html Location: /var/www/PythonProgramming/PythonProgramming/templates/register.html&lt;/code&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;		&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;block&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+		&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;br&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;formhelpers.html&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;render_field&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;form&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;/register/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.username)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.email)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.password)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.confirm)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.accept_tos)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+				&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;submit&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+			&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+				&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;strong&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;strong&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+		&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+		&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;endblock&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这是一个相当典型的注册表单，只有从我们传递的表单对象呈现的字段。&lt;/p&gt;</content><category term="flask" /><summary type="html">完成用户注册Flask教程</summary></entry><entry><title type="html">HASH2</title><link href="https://zhuio.github.io/hash2/" rel="alternate" type="text/html" title="HASH2" /><published>2017-02-12T02:02:00+08:00</published><updated>2017-02-12T02:02:00+08:00</updated><id>https://zhuio.github.io/hash2</id><content type="html" xml:base="https://zhuio.github.io/hash2/">&lt;h2 id=&quot;flask-registration-code-tutorial&quot;&gt;Flask Registration Code Tutorial&lt;/h2&gt;
+
+&lt;p&gt;在本教程中，我们将在__init__.py中对我们的注册代码进行更多工作。&lt;/p&gt;
+
+&lt;p&gt;在我们再进一步之前，让我们安装passlib：
+&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install passlib&lt;/code&gt;
+然后，向我们的__init__.py文件中添加一些导入：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from flask import Flask, render_template, flash, request, url_for, redirect, session
+from wtforms import Form, BooleanField, TextField, PasswordField, validators
+from passlib.hash import sha256_crypt
+from MySQLdb import escape_string as thwart
+import gc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Passlib将用于密码加密，而escape_string用于防止SQL注入尝试（黑客）。gc模块用于垃圾回收（内存问题）。我们还将会话添加到flask导入，用于访问用户特定的会话/ cookie信息。我们还从wtforms导入一堆字段的东西。&lt;/p&gt;
+
+&lt;p&gt;现在我们有一些新的register_page函数代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/register/', methods=[&quot;GET&quot;,&quot;POST&quot;])
+def register_page():
+    try:
+        form = RegistrationForm(request.form)
+
+        if request.method == &quot;POST&quot; and form.validate():
+            username  = form.username.data
+            email = form.email.data
+            password = sha256_crypt.encrypt((str(form.password.data)))
+            c, conn = connection()
+
+            x = c.execute(&quot;SELECT * FROM users WHERE username = (%s)&quot;,
+                          (thwart(username)))
+
+            if int(x) &amp;gt; 0:
+                flash(&quot;That username is already taken, please choose another&quot;)
+                return render_template('register.html', form=form)
+
+            else:
+                c.execute(&quot;INSERT INTO users (username, password, email, tracking) VALUES (%s, %s, %s, %s)&quot;,
+                          (thwart(username), thwart(password), thwart(email), thwart(&quot;/introduction-to-python-programming/&quot;)))
+
+                conn.commit()
+                flash(&quot;Thanks for registering!&quot;)
+                c.close()
+                conn.close()
+                gc.collect()
+
+                session['logged_in'] = True
+                session['username'] = username
+
+                return redirect(url_for('dashboard'))
+
+        return render_template(&quot;register.html&quot;, form=form)
+
+    except Exception as e:
+        return(str(e))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;简单的，代码首先会检查方法是否是POST。请记住，用户可能只是简单地加载注册页面。如果有一个POST请求，那么我们要收集表单中的信息。&lt;/p&gt;
+
+&lt;p&gt;一旦我们获得表单中的信息，接下来我们要做的就是连接到数据库。现在我们不希望有两个用户使用相同的用户名，因此我们首先要查看该用户名是否已经存在。如果是，我们想告诉他们用户名已经存在，让他们再试一次。&lt;/p&gt;
+
+&lt;p&gt;如果用户名不存在，我们已经做到了这一点，这意味着我们有一个唯一的用户名，匹配的密码和一封电子邮件，可以插入我们的数据库。&lt;/p&gt;
+
+&lt;p&gt;所以我们插入数据库，向用户发送一条消息，感谢他们注册，你就完成了。&lt;/p&gt;
+
+&lt;p&gt;当所有设置插入，你需要确保你总是运行conn.commit（），这是“保存”您的更改到数据库。如果您忘记这样做，那么您的更改将不会保存。&lt;/p&gt;
+
+&lt;p&gt;最后，我们使用gc.collect（）来帮助减少内存浪费。&lt;/p&gt;
+
+&lt;p&gt;注意，我们恰好在注册后登录我们的用户，使用烧录器会话功能。&lt;/p&gt;</content><category term="HASH" /><category term="flask" /><summary type="html">Flask Registration Code Tutorial</summary></entry><entry><title type="html">HASH1</title><link href="https://zhuio.github.io/mysql3/" rel="alternate" type="text/html" title="HASH1" /><published>2017-02-12T02:01:00+08:00</published><updated>2017-02-12T02:01:00+08:00</updated><id>https://zhuio.github.io/mysql3</id><content type="html" xml:base="https://zhuio.github.io/mysql3/">&lt;h2 id=&quot;user-registration-form-flask-tutorial&quot;&gt;User Registration Form Flask Tutorial&lt;/h2&gt;
+
+&lt;p&gt;在本教程中，我们将讨论创建我们的注册表单。虽然不需要，Flask有一个内置的窗体模块称为WTForms。要得到这个，运行：
+&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install flask-wtf&lt;/code&gt;
+现在，由于我们使用这个模块来创建表单，我们要做的是创建一个表单类，这将给我们一个注册表单对象，然后我们将传递给我们的模板。这听起来很困惑，但它不是那么糟！&lt;/p&gt;
+
+&lt;p&gt;在我们的__init__.py文件中，我们将添加以下类。这是我的建议，组织和功能，你把所有的课程放在你的脚本的顶部，如果他们在许多地方使用，或者你可以把它们的功能，他们将被使用。&lt;/p&gt;
+
+&lt;p&gt;窗体类，包含用户名，电子邮件，密码和确认密码字段。然后我们有一个“接受条件”要求的复选框。&lt;/p&gt;
+
+&lt;p&gt;在这里注意“验证器”参数，其中我们可以指定所有类型的东西，但是我们需要各种长度规则，以及要求两个密码匹配。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class RegistrationForm(Form):
+    username = TextField('Username', [validators.Length(min=4, max=20)])
+    email = TextField('Email Address', [validators.Length(min=6, max=50)])
+    password = PasswordField('New Password', [
+        validators.Required(),
+        validators.EqualTo('confirm', message='Passwords must match')
+    ])
+    confirm = PasswordField('Repeat Password')
+    accept_tos = BooleanField('I accept the [Terms of Service](/about/tos) and [Privacy Notice](/about/privacy-policy) (updated Jan 22, 2015)', [validators.Required()])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;还要注意“布尔”字段，意味着它可以是开或关，或1或0.注意，如果您希望此框是必需的复选框，您还需要在这里有验证器。如果你在这里运行一个餐厅的应用程序，人们只是选择他们的食材三明治，那么你不需要检查所有的成分。在这里，我们希望确保用户已同意我们的条款。&lt;/p&gt;</content><category term="HASH" /><category term="flask" /><summary type="html">User Registration Form Flask Tutorial</summary></entry><entry><title type="html">MySQL2</title><link href="https://zhuio.github.io/mysql2/" rel="alternate" type="text/html" title="MySQL2" /><published>2017-02-12T02:01:00+08:00</published><updated>2017-02-12T02:01:00+08:00</updated><id>https://zhuio.github.io/mysql2</id><content type="html" xml:base="https://zhuio.github.io/mysql2/">&lt;h2 id=&quot;使用mysqldb连接到mysql数据库&quot;&gt;使用MySQLdb连接到MySQL数据库&lt;/h2&gt;
+
+&lt;p&gt;在本教程中，我们将介绍如何使用Python与MySQL数据库交互。我们使用的模块称为MySQLdb。要获得此，请在您的服务器上运行以下命令：
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install python-MySQLdb&lt;/code&gt;
+一旦你有，请确保它都工作通过键入：
+&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;
+这应该打开一个python实例在你的服务器，所以然后做：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import MySQLdb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;只要有效，就快速control+d退出python实例。&lt;/p&gt;
+
+&lt;p&gt;接下来，我们要创建一个可以连接到数据库的Python文件。通常你将有一个单独的“连接”文件，在任何主要文件之外你可能有。这通常是跨语言的，这是为什么。最初，您可能只有一个简单的__init__.py，或app.py或任何，并且该文件将执行所有操作。然而，可能发生的时间，但是，你的网站做其他的事情。例如，我的一个网站，Sentdex.com，我执行大量的分析，将分析存储到数据库，我还操作网站供用户使用。一般来说，对于任务，你将使用所谓的“cron”。cron是在您编程运行时运行的计划任务。通常这运行另一个文件，几乎肯定不是您的网站的文件。因此，要连接到数据库，您必须在由cron运行的文件中再次写入连接代码的数据库。&lt;/p&gt;
+
+&lt;p&gt;随着时间的推移，这些种类的需求累积起来，你有一些文件修改数据库，但你仍然希望网站能够访问它，也可以修改它。然后，考虑如果更改数据库密码可能会发生什么。然后，您需要转到连接到数据库的每个文件，并更改它。所以，通常，你会发现最聪明的事情是只创建一个文件，其中包含连接代码。这就是我们今天要建立的。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import MySQLdb
+
+def connection():
+    conn = MySQLdb.connect(host=&quot;localhost&quot;,
+                           user = &quot;root&quot;,
+                           passwd = &quot;cookies!&quot;,
+                           db = &quot;pythonprogramming&quot;)
+    c = conn.cursor()
+
+    return c, conn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;导入模块。&lt;/p&gt;
+
+&lt;p&gt;创建一个连接函数来运行我们的代码。在这里，我们指定我们连接到的位置，用户，用户的密码，然后指定我们要连接到的数据库。&lt;/p&gt;
+
+&lt;p&gt;引用表将在实际使用表的代码中完成。
+请注意，我们使用“localhost”作为我们的主机。这只是意味着我们将使用与运行此代码相同的服务器。您也可以远程连接到数据库，这可以很漂亮。为此，您可以通过其IP或其域来连接到主机。要远程连接到数据库，您需要首先从将被访问/修改的远程数据库中允许它。&lt;/p&gt;
+
+&lt;p&gt;接下来，让我们继续编辑我们的__init__.py文件，添加一个寄存器函数。现在我们将保持简单，大多只是为了测试我们的连接功能。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from dbconnect import connection
+
+...		
+
+@app.route('/register/', methods=[&quot;GET&quot;,&quot;POST&quot;])
+def register_page():
+    try:
+        c, conn = connection()
+        return(&quot;okay&quot;)
+    except Exception as e:
+        return(str(e))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;接下来，让我们建立我们的注册页面。&lt;/p&gt;</content><category term="MySQL" /><category term="flask" /><summary type="html">使用MySQLdb连接到MySQL数据库</summary></entry><entry><title type="html">MySQL1</title><link href="https://zhuio.github.io/mysql1/" rel="alternate" type="text/html" title="MySQL1" /><published>2017-02-12T02:00:00+08:00</published><updated>2017-02-12T02:00:00+08:00</updated><id>https://zhuio.github.io/mysql1</id><content type="html" xml:base="https://zhuio.github.io/mysql1/">&lt;h2 id=&quot;创建mysql数据库和表flask教程&quot;&gt;创建MySQL数据库和表Flask教程&lt;/h2&gt;
+
+&lt;p&gt;在本教程中，我们将创建我们的用户数据库，我们需要这些数据库来存储用户实际注册时的用户名和密码。&lt;/p&gt;
+
+&lt;p&gt;如果你一直跟随这个系列，那么你已经安装了MySQL服务器和MySQL客户端。如果没有，你需要得到那些。当你得到那些，你还将设置根MySQL用户和密码。再次，如果你一直跟着，那么你已经设置了。MySQL root用户和服务器root用户是分开的，他们可以有不同的密码。他们是不同的用户。您可以将它们作为相同的密码，但这不建议用于安全性。&lt;/p&gt;
+
+&lt;p&gt;现在，让我们登录，创建一个数据库，并创建我们的表！&lt;/p&gt;
+
+&lt;p&gt;mysql –user=root -p&lt;/p&gt;
+
+&lt;p&gt;在这里，我们调用mysql作为root用户登录。在输入后，系统将提示您输入密码。&lt;/p&gt;
+
+&lt;p&gt;现在我们在MySQL客户端，由领先的mysql&amp;gt;指定。尝试输入以下内容：&lt;/p&gt;
+
+&lt;p&gt;SHOW DATABASES;&lt;/p&gt;
+
+&lt;p&gt;这将输出您拥有的所有现有MySQL数据库。&lt;/p&gt;
+
+&lt;p&gt;一个常见的误解是数据库是什么，与表相比。大多数人对数据库的概念实际上更准确一个表。所以一个数据库是什么存储表。表存储数据。数据库可以只包含一个表，但底线是它实际上是包含信息的表。一个表，对于你的典型数据库非常像一个电子表格，具有简单的列和行。有更多高级版本的表和数据库，它们提供更多的维度和更多的选择，尽管典型的数据库只是逐行的。&lt;/p&gt;
+
+&lt;p&gt;SHOW DATABASES;&lt;/p&gt;
+
+&lt;p&gt;这将输出您拥有的所有现有MySQL数据库。&lt;/p&gt;
+
+&lt;p&gt;CREATE DATABASE pythonprogramming;&lt;/p&gt;
+
+&lt;p&gt;这将创建一个新的数据库，称为pythonprogramming。&lt;/p&gt;
+
+&lt;p&gt;将所有SQL语言放在ALL-CAPS中是惯例。这是因为你打算在你的Python中键入SQL。即使是训练有素的眼睛，也很难辨别什么是Python和什么是SQL。这在所有包含SQL的编程语言中都是如此。&lt;/p&gt;
+
+&lt;p&gt;在您键入CREATE DATABASE pythonprogramming; （首先注意和记住，你将总是用分号完成你的线）注意输出：
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Query OK, 1 row affected (0.00 sec)&lt;/code&gt;
+这是相当标准的输出语法，你会看到，它是有用的，总是阅读它。如果有错误，你会得到一个错误，但有时你认为你可能只是影响一行，而是影响了数百万。我们会很快谈到更多，但永远记住，MySQL没有’撤销’。木已成舟，覆水难收。我们将在后面讨论一些关于如何做的想法的“最佳实践”&lt;/p&gt;
+
+&lt;p&gt;现在我们有了我们的数据库，我们想要一个表，我们要称它为用户。&lt;/p&gt;
+
+&lt;p&gt;首先，我们需要输入我们想要使用的数据库，所以我们需要做：&lt;/p&gt;
+
+&lt;p&gt;USE pythonprogramming;&lt;/p&gt;
+
+&lt;p&gt;很容易忘记这个步骤，特别是因为你将主要通过你的程序与SQL交互，而不是手。&lt;/p&gt;
+
+&lt;p&gt;CREATE TABLE users (uid INT(11) AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20), password VARCHAR(100), email VARCHAR(50), settings VARCHAR(32500), tracking VARCHAR(32500), rank INT(3));&lt;/p&gt;
+
+&lt;p&gt;现在这可能不是最有效的表，我们可能会更好地使用不同类型的数据比VARCHAR的设置和跟踪，但VARCHAR应该是我们的用途。如果您希望数据库具有可能同时访问的数百万行数据，那么您将需要测试许多数据类型。有许多形式的数字数据，如FLOAT，INT，BIG-INT …等，许多文本，如BLOB。&lt;/p&gt;
+
+&lt;p&gt;如果您曾经忘记了表中的列或数据类型，则可以执行以下操作：&lt;/p&gt;
+
+&lt;p&gt;DESCRIBE users;&lt;/p&gt;
+
+&lt;p&gt;这将输出表结构。&lt;/p&gt;
+
+&lt;p&gt;你也可以在这里运行SQL查询，如INSERT，SELECT，UPDATE，DELETE和所有有趣的东西，但我们更感兴趣，通过我们的程序这样做。您还可以在Flask应用程序中创建数据库和表。您可以通过检查表是否存在来执行此操作，如果不存在，则创建它。我发现更容易手工做，但是如果你正在为用户系统创建某种模块，那么你想包括为下载你的模块的人创建初始表。如果你发现自己是一个自由的Web开发人员，一遍又一遍地，你可能想要一个自己的脚本，它也是！&lt;/p&gt;
+
+&lt;p&gt;所有这些，我们现在更感兴趣的是让我们的程序连接到MySQL数据库用于插入目的。现在，键入QUIT以退出您的服务器中的MySQL客户端。&lt;/p&gt;</content><category term="MySQL" /><category term="flask" /><summary type="html">创建MySQL数据库和表Flask教程</summary></entry><entry><title type="html">shadowinstaller</title><link href="https://zhuio.github.io/shadowinstaller/" rel="alternate" type="text/html" title="shadowinstaller" /><published>2017-02-11T00:04:00+08:00</published><updated>2017-02-11T00:04:00+08:00</updated><id>https://zhuio.github.io/shadowinstaller</id><content type="html" xml:base="https://zhuio.github.io/shadowinstaller/">&lt;h1 id=&quot;shadowsocks一键配置脚本&quot;&gt;shadowsocks一键配置脚本&lt;/h1&gt;
 &lt;p&gt;默认配置：
 服务器端口：自己设定（如不设定，默认为6565）
 客户端端口：1080
@@ -11,7 +497,7 @@
 &lt;p&gt;使用方法：
 使用root用户登录，运行以下命令：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget --no-check-certificate https://github.com/zhuio/shadowsocksinstaller/blob/master/shadowsocks.sh
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget --no-check-certificate https://raw.githubusercontent.com/zhuio/shadowsocksinstaller/master/shadowsocks.sh
 chmod +x shadowsocks.sh
 ./shadowsocks.sh 2&amp;gt;&amp;amp;1 | tee shadowsocks.log
 &lt;/code&gt;&lt;/pre&gt;
@@ -26,8 +512,6 @@ Your Password:your_password
 Your Local IP:127.0.0.1
 Your Local Port:1080
 Your Encryption Method:aes-256-cfb
-
-Welcome to visit:https://teddysun.com/342.html
 Enjoy it!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -43,7 +527,7 @@ Enjoy it!
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;server&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.0.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;server_port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8989&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;server_port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6565&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;local_address&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;local_port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1080&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;yourpassword&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -54,7 +538,7 @@ Enjoy it!
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;多用户多端口配置文件 Sample（2015 年 08 月 28 日修正）：
+&lt;p&gt;多用户多端口配置文件 ：
 配置文件路径：/etc/shadowsocks.json&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -84,603 +568,4 @@ Enjoy it!
 服务器端口：自己设定（如不设定，默认为6565）
 客户端端口：1080
 密码：自己设定（如不设定，默认为hjkbnm）
-备注：脚本默认创建单用户配置文件，如需配置多用户，安装完毕后参照下面的教程 sample 手动修改配置文件后重启即可。</summary></entry><entry><title type="html">vps加速</title><link href="https://zhuio.github.io/vps%E5%8A%A0%E9%80%9F/" rel="alternate" type="text/html" title="vps加速" /><published>2017-02-10T22:39:00+08:00</published><updated>2017-02-10T22:39:00+08:00</updated><id>https://zhuio.github.io/vps加速</id><content type="html" xml:base="https://zhuio.github.io/vps%E5%8A%A0%E9%80%9F/">&lt;h1 id=&quot;一步一步教你用kcptun给shadowsocks加速看youtube1080p一点都不卡&quot;&gt;一步一步教你用Kcptun给Shadowsocks加速！看YouTube1080P一点都不卡！&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;/u/7fccdb4dfef8&quot;&gt;&lt;img src=&quot;http://upload.jianshu.io/users/upload_avatars/957246/638f206fc01c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144&quot; alt=&quot;144&quot; /&gt;&lt;/a&gt;
-影梭+VPS翻墙：&lt;a href=&quot;http://hohothink.com/archives/202&quot;&gt;hohothink.com/archives/202&lt;/a&gt;，这次来说说如何让翻墙速度更快，用起来就像墙内一样。这里介绍一个免费的工具Kcptun，它是一个非常简单和快速的，基于 KCP 协议的 UDP 隧道，它可以将 TCP 流转换为 KCP+UDP 流。而 KCP 是一个快速可靠协议，能以比 TCP 浪费10%-20%的带宽的代价，换取平均延迟降低 30%-40%，且最大延迟降低三倍的传输效果。（效果可见下图，YouTube上1080P流畅）&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/1.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/1.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-84844a576e89c657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;工作原理是这样滴：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/Kcptun_ports.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/Kcptun_ports.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-707c314e6015b72b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;那么下面就开始喽！&lt;/p&gt;
-
-&lt;p&gt;首先我们得下载XShell，为什么要下载这个？你可以想象VPS就是一个放在大洋彼岸永不关机的电脑，而VPS上影梭一般都装在CentOS这样的linux系统上，如果我们想安装软件，就需要XShell这样的工具登录VPS后台linux去操作。&lt;/p&gt;
-
-&lt;p&gt;XShell5下载：&lt;a href=&quot;http://rj.baidu.com/soft/detail/15201.html?ald&quot;&gt;http://rj.baidu.com/soft/detail/15201.html?ald&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;安装完新建会话属性，点击连接，填入你搬瓦工后台main controls的IPaddress和SSH port.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/2.jpg&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/2.jpg&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-613fd279bfb8ce7a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;然后点击用户身份验证，用户名为root,密码在搬瓦工后台的root password modification里面随机生成。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/3.jpg&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/3.jpg&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-16d5ad890db5f228.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;弄好后就可以连接服务器了，开始安装Kcptun。&lt;/p&gt;
-
-&lt;p&gt;首先在xshell登录后的Linux页面一段一段的粘贴下面代码，毎粘贴一段要回车一下再粘贴下一段。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-eb9ee64238d51f5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;wget https://raw.githubusercontent.com/kuoruan/kcptun_installer/master/kcptun.sh&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;chmod +x ./kcptun.sh&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;./kcptun.sh&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;上面代码都正确执行后，会出现下面界面：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/5.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/5.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-208646bd54b2fc68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;下面教你怎么一步一步设置：&lt;/p&gt;
-
-&lt;p&gt;1.设置 Kcptun 的服务端端口：&lt;/p&gt;
-
-&lt;p&gt;请输入一个未被占用的端口，Kcptun 运行时将使用此端口。&lt;/p&gt;
-
-&lt;p&gt;2.设置加速的 IP：&lt;/p&gt;
-
-&lt;p&gt;如果你想加速 Shadowsocks，而 Shadowsocks 就在运行在当前服务器上，直接回车即可。如果 Shadowsocks 运行在其他服务器，请输入服务器的 IP 地址。这也就是说，Kcptun 不仅能加速本地的端口，也能加速远端的端口。&lt;/p&gt;
-
-&lt;p&gt;3.设置需要加速的端口：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/6.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/6.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-b6d14395c6eb1800.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这里设置的是需要加速的端口，和上面设置的 Kcptun 的端口不一样。比如我想加速当前服务器上的 Shadowsocks，而 Shadowsocks 运行占用的端口为 8388，那么这里就写入 8388。（即上图中的VPS后台shadowsocks的端口）程序会检查当前是不是有程序占用着此端口，如果你的 Shadowsocks 没在运行，或者没有软件使用此端口，会弹出如下提示：&lt;/p&gt;
-
-&lt;p&gt;1当前没有软件使用此端口, 确定加速此端口?(y/n)&lt;/p&gt;
-
-&lt;p&gt;如果你确认 Shadowsocks 运行时会使用此端口，那么输入 “y” 回车即可。&lt;/p&gt;
-
-&lt;p&gt;4.设置 Kcptun 密码：&lt;/p&gt;
-
-&lt;p&gt;如果你这里选择直接回车，也就是代表你不自定义密码。但是 Kcptun 有一个默认的密码，是： it’s a secrect 。如果你这里选择不设置密码，那么客户端的参数里边就不需要加 –key 这一参数，但是 Kcptun 还是会用上面一个密码做默认值。&lt;/p&gt;
-
-&lt;p&gt;剩下的配置项不用我说了，如果你了解它是干什么的，可以自定义配置，如果不知道，那么直接回车使用默认参数。&lt;/p&gt;
-
-&lt;p&gt;如果安装成功，应该能看到如下输出信息：&lt;/p&gt;
-
-&lt;p&gt;恭喜, Kcptun Server 配置完毕！&lt;/p&gt;
-
-&lt;p&gt;服务器IP:  10.10.10.10&lt;/p&gt;
-
-&lt;p&gt;端口:  554&lt;/p&gt;
-
-&lt;p&gt;加速地址: 10.10.10.10:8388&lt;/p&gt;
-
-&lt;p&gt;加密方式 Crypt:  none&lt;/p&gt;
-
-&lt;p&gt;加速模式 Mode:  fast2&lt;/p&gt;
-
-&lt;p&gt;……….&lt;/p&gt;
-
-&lt;p&gt;……&lt;/p&gt;
-
-&lt;p&gt;这些数据很重要，建议截图下来，等一下设置客户端有用。&lt;/p&gt;
-
-&lt;p&gt;如需更新：&lt;/p&gt;
-
-&lt;p&gt;./kcptun.sh update&lt;/p&gt;
-
-&lt;p&gt;注：全面支持脚本、Kcptun和配置的更新！&lt;/p&gt;
-
-&lt;p&gt;如需重新配置：&lt;/p&gt;
-
-&lt;p&gt;./kcptun.sh reconfig&lt;/p&gt;
-
-&lt;p&gt;卸载：&lt;/p&gt;
-
-&lt;p&gt;./kcptun.sh uninstall&lt;/p&gt;
-
-&lt;p&gt;PC客户端的设置方法：&lt;/p&gt;
-
-&lt;p&gt;本地 Windows 64位系统为例，首先下载 Kcptun 的 Windows 版本。&lt;/p&gt;
-
-&lt;p&gt;1.我这里先新建一个文件夹，命名为 Kcptun，然后下载：&lt;/p&gt;
-
-&lt;p&gt;https://github.com/xtaci/kcptun/releases/download/v20160906/kcptun-windows-amd64-20160906.tar.gz&lt;/p&gt;
-
-&lt;p&gt;解压到文件夹下。&lt;/p&gt;
-
-&lt;p&gt;2.下载Kcptun客户端配置管理工具，然后导入刚才解压的客户端，Kcptun如何设置，就是把刚才教你截图的那些，输入到下图中，不会输的话看汉字后面的英文对应上去。&lt;/p&gt;
-
-&lt;p&gt;Kcptun客户端配置管理工具下载地址：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-cd2c5c6c854efae5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;注：本地侦听端口是你搬瓦工后台影梭的端口，端口才是你自己设置的Kcptun的端口，kcp服务器地址为你搬瓦工的地址。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/dfdragon/kcptun_gclient/releases&quot;&gt;https://github.com/dfdragon/kcptun_gclient/releases&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/7.jpg&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/7.jpg&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;影梭设置如下，IP为127.0.0.1，端口为搬瓦工后台影梭的端口不是你自己设置的Kcptund的端口（即本地侦听端口），密码为搬瓦工后台影梭的密码（不是kcp的密码），设置好后勾选这个服务器看看能不能翻墙：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/8.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/8.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-77002280c08d3859.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;安卓的设置方法如下：&lt;/p&gt;
-
-&lt;p&gt;首先下载安装最新的 Shadowsocks Android：&lt;a href=&quot;https://github.com/shadowsocks/shadowsocks-android/releases&quot;&gt;官方新版发布页&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;现在打开你的 Shadowsocks Android 客户端，开始配置：&lt;/p&gt;
-
-&lt;p&gt;服务器，填写你的服务器 IP 地址，我这里应该填写 10.10.10.10，即“服务器 IP”；&lt;/p&gt;
-
-&lt;p&gt;远程端口，填写你的 Shadowsocks 端口，我这里应该填写 8388，即“加速地址”里的那个端口号；&lt;/p&gt;
-
-&lt;p&gt;本地端口，使用默认值 1080；&lt;/p&gt;
-
-&lt;p&gt;密码，填写你的 Shadowsocks 密码；&lt;/p&gt;
-
-&lt;p&gt;加密方法，选择你 Shadowsocks 的加密方法。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/10.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/10.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-143b5055c5b0276f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;到这里，你可以在关闭 KCP 协议的情况下，测试一下配置是不是正常。如果能正常联网，可以继续下一步，配置 KCP 协议。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/11.png&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/11.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-afb8e5f8523daf06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;KCP 端口，就是之前根据提示设置的端口，不是 Shadowsocks的端口 。比如我这里应该填写 554，即 “端口”。&lt;/p&gt;
-
-&lt;p&gt;KCP 参数按下面填就行了，其他不用填：&lt;/p&gt;
-
-&lt;p&gt;-autoexpire 60 -key “你设的密码”&lt;/p&gt;
-
-&lt;p&gt;在路由器上使用：&lt;/p&gt;
-
-&lt;p&gt;如果需要在路由器上使用 Kcptun，首先你得有个智能路由器，然后能进入shell。&lt;/p&gt;
-
-&lt;p&gt;编译好的客户端文件在这里下载：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/bettermanbao/openwrt-kcptun/releases&quot;&gt;https://github.com/bettermanbao/openwrt-kcptun/releases&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;小米路由器、极路由等一大批国产智能路由器都是 MT7620 的芯片，请下载 ramips 版本。&lt;/p&gt;
-
-&lt;p&gt;到这里都设好了，好好感受下速度的飙升吧！&lt;/p&gt;
-
-&lt;p&gt;本文涉及到的软件及设置可能会有变化，建议您关注软件作者的网站：&lt;a href=&quot;https://blog.kuoruan.com/110.html&quot;&gt;[v15]Kcptun 服务端一键安装脚本&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://hohothink.com/wp-content/uploads/2016/09/3403aa32d1e3aa5787c648986913e805.gif&quot;&gt;http://hohothink.com/wp-content/uploads/2016/09/3403aa32d1e3aa5787c648986913e805.gif&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/957246-ce246a4d0d5cc69e.gif?imageMogr2/auto-orient/strip&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/nb/6347182&quot;&gt;翻墙达人&lt;/a&gt;
-© 著作权归作者所有&lt;/p&gt;</content><category term="vps" /><summary type="html">一步一步教你用Kcptun给Shadowsocks加速！看YouTube1080P一点都不卡！</summary></entry><entry><title type="html">pip加速</title><link href="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/" rel="alternate" type="text/html" title="pip加速" /><published>2017-01-30T18:04:00+08:00</published><updated>2017-01-30T18:04:00+08:00</updated><id>https://zhuio.github.io/pip加速</id><content type="html" xml:base="https://zhuio.github.io/pip%E5%8A%A0%E9%80%9F/">&lt;h3 id=&quot;使用国内镜像加速-pip&quot;&gt;使用国内镜像加速 pip&lt;/h3&gt;
-
-&lt;h5 id=&quot;配置文件指定镜像&quot;&gt;配置文件指定镜像&lt;/h5&gt;
-
-&lt;p&gt;pip 的配置文件为 ~/.pip/pip.conf&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;index-url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;://&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;mirrors&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.aliyun.com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;pypi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;trusted-host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;mirrors&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.aliyun.com&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="python" /><summary type="html">使用国内镜像加速 pip</summary></entry><entry><title type="html">kivytutor11</title><link href="https://zhuio.github.io/kivytutor11/" rel="alternate" type="text/html" title="kivytutor11" /><published>2017-01-25T02:23:00+08:00</published><updated>2017-01-25T02:23:00+08:00</updated><id>https://zhuio.github.io/kivytutor11</id><content type="html" xml:base="https://zhuio.github.io/kivytutor11/">&lt;h3 id=&quot;添加更好的导航&quot;&gt;添加更好的导航&lt;/h3&gt;
-&lt;p&gt;在这个视频中,我们添加了另一个按钮,将使我们从我们的图画应用回“主要”屏幕。&lt;/p&gt;
-
-&lt;p&gt;唯一的重大变化,这是需要添加的按钮。 kv文件,几乎它!&lt;/p&gt;
-
-&lt;p&gt;python文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;1.8.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.lang&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.screenmanager&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.widget&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.graphics&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Line&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Painter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_down&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.canvas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ud&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_move&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ud&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.points&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pass&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pass&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pass&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.load_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;main3.kv&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-
-
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;的.kv文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.screenmanager.FadeTransition&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;ScreenManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;main&quot;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;on_release&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.root.current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;other&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Next Screen&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;50&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;other&quot;&lt;/span&gt;
-
-	&lt;span class=&quot;nt&quot;&gt;FloatLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;Painter&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;25&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;size_hint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.2&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Back Home&quot;&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;on_release&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.root.current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;main&quot;&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;pos_hint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;right&quot;:1,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;top&quot;:1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-      &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="kivy" /><summary type="html">添加更好的导航
-在这个视频中,我们添加了另一个按钮,将使我们从我们的图画应用回“主要”屏幕。</summary></entry><entry><title type="html">kivytutor10</title><link href="https://zhuio.github.io/kivytutor10/" rel="alternate" type="text/html" title="kivytutor10" /><published>2017-01-25T02:21:00+08:00</published><updated>2017-01-25T02:21:00+08:00</updated><id>https://zhuio.github.io/kivytutor10</id><content type="html" xml:base="https://zhuio.github.io/kivytutor10/">&lt;h3 id=&quot;屏幕绘图应用程序管理器&quot;&gt;屏幕绘图应用程序管理器&lt;/h3&gt;
-
-&lt;p&gt;本教程涵盖了我们已经学到的东西的啮合与屏幕经理与我们之前建立的绘图应用程序。&lt;/p&gt;
-
-&lt;p&gt;python文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;1.8.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.lang&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.screenmanager&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.widget&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.graphics&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Line&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Painter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_down&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.canvas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ud&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_move&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ud&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.points&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pass&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pass&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;pass&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.load_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;main2.kv&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;以上,唯一的重大变化(除了kivy加载文件对我来说,你可能会或可能不会做)的“画家”类。 这里的代码包含了 绘图应用教程 。&lt;/p&gt;
-
-&lt;p&gt;的。 kv文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.screenmanager.FadeTransition&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;ScreenManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;main&quot;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;on_release&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.root.current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;other&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Next Screen&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;50&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;other&quot;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;Painter&lt;/span&gt;		
-
-  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;在我们的。 kv文件,唯一的变化是现在,而不是一个按钮,我们称“画家”,这是叫我们写的画家类。&lt;/p&gt;
-
-&lt;p&gt;我们的结果:&lt;/p&gt;</content><category term="kivy" /><summary type="html">屏幕绘图应用程序管理器</summary></entry><entry><title type="html">kivytutor9</title><link href="https://zhuio.github.io/kivytutor9/" rel="alternate" type="text/html" title="kivytutor9" /><published>2017-01-25T02:19:00+08:00</published><updated>2017-01-25T02:19:00+08:00</updated><id>https://zhuio.github.io/kivytutor9</id><content type="html" xml:base="https://zhuio.github.io/kivytutor9/">&lt;h3 id=&quot;多屏幕的屏幕管理器&quot;&gt;多屏幕的屏幕管理器&lt;/h3&gt;
-&lt;p&gt;在这个Kivy教程中,我们将介绍Kivy屏幕经理。 任何中型到大型应用程序有多个窗口。 即使是一些简单的登录屏幕,导致主屏幕允许您访问设置屏幕,你会需要一种方法来移动的屏幕。&lt;/p&gt;
-
-&lt;p&gt;Kivy工作有点像Tkinter,你只是简单地将主屏幕前台,但是,幸运的是,Kivy这是否对我们来说更容易比Tkinter !&lt;/p&gt;
-
-&lt;p&gt;我们可以使用屏幕管理器存储可能的屏幕,并将当前屏幕前的观众。 不仅如此,但Kivy也有一些基本的转换让屏幕之间的运动感觉好一点给用户。 我们将使用这里的“渐过渡”。&lt;/p&gt;
-
-&lt;p&gt;首先,让我们编写python文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.lang&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builderfrom&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.lang&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.screenmanager&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransitionfrom&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.screenmanager&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;passpass&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;passpass&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ScreenManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ScreenManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;passpass&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.load_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;main.kv&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.load_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;main.kv&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;presentationreturn&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;导入ScreenManager上面,我们现在,屏幕,FadeTransition,我们打算使用&lt;/p&gt;
-
-&lt;p&gt;接下来,我们创建MainScreen类,我们AnotherScreen类。 这将是两个“屏幕”为我们的应用程序。&lt;/p&gt;
-
-&lt;p&gt;然后我们创建ScreenManagement类,它将从ScreenManager inhereit类。 我们将使用这个类的屏幕管理。&lt;/p&gt;
-
-&lt;p&gt;剩下的代码是一样的以前的教程到目前为止。&lt;/p&gt;
-
-&lt;p&gt;现在我们参观。 kv文件,我们明确地称为主要。 kv的python脚本。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;ScreenManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FadeTransition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MainScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'main'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'main'&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;on_release&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.root.current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'other'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.root.current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'other'&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Another Screen'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Another Screen'&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;50&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;AnotherScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'other'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'other'&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;on_release&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.root.current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'main'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.root.current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'main'&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'back to the home screen'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'back to the home screen'&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;50&lt;/span&gt;
-
-        &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;在这里,我们定义屏幕经理作为一个家长,给它FadeTransition类型,和分配两个屏幕。&lt;/p&gt;
-
-&lt;p&gt;在这之后,我们添加屏幕的父母。 在这,我们给每个人一个名字。 这个名字是一个关联的名字,我们可以参考在屏幕经理为了开关。&lt;/p&gt;
-
-&lt;p&gt;接下来,我们添加一个按钮在屏幕,导致其他屏幕。 按钮的参数,我们已经看到了到目前为止,除了on_release参数。&lt;/p&gt;
-
-&lt;p&gt;On_release使我们能够编写一些代码,当按钮被释放。 在这种情况下,我们要求app.root改变当前属性到其他页面。 app.root引用ScreenManagement类,继承自ScreenManager,这就是”。 当前的”方法。&lt;/p&gt;
-
-&lt;p&gt;,你应该有一个生成的程序,知道切换屏幕的点击一个按钮。&lt;/p&gt;</content><category term="kivy" /><summary type="html">多屏幕的屏幕管理器
-在这个Kivy教程中,我们将介绍Kivy屏幕经理。 任何中型到大型应用程序有多个窗口。 即使是一些简单的登录屏幕,导致主屏幕允许您访问设置屏幕,你会需要一种方法来移动的屏幕。</summary></entry><entry><title type="html">kivytutor8</title><link href="https://zhuio.github.io/kivytutor8/" rel="alternate" type="text/html" title="kivytutor8" /><published>2017-01-25T02:18:00+08:00</published><updated>2017-01-25T02:18:00+08:00</updated><id>https://zhuio.github.io/kivytutor8</id><content type="html" xml:base="https://zhuio.github.io/kivytutor8/">&lt;h3 id=&quot;构建器加载kv文件&quot;&gt;构建器加载.kv文件&lt;/h3&gt;
-
-&lt;p&gt;本教程将覆盖Kivy构建器,用于构建。 kv信息。 而不是使用app /有些奇怪的命名约定。 kv文件,您可以显式地指定。 kv文件,甚至只是。 kv代码字符串不需要一个文件。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.lang&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.load_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;main.kv&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;presentation&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;MainApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;首先,使用builder,我们需要导入它。&lt;/p&gt;
-
-&lt;p&gt;然后,我们使用Builder.load_file()加载文件要使用,明确。 在我们的例子中,我们装载在“main.kv。”&lt;/p&gt;
-
-&lt;p&gt;虽然我们仍然被称为MainApp根应用类,我们可以称之为长条木板,例如,事情仍然会工作的很好。&lt;/p&gt;
-
-&lt;p&gt;您还可以使用Builder.load_string(),然后您可以使用一个多行字符串,编写所有的kv代码在py文件。&lt;/p&gt;</content><category term="kivy" /><summary type="html">构建器加载.kv文件</summary></entry><entry><title type="html">kivytutor7</title><link href="https://zhuio.github.io/kivytutor7/" rel="alternate" type="text/html" title="kivytutor7" /><published>2017-01-25T02:16:00+08:00</published><updated>2017-01-25T02:16:00+08:00</updated><id>https://zhuio.github.io/kivytutor7</id><content type="html" xml:base="https://zhuio.github.io/kivytutor7/">&lt;h3 id=&quot;简单的绘图应用程序&quot;&gt;简单的绘图应用程序&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.widget&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.graphics&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Line&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;DrawInput&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_down&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.canvas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ud&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_move&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ud&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.points&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_up&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;RELEASED!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;SimpleKivy4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;DrawInput&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;SimpleKivy4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;在这里,我们首先从Kivy导入一个新的方面,线。 这是我们可以画一条线。&lt;/p&gt;
-
-&lt;p&gt;现在,我们修改on_touch_down使用画布,我们继承了小部件的一部分,我们要开始直线定义为一条线元素,点在哪里现在,只有一个点的x,y坐标touch_down。&lt;/p&gt;
-
-&lt;p&gt;接下来,我们修改on_touch_move方法来修改我们的联系。 ud(“行”)通过添加新的联系。 x和触摸。 y坐标,现在我们有了更多的坐标,画一条线使用它们。&lt;/p&gt;
-
-&lt;p&gt;最后,我们修改SimpleKivy4根应用返回我们的新DrawInput类,这将给我们一个应用程序,允许我们画!&lt;/p&gt;
-
-&lt;p&gt;Python Kivy Application Development&lt;/p&gt;</content><category term="kivy" /><summary type="html">简单的绘图应用程序</summary></entry><entry><title type="html">kivytutor6</title><link href="https://zhuio.github.io/kivytutor6/" rel="alternate" type="text/html" title="kivytutor6" /><published>2017-01-25T02:13:00+08:00</published><updated>2017-01-25T02:13:00+08:00</updated><id>https://zhuio.github.io/kivytutor6</id><content type="html" xml:base="https://zhuio.github.io/kivytutor6/">&lt;h3 id=&quot;获取鼠标按触摸输入&quot;&gt;获取鼠标/按/触摸输入&lt;/h3&gt;
-
-&lt;p&gt;我们的下一个目标是如何获取鼠标/手指输入。 在Kivy,这些事件只是简单地称为“联系。 “现在,我们要覆盖一个简单的触摸,触摸只是一个触摸的地方。 也就是说,Kivy还支持多点触控操作,比如“放大”和“自旋”运动,你可能会熟悉做在你的手机或平板电脑。&lt;/p&gt;
-
-&lt;p&gt;现在让我们跳入代码:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.widget&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;TouchInput&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_down&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_move&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;on_touch_up&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;RELEASED!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;touch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;SimpleKivy4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;TouchInput&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;SimpleKivy4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;现在我们已经定义了一个新类,叫做TouchInput,继承自小部件。&lt;/p&gt;
-
-&lt;p&gt;在这里,我们有三种方法on_touch_down(最初的新闻),on_touch_move(运动后虽然有一个出版社)和on_touch_up(出版社)的“释放”。 然后我们打印出这些事件。&lt;/p&gt;
-
-&lt;p&gt;接下来,在我们的根类,我们返回这个TouchInput类。&lt;/p&gt;
-
-&lt;p&gt;因为我们只关心鼠标/触控在本教程中,我们并不担心。 kv文件。 它仍被加载,但由于没有一个元素被称为上映,我们没有看到的东西。 kv文件。&lt;/p&gt;
-
-&lt;p&gt;在运行时,您可以测试的代码在屏幕上通过点击和拖动。 您应该看到打印出您的鼠标的位置对所有运动和紧迫。&lt;/p&gt;
-
-&lt;p&gt;半场进攻时可能看到的输出的一个例子是:&lt;/p&gt;
-
-&lt;p&gt;&amp;lt; MouseMotionEvent检测=(0.665,0.3533333333333334)pos =(532.0,212.00000000000003)&amp;gt;
-在这里,我们可以看到两种形式的输出位置。 “比较”更多的是一种相对的位置。 还记得浮动布局吗? 0 = 0和1是“完全。 “所以,如果鼠标是为0.5,0.5,这是屏幕的中间。&lt;/p&gt;
-
-&lt;p&gt;我们也有实际的坐标位置(pos)。&lt;/p&gt;
-
-&lt;p&gt;这些都是有用的但你可能会使用检测更多的如果你计划在您的应用程序能够运行全屏在许多设备和类型的设备。&lt;/p&gt;</content><category term="kivy" /><summary type="html">获取鼠标/按/触摸输入</summary></entry><entry><title type="html">kivytutor5</title><link href="https://zhuio.github.io/kivytutor5/" rel="alternate" type="text/html" title="kivytutor5" /><published>2017-01-25T02:12:00+08:00</published><updated>2017-01-25T02:12:00+08:00</updated><id>https://zhuio.github.io/kivytutor5</id><content type="html" xml:base="https://zhuio.github.io/kivytutor5/">&lt;h3 id=&quot;布局浮动布局&quot;&gt;布局:浮动布局&lt;/h3&gt;
-&lt;p&gt;在这个Kivy基础教程中,我们将讨论另一种类型的布局:浮动布局。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;1.8.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;kivy&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.uix.floatlayout&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FloatLayout&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;SimpleKivy4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;FloatLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;SimpleKivy4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这段代码应该主要是熟悉的。&lt;/p&gt;
-
-&lt;p&gt;这里唯一的重大变化,我们导入FloatLayout,我们拥有SimpleKivy4返回FloatLayout(我们这里的主类)。&lt;/p&gt;
-
-&lt;p&gt;现在我们的SimpleKivy4。 kv文件:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;font_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;40&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;size_hint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.2&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;FloatLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-	    &lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Kivy&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;pos_hint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;x&quot;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'y':0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-	&lt;span class=&quot;nt&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-	    &lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Tutorials&quot;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;pos_hint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;right&quot;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0.5,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'top':1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;现在,我们看到在我们的一些新条款。 kv文件。&lt;/p&gt;
-
-&lt;p&gt;首先,我们看到这个size_hint变量。 Size_hint暗示一个元素的大小,根据部分可用的“总”。 0.3、0.2意味着元素将30%的窗宽,窗和20%的高。&lt;/p&gt;
-
-&lt;p&gt;接下来,我们发现pos_hint。 Pos_hint给出了一个暗示的位置,测量相对在0和1之间,1是“完全”,0是“不”。&lt;/p&gt;
-
-&lt;p&gt;Pos_hint只是迷惑我,我还有一点思考它实际上意味着什么…… 我只是添加“洛克”这个词我修改。 如果我们说pos_hint {“正确”:0.5和“顶级”:1 },然后我们说它有“半right-ness”和“top-ness。”&lt;/p&gt;
-
-&lt;p&gt;使用这些术语,浮动布局,让你现在的能力有一个窗口小部件,按钮、标签和其他调整得很好,无论什么是窗口的大小,或窗口的方向(横向和纵向)。&lt;/p&gt;
-
-&lt;p&gt;现在,我们的应用程序可以做:&lt;/p&gt;
-
-&lt;p&gt;Python Kivy Application Development
-还是……&lt;/p&gt;
-
-&lt;p&gt;Python Kivy Application Development
-正如你所看到的,我们可以调整像素位置,以及大小,完全相对根据实际的窗口本身的大小和形状。 很酷!&lt;/p&gt;</content><category term="kivy" /><summary type="html">布局:浮动布局
-在这个Kivy基础教程中,我们将讨论另一种类型的布局:浮动布局。</summary></entry></feed>
+备注：脚本默认创建单用户配置文件，如需配置多用户，安装完毕后参照下面的教程 sample 手动修改配置文件后重启即可。</summary></entry></feed>

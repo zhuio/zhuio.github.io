@@ -30,7 +30,7 @@ comments: true
                 return redirect(url_for('login_page'))
 
         return wrap
-{% end highlight %}    		
+{% endhighlight %}    		
 
 这里，我们定义函数，其中参数是f，这是约定的事实，它包装一个函数。然后，我们定义包装器。
 

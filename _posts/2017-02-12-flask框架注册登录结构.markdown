@@ -17,7 +17,7 @@ comments: true
 
 {% highlight css %}
 
-		{% extends "header.html" %}
+{% raw %}
 
 		{% block body %}
 
@@ -45,7 +45,7 @@ comments: true
 		</body>
 
 		{% endblock %}
-
+{% endraw %}
 {% endhighlight %}
 
 这是一个相当典型的注册表单，只有从我们传递的表单对象呈现的字段。
