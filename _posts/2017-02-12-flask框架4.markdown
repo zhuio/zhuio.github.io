@@ -1,0 +1,51 @@
+---
+layout: "post"
+title: "flask框架4"
+date: "2017-02-12 15:36"
+tags:
+- flask
+comments: true
+---
+
+
+## Flask装饰器 - Login_Required页面Flask教程
+
+现在我们可以让用户注册和登录，我们也允许他们注销。这是有一点意义，不让用户注销，除非他们登录！
+
+您还可能会发现您想要保护各种页面，例如管理页面，或者您有订阅者内容或其他受保护或付费内容。
+
+你可以使用包装函数。人们倾向于避开包装函数和装饰器，因为它们可能是混乱的。但是，看看你，你一直在使用他们这一次！Flask使用它们进行URL路由。让我们展示如何使我们自己的！这其实很简单！
+
+首先，我们向我们的__init__.py文件添加一个login_required函数：
+
+{% highlight css %}
+
+    def login_required(f):
+        @wraps(f)
+        def wrap( *args, **kwargs):
+            if 'logged_in' in session:
+                return f(*args, **kwargs)
+            else:
+                flash("You need to login first")
+                return redirect(url_for('login_page'))
+
+        return wrap
+{% end highlight %}    		
+
+这里，我们定义函数，其中参数是f，这是约定的事实，它包装一个函数。然后，我们定义包装器。
+
+我们的包装器很简单，只是简单地检查用户在会话中是否有“logged_in”。如果是这样，伟大。如果没有，他们会收到一条Flash消息和重定向到登录页面。
+
+现在我们有了包装器函数，我们准备好将它应用到任何我们想要的登录。例如，我们可以将其应用于我们的注销页面，如下所示：
+
+
+    @app.route("/logout/")
+    @login_required
+    def logout():
+        session.clear()
+        flash("You have been logged out!")
+        gc.collect()
+        return redirect(url_for('dashboard'))
+
+
+很简单，在app.route包装器的下面，我们还添加了另一个包装器，它是login_required包装器。现在，为了甚至得到注销函数，用户必须首先尝试访问顶部包装器中的URL，然后他们还需要满足下一个包装器的条件，然后他们可以最终到达logout（）函数！

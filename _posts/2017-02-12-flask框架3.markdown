@@ -1,0 +1,60 @@
+---
+layout: "post"
+title: "flask框架3"
+date: "2017-02-12 15:34"
+tags:
+- flask
+- hash
+comments: true
+---
+
+
+## Flask用户登录系统教程
+
+它让我们相当多，但在这里我们是：登录页面！如果你还没有，那么你应该注册一些用户，并记住其中之一，以测试我们的登录页面，当我们完成。
+
+我们已经有了登录模板，我们可以保留，但现在验证过程需要验证我们的数据库中的用户，而不是硬编码的管理员用户。
+`Part of __init__.py file`
+
+
+    @app.route('/login/', methods=["GET","POST"])
+    def login_page():
+        error = ''
+        try:
+            c, conn = connection()
+            if request.method == "POST":
+
+                data = c.execute("SELECT * FROM users WHERE username = (%s)",
+                                 thwart(request.form['username']))
+
+                data = c.fetchone()[2]
+
+                if sha256_crypt.verify(request.form['password'], data):
+                    session['logged_in'] = True
+                    session['username'] = request.form['username']
+
+                    flash("You are now logged in")
+                    return redirect(url_for("dashboard"))
+
+                else:
+                    error = "Invalid credentials, try again."
+
+            gc.collect()
+
+            return render_template("login.html", error=error)
+
+        except Exception as e:
+            #flash(e)
+            error = "Invalid credentials, try again."
+            return render_template("login.html", error = error)  
+
+
+在这里，我们使用我们写的连接文件来连接到数据库（dbconnect.py），它有一个名为connection的函数。
+
+我们对POST方法进行与前面相同的检查。如果是这样，我们将查询数据库以查看该人员输入的用户名是否在数据库中，而不是忘记使用thwart来防止SQL注入。
+
+接下来，如果用户名存在，我们然后将尝试的用户名与我们记录的散列密码进行比较，验证存储的散列的来源是否与用户尝试的密码相同。
+
+如果是这样，那么我们通过Flask的会话功能登录用户，然后我们将它们发送到仪表板，因为他们都完成了登录页面。
+
+如果出现任何问题，我们给出的错误只是“凭据无效，请重试”。您可以提供自定义错误，例如该用户名不存在或密码错误，但有人试图破解您的网站或用户名可以使用它的优势，知道他们错了什么。

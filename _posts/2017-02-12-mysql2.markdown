@@ -4,6 +4,7 @@ title: "MySQL2"
 date: "2017-02-12 02:01"
 tags:
 - MySQL
+- flask
 comments: true
 ---
 

@@ -1,0 +1,47 @@
+---
+layout: "post"
+title: "flask框架5"
+date: "2017-02-12 15:37"
+tags:
+- flask
+comments: true
+---
+
+
+## 动态基于用户的内容Flask教程
+
+
+虽然我们可以使用装饰器来包围访问控制的函数，但我们也可以使用我们的Jinja模板逻辑来控制视图。例如，现在，当我们登录我们的网站时，我们仍然在右上角有一个“登录”按钮。
+
+我们应该真的让登录按钮消失，与注册按钮一样，然后添加一个“注销”按钮。
+
+我们实际上可以在我们的HTML文件中处理所有这些，所以让我们访问我们的header.html文件。
+
+找到与navbar相关联的代码，然后替换为一些逻辑：
+
+
+    	  <ul class="nav navbar-nav navbar-right">
+    		    <div style="margin-right: 10px; margin-left: 15px; margin-top: 5px; margin-bottom: 5px;"  class="container-fluid">
+    			<h5>
+    				&#123;% if session.logged_in %}
+    				<a href="/support-donate/"> <span class="glyphicon glyphicon-heart"></span> Support   </a>
+    				<a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout   </a>
+    				&#123;% else %}
+    				<a href="/support-donate/"> <span class="glyphicon glyphicon-heart"></span> Support   </a>
+    				<a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login   </a>
+    				<a href="/register/"><span class="glyphicon glyphicon-pencil"></span> Sign up</a>
+    				&#123;% endif %}
+    			</div>
+
+    			</h5>
+    		  </div>
+          </ul>
+
+
+需要注意的两件事：我们显然能够引用会话，我们不需要在我们的模板中“导入”它。这样的逻辑在你的HTML可以抛出一个循环的默认标签识别/突出显示！
+
+Jinja模板基本上有一个“从烧瓶进口*”在幕后。您可以在模板中引用任何Flask内容，而无需将其导入模板或脚本。
+
+当你构建这样的HTML逻辑，特别是当它影响用户看到什么，你可能会发现它破坏了自然的突出显示，你的编辑器可能会标记的东西，如标签没有关闭等。使用你更好的判断。有时，如果内容足够厚，并且是一种if / else类似上面，我将删除每个块，一次一个，并检查以确保一切连接正确。
+
+不管什么，但是，它可以是混乱。注意它，特别是如果你让你的编辑器自动关闭或移动标签。

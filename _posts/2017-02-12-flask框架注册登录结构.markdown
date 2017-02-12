@@ -1,0 +1,51 @@
+---
+layout: "post"
+title: "flask框架注册登录结构"
+date: "2017-02-12 15:32"
+tags:
+- flask
+comments: true
+---
+
+## 完成用户注册Flask教程
+
+
+在这个Flask教程中，我们将包装这个注册系统。
+
+为了做到这一点，我们可能需要一个register.html页面。
+`File: register.html Location: /var/www/PythonProgramming/PythonProgramming/templates/register.html`
+
+{% highlight css %}
+
+		{% extends "header.html" %}
+
+		{% block body %}
+
+		<body>
+		<div class = "container">
+			<h4>Register</h4>
+			<br>
+			{% from "formhelpers.html" import render_field %}
+			<form method=post action="/register/">
+				<dl>
+					{{render_field(form.username)}}
+					{{render_field(form.email)}}
+					{{render_field(form.password)}}
+					{{render_field(form.confirm)}}
+					{{render_field(form.accept_tos)}}
+				</dl>
+				<p><input type=submit value=Register></p>
+			</form>
+
+			{% if error %}
+				<p class="error"><strong>Error:</strong>{{error}}</p>
+			{% endif %}
+
+		</div>
+		</body>
+
+		{% endblock %}
+
+{% endhighlight %}
+
+这是一个相当典型的注册表单，只有从我们传递的表单对象呈现的字段。
