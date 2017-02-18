@@ -8,10 +8,13 @@ comments: true
 ---
 
 
+## 更换内核
+
+    rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --force
 
 ## 锐速加速
 
-**查看[linux支持内核列表](https://www.91yun.org/wp-content/plugins/91yun-serverspeeder/systemlist.html)**
+查看[linux支持内核列表](https://www.91yun.org/wp-content/plugins/91yun-serverspeeder/systemlist.html)**
 
 使用`uname -a`命令来查询内核版本，例如返回的是`Linux ss 3.8.0-35-generic`，`3.8.0-35-generic`就是内核版本
 
@@ -64,7 +67,7 @@ comments: true
 
 脚本会自动检测你的VPS是否可以按照开心版锐速，如果可以就会提示你参数或者直接安装完成，参数设置直接回车默认即可。
 
-**最后两项**输入`y`开机自动启动锐速，`y`立刻启动锐速。（这个参数设置一般情况下都是不会出现的。）
+最后两项输入`y`开机自动启动锐速，`y`立刻启动锐速。（这个参数设置一般情况下都是不会出现的。）
 
 ![](https://doub.io/wp-content/plugins/wp-images-lazy-loading/images/grey.gif)![](https://img.mlkxs.com/ruisu-jc1.1.jpg?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/10)
 
@@ -93,7 +96,6 @@ comments: true
     maxmode="1" #最大传输模式
 
 
-![](https://doub.io/wp-content/plugins/wp-images-lazy-loading/images/grey.gif)![](https://img.mlkxs.com/ruisu-jc1.3.jpg?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/100)
 
 ### 使用命令
 
@@ -117,6 +119,5 @@ comments: true
 
 ---
 
-其他的优化方案：[https://doub.io/ss-jc26/#三、优化Shadowsocks](https://doub.io/ss-jc26/#三、优化Shadowsocks)
 
 第一个开心版锐速脚本来自：[https://www.91yun.org/archives/683](https://www.91yun.org/archives/683)
