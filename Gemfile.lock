@@ -16,7 +16,7 @@ GEM
     html-pipeline (2.5.0)
       activesupport (>= 2)
       nokogiri (>= 1.4)
-    i18n (0.7.0)
+    i18n (0.8.0)
     jekyll (3.2.1)
       colorator (~> 1.0)
       jekyll-sass-converter (~> 1.0)
@@ -57,7 +57,7 @@ GEM
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
     rb-fsevent (0.9.8)
-    rb-inotify (0.9.7)
+    rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     rouge (1.11.1)
     safe_yaml (1.0.4)
@@ -80,4 +80,4 @@ DEPENDENCIES
   jekyll-sitemap
 
 BUNDLED WITH
-   1.14.1
+   1.14.4

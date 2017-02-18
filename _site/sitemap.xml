@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://zhuio.github.io/shadowsocks%E9%94%90%E9%80%9F/</loc>
+<lastmod>2017-02-18T21:35:00+08:00</lastmod>
+</url>
+<url>
 <loc>https://zhuio.github.io/flask%E6%A1%86%E6%9E%B65/</loc>
 <lastmod>2017-02-12T15:37:00+08:00</lastmod>
 </url>
@@ -170,10 +174,10 @@
 <loc>https://zhuio.github.io/</loc>
 </url>
 <url>
-<loc>https://zhuio.github.io/posts/</loc>
+<loc>https://zhuio.github.io/projects/</loc>
 </url>
 <url>
-<loc>https://zhuio.github.io/projects/</loc>
+<loc>https://zhuio.github.io/posts/</loc>
 </url>
 <url>
 <loc>https://zhuio.github.io/about/</loc>
