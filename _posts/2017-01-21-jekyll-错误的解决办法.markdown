@@ -17,16 +17,13 @@ comments: true
 
 gem install jekyll bundler
 
-bundle install
-
-bundle exec jekyll serve
-
 sudo apt-get install build-essential patch
 
 sudo apt-get install ruby-dev zlib1g-dev liblzma-dev
 
 sudo gem install bundle
 
-bundle install
+bundle exec jekyll serve
+
 
 {% endhighlight %}
