@@ -1,4 +1,295 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-19T18:34:54+08:00</updated><id>http://localhost:4000/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">pip requirements</title><link href="http://localhost:4000/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" /><published>2017-02-19T18:32:00+08:00</published><updated>2017-02-19T18:32:00+08:00</updated><id>http://localhost:4000/pip-requirements</id><content type="html" xml:base="http://localhost:4000/pip-requirements/">&lt;h1 id=&quot;如何自动生成和安装requirementstxt依赖&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-20T23:51:14+08:00</updated><id>http://localhost:4000/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">youtube-dl</title><link href="http://localhost:4000/youtube-dl/" rel="alternate" type="text/html" title="youtube-dl" /><published>2017-02-20T23:48:00+08:00</published><updated>2017-02-20T23:48:00+08:00</updated><id>http://localhost:4000/youtube-dl</id><content type="html" xml:base="http://localhost:4000/youtube-dl/">&lt;h1 id=&quot;下载youtube视频&quot;&gt;下载YouTube视频&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;查看视频所有类型,只看不下载
+  youtube-dl -F [url]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;或者
+    youtube-dl –list-formats [url]&lt;/p&gt;
+
+&lt;p&gt;这是一个列清单参数，执行后并不会下载视频，但能知道这个目标视频都有哪些格式存在，这样就可以有选择的下载啦！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1294473-5c8620972c0957c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;查看YouTube视频所有类型&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;下载指定质量的视频和音频并自动合并
+  youtube-dl -f [format code] [url]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;通过上一步获取到了所有视频格式的清单，最左边一列就是编号对应着不同的格式.
+由于YouTube的1080p及以上的分辨率都是音视频分离的,所以我们需要分别下载视频和音频,可以使用137+140这样的组合.
+如果系统中安装了ffmpeg的话, youtube-dl 会自动合并下下好的视频和音频, 然后自动删除单独的音视频文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1294473-5fabdc8817bb3135.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;下载1080p的视频&lt;/p&gt;
+
+&lt;p&gt;-
+下载字幕&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;youtubd-dl --write-sub [url] //这样会下载一个vtt格式的英文字幕和mkv格式的1080p视频下来
+
+youtube-dl --write-sub --skip-download [url] //下载单独的vtt字幕文件,而不会下载视频
+
+youtube-dl --write-sub --all-subs [url] //下载所有语言的字幕(如果有的话)
+
+youtube-dl --write-auto-sub [url] //下载自动生成的字幕(YouTube only)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1294473-191ff153e45eea04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;下载字幕和视频&lt;/p&gt;
+
+&lt;p&gt;-
+下载视频列表&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;youtube-dl -f [format code] [palylist_url] //这种方式可以下载制定清晰度的mp4视频
+
+youtube-dl [playlist_url] //下载视频列表,这种方式下载的视频可能是mkv格式或者webm格式
+
+youtube-dl -cit [playlist_url] //下载视频列表,这种方式下载的视频可能是mkv格式或者webm格式
+
+youtube-dl --yes-playlist [url] //当链接为视频列表,则下载该列表视频,跟上面的一样,可能是mkv或者webm格式
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;下载vimeo视频&quot;&gt;下载Vimeo视频&lt;/h1&gt;
+
+&lt;p&gt;Vimeo的视频下载起来比较方便,因为没有分离,可以直接下载1080p带音频的视频
+命令与下载YouTube的基本一致;下面贴几张图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1294473-4e1b9f4b18e94700.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;解查看Vimeo视频所有类型&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1294473-5720dba2d2ab972e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;直接下载Vimeo最高质量视频&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;youtube-dl支持的网站很多,大家可以从作者整理的&lt;a href=&quot;https://rg3.github.io/youtube-dl/supportedsites.html&quot;&gt;这个列表&lt;/a&gt;里查看支持的网站(不过由于有的网站接口改变,可能当初支持的网站现在不能很好的支持了),如果您要下载的视频网站现在不能用youtube-dl下载的,不妨试试另外一个同样基于Python开发的下载工具You-Get,我将在下一篇文章中介绍,希望大家喜欢~&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;youtube-dl官网：&lt;a href=&quot;https://yt-dl.org/&quot;&gt;https://yt-dl.org/&lt;/a&gt;
+GitHub项目：&lt;a href=&quot;https://github.com/rg3/youtube-dl/&quot;&gt;https://github.com/rg3/youtube-dl/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name></name></author><category term="youtube" /><summary type="html">下载YouTube视频</summary></entry><entry><title type="html">ubuntu terminal trick</title><link href="http://localhost:4000/ubuntu-terminal-trick/" rel="alternate" type="text/html" title="ubuntu terminal trick" /><published>2017-02-20T21:49:00+08:00</published><updated>2017-02-20T21:49:00+08:00</updated><id>http://localhost:4000/ubuntu-terminal-trick</id><content type="html" xml:base="http://localhost:4000/ubuntu-terminal-trick/">&lt;h4 id=&quot;一快捷键&quot;&gt;一、快捷键&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Shift&amp;amp;#43;Ctrl&amp;amp;#43;T:新建标签页
+
+Shift&amp;amp;#43;Ctrl&amp;amp;#43;W:关闭标签页
+
+Ctrl&amp;amp;#43;PageUp:前一标签页
+
+Ctrl&amp;amp;#43;PageDown:后一标签页
+
+Shift&amp;amp;#43;Ctrl&amp;amp;#43;PageUp:标签页左移
+
+Shift&amp;amp;#43;Ctrl&amp;amp;#43;PageDown:标签页右移
+
+Alt&amp;amp;#43;1:切换到标签页1
+
+Alt&amp;amp;#43;2:切换到标签页2
+
+Alt&amp;amp;#43;3:切换到标签页3
+
+
+Shift&amp;amp;#43;Ctrl&amp;amp;#43;N:新建窗口
+
+Shift&amp;amp;#43;Ctrl&amp;amp;#43;Q:关闭终端
+
+
+终端中的复制／粘贴:
+
+Shift&amp;amp;#43;Ctrl&amp;amp;#43;C:复制
+
+Shift&amp;amp;#43;Ctrl&amp;amp;#43;V:粘贴
+
+
+终端改变大小：
+
+F11：全屏
+
+Ctrl&amp;amp;#43;plus:放大
+
+Ctrl&amp;amp;#43;minus:减小
+
+Ctrl&amp;amp;#43;0:原始大小
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;二组合键&quot;&gt;二、组合键&lt;/h4&gt;
+
+&lt;p&gt;1、在终端显示时间使用命令date&lt;/p&gt;
+
+&lt;p&gt;如果想让时间显示为一定大格式，可以使用带参数带date&lt;/p&gt;
+
+&lt;p&gt;如，date +%Y/%m/%d就会显示形如2010/7/30的形式&lt;/p&gt;
+
+&lt;p&gt;date +%H:%M 会显示11:35&lt;/p&gt;
+
+&lt;p&gt;2、显示日历：cal&lt;/p&gt;
+
+&lt;p&gt;1）直接输入显示的是当前月份带日历&lt;/p&gt;
+
+&lt;p&gt;2）也可以显示某一年的日历cal 2010,也就是cal ［年］&lt;/p&gt;
+
+&lt;p&gt;3）总带来说cal的语法格式如下：&lt;/p&gt;
+
+&lt;p&gt;cal [month] [year]&lt;/p&gt;
+
+&lt;p&gt;所以还可以显示置顶月份的日历，如 2010年8月的&lt;/p&gt;
+
+&lt;p&gt;cal  2010&lt;/p&gt;
+
+&lt;p&gt;3、简单的计算器：bc&lt;/p&gt;
+
+&lt;p&gt;在输入bc后会显示版本号，然后就可以输入相应的指令了。&lt;/p&gt;
+
+&lt;p&gt;运算符： 除了加减乘除以外，还有^指数，%余数运算。&lt;/p&gt;
+
+&lt;p&gt;》但在默认时，是不保留小数位的，想要保留小数位，需要输入命令scale=number以指定小数位数。&lt;/p&gt;
+
+&lt;p&gt;4、Tab 按键&lt;/p&gt;
+
+&lt;p&gt;不用多说，这事Linxu最棒带功能之一。具有［命令补全］和［档案补全］的功能。可以避免我们打错指令或文件名称！&lt;/p&gt;
+
+&lt;p&gt;5、Ctrl + c 组合键&lt;/p&gt;
+
+&lt;p&gt;如果输入错误的指令或参数，有时候这个指令或程序会在系统下一直不停的运行。这时可以这个组合键以“中断目前程序”。&lt;/p&gt;
+
+&lt;p&gt;6、Ctrl + d 组合键。&lt;/p&gt;
+
+&lt;p&gt;这个组合键有“End of File，EOF”或“End of Input”的意思。 即［键盘输入结束］。相当于‘exit’。&lt;/p&gt;
+
+&lt;p&gt;如想退出终端就可以直接按此组合键。&lt;/p&gt;
+
+&lt;h4 id=&quot;三linux图形界面切换到字符界面&quot;&gt;三、linux图形界面切换到字符界面&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;X-Window图形界面和字符界面自由切换&lt;/p&gt;
+
+    &lt;p&gt;一、图形界面切换到字符界面&lt;/p&gt;
+
+    &lt;p&gt;①在X-Window图形操作界面中按“Alt+Ctrl+Fn（n=1~6）”就可以进入Console字符操作界面。&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;这就意味着你可以同时拥有X-Window加上6个Console字符操作界面。
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;②如果不行，就加上Backspace键：（同时按住Alt+Ctrl，在按一下Backspace并松开，再按Fn）&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;在X-Window图形操作界面中按“Alt&amp;amp;#43;Ctrl&amp;amp;#43;Backspace&amp;amp;#43;Fn（n=1~6）”就可以进入Console字符操作界面。
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;二、字符界面切换到图像界面&lt;/p&gt;
+
+    &lt;p&gt;①按“Alt+Ctrl+F7”或者“Alt+Ctrl+Backspace+F7”即可。&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  这时Linux默认打开7个屏幕，编号为tty1~tty7。X-Window启动后，占用的是tty7号屏幕，tty1~tty6仍为字符界面屏幕。也就是说，用“Alt&amp;amp;#43;Ctrl&amp;amp;#43;Fn”组合键即可实现字符界面与X Window界面的快速切换。
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;2.开机进入字符界面设置&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;为了在Linux开机启动时直接进入Console字符界面，我们可以编辑/etc/inittab文件。
+
+找到id:5: initdefault:这一行，将它改为id:3:initdefault:后重新启动系统即可。
+
+我们看到，简简单单地将5改为3，就能实现启动时进入X-Window图形操作界面或Console字符界面的转换，这是因为Linux操作系统有六种不同的运行级（run level），在不同的运行级下，系统有着不同的状态，这六种运行级分别为：
+
+  0 ：停机（记住不要把initdefault 设置为0，因为这样会使Linux无法启动 ）
+
+ 1：单用户模式，就像Win9X下的安全模式。
+
+ 2：多用户，但是没有 NFS 。
+
+ 3：完全多用户模式，标准的运行级。
+
+ 4：一般不用，在一些特殊情况下可以用它来做一些事情。
+
+ 5：X11，即进到 X-Window 系统。
+
+ 6：重新启动 （记住不要把initdefault 设置为6，因为这样会使Linux不断地重新启动）。
+
+
+ 其中运行级3就是我们要进入的标准Console字符界面模式。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;四linux终端字符界面显示乱码解决方法&quot;&gt;四、Linux终端字符界面显示乱码解决方法&lt;/h4&gt;
+
+&lt;p&gt;方法一：配置SSH工具&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;SecureCRT中文版配置&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;[全局选项]→[默认会话]→[编辑默认设置]→[终端]→[外观]→[字体]→[新宋体 10pt CHINESE_GB2312]→[字符编码 UTF-8]&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Putty配置&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;[window]→[Appearance]→[Font settings]→[Change]→[Fixedsys CHINESE_GB2312]&lt;/p&gt;
+
+&lt;p&gt;[window]→[Appearance]→[Translation]→[Received data assumed to be in which character set]→[Use font encoding UTF-8]&lt;/p&gt;
+
+&lt;p&gt;如果经常使用,把这些设置保存在session里面。&lt;/p&gt;
+
+&lt;p&gt;打开putty，登录成功后，在shell中输入:export LC_ALL=’zh_CN.utf8’&lt;/p&gt;
+
+&lt;p&gt;方法二：配置系统&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;console终端乱码&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在/etc/profile文件的最后一行添加如下内容：&lt;/p&gt;
+
+&lt;p&gt;export LC_ALL=”zh_CN.GB18030”&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;xwindow终端乱码&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在/etc/sysconfig/i18n文件的最后一行添加如下内容：&lt;/p&gt;
+
+&lt;p&gt;export LC_ALL=”zh_CN.GB18030”&lt;/p&gt;
+
+&lt;p&gt;vi /etc/sysconfig/i18n&lt;/p&gt;
+
+&lt;p&gt;将内容改为&lt;/p&gt;
+
+&lt;p&gt;LANG=”zh_CN.GB18030”&lt;/p&gt;
+
+&lt;p&gt;LANGUAGE=”zh_CN.GB18030:zh_CN.GB2312:zh_CN”&lt;/p&gt;
+
+&lt;p&gt;SUPPORTED=”zh_CN.GB18030:zh_CN:zh:en_US.UTF-8:en_US:en”&lt;/p&gt;
+
+&lt;p&gt;SYSFONT=”lat0-sun16”&lt;/p&gt;
+
+&lt;p&gt;之后重启机器，这样中文在SSH,telnet终端就可以正常显示了。&lt;/p&gt;
+
+&lt;p&gt;注意：若操作系统语言是英文，显示中文字符为乱码时&lt;/p&gt;
+
+&lt;p&gt;编辑/etc/sysconfig/i18n，修改为如下内容：&lt;/p&gt;
+
+&lt;p&gt;LANG=”en_US”&lt;/p&gt;
+
+&lt;p&gt;SUPPORTED=”en_US.UTF-8:en_US:en”&lt;/p&gt;
+
+&lt;p&gt;SYSFONT=”latarcyrheb-sun16”&lt;/p&gt;</content><author><name></name></author><category term="ubuntu" /><summary type="html">一、快捷键</summary></entry><entry><title type="html">pip requirements</title><link href="http://localhost:4000/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" /><published>2017-02-19T18:32:00+08:00</published><updated>2017-02-19T18:32:00+08:00</updated><id>http://localhost:4000/pip-requirements</id><content type="html" xml:base="http://localhost:4000/pip-requirements/">&lt;h1 id=&quot;如何自动生成和安装requirementstxt依赖&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
 
 &lt;p&gt;在查看别人的Python项目时，经常会看到一个&lt;code class=&quot;highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt;文件，里面记录了当前程序的所有依赖包及其精确版本号。这个文件有点类似与Rails的&lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;。其作用是用来在另一台PC上重新构建项目所需要的运行环境依赖。&lt;/p&gt;
 
@@ -497,82 +788,4 @@ def register_page():
 
 &lt;p&gt;最后，我们使用gc.collect（）来帮助减少内存浪费。&lt;/p&gt;
 
-&lt;p&gt;注意，我们恰好在注册后登录我们的用户，使用烧录器会话功能。&lt;/p&gt;</content><author><name></name></author><category term="HASH" /><category term="flask" /><summary type="html">Flask Registration Code Tutorial</summary></entry><entry><title type="html">HASH1</title><link href="http://localhost:4000/mysql3/" rel="alternate" type="text/html" title="HASH1" /><published>2017-02-12T02:01:00+08:00</published><updated>2017-02-12T02:01:00+08:00</updated><id>http://localhost:4000/mysql3</id><content type="html" xml:base="http://localhost:4000/mysql3/">&lt;h2 id=&quot;user-registration-form-flask-tutorial&quot;&gt;User Registration Form Flask Tutorial&lt;/h2&gt;
-
-&lt;p&gt;在本教程中，我们将讨论创建我们的注册表单。虽然不需要，Flask有一个内置的窗体模块称为WTForms。要得到这个，运行：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install flask-wtf&lt;/code&gt;
-现在，由于我们使用这个模块来创建表单，我们要做的是创建一个表单类，这将给我们一个注册表单对象，然后我们将传递给我们的模板。这听起来很困惑，但它不是那么糟！&lt;/p&gt;
-
-&lt;p&gt;在我们的__init__.py文件中，我们将添加以下类。这是我的建议，组织和功能，你把所有的课程放在你的脚本的顶部，如果他们在许多地方使用，或者你可以把它们的功能，他们将被使用。&lt;/p&gt;
-
-&lt;p&gt;窗体类，包含用户名，电子邮件，密码和确认密码字段。然后我们有一个“接受条件”要求的复选框。&lt;/p&gt;
-
-&lt;p&gt;在这里注意“验证器”参数，其中我们可以指定所有类型的东西，但是我们需要各种长度规则，以及要求两个密码匹配。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class RegistrationForm(Form):
-    username = TextField('Username', [validators.Length(min=4, max=20)])
-    email = TextField('Email Address', [validators.Length(min=6, max=50)])
-    password = PasswordField('New Password', [
-        validators.Required(),
-        validators.EqualTo('confirm', message='Passwords must match')
-    ])
-    confirm = PasswordField('Repeat Password')
-    accept_tos = BooleanField('I accept the [Terms of Service](/about/tos) and [Privacy Notice](/about/privacy-policy) (updated Jan 22, 2015)', [validators.Required()])
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;还要注意“布尔”字段，意味着它可以是开或关，或1或0.注意，如果您希望此框是必需的复选框，您还需要在这里有验证器。如果你在这里运行一个餐厅的应用程序，人们只是选择他们的食材三明治，那么你不需要检查所有的成分。在这里，我们希望确保用户已同意我们的条款。&lt;/p&gt;</content><author><name></name></author><category term="HASH" /><category term="flask" /><summary type="html">User Registration Form Flask Tutorial</summary></entry><entry><title type="html">MySQL2</title><link href="http://localhost:4000/mysql2/" rel="alternate" type="text/html" title="MySQL2" /><published>2017-02-12T02:01:00+08:00</published><updated>2017-02-12T02:01:00+08:00</updated><id>http://localhost:4000/mysql2</id><content type="html" xml:base="http://localhost:4000/mysql2/">&lt;h2 id=&quot;使用mysqldb连接到mysql数据库&quot;&gt;使用MySQLdb连接到MySQL数据库&lt;/h2&gt;
-
-&lt;p&gt;在本教程中，我们将介绍如何使用Python与MySQL数据库交互。我们使用的模块称为MySQLdb。要获得此，请在您的服务器上运行以下命令：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install python-MySQLdb&lt;/code&gt;
-一旦你有，请确保它都工作通过键入：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;
-这应该打开一个python实例在你的服务器，所以然后做：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import MySQLdb
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;只要有效，就快速control+d退出python实例。&lt;/p&gt;
-
-&lt;p&gt;接下来，我们要创建一个可以连接到数据库的Python文件。通常你将有一个单独的“连接”文件，在任何主要文件之外你可能有。这通常是跨语言的，这是为什么。最初，您可能只有一个简单的__init__.py，或app.py或任何，并且该文件将执行所有操作。然而，可能发生的时间，但是，你的网站做其他的事情。例如，我的一个网站，Sentdex.com，我执行大量的分析，将分析存储到数据库，我还操作网站供用户使用。一般来说，对于任务，你将使用所谓的“cron”。cron是在您编程运行时运行的计划任务。通常这运行另一个文件，几乎肯定不是您的网站的文件。因此，要连接到数据库，您必须在由cron运行的文件中再次写入连接代码的数据库。&lt;/p&gt;
-
-&lt;p&gt;随着时间的推移，这些种类的需求累积起来，你有一些文件修改数据库，但你仍然希望网站能够访问它，也可以修改它。然后，考虑如果更改数据库密码可能会发生什么。然后，您需要转到连接到数据库的每个文件，并更改它。所以，通常，你会发现最聪明的事情是只创建一个文件，其中包含连接代码。这就是我们今天要建立的。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import MySQLdb
-
-def connection():
-    conn = MySQLdb.connect(host=&quot;localhost&quot;,
-                           user = &quot;root&quot;,
-                           passwd = &quot;cookies!&quot;,
-                           db = &quot;pythonprogramming&quot;)
-    c = conn.cursor()
-
-    return c, conn
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;导入模块。&lt;/p&gt;
-
-&lt;p&gt;创建一个连接函数来运行我们的代码。在这里，我们指定我们连接到的位置，用户，用户的密码，然后指定我们要连接到的数据库。&lt;/p&gt;
-
-&lt;p&gt;引用表将在实际使用表的代码中完成。
-请注意，我们使用“localhost”作为我们的主机。这只是意味着我们将使用与运行此代码相同的服务器。您也可以远程连接到数据库，这可以很漂亮。为此，您可以通过其IP或其域来连接到主机。要远程连接到数据库，您需要首先从将被访问/修改的远程数据库中允许它。&lt;/p&gt;
-
-&lt;p&gt;接下来，让我们继续编辑我们的__init__.py文件，添加一个寄存器函数。现在我们将保持简单，大多只是为了测试我们的连接功能。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from dbconnect import connection
-
-...		
-
-@app.route('/register/', methods=[&quot;GET&quot;,&quot;POST&quot;])
-def register_page():
-    try:
-        c, conn = connection()
-        return(&quot;okay&quot;)
-    except Exception as e:
-        return(str(e))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;接下来，让我们建立我们的注册页面。&lt;/p&gt;</content><author><name></name></author><category term="MySQL" /><category term="flask" /><summary type="html">使用MySQLdb连接到MySQL数据库</summary></entry></feed>
+&lt;p&gt;注意，我们恰好在注册后登录我们的用户，使用烧录器会话功能。&lt;/p&gt;</content><author><name></name></author><category term="HASH" /><category term="flask" /><summary type="html">Flask Registration Code Tutorial</summary></entry></feed>
