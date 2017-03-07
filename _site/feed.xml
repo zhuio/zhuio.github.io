@@ -1,4 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-28T20:44:44+08:00</updated><id>http://localhost:4000/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">youtube-dl</title><link href="http://localhost:4000/youtube-dl/" rel="alternate" type="text/html" title="youtube-dl" /><published>2017-02-20T23:48:00+08:00</published><updated>2017-02-20T23:48:00+08:00</updated><id>http://localhost:4000/youtube-dl</id><content type="html" xml:base="http://localhost:4000/youtube-dl/">&lt;h1 id=&quot;下载youtube视频&quot;&gt;下载YouTube视频&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator>
+<link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" />
+<link href="http://localhost:4000/" rel="alternate" type="text/html" />
+<updated>2017-03-08T01:44:54+08:00</updated>
+<id>http://localhost:4000/</id>
+<subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle>
+<entry>
+<title>Ubuntu常用命令</title>
+<link href="http://localhost:4000/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="alternate" type="text/html" title="Ubuntu常用命令" />
+<published>2017-03-08T01:43:00+08:00</published>
+<updated>2017-03-08T01:43:00+08:00</updated>
+<id>http://localhost:4000/ubuntu常用命令</id>
+<content type="html" xml:base="http://localhost:4000/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">&lt;h1 id=&quot;ubuntu&quot;&gt;Ubuntu常用命令整理&lt;/h1&gt;
+
+&lt;p&gt;ubuntu命令很多，要熟练运用所有的命令有一定的难度。但大部分情况下，我们只要掌握常用的那些就够了，剩下的在必要时查资料即可。
+下面就对我们平时常用的ubuntu命令进行简单介绍。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;1、文件/文件夹管理&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt; 列出当前目录下的所有文件（不显示隐藏文件）&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ls -a&lt;/code&gt; 列出当前目录下的所有文件（显示隐藏文件）&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt;列出当前目录下所有文件的详细信息&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;cd ~&lt;/code&gt;进入用户主目录&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd ..&lt;/code&gt; 回到上一级目录&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd -&lt;/code&gt;返回进入此目录之前所在的目录&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mkdir dirname&lt;/code&gt; 新建目录&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rmdir dirname&lt;/code&gt; 删除空目录&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rm filename&lt;/code&gt; 删除文件&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rm -rf dirname&lt;/code&gt; 删除非空目录及其包含的所有文件&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mv file1 file2&lt;/code&gt;将文件1重命名为文件2&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mv file1 dir1&lt;/code&gt; 将文件1移动到目录1中&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;find 路径 -name “字符串”&lt;/code&gt; 查找路径所在范围内满足字符串匹配的文件和目录&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;2、程序安装与卸载&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get&lt;/code&gt; 程序安装与卸载命令的标志，需要管理员权限&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;install&lt;/code&gt; 安装指定程序，举例：&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install vim&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;remove&lt;/code&gt; 卸载指定的程序，一般最好加上“–purge”执行清除
+式卸载；并在程序名称后添加*号。举例：&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get remove --purge nvidia*&lt;/code&gt;  卸载 nvidia 的驱动及其配置文件&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;update&lt;/code&gt; 更新本地软件源文件，需要管理员权限，举例：&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;3、打包/解压&lt;/h2&gt;
+
+&lt;p&gt;这里需要先解释几个参数。
+参数含义参数含义-c建立压缩档案-z有gzip属性的-t查看内容-j有bz2属性的-u更新原压缩包中的文件-Z有compress属性的-x解压-v显示所有过程-r向压缩归档文件末尾追加文件-O将文件解开到标准输出
+上表左边五个参数是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。右边五个参数是根据需要在压缩或解压时可选的。
+下面进行举例说明。
+&lt;strong&gt;压缩&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -cvf jpg.tar *.jpg&lt;/code&gt; 将目录里所有jpg文件打包成tar.jpg&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -czf jpg.tar.gz *.jpg&lt;/code&gt;   将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -cjf jpg.tar.bz2 *.jpg&lt;/code&gt; 将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -cZf jpg.tar.Z *.jpg&lt;/code&gt;   将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rar a jpg.rar *.jpg&lt;/code&gt; rar格式的压缩，需要先下载rar for linux&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;zip jpg.zip *.jpg&lt;/code&gt; zip格式的压缩，需要先下载zip for linux&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;解压&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -xvf file.tar&lt;/code&gt; 解压 tar包&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -xzvf file.tar.gz&lt;/code&gt; 解压tar.gz&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -xjvf file.tar.bz2&lt;/code&gt;   解压 tar.bz2&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar -xZvf file.tar.Z&lt;/code&gt;   解压tar.Z&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unrar e file.rar&lt;/code&gt; 解压rar&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unzip file.zip&lt;/code&gt; 解压zip&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;总结&lt;/strong&gt;
+.tar 用 tar -xvf 解压
+.gz 用 gzip -d或者gunzip 解压
+.tar.gz和.tgz 用 tar -xzf 解压
+.bz2 用 bzip2 -d或者用bunzip2 解压
+ .tar.bz2用tar -xjf 解压
+.Z 用 uncompress 解压
+.tar.Z 用tar -xZf 解压
+.rar 用 unrar e解压
+.zip 用 unzip 解压&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;4、用户管理&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo useradd username&lt;/code&gt; 创建一个新的用户username&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo passwd username&lt;/code&gt; 设置用户username的密码&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo groupadd groupname&lt;/code&gt; 创建一个新的组groupname&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo usermod -g groupname username&lt;/code&gt; 把用户username加入到组groupname中&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo chown username:groupname dirname&lt;/code&gt; 将指定文件的拥有者改为指定的用户或组&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;5、系统管理&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;uname -a&lt;/code&gt; 查看内核版本&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cat /etc/issue&lt;/code&gt; 查看ubuntu版本&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo fdisk -l&lt;/code&gt; 查看磁盘信息&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;df -h&lt;/code&gt; 查看硬盘剩余空间&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;free -m&lt;/code&gt; 查看当前的内存使用情况&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ps -A&lt;/code&gt; 查看当前有哪些进程&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;kill 进程号&lt;/code&gt;或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;killall 进程名&lt;/code&gt; 杀死进程&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;kill -9 进程号&lt;/code&gt; 强制杀死进程&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+<category term="Ubuntu" />
+<summary>Ubuntu常用命令整理</summary>
+</entry>
+<entry>
+<title>youtube-dl</title>
+<link href="http://localhost:4000/youtube-dl/" rel="alternate" type="text/html" title="youtube-dl" />
+<published>2017-02-20T23:48:00+08:00</published>
+<updated>2017-02-20T23:48:00+08:00</updated>
+<id>http://localhost:4000/youtube-dl</id>
+<content type="html" xml:base="http://localhost:4000/youtube-dl/">&lt;h1 id=&quot;youtube&quot;&gt;下载YouTube视频&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;查看视频所有类型,只看不下载
@@ -59,7 +177,7 @@ youtube-dl --yes-playlist [url] //当链接为视频列表,则下载该列表视
 
 &lt;hr /&gt;
 
-&lt;h1 id=&quot;下载vimeo视频&quot;&gt;下载Vimeo视频&lt;/h1&gt;
+&lt;h1 id=&quot;vimeo&quot;&gt;下载Vimeo视频&lt;/h1&gt;
 
 &lt;p&gt;Vimeo的视频下载起来比较方便,因为没有分离,可以直接下载1080p带音频的视频
 命令与下载YouTube的基本一致;下面贴几张图&lt;/p&gt;
@@ -79,7 +197,18 @@ youtube-dl --yes-playlist [url] //当链接为视频列表,则下载该列表视
 &lt;blockquote&gt;
   &lt;p&gt;youtube-dl官网：&lt;a href=&quot;https://yt-dl.org/&quot;&gt;https://yt-dl.org/&lt;/a&gt;
 GitHub项目：&lt;a href=&quot;https://github.com/rg3/youtube-dl/&quot;&gt;https://github.com/rg3/youtube-dl/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name></name></author><category term="youtube" /><summary type="html">下载YouTube视频</summary></entry><entry><title type="html">ubuntu terminal trick</title><link href="http://localhost:4000/ubuntu-terminal-trick/" rel="alternate" type="text/html" title="ubuntu terminal trick" /><published>2017-02-20T21:49:00+08:00</published><updated>2017-02-20T21:49:00+08:00</updated><id>http://localhost:4000/ubuntu-terminal-trick</id><content type="html" xml:base="http://localhost:4000/ubuntu-terminal-trick/">&lt;h4 id=&quot;一快捷键&quot;&gt;一、快捷键&lt;/h4&gt;
+&lt;/blockquote&gt;
+</content>
+<category term="youtube" />
+<summary>下载YouTube视频</summary>
+</entry>
+<entry>
+<title>ubuntu terminal trick</title>
+<link href="http://localhost:4000/ubuntu-terminal-trick/" rel="alternate" type="text/html" title="ubuntu terminal trick" />
+<published>2017-02-20T21:49:00+08:00</published>
+<updated>2017-02-20T21:49:00+08:00</updated>
+<id>http://localhost:4000/ubuntu-terminal-trick</id>
+<content type="html" xml:base="http://localhost:4000/ubuntu-terminal-trick/">&lt;h4 id=&quot;section&quot;&gt;一、快捷键&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Shift&amp;amp;#43;Ctrl&amp;amp;#43;T:新建标签页
 
@@ -124,7 +253,7 @@ Ctrl&amp;amp;#43;0:原始大小
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;二组合键&quot;&gt;二、组合键&lt;/h4&gt;
+&lt;h4 id=&quot;section-1&quot;&gt;二、组合键&lt;/h4&gt;
 
 &lt;p&gt;1、在终端显示时间使用命令date&lt;/p&gt;
 
@@ -170,7 +299,7 @@ Ctrl&amp;amp;#43;0:原始大小
 
 &lt;p&gt;如想退出终端就可以直接按此组合键。&lt;/p&gt;
 
-&lt;h4 id=&quot;三linux图形界面切换到字符界面&quot;&gt;三、linux图形界面切换到字符界面&lt;/h4&gt;
+&lt;h4 id=&quot;linux&quot;&gt;三、linux图形界面切换到字符界面&lt;/h4&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -227,7 +356,7 @@ Ctrl&amp;amp;#43;0:原始大小
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;四linux终端字符界面显示乱码解决方法&quot;&gt;四、Linux终端字符界面显示乱码解决方法&lt;/h4&gt;
+&lt;h4 id=&quot;linux-1&quot;&gt;四、Linux终端字符界面显示乱码解决方法&lt;/h4&gt;
 
 &lt;p&gt;方法一：配置SSH工具&lt;/p&gt;
 
@@ -289,25 +418,48 @@ Ctrl&amp;amp;#43;0:原始大小
 
 &lt;p&gt;SUPPORTED=”en_US.UTF-8:en_US:en”&lt;/p&gt;
 
-&lt;p&gt;SYSFONT=”latarcyrheb-sun16”&lt;/p&gt;</content><author><name></name></author><category term="ubuntu" /><summary type="html">一、快捷键</summary></entry><entry><title type="html">pip requirements</title><link href="http://localhost:4000/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" /><published>2017-02-19T18:32:00+08:00</published><updated>2017-02-19T18:32:00+08:00</updated><id>http://localhost:4000/pip-requirements</id><content type="html" xml:base="http://localhost:4000/pip-requirements/">&lt;h1 id=&quot;如何自动生成和安装requirementstxt依赖&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
+&lt;p&gt;SYSFONT=”latarcyrheb-sun16”&lt;/p&gt;
+</content>
+<category term="ubuntu" />
+<summary>一、快捷键</summary>
+</entry>
+<entry>
+<title>pip requirements</title>
+<link href="http://localhost:4000/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" />
+<published>2017-02-19T18:32:00+08:00</published>
+<updated>2017-02-19T18:32:00+08:00</updated>
+<id>http://localhost:4000/pip-requirements</id>
+<content type="html" xml:base="http://localhost:4000/pip-requirements/">&lt;h1 id=&quot;requirementstxt&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
 
 &lt;p&gt;在查看别人的Python项目时，经常会看到一个&lt;code class=&quot;highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt;文件，里面记录了当前程序的所有依赖包及其精确版本号。这个文件有点类似与Rails的&lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;。其作用是用来在另一台PC上重新构建项目所需要的运行环境依赖。&lt;/p&gt;
 
 &lt;p&gt;requirements.txt可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt;命令自动生成和安装&lt;/p&gt;
 
-&lt;h3 id=&quot;生成requirementstxt文件&quot;&gt;生成requirements.txt文件&lt;/h3&gt;
+&lt;h3 id=&quot;requirementstxt-1&quot;&gt;生成requirements.txt文件&lt;/h3&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pip freeze &amp;gt; requirements.txt&lt;/code&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;安装requirementstxt依赖&quot;&gt;安装requirements.txt依赖&lt;/h3&gt;
+&lt;h3 id=&quot;requirementstxt-2&quot;&gt;安装requirements.txt依赖&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install -r requirements.txt&lt;/code&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="pip" /><summary type="html">如何自动生成和安装requirements.txt依赖</summary></entry><entry><title type="html">shadowsocks锐速</title><link href="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/" rel="alternate" type="text/html" title="shadowsocks锐速" /><published>2017-02-18T21:35:00+08:00</published><updated>2017-02-18T21:35:00+08:00</updated><id>http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F</id><content type="html" xml:base="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/">&lt;h2 id=&quot;更换内核&quot;&gt;更换内核&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install -r requirements.txt&lt;/code&gt;&lt;/p&gt;
+</content>
+<category term="python" />
+<category term="pip" />
+<summary>如何自动生成和安装requirements.txt依赖</summary>
+</entry>
+<entry>
+<title>shadowsocks锐速</title>
+<link href="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/" rel="alternate" type="text/html" title="shadowsocks锐速" />
+<published>2017-02-18T21:35:00+08:00</published>
+<updated>2017-02-18T21:35:00+08:00</updated>
+<id>http://localhost:4000/shadowsocks锐速</id>
+<content type="html" xml:base="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/">&lt;h2 id=&quot;section&quot;&gt;更换内核&lt;/h2&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --force
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;锐速加速&quot;&gt;锐速加速&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;锐速加速&lt;/h2&gt;
 
 &lt;p&gt;查看&lt;a href=&quot;https://www.91yun.org/wp-content/plugins/91yun-serverspeeder/systemlist.html&quot;&gt;linux支持内核列表&lt;/a&gt;**&lt;/p&gt;
 
@@ -341,7 +493,7 @@ Ctrl&amp;amp;#43;0:原始大小
 
 &lt;p&gt;运行后会显示你的VPS虚拟化技术，如果不是OpenVZ，那么可以继续下面的安装步骤了。&lt;/p&gt;
 
-&lt;h2 id=&quot;安装开心版锐速&quot;&gt;安装开心版锐速&lt;/h2&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;安装开心版锐速&lt;/h2&gt;
 
 &lt;p&gt;确定自己的内核版本在支持列表里，并且虚拟化技术非OpenVZ，就可以使用以下命令一键安装了。&lt;/p&gt;
 
@@ -379,13 +531,13 @@ wget o0o.re/rsu&amp;amp;&amp;amp;sh rsu
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h2 id=&quot;卸载开心版锐速&quot;&gt;卸载开心版锐速&lt;/h2&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;卸载开心版锐速&lt;/h2&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chattr -i /serverspeeder/etc/apx* &amp;amp;&amp;amp; /serverspeeder/bin/serverSpeeder.sh uninstall -f
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;锐速开心版功能&quot;&gt;锐速开心版功能：&lt;/h3&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;锐速开心版功能：&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;如果内核完全匹配就会自动下载安装。&lt;/li&gt;
@@ -396,7 +548,7 @@ wget o0o.re/rsu&amp;amp;&amp;amp;sh rsu
   &lt;li&gt;目前只支持CentOS，ubuntu和debian。如果有其他系统支持，可以到http://www.91yun.org/serverspeeder91yun手动下载其他系统的安装包&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;开启高级算法&quot;&gt;开启高级算法&lt;/h2&gt;
+&lt;h2 id=&quot;section-5&quot;&gt;开启高级算法&lt;/h2&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Tip：开心版锐速默认都启动高级算法了，所以可以忽略下面的步骤。
 &lt;/code&gt;&lt;/pre&gt;
@@ -410,7 +562,7 @@ maxmode=&quot;1&quot; #最大传输模式
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;使用命令&quot;&gt;使用命令&lt;/h3&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;使用命令&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#重启锐速
 /serverspeeder/bin/serverSpeeder.sh restart
@@ -423,7 +575,7 @@ maxmode=&quot;1&quot; #最大传输模式
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;删除锐速&quot;&gt;删除锐速&lt;/h3&gt;
+&lt;h3 id=&quot;section-7&quot;&gt;删除锐速&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#脚本删除，如果不行就用下面的强制删除
 ./serverSpeederInstaller.sh uninstall
@@ -434,7 +586,18 @@ rm -rf /serverspeeder
 
 &lt;hr /&gt;
 
-&lt;p&gt;第一个开心版锐速脚本来自：&lt;a href=&quot;https://www.91yun.org/archives/683&quot;&gt;https://www.91yun.org/archives/683&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="shadowsocks" /><summary type="html">更换内核</summary></entry><entry><title type="html">flask框架5</title><link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/" rel="alternate" type="text/html" title="flask框架5" /><published>2017-02-12T15:37:00+08:00</published><updated>2017-02-12T15:37:00+08:00</updated><id>http://localhost:4000/flask%E6%A1%86%E6%9E%B65</id><content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/">&lt;h2 id=&quot;动态基于用户的内容flask教程&quot;&gt;动态基于用户的内容Flask教程&lt;/h2&gt;
+&lt;p&gt;第一个开心版锐速脚本来自：&lt;a href=&quot;https://www.91yun.org/archives/683&quot;&gt;https://www.91yun.org/archives/683&lt;/a&gt;&lt;/p&gt;
+</content>
+<category term="shadowsocks" />
+<summary>更换内核</summary>
+</entry>
+<entry>
+<title>flask框架5</title>
+<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/" rel="alternate" type="text/html" title="flask框架5" />
+<published>2017-02-12T15:37:00+08:00</published>
+<updated>2017-02-12T15:37:00+08:00</updated>
+<id>http://localhost:4000/flask框架5</id>
+<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/">&lt;h2 id=&quot;flask&quot;&gt;动态基于用户的内容Flask教程&lt;/h2&gt;
 
 &lt;p&gt;虽然我们可以使用装饰器来包围访问控制的函数，但我们也可以使用我们的Jinja模板逻辑来控制视图。例如，现在，当我们登录我们的网站时，我们仍然在右上角有一个“登录”按钮。&lt;/p&gt;
 
@@ -469,7 +632,18 @@ rm -rf /serverspeeder
 
 &lt;p&gt;当你构建这样的HTML逻辑，特别是当它影响用户看到什么，你可能会发现它破坏了自然的突出显示，你的编辑器可能会标记的东西，如标签没有关闭等。使用你更好的判断。有时，如果内容足够厚，并且是一种if / else类似上面，我将删除每个块，一次一个，并检查以确保一切连接正确。&lt;/p&gt;
 
-&lt;p&gt;不管什么，但是，它可以是混乱。注意它，特别是如果你让你的编辑器自动关闭或移动标签。&lt;/p&gt;</content><author><name></name></author><category term="flask" /><summary type="html">动态基于用户的内容Flask教程</summary></entry><entry><title type="html">flask框架4</title><link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/" rel="alternate" type="text/html" title="flask框架4" /><published>2017-02-12T15:36:00+08:00</published><updated>2017-02-12T15:36:00+08:00</updated><id>http://localhost:4000/flask%E6%A1%86%E6%9E%B64</id><content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/">&lt;h2 id=&quot;flask装饰器---login_required页面flask教程&quot;&gt;Flask装饰器 - Login_Required页面Flask教程&lt;/h2&gt;
+&lt;p&gt;不管什么，但是，它可以是混乱。注意它，特别是如果你让你的编辑器自动关闭或移动标签。&lt;/p&gt;
+</content>
+<category term="flask" />
+<summary>动态基于用户的内容Flask教程</summary>
+</entry>
+<entry>
+<title>flask框架4</title>
+<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/" rel="alternate" type="text/html" title="flask框架4" />
+<published>2017-02-12T15:36:00+08:00</published>
+<updated>2017-02-12T15:36:00+08:00</updated>
+<id>http://localhost:4000/flask框架4</id>
+<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/">&lt;h2 id=&quot;flask---loginrequiredflask&quot;&gt;Flask装饰器 - Login_Required页面Flask教程&lt;/h2&gt;
 
 &lt;p&gt;现在我们可以让用户注册和登录，我们也允许他们注销。这是有一点意义，不让用户注销，除非他们登录！&lt;/p&gt;
 
@@ -479,16 +653,20 @@ rm -rf /serverspeeder
 
 &lt;p&gt;首先，我们向我们的__init__.py文件添加一个login_required函数：&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;    &lt;span class=&quot;nt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;login_required&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;@wraps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'logged_in'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;flash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;You need to login first&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url_for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'login_page'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;p&gt;{% highlight css %}&lt;/p&gt;
 
-        &lt;span class=&quot;n&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def login_required(f):
+    @wraps(f)
+    def wrap( *args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash(&quot;You need to login first&quot;)
+            return redirect(url_for('login_page'))
+
+    return wrap {% endhighlight %}    		
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;这里，我们定义函数，其中参数是f，这是约定的事实，它包装一个函数。然后，我们定义包装器。&lt;/p&gt;
 
@@ -506,7 +684,18 @@ def logout():
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;很简单，在app.route包装器的下面，我们还添加了另一个包装器，它是login_required包装器。现在，为了甚至得到注销函数，用户必须首先尝试访问顶部包装器中的URL，然后他们还需要满足下一个包装器的条件，然后他们可以最终到达logout（）函数！&lt;/p&gt;</content><author><name></name></author><category term="flask" /><summary type="html">Flask装饰器 - Login_Required页面Flask教程</summary></entry><entry><title type="html">flask框架3</title><link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B63/" rel="alternate" type="text/html" title="flask框架3" /><published>2017-02-12T15:34:00+08:00</published><updated>2017-02-12T15:34:00+08:00</updated><id>http://localhost:4000/flask%E6%A1%86%E6%9E%B63</id><content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B63/">&lt;h2 id=&quot;flask用户登录系统教程&quot;&gt;Flask用户登录系统教程&lt;/h2&gt;
+&lt;p&gt;很简单，在app.route包装器的下面，我们还添加了另一个包装器，它是login_required包装器。现在，为了甚至得到注销函数，用户必须首先尝试访问顶部包装器中的URL，然后他们还需要满足下一个包装器的条件，然后他们可以最终到达logout（）函数！&lt;/p&gt;
+</content>
+<category term="flask" />
+<summary>Flask装饰器 - Login_Required页面Flask教程</summary>
+</entry>
+<entry>
+<title>flask框架3</title>
+<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B63/" rel="alternate" type="text/html" title="flask框架3" />
+<published>2017-02-12T15:34:00+08:00</published>
+<updated>2017-02-12T15:34:00+08:00</updated>
+<id>http://localhost:4000/flask框架3</id>
+<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B63/">&lt;h2 id=&quot;flask&quot;&gt;Flask用户登录系统教程&lt;/h2&gt;
 
 &lt;p&gt;它让我们相当多，但在这里我们是：登录页面！如果你还没有，那么你应该注册一些用户，并记住其中之一，以测试我们的登录页面，当我们完成。&lt;/p&gt;
 
@@ -554,7 +743,19 @@ def login_page():
 
 &lt;p&gt;如果是这样，那么我们通过Flask的会话功能登录用户，然后我们将它们发送到仪表板，因为他们都完成了登录页面。&lt;/p&gt;
 
-&lt;p&gt;如果出现任何问题，我们给出的错误只是“凭据无效，请重试”。您可以提供自定义错误，例如该用户名不存在或密码错误，但有人试图破解您的网站或用户名可以使用它的优势，知道他们错了什么。&lt;/p&gt;</content><author><name></name></author><category term="flask" /><category term="hash" /><summary type="html">Flask用户登录系统教程</summary></entry><entry><title type="html">flask框架2</title><link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B62/" rel="alternate" type="text/html" title="flask框架2" /><published>2017-02-12T15:33:00+08:00</published><updated>2017-02-12T15:33:00+08:00</updated><id>http://localhost:4000/flask%E6%A1%86%E6%9E%B62</id><content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B62/">&lt;h2 id=&quot;flask教程的密码哈希&quot;&gt;Flask教程的密码哈希&lt;/h2&gt;
+&lt;p&gt;如果出现任何问题，我们给出的错误只是“凭据无效，请重试”。您可以提供自定义错误，例如该用户名不存在或密码错误，但有人试图破解您的网站或用户名可以使用它的优势，知道他们错了什么。&lt;/p&gt;
+</content>
+<category term="flask" />
+<category term="hash" />
+<summary>Flask用户登录系统教程</summary>
+</entry>
+<entry>
+<title>flask框架2</title>
+<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B62/" rel="alternate" type="text/html" title="flask框架2" />
+<published>2017-02-12T15:33:00+08:00</published>
+<updated>2017-02-12T15:33:00+08:00</updated>
+<id>http://localhost:4000/flask框架2</id>
+<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B62/">&lt;h2 id=&quot;flask&quot;&gt;Flask教程的密码哈希&lt;/h2&gt;
 
 &lt;p&gt;虽然我们已经将密码哈希加入我们的注册页面，我想花一些时间来讨论实际发生的事情。也许你最终使用另一种语言，或者也许passlib不支持你在未来使用的Python版本。正因为如此，你应该至少在高层了解它是如何工作的。&lt;/p&gt;
 
@@ -682,110 +883,60 @@ print(sha256_crypt.verify(&quot;password&quot;, password))
 
 &lt;p&gt;我甚至不能计算我看到有多少网站被黑客入侵，因为有人提出了一个管理员，并能够获得访问。这听起来很蠢，但这个骗局很容易跌倒，特别是考虑到我们生活在今天的世界，开发人员分散，通常不是所有的本地。我个人是成功版本的受害者，我有网站的开发人员是黑客，我有无尽的尝试。这是黑客做的，他们黑客。他们不断尝试，最终他们可以通过。你的工作是使它尽可能具有挑战性。&lt;/p&gt;
 
-&lt;p&gt;这就像大多数犯罪。大多数犯罪是机会犯罪，你的工作不是最慢，最胖，最可怕的孩子从熊跑。&lt;/p&gt;</content><author><name></name></author><category term="flask" /><summary type="html">Flask教程的密码哈希</summary></entry><entry><title type="html">flask框架注册登录结构</title><link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/" rel="alternate" type="text/html" title="flask框架注册登录结构" /><published>2017-02-12T15:32:00+08:00</published><updated>2017-02-12T15:32:00+08:00</updated><id>http://localhost:4000/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84</id><content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/">&lt;h2 id=&quot;完成用户注册flask教程&quot;&gt;完成用户注册Flask教程&lt;/h2&gt;
+&lt;p&gt;这就像大多数犯罪。大多数犯罪是机会犯罪，你的工作不是最慢，最胖，最可怕的孩子从熊跑。&lt;/p&gt;
+</content>
+<category term="flask" />
+<summary>Flask教程的密码哈希</summary>
+</entry>
+<entry>
+<title>flask框架注册登录结构</title>
+<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/" rel="alternate" type="text/html" title="flask框架注册登录结构" />
+<published>2017-02-12T15:32:00+08:00</published>
+<updated>2017-02-12T15:32:00+08:00</updated>
+<id>http://localhost:4000/flask框架注册登录结构</id>
+<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/">&lt;h2 id=&quot;flask&quot;&gt;完成用户注册Flask教程&lt;/h2&gt;
 
 &lt;p&gt;在这个Flask教程中，我们将包装这个注册系统。&lt;/p&gt;
 
 &lt;p&gt;为了做到这一点，我们可能需要一个register.html页面。
 &lt;code class=&quot;highlighter-rouge&quot;&gt;File: register.html Location: /var/www/PythonProgramming/PythonProgramming/templates/register.html&lt;/code&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;		&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;block&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;{% highlight css %}&lt;/p&gt;
 
-		&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-		&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-			&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-			&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;br&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-			&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;formhelpers.html&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;render_field&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-			&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;form&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;/register/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-				&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.username)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
-					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.email)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
-					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.password)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
-					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.confirm)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
-					&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.accept_tos)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
-				&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-				&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;submit&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-			&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;p&gt;{% raw %}&lt;/p&gt;
 
-			&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-				&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;strong&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;strong&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-			&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-		&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-		&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;div&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;h&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;Register&amp;lt;/h&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;formhelpers.html&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;render_field&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;form&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;method=post&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/register/&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;dl&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.username)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.email)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.password)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.confirm)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.accept_tos)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/dl&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;input&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type=submit&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;value=Register&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-		&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;endblock&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;p&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&amp;lt;strong&amp;gt;Error:&amp;lt;/strong&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-&lt;p&gt;这是一个相当典型的注册表单，只有从我们传递的表单对象呈现的字段。&lt;/p&gt;</content><author><name></name></author><category term="flask" /><summary type="html">完成用户注册Flask教程</summary></entry><entry><title type="html">HASH2</title><link href="http://localhost:4000/hash2/" rel="alternate" type="text/html" title="HASH2" /><published>2017-02-12T02:02:00+08:00</published><updated>2017-02-12T02:02:00+08:00</updated><id>http://localhost:4000/hash2</id><content type="html" xml:base="http://localhost:4000/hash2/">&lt;h2 id=&quot;flask-registration-code-tutorial&quot;&gt;Flask Registration Code Tutorial&lt;/h2&gt;
+	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-&lt;p&gt;在本教程中，我们将在__init__.py中对我们的注册代码进行更多工作。&lt;/p&gt;
-
-&lt;p&gt;在我们再进一步之前，让我们安装passlib：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install passlib&lt;/code&gt;
-然后，向我们的__init__.py文件中添加一些导入：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from flask import Flask, render_template, flash, request, url_for, redirect, session
-from wtforms import Form, BooleanField, TextField, PasswordField, validators
-from passlib.hash import sha256_crypt
-from MySQLdb import escape_string as thwart
-import gc
-&lt;/code&gt;&lt;/pre&gt;
+	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endblock&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endraw&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endhighlight&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Passlib将用于密码加密，而escape_string用于防止SQL注入尝试（黑客）。gc模块用于垃圾回收（内存问题）。我们还将会话添加到flask导入，用于访问用户特定的会话/ cookie信息。我们还从wtforms导入一堆字段的东西。&lt;/p&gt;
-
-&lt;p&gt;现在我们有一些新的register_page函数代码：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/register/', methods=[&quot;GET&quot;,&quot;POST&quot;])
-def register_page():
-    try:
-        form = RegistrationForm(request.form)
-
-        if request.method == &quot;POST&quot; and form.validate():
-            username  = form.username.data
-            email = form.email.data
-            password = sha256_crypt.encrypt((str(form.password.data)))
-            c, conn = connection()
-
-            x = c.execute(&quot;SELECT * FROM users WHERE username = (%s)&quot;,
-                          (thwart(username)))
-
-            if int(x) &amp;gt; 0:
-                flash(&quot;That username is already taken, please choose another&quot;)
-                return render_template('register.html', form=form)
-
-            else:
-                c.execute(&quot;INSERT INTO users (username, password, email, tracking) VALUES (%s, %s, %s, %s)&quot;,
-                          (thwart(username), thwart(password), thwart(email), thwart(&quot;/introduction-to-python-programming/&quot;)))
-
-                conn.commit()
-                flash(&quot;Thanks for registering!&quot;)
-                c.close()
-                conn.close()
-                gc.collect()
-
-                session['logged_in'] = True
-                session['username'] = username
-
-                return redirect(url_for('dashboard'))
-
-        return render_template(&quot;register.html&quot;, form=form)
-
-    except Exception as e:
-        return(str(e))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;简单的，代码首先会检查方法是否是POST。请记住，用户可能只是简单地加载注册页面。如果有一个POST请求，那么我们要收集表单中的信息。&lt;/p&gt;
-
-&lt;p&gt;一旦我们获得表单中的信息，接下来我们要做的就是连接到数据库。现在我们不希望有两个用户使用相同的用户名，因此我们首先要查看该用户名是否已经存在。如果是，我们想告诉他们用户名已经存在，让他们再试一次。&lt;/p&gt;
-
-&lt;p&gt;如果用户名不存在，我们已经做到了这一点，这意味着我们有一个唯一的用户名，匹配的密码和一封电子邮件，可以插入我们的数据库。&lt;/p&gt;
-
-&lt;p&gt;所以我们插入数据库，向用户发送一条消息，感谢他们注册，你就完成了。&lt;/p&gt;
-
-&lt;p&gt;当所有设置插入，你需要确保你总是运行conn.commit（），这是“保存”您的更改到数据库。如果您忘记这样做，那么您的更改将不会保存。&lt;/p&gt;
-
-&lt;p&gt;最后，我们使用gc.collect（）来帮助减少内存浪费。&lt;/p&gt;
-
-&lt;p&gt;注意，我们恰好在注册后登录我们的用户，使用烧录器会话功能。&lt;/p&gt;</content><author><name></name></author><category term="HASH" /><category term="flask" /><summary type="html">Flask Registration Code Tutorial</summary></entry></feed>
+&lt;p&gt;这是一个相当典型的注册表单，只有从我们传递的表单对象呈现的字段。&lt;/p&gt;
+</content>
+<category term="flask" />
+<summary>完成用户注册Flask教程</summary>
+</entry>
+</feed>
