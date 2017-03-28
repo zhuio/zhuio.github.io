@@ -1,18 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator>
-<link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" />
-<link href="http://localhost:4000/" rel="alternate" type="text/html" />
-<updated>2017-03-08T01:44:54+08:00</updated>
-<id>http://localhost:4000/</id>
+<generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
+<link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" />
+<link href="https://zhuio.github.io/" rel="alternate" type="text/html" />
+<updated>2017-03-28T11:22:00+08:00</updated>
+<id>https://zhuio.github.io/</id>
 <subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle>
 <entry>
+<title>terminal proxy</title>
+<link href="https://zhuio.github.io/terminal-proxy/" rel="alternate" type="text/html" title="terminal proxy" />
+<published>2017-03-28T11:11:00+08:00</published>
+<updated>2017-03-28T11:11:00+08:00</updated>
+<id>https://zhuio.github.io/terminal-proxy</id>
+<content type="html" xml:base="https://zhuio.github.io/terminal-proxy/">&lt;h2 id=&quot;proxychainssocks5&quot;&gt;利用proxychains在终端使用socks5代理&lt;/h2&gt;
+
+&lt;h3 id=&quot;proxychains&quot;&gt;1.proxychains安装&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/rofl0r/proxychains-ng.git
+cd proxychains-ng
+./configure
+make &amp;amp;&amp;amp; make install
+cp ./src/proxychains.conf /etc/proxychains.conf
+cd .. &amp;amp;&amp;amp; rm -rf proxychains-ng
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;也可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;brew install proxychains-ng&lt;/code&gt;安装。&lt;/p&gt;
+
+&lt;h3 id=&quot;proxychains-1&quot;&gt;2.编辑proxychains配置&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1
+
+
+vim /etc/proxychains.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;socks4-127001-9095&quot;&gt;3.将&lt;code class=&quot;highlighter-rouge&quot;&gt;socks4 127.0.0.1 9095&lt;/code&gt;改为&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1
+
+
+socks5 127.0.0.1 1080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;ps: 默认的&lt;code class=&quot;highlighter-rouge&quot;&gt;socks4 127.0.0.1 9095&lt;/code&gt;是tor代理，而&lt;code class=&quot;highlighter-rouge&quot;&gt;socks5 127.0.0.1 1080&lt;/code&gt;是shadowsocks的代理。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;proxychains.conf&lt;/code&gt;文件说明了代理配置格式,如下,这里根据自己使用的代理来配置就行了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ProxyList format
+94#       type  ip  port  [user pass]
+95#       (values separated by &#39;tab&#39; or &#39;blank&#39;)
+96#
+97#       only numeric ipv4 addresses are valid
+98#
+99#
+100#        Examples:
+101#
+102#       socks5  192.168.67.78   1080    lamer   secret
+103#       http    192.168.89.3    8080    justu   hidden
+104#       socks4  192.168.1.49    1080
+105#       http    192.168.39.93   8080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;4.使用方法&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;在需要代理的命令前加上 proxychains4 ，如：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;proxychains4 wget http://xxx.com/xxx.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;5.测试方法&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl ip.gs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+<category term="proxychains4" />
+<category term="ubuntu" />
+<category term="terminal" />
+<summary>利用proxychains在终端使用socks5代理</summary>
+</entry>
+<entry>
 <title>Ubuntu常用命令</title>
-<link href="http://localhost:4000/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="alternate" type="text/html" title="Ubuntu常用命令" />
+<link href="https://zhuio.github.io/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="alternate" type="text/html" title="Ubuntu常用命令" />
 <published>2017-03-08T01:43:00+08:00</published>
 <updated>2017-03-08T01:43:00+08:00</updated>
-<id>http://localhost:4000/ubuntu常用命令</id>
-<content type="html" xml:base="http://localhost:4000/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">&lt;h1 id=&quot;ubuntu&quot;&gt;Ubuntu常用命令整理&lt;/h1&gt;
+<id>https://zhuio.github.io/ubuntu常用命令</id>
+<content type="html" xml:base="https://zhuio.github.io/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">&lt;h1 id=&quot;ubuntu&quot;&gt;Ubuntu常用命令整理&lt;/h1&gt;
 
 &lt;p&gt;ubuntu命令很多，要熟练运用所有的命令有一定的难度。但大部分情况下，我们只要掌握常用的那些就够了，剩下的在必要时查资料即可。
 下面就对我们平时常用的ubuntu命令进行简单介绍。&lt;/p&gt;
@@ -112,11 +190,11 @@
 </entry>
 <entry>
 <title>youtube-dl</title>
-<link href="http://localhost:4000/youtube-dl/" rel="alternate" type="text/html" title="youtube-dl" />
+<link href="https://zhuio.github.io/youtube-dl/" rel="alternate" type="text/html" title="youtube-dl" />
 <published>2017-02-20T23:48:00+08:00</published>
 <updated>2017-02-20T23:48:00+08:00</updated>
-<id>http://localhost:4000/youtube-dl</id>
-<content type="html" xml:base="http://localhost:4000/youtube-dl/">&lt;h1 id=&quot;youtube&quot;&gt;下载YouTube视频&lt;/h1&gt;
+<id>https://zhuio.github.io/youtube-dl</id>
+<content type="html" xml:base="https://zhuio.github.io/youtube-dl/">&lt;h1 id=&quot;youtube&quot;&gt;下载YouTube视频&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;查看视频所有类型,只看不下载
@@ -204,11 +282,11 @@ GitHub项目：&lt;a href=&quot;https://github.com/rg3/youtube-dl/&quot;&gt;http
 </entry>
 <entry>
 <title>ubuntu terminal trick</title>
-<link href="http://localhost:4000/ubuntu-terminal-trick/" rel="alternate" type="text/html" title="ubuntu terminal trick" />
+<link href="https://zhuio.github.io/ubuntu-terminal-trick/" rel="alternate" type="text/html" title="ubuntu terminal trick" />
 <published>2017-02-20T21:49:00+08:00</published>
 <updated>2017-02-20T21:49:00+08:00</updated>
-<id>http://localhost:4000/ubuntu-terminal-trick</id>
-<content type="html" xml:base="http://localhost:4000/ubuntu-terminal-trick/">&lt;h4 id=&quot;section&quot;&gt;一、快捷键&lt;/h4&gt;
+<id>https://zhuio.github.io/ubuntu-terminal-trick</id>
+<content type="html" xml:base="https://zhuio.github.io/ubuntu-terminal-trick/">&lt;h4 id=&quot;section&quot;&gt;一、快捷键&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Shift&amp;amp;#43;Ctrl&amp;amp;#43;T:新建标签页
 
@@ -425,11 +503,11 @@ Ctrl&amp;amp;#43;0:原始大小
 </entry>
 <entry>
 <title>pip requirements</title>
-<link href="http://localhost:4000/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" />
+<link href="https://zhuio.github.io/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" />
 <published>2017-02-19T18:32:00+08:00</published>
 <updated>2017-02-19T18:32:00+08:00</updated>
-<id>http://localhost:4000/pip-requirements</id>
-<content type="html" xml:base="http://localhost:4000/pip-requirements/">&lt;h1 id=&quot;requirementstxt&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
+<id>https://zhuio.github.io/pip-requirements</id>
+<content type="html" xml:base="https://zhuio.github.io/pip-requirements/">&lt;h1 id=&quot;requirementstxt&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
 
 &lt;p&gt;在查看别人的Python项目时，经常会看到一个&lt;code class=&quot;highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt;文件，里面记录了当前程序的所有依赖包及其精确版本号。这个文件有点类似与Rails的&lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;。其作用是用来在另一台PC上重新构建项目所需要的运行环境依赖。&lt;/p&gt;
 
@@ -449,11 +527,11 @@ Ctrl&amp;amp;#43;0:原始大小
 </entry>
 <entry>
 <title>shadowsocks锐速</title>
-<link href="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/" rel="alternate" type="text/html" title="shadowsocks锐速" />
+<link href="https://zhuio.github.io/shadowsocks%E9%94%90%E9%80%9F/" rel="alternate" type="text/html" title="shadowsocks锐速" />
 <published>2017-02-18T21:35:00+08:00</published>
 <updated>2017-02-18T21:35:00+08:00</updated>
-<id>http://localhost:4000/shadowsocks锐速</id>
-<content type="html" xml:base="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/">&lt;h2 id=&quot;section&quot;&gt;更换内核&lt;/h2&gt;
+<id>https://zhuio.github.io/shadowsocks锐速</id>
+<content type="html" xml:base="https://zhuio.github.io/shadowsocks%E9%94%90%E9%80%9F/">&lt;h2 id=&quot;section&quot;&gt;更换内核&lt;/h2&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --force
 &lt;/code&gt;&lt;/pre&gt;
@@ -593,11 +671,11 @@ rm -rf /serverspeeder
 </entry>
 <entry>
 <title>flask框架5</title>
-<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/" rel="alternate" type="text/html" title="flask框架5" />
+<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B65/" rel="alternate" type="text/html" title="flask框架5" />
 <published>2017-02-12T15:37:00+08:00</published>
 <updated>2017-02-12T15:37:00+08:00</updated>
-<id>http://localhost:4000/flask框架5</id>
-<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/">&lt;h2 id=&quot;flask&quot;&gt;动态基于用户的内容Flask教程&lt;/h2&gt;
+<id>https://zhuio.github.io/flask框架5</id>
+<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B65/">&lt;h2 id=&quot;flask&quot;&gt;动态基于用户的内容Flask教程&lt;/h2&gt;
 
 &lt;p&gt;虽然我们可以使用装饰器来包围访问控制的函数，但我们也可以使用我们的Jinja模板逻辑来控制视图。例如，现在，当我们登录我们的网站时，我们仍然在右上角有一个“登录”按钮。&lt;/p&gt;
 
@@ -639,11 +717,11 @@ rm -rf /serverspeeder
 </entry>
 <entry>
 <title>flask框架4</title>
-<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/" rel="alternate" type="text/html" title="flask框架4" />
+<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B64/" rel="alternate" type="text/html" title="flask框架4" />
 <published>2017-02-12T15:36:00+08:00</published>
 <updated>2017-02-12T15:36:00+08:00</updated>
-<id>http://localhost:4000/flask框架4</id>
-<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/">&lt;h2 id=&quot;flask---loginrequiredflask&quot;&gt;Flask装饰器 - Login_Required页面Flask教程&lt;/h2&gt;
+<id>https://zhuio.github.io/flask框架4</id>
+<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B64/">&lt;h2 id=&quot;flask---loginrequiredflask&quot;&gt;Flask装饰器 - Login_Required页面Flask教程&lt;/h2&gt;
 
 &lt;p&gt;现在我们可以让用户注册和登录，我们也允许他们注销。这是有一点意义，不让用户注销，除非他们登录！&lt;/p&gt;
 
@@ -658,11 +736,11 @@ rm -rf /serverspeeder
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def login_required(f):
     @wraps(f)
     def wrap( *args, **kwargs):
-        if 'logged_in' in session:
+        if &#39;logged_in&#39; in session:
             return f(*args, **kwargs)
         else:
             flash(&quot;You need to login first&quot;)
-            return redirect(url_for('login_page'))
+            return redirect(url_for(&#39;login_page&#39;))
 
     return wrap {% endhighlight %}    		
 &lt;/code&gt;&lt;/pre&gt;
@@ -680,7 +758,7 @@ def logout():
     session.clear()
     flash(&quot;You have been logged out!&quot;)
     gc.collect()
-    return redirect(url_for('dashboard'))
+    return redirect(url_for(&#39;dashboard&#39;))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -691,32 +769,32 @@ def logout():
 </entry>
 <entry>
 <title>flask框架3</title>
-<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B63/" rel="alternate" type="text/html" title="flask框架3" />
+<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B63/" rel="alternate" type="text/html" title="flask框架3" />
 <published>2017-02-12T15:34:00+08:00</published>
 <updated>2017-02-12T15:34:00+08:00</updated>
-<id>http://localhost:4000/flask框架3</id>
-<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B63/">&lt;h2 id=&quot;flask&quot;&gt;Flask用户登录系统教程&lt;/h2&gt;
+<id>https://zhuio.github.io/flask框架3</id>
+<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B63/">&lt;h2 id=&quot;flask&quot;&gt;Flask用户登录系统教程&lt;/h2&gt;
 
 &lt;p&gt;它让我们相当多，但在这里我们是：登录页面！如果你还没有，那么你应该注册一些用户，并记住其中之一，以测试我们的登录页面，当我们完成。&lt;/p&gt;
 
 &lt;p&gt;我们已经有了登录模板，我们可以保留，但现在验证过程需要验证我们的数据库中的用户，而不是硬编码的管理员用户。
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Part of __init__.py file&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/login/', methods=[&quot;GET&quot;,&quot;POST&quot;])
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route(&#39;/login/&#39;, methods=[&quot;GET&quot;,&quot;POST&quot;])
 def login_page():
-    error = ''
+    error = &#39;&#39;
     try:
         c, conn = connection()
         if request.method == &quot;POST&quot;:
 
             data = c.execute(&quot;SELECT * FROM users WHERE username = (%s)&quot;,
-                             thwart(request.form['username']))
+                             thwart(request.form[&#39;username&#39;]))
 
             data = c.fetchone()[2]
 
-            if sha256_crypt.verify(request.form['password'], data):
-                session['logged_in'] = True
-                session['username'] = request.form['username']
+            if sha256_crypt.verify(request.form[&#39;password&#39;], data):
+                session[&#39;logged_in&#39;] = True
+                session[&#39;username&#39;] = request.form[&#39;username&#39;]
 
                 flash(&quot;You are now logged in&quot;)
                 return redirect(url_for(&quot;dashboard&quot;))
@@ -751,11 +829,11 @@ def login_page():
 </entry>
 <entry>
 <title>flask框架2</title>
-<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B62/" rel="alternate" type="text/html" title="flask框架2" />
+<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B62/" rel="alternate" type="text/html" title="flask框架2" />
 <published>2017-02-12T15:33:00+08:00</published>
 <updated>2017-02-12T15:33:00+08:00</updated>
-<id>http://localhost:4000/flask框架2</id>
-<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B62/">&lt;h2 id=&quot;flask&quot;&gt;Flask教程的密码哈希&lt;/h2&gt;
+<id>https://zhuio.github.io/flask框架2</id>
+<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B62/">&lt;h2 id=&quot;flask&quot;&gt;Flask教程的密码哈希&lt;/h2&gt;
 
 &lt;p&gt;虽然我们已经将密码哈希加入我们的注册页面，我想花一些时间来讨论实际发生的事情。也许你最终使用另一种语言，或者也许passlib不支持你在未来使用的Python版本。正因为如此，你应该至少在高层了解它是如何工作的。&lt;/p&gt;
 
@@ -770,7 +848,7 @@ def login_page():
 &lt;p&gt;这里有一个简单的哈希脚本来说明这一点，你可以运行：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import hashlib
-password = 'pa$$w0rd'
+password = &#39;pa$$w0rd&#39;
 h = hashlib.md5(password.encode())
 print(h.hexdigest())
 
@@ -793,7 +871,7 @@ print(h.hexdigest())
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import hashlib
 
-user_entered_password = 'pa$$w0rd'
+user_entered_password = &#39;pa$$w0rd&#39;
 salt = &quot;5gz&quot;
 db_password = user_entered_password+salt
 h = hashlib.md5(db_password.encode())
@@ -887,56 +965,5 @@ print(sha256_crypt.verify(&quot;password&quot;, password))
 </content>
 <category term="flask" />
 <summary>Flask教程的密码哈希</summary>
-</entry>
-<entry>
-<title>flask框架注册登录结构</title>
-<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/" rel="alternate" type="text/html" title="flask框架注册登录结构" />
-<published>2017-02-12T15:32:00+08:00</published>
-<updated>2017-02-12T15:32:00+08:00</updated>
-<id>http://localhost:4000/flask框架注册登录结构</id>
-<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B6%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%84/">&lt;h2 id=&quot;flask&quot;&gt;完成用户注册Flask教程&lt;/h2&gt;
-
-&lt;p&gt;在这个Flask教程中，我们将包装这个注册系统。&lt;/p&gt;
-
-&lt;p&gt;为了做到这一点，我们可能需要一个register.html页面。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;File: register.html Location: /var/www/PythonProgramming/PythonProgramming/templates/register.html&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;{% highlight css %}&lt;/p&gt;
-
-&lt;p&gt;{% raw %}&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;div&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;h&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;Register&amp;lt;/h&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;formhelpers.html&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;render_field&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;form&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;method=post&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/register/&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;dl&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.username)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.email)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.password)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.confirm)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-				&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{render_field(form.accept_tos)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/dl&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;input&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type=submit&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;value=Register&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;p&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&amp;lt;strong&amp;gt;Error:&amp;lt;/strong&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endblock&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endraw&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;endhighlight&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这是一个相当典型的注册表单，只有从我们传递的表单对象呈现的字段。&lt;/p&gt;
-</content>
-<category term="flask" />
-<summary>完成用户注册Flask教程</summary>
 </entry>
 </feed>

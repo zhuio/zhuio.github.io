@@ -7,8 +7,10 @@ tags:
 comments: true
 ---
 
-### 安装jekyll总出错
-  换源
+## 安装jekyll总出错
+
+换源
+
 [淘宝ruby源](https://ruby.taobao.org/)
 
 需要的命令
@@ -21,9 +23,6 @@ sudo apt-get install build-essential patch
 
 sudo apt-get install ruby-dev zlib1g-dev liblzma-dev
 
-sudo gem install bundle
-
-bundle exec jekyll serve
-
-
 {% endhighlight %}
+
+### 不要用bundle
