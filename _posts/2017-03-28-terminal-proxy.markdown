@@ -28,15 +28,11 @@ comments: true
 
 ### 2.编辑proxychains配置
 
-    1
-
 
     vim /etc/proxychains.conf
 
 
 ### 3.将`socks4 127.0.0.1 9095`改为
-
-    1
 
 
     socks5 127.0.0.1 1080

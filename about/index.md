@@ -6,7 +6,7 @@ date: 2016-03-21
 comments: false
 ---
 
-<center><a href="https://zhuio.github.io"><b>This blog</b></a> is a record of my life.</center>
+<center><a href="https://zhuio.github.io"><b>This blog</b></a> is a record of my cs life.</center>
 
 ## who am i
 * 一个喜欢新事物的家伙

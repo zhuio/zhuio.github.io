@@ -1,18 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
-<link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" />
-<link href="https://zhuio.github.io/" rel="alternate" type="text/html" />
-<updated>2017-03-28T11:22:00+08:00</updated>
-<id>https://zhuio.github.io/</id>
+<generator uri="http://jekyllrb.com" version="3.4.3">Jekyll</generator>
+<link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" />
+<link href="http://localhost:4000/" rel="alternate" type="text/html" />
+<updated>2017-04-03T19:18:33+08:00</updated>
+<id>http://localhost:4000/</id>
 <subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle>
 <entry>
+<title>用python写脚本</title>
+<link href="http://localhost:4000/%E7%94%A8python%E5%86%99%E8%84%9A%E6%9C%AC/" rel="alternate" type="text/html" title="用python写脚本" />
+<published>2017-04-03T19:10:00+08:00</published>
+<updated>2017-04-03T19:10:00+08:00</updated>
+<id>http://localhost:4000/用python写脚本</id>
+<content type="html" xml:base="http://localhost:4000/%E7%94%A8python%E5%86%99%E8%84%9A%E6%9C%AC/">&lt;h3 id=&quot;python&quot;&gt;python写脚本&lt;/h3&gt;
+
+&lt;p&gt;那，python可以做shell脚本吗？ 首先介绍一个函数：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;os.system(command)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个函数可以调用shell运行命令行&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;并且返回它的返回值。试一下在python的解释器里输入&lt;code class=&quot;highlighter-rouge&quot;&gt;os.system(&quot;ls -l&quot;)&lt;/code&gt;，就可以看到&lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt;列出了当前目录下的文件。可以说，通过这个函数，python就拥有了shell的所有能力。呵呵。。不过，通常这条命令不需要用到。因为shell常用的那些命令在python中通常有对应而且同样简洁的写法。&lt;/p&gt;
+
+&lt;p&gt;shell中最常用的是ls命令，python对应的写法是：&lt;code class=&quot;highlighter-rouge&quot;&gt;os.listdir(dirname)&lt;/code&gt;，这个函数返回字符串列表，里面是所有的文件名，不过不包含&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;..&lt;/code&gt;。如果要遍历整个目录的话就会比较复杂一点。我们等下再说吧。先在解释器里试一下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;os.listdir(&quot;/&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;就像这样，接下去所有命令都可以在python的解释器里直接运行观看结果。&lt;/p&gt;
+
+&lt;p&gt;对应于&lt;code class=&quot;highlighter-rouge&quot;&gt;cp&lt;/code&gt;命令的是：&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.copy(src,dest)&lt;/code&gt;，这个函数有两个参数，参数&lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt;是指源文件的名字，参数dest则是目标文件或者目标目录的名字。 如果&lt;code class=&quot;highlighter-rouge&quot;&gt;dest&lt;/code&gt;是一个目录名，就会在那个目录下创建一个相同名字的文件。与&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.copy&lt;/code&gt;函数相类似的是&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.copy2(src,dest)，不过&lt;/code&gt;copy2`还会复制最后存取时间和最后更新时间。&lt;/p&gt;
+
+&lt;p&gt;不过，shell的&lt;code class=&quot;highlighter-rouge&quot;&gt;cp&lt;/code&gt;命令还可以复制目录，python的&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.copy&lt;/code&gt;却不行，第一个参数只能是一个文件。这怎么办？其实，python还有个&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.copytree(src, dst [,symlinks])&lt;/code&gt; 。参数多了一个&lt;code class=&quot;highlighter-rouge&quot;&gt;symlinks&lt;/code&gt;，它是一个布尔值，如果是True的话就创建符号链接。&lt;/p&gt;
+
+&lt;p&gt;移动或者重命名文件和目录呢？估计被聪明的朋友猜到了，&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.move(src,dst)&lt;/code&gt;，呵呵。。与&lt;code class=&quot;highlighter-rouge&quot;&gt;mv&lt;/code&gt;命令类似，如果&lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;dst&lt;/code&gt;在同一个文件系统上，&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.move&lt;/code&gt;只是简单改一下名字，如果src和dst在不同的文件系统上，&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.move&lt;/code&gt;会先把&lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt;复制到&lt;code class=&quot;highlighter-rouge&quot;&gt;ds&lt;/code&gt;t，然后删除&lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt;文件。看到现在，大多数朋友应该已经对python的能力有点眉目了，接下来我就列个表，介绍一下其它的函数：&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.chdir(dirname)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;把当前工作目录切换到dirname下&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.getcwd()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;返回当前的工作目录路径&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.chroot(dirname)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;把dirname作为进程的根目录。和*nix下的&lt;code class=&quot;highlighter-rouge&quot;&gt;chroot&lt;/code&gt;命令类似&lt;/p&gt;
+
+&lt;p&gt;-
+os.chmod(path,mode)&lt;/p&gt;
+
+&lt;p&gt;更改&lt;code class=&quot;highlighter-rouge&quot;&gt;path&lt;/code&gt;的权限位。&lt;code class=&quot;highlighter-rouge&quot;&gt;mode&lt;/code&gt;可以是以下值(使用&lt;code class=&quot;highlighter-rouge&quot;&gt;or&lt;/code&gt;)的组合：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;os.S_ISUIDos.S_ISGIDos.S_ENFMTos.S_ISVTXos.S_IREADos.S_IWRITEos.S_IEXECos.S_IRWXUos.S_IRUSRos.S_IWUSRos.S_IXUSRos.S_IRWXGos.S_IRGRPos.S_IWGRPos.S_IXGRPos.S_IRWXOos.S_IROTHos.S_IWOTHos.S_IXOTH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;具体它们是什么含义，就不仔细说了，基本上就是&lt;code class=&quot;highlighter-rouge&quot;&gt;R&lt;/code&gt;代表读,&lt;code class=&quot;highlighter-rouge&quot;&gt;W&lt;/code&gt;代表写，&lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt;代表执行权限。&lt;code class=&quot;highlighter-rouge&quot;&gt;USR&lt;/code&gt;代表用户，&lt;code class=&quot;highlighter-rouge&quot;&gt;GRP&lt;/code&gt;代表组，&lt;code class=&quot;highlighter-rouge&quot;&gt;OTH&lt;/code&gt;代表其它。&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.chown(path,uid,gid)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;改变文件的属主。uid和gid为-1的时候不改变原来的属主。&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.link(src,dst)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;创建硬连接&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.mkdir(path,[mode])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;创建目录。&lt;code class=&quot;highlighter-rouge&quot;&gt;mode&lt;/code&gt;的意义参见&lt;code class=&quot;highlighter-rouge&quot;&gt;os.chmod()&lt;/code&gt;，默认是0777&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.makedirs(path,[mode])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;os.mkdir()&lt;/code&gt;类似，不过会先创建不存在的父目录。&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.readlink(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;返回path这个符号链接所指向的路径&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.remove(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;删除文件，不能用于删除目录&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.rmdir(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;删除文件夹，不能用于删除文件&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.symlink(src,dst)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;创建符号链接&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil.rmtree(path[,ignore_errors[,onerror]])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;删除文件夹&lt;/p&gt;
+
+&lt;p&gt;介绍了这么多，其实只要查一下&lt;code class=&quot;highlighter-rouge&quot;&gt;os&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil&lt;/code&gt;两个模块的文档就有了，呵呵。。真正编写shell脚本的时候还需要注意：&lt;/p&gt;
+
+&lt;p&gt;1.
+环境变量。python的环境变量保存在&lt;code class=&quot;highlighter-rouge&quot;&gt;os.environ&lt;/code&gt;这个字典里，可以用普通字典的方法修改它，使用system启动其它程序的时候会自动被继承。比如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;os.environ[&quot;fish&quot;]=&quot;nothing&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;不过也要注意，环境变量的值只能是字符串。和shell有些不同的是，python没有&lt;code class=&quot;highlighter-rouge&quot;&gt;export&lt;/code&gt;环境变量这个概念。为什么没有呢？因为python没有必要有:-)&lt;/p&gt;
+
+&lt;p&gt;1.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path&lt;/code&gt;这个模块里包含了很多关于路径名处理的函数。在shell里路径名处理好像不是很重要，但是在python里经常需要用到。最常用的两个是分离和合并目录名和文件名：&lt;/p&gt;
+
+&lt;p&gt;2.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.split(path) -&amp;gt; (dirname,basename)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这个函数会把一个路径分离为两部分，比如：&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.split(&quot;/foo/bar.dat&quot;)&lt;/code&gt;会返回&lt;code class=&quot;highlighter-rouge&quot;&gt;(&quot;/foo&quot;,&quot;bar.dat&quot;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;3.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.join(dirname,basename)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这个函数会把目录名和文件名组合成一个完整的路径名，比如：os.path.join(“/foo”,”bar.dat”)会返回”/foo/bar.dat”。这个函数和os.path.split()刚好相反。&lt;/p&gt;
+
+&lt;p&gt;还有这些函数：&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.abspath(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;把path转成绝对路径&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.expanduser(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;把path中包含的&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;~&quot;&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;~user&quot;&lt;/code&gt;转换成用户目录&lt;/p&gt;
+
+&lt;p&gt;-
+os.path.expandvars(path)&lt;/p&gt;
+
+&lt;p&gt;根据环境变量的值替换path中包含的”$name”和”${name}”，比如环境变量FISH=nothing，那os.path.expandvars(“$FISH/abc”)会返回”nothing/abc”&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.normpath(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;去掉path中包含的”.”和”..”&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.splitext(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;把path分离成基本名和扩展名。比如：&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.splitext(&quot;/foo/bar.tar.bz2&quot;)&lt;/code&gt;返回&lt;code class=&quot;highlighter-rouge&quot;&gt;('/foo/bar.tar', '.bz2')&lt;/code&gt;。要注意它和&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.split()&lt;/code&gt;的区别&lt;/p&gt;
+
+&lt;p&gt;-
+在&lt;code class=&quot;highlighter-rouge&quot;&gt;os&lt;/code&gt;模块有一个很好用的函数叫&lt;code class=&quot;highlighter-rouge&quot;&gt;os.stat()&lt;/code&gt;没有介绍，因为&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path&lt;/code&gt;模块里包含了一组和它具有同样功能的函数，但是名字更好记一点。&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.exists(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;判断文件或者目录是否存在&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.isfile(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;判断path所指向的是否是一个普通文件，而不是目录&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.isdir(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;判断path所指向的是否是一个目录，而不是普通文件&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.islink(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;判断path所指向的是否是一个符号链接&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.ismount(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;判断path所指向的是否是一个挂接点(mount point)&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.getatime(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;返回path所指向的文件或者目录的最后存取时间。&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.getmtime(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;返回path所指向的文件或者目录的最后修改时间&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.getctime(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;返回path所指向的文件的创建时间&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;os.path.getsize(path)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;返回path所指向的文件的大小&lt;/p&gt;
+
+&lt;p&gt;-
+应用python编写shell脚本经常要用到&lt;code class=&quot;highlighter-rouge&quot;&gt;os&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;shutil&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;glob&lt;/code&gt;(正则表达式的文件名),&lt;code class=&quot;highlighter-rouge&quot;&gt;tempfile&lt;/code&gt;(临时文件),&lt;code class=&quot;highlighter-rouge&quot;&gt;pwd&lt;/code&gt;(操作&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/passwd&lt;/code&gt;文件),&lt;code class=&quot;highlighter-rouge&quot;&gt;grp&lt;/code&gt;(操作&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/group&lt;/code&gt;文件),&lt;code class=&quot;highlighter-rouge&quot;&gt;commands&lt;/code&gt;(取得一个命令的输出)。前面两个已经基本上介绍完了，后面几个很简单，看一下文档就可以了。&lt;/p&gt;
+
+&lt;p&gt;-
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sys.argv&lt;/code&gt;是一个列表，保存了python程序的命令行参数。其中&lt;code class=&quot;highlighter-rouge&quot;&gt;sys.argv[0]&lt;/code&gt;是程序本身的名字。&lt;/p&gt;
+
+&lt;p&gt;不能光说不练，接下来我们就编写一个用于复制文件的简单脚本。前两天叫我写脚本的同事有个几万个文件的目录，他想复制这些文件到其它的目录，又不能直接复制目录本身。他试了一下&lt;code class=&quot;highlighter-rouge&quot;&gt;cp src/* dest/&lt;/code&gt;结果报了一个命令行太长的错误，让我帮他写一个脚本。操起python来：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;importsys,os.path,shutilforfinos.listdir(sys.argv[1]):shutil.copy(os.path.join(sys.argv[1],f),sys.argv[2])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再试一下linuxapp版里的帖子——把一个文件夹下的所有文件重命名成&lt;code class=&quot;highlighter-rouge&quot;&gt;10001～10999&lt;/code&gt;。可以这样写：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;importos.path,sysdirname=sys.argv[1]i=10001forfinos.listdir(dirname):src=os.path.join(dirname,f)ifos.path.isdir(src):continueos.rename(src,str(i))i+=1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+<category term="python" />
+<summary>python写脚本</summary>
+</entry>
+<entry>
+<title>django note</title>
+<link href="http://localhost:4000/django-note/" rel="alternate" type="text/html" title="django note" />
+<published>2017-04-03T17:28:00+08:00</published>
+<updated>2017-04-03T17:28:00+08:00</updated>
+<id>http://localhost:4000/django-note</id>
+<content type="html" xml:base="http://localhost:4000/django-note/">
+</content>
+</entry>
+<entry>
 <title>terminal proxy</title>
-<link href="https://zhuio.github.io/terminal-proxy/" rel="alternate" type="text/html" title="terminal proxy" />
+<link href="http://localhost:4000/terminal-proxy/" rel="alternate" type="text/html" title="terminal proxy" />
 <published>2017-03-28T11:11:00+08:00</published>
 <updated>2017-03-28T11:11:00+08:00</updated>
-<id>https://zhuio.github.io/terminal-proxy</id>
-<content type="html" xml:base="https://zhuio.github.io/terminal-proxy/">&lt;h2 id=&quot;proxychainssocks5&quot;&gt;利用proxychains在终端使用socks5代理&lt;/h2&gt;
+<id>http://localhost:4000/terminal-proxy</id>
+<content type="html" xml:base="http://localhost:4000/terminal-proxy/">&lt;h2 id=&quot;proxychainssocks5&quot;&gt;利用proxychains在终端使用socks5代理&lt;/h2&gt;
 
 &lt;h3 id=&quot;proxychains&quot;&gt;1.proxychains安装&lt;/h3&gt;
 
@@ -29,19 +259,13 @@ cd .. &amp;amp;&amp;amp; rm -rf proxychains-ng
 
 &lt;h3 id=&quot;proxychains-1&quot;&gt;2.编辑proxychains配置&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1
-
-
-vim /etc/proxychains.conf
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim /etc/proxychains.conf
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;socks4-127001-9095&quot;&gt;3.将&lt;code class=&quot;highlighter-rouge&quot;&gt;socks4 127.0.0.1 9095&lt;/code&gt;改为&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1
-
-
-socks5 127.0.0.1 1080
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;socks5 127.0.0.1 1080
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -51,7 +275,7 @@ socks5 127.0.0.1 1080
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ProxyList format
 94#       type  ip  port  [user pass]
-95#       (values separated by &#39;tab&#39; or &#39;blank&#39;)
+95#       (values separated by 'tab' or 'blank')
 96#
 97#       only numeric ipv4 addresses are valid
 98#
@@ -86,11 +310,11 @@ socks5 127.0.0.1 1080
 </entry>
 <entry>
 <title>Ubuntu常用命令</title>
-<link href="https://zhuio.github.io/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="alternate" type="text/html" title="Ubuntu常用命令" />
+<link href="http://localhost:4000/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="alternate" type="text/html" title="Ubuntu常用命令" />
 <published>2017-03-08T01:43:00+08:00</published>
 <updated>2017-03-08T01:43:00+08:00</updated>
-<id>https://zhuio.github.io/ubuntu常用命令</id>
-<content type="html" xml:base="https://zhuio.github.io/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">&lt;h1 id=&quot;ubuntu&quot;&gt;Ubuntu常用命令整理&lt;/h1&gt;
+<id>http://localhost:4000/ubuntu常用命令</id>
+<content type="html" xml:base="http://localhost:4000/ubuntu%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">&lt;h1 id=&quot;ubuntu&quot;&gt;Ubuntu常用命令整理&lt;/h1&gt;
 
 &lt;p&gt;ubuntu命令很多，要熟练运用所有的命令有一定的难度。但大部分情况下，我们只要掌握常用的那些就够了，剩下的在必要时查资料即可。
 下面就对我们平时常用的ubuntu命令进行简单介绍。&lt;/p&gt;
@@ -190,11 +414,11 @@ socks5 127.0.0.1 1080
 </entry>
 <entry>
 <title>youtube-dl</title>
-<link href="https://zhuio.github.io/youtube-dl/" rel="alternate" type="text/html" title="youtube-dl" />
+<link href="http://localhost:4000/youtube-dl/" rel="alternate" type="text/html" title="youtube-dl" />
 <published>2017-02-20T23:48:00+08:00</published>
 <updated>2017-02-20T23:48:00+08:00</updated>
-<id>https://zhuio.github.io/youtube-dl</id>
-<content type="html" xml:base="https://zhuio.github.io/youtube-dl/">&lt;h1 id=&quot;youtube&quot;&gt;下载YouTube视频&lt;/h1&gt;
+<id>http://localhost:4000/youtube-dl</id>
+<content type="html" xml:base="http://localhost:4000/youtube-dl/">&lt;h1 id=&quot;youtube&quot;&gt;下载YouTube视频&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;查看视频所有类型,只看不下载
@@ -282,11 +506,11 @@ GitHub项目：&lt;a href=&quot;https://github.com/rg3/youtube-dl/&quot;&gt;http
 </entry>
 <entry>
 <title>ubuntu terminal trick</title>
-<link href="https://zhuio.github.io/ubuntu-terminal-trick/" rel="alternate" type="text/html" title="ubuntu terminal trick" />
+<link href="http://localhost:4000/ubuntu-terminal-trick/" rel="alternate" type="text/html" title="ubuntu terminal trick" />
 <published>2017-02-20T21:49:00+08:00</published>
 <updated>2017-02-20T21:49:00+08:00</updated>
-<id>https://zhuio.github.io/ubuntu-terminal-trick</id>
-<content type="html" xml:base="https://zhuio.github.io/ubuntu-terminal-trick/">&lt;h4 id=&quot;section&quot;&gt;一、快捷键&lt;/h4&gt;
+<id>http://localhost:4000/ubuntu-terminal-trick</id>
+<content type="html" xml:base="http://localhost:4000/ubuntu-terminal-trick/">&lt;h4 id=&quot;section&quot;&gt;一、快捷键&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Shift&amp;amp;#43;Ctrl&amp;amp;#43;T:新建标签页
 
@@ -503,11 +727,11 @@ Ctrl&amp;amp;#43;0:原始大小
 </entry>
 <entry>
 <title>pip requirements</title>
-<link href="https://zhuio.github.io/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" />
+<link href="http://localhost:4000/pip-requirements/" rel="alternate" type="text/html" title="pip requirements" />
 <published>2017-02-19T18:32:00+08:00</published>
 <updated>2017-02-19T18:32:00+08:00</updated>
-<id>https://zhuio.github.io/pip-requirements</id>
-<content type="html" xml:base="https://zhuio.github.io/pip-requirements/">&lt;h1 id=&quot;requirementstxt&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
+<id>http://localhost:4000/pip-requirements</id>
+<content type="html" xml:base="http://localhost:4000/pip-requirements/">&lt;h1 id=&quot;requirementstxt&quot;&gt;如何自动生成和安装requirements.txt依赖&lt;/h1&gt;
 
 &lt;p&gt;在查看别人的Python项目时，经常会看到一个&lt;code class=&quot;highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt;文件，里面记录了当前程序的所有依赖包及其精确版本号。这个文件有点类似与Rails的&lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;。其作用是用来在另一台PC上重新构建项目所需要的运行环境依赖。&lt;/p&gt;
 
@@ -527,11 +751,11 @@ Ctrl&amp;amp;#43;0:原始大小
 </entry>
 <entry>
 <title>shadowsocks锐速</title>
-<link href="https://zhuio.github.io/shadowsocks%E9%94%90%E9%80%9F/" rel="alternate" type="text/html" title="shadowsocks锐速" />
+<link href="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/" rel="alternate" type="text/html" title="shadowsocks锐速" />
 <published>2017-02-18T21:35:00+08:00</published>
 <updated>2017-02-18T21:35:00+08:00</updated>
-<id>https://zhuio.github.io/shadowsocks锐速</id>
-<content type="html" xml:base="https://zhuio.github.io/shadowsocks%E9%94%90%E9%80%9F/">&lt;h2 id=&quot;section&quot;&gt;更换内核&lt;/h2&gt;
+<id>http://localhost:4000/shadowsocks锐速</id>
+<content type="html" xml:base="http://localhost:4000/shadowsocks%E9%94%90%E9%80%9F/">&lt;h2 id=&quot;section&quot;&gt;更换内核&lt;/h2&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --force
 &lt;/code&gt;&lt;/pre&gt;
@@ -671,11 +895,11 @@ rm -rf /serverspeeder
 </entry>
 <entry>
 <title>flask框架5</title>
-<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B65/" rel="alternate" type="text/html" title="flask框架5" />
+<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/" rel="alternate" type="text/html" title="flask框架5" />
 <published>2017-02-12T15:37:00+08:00</published>
 <updated>2017-02-12T15:37:00+08:00</updated>
-<id>https://zhuio.github.io/flask框架5</id>
-<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B65/">&lt;h2 id=&quot;flask&quot;&gt;动态基于用户的内容Flask教程&lt;/h2&gt;
+<id>http://localhost:4000/flask框架5</id>
+<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B65/">&lt;h2 id=&quot;flask&quot;&gt;动态基于用户的内容Flask教程&lt;/h2&gt;
 
 &lt;p&gt;虽然我们可以使用装饰器来包围访问控制的函数，但我们也可以使用我们的Jinja模板逻辑来控制视图。例如，现在，当我们登录我们的网站时，我们仍然在右上角有一个“登录”按钮。&lt;/p&gt;
 
@@ -717,11 +941,11 @@ rm -rf /serverspeeder
 </entry>
 <entry>
 <title>flask框架4</title>
-<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B64/" rel="alternate" type="text/html" title="flask框架4" />
+<link href="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/" rel="alternate" type="text/html" title="flask框架4" />
 <published>2017-02-12T15:36:00+08:00</published>
 <updated>2017-02-12T15:36:00+08:00</updated>
-<id>https://zhuio.github.io/flask框架4</id>
-<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B64/">&lt;h2 id=&quot;flask---loginrequiredflask&quot;&gt;Flask装饰器 - Login_Required页面Flask教程&lt;/h2&gt;
+<id>http://localhost:4000/flask框架4</id>
+<content type="html" xml:base="http://localhost:4000/flask%E6%A1%86%E6%9E%B64/">&lt;h2 id=&quot;flask---loginrequiredflask&quot;&gt;Flask装饰器 - Login_Required页面Flask教程&lt;/h2&gt;
 
 &lt;p&gt;现在我们可以让用户注册和登录，我们也允许他们注销。这是有一点意义，不让用户注销，除非他们登录！&lt;/p&gt;
 
@@ -736,11 +960,11 @@ rm -rf /serverspeeder
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def login_required(f):
     @wraps(f)
     def wrap( *args, **kwargs):
-        if &#39;logged_in&#39; in session:
+        if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
             flash(&quot;You need to login first&quot;)
-            return redirect(url_for(&#39;login_page&#39;))
+            return redirect(url_for('login_page'))
 
     return wrap {% endhighlight %}    		
 &lt;/code&gt;&lt;/pre&gt;
@@ -758,7 +982,7 @@ def logout():
     session.clear()
     flash(&quot;You have been logged out!&quot;)
     gc.collect()
-    return redirect(url_for(&#39;dashboard&#39;))
+    return redirect(url_for('dashboard'))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -766,204 +990,5 @@ def logout():
 </content>
 <category term="flask" />
 <summary>Flask装饰器 - Login_Required页面Flask教程</summary>
-</entry>
-<entry>
-<title>flask框架3</title>
-<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B63/" rel="alternate" type="text/html" title="flask框架3" />
-<published>2017-02-12T15:34:00+08:00</published>
-<updated>2017-02-12T15:34:00+08:00</updated>
-<id>https://zhuio.github.io/flask框架3</id>
-<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B63/">&lt;h2 id=&quot;flask&quot;&gt;Flask用户登录系统教程&lt;/h2&gt;
-
-&lt;p&gt;它让我们相当多，但在这里我们是：登录页面！如果你还没有，那么你应该注册一些用户，并记住其中之一，以测试我们的登录页面，当我们完成。&lt;/p&gt;
-
-&lt;p&gt;我们已经有了登录模板，我们可以保留，但现在验证过程需要验证我们的数据库中的用户，而不是硬编码的管理员用户。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Part of __init__.py file&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route(&#39;/login/&#39;, methods=[&quot;GET&quot;,&quot;POST&quot;])
-def login_page():
-    error = &#39;&#39;
-    try:
-        c, conn = connection()
-        if request.method == &quot;POST&quot;:
-
-            data = c.execute(&quot;SELECT * FROM users WHERE username = (%s)&quot;,
-                             thwart(request.form[&#39;username&#39;]))
-
-            data = c.fetchone()[2]
-
-            if sha256_crypt.verify(request.form[&#39;password&#39;], data):
-                session[&#39;logged_in&#39;] = True
-                session[&#39;username&#39;] = request.form[&#39;username&#39;]
-
-                flash(&quot;You are now logged in&quot;)
-                return redirect(url_for(&quot;dashboard&quot;))
-
-            else:
-                error = &quot;Invalid credentials, try again.&quot;
-
-        gc.collect()
-
-        return render_template(&quot;login.html&quot;, error=error)
-
-    except Exception as e:
-        #flash(e)
-        error = &quot;Invalid credentials, try again.&quot;
-        return render_template(&quot;login.html&quot;, error = error)  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;在这里，我们使用我们写的连接文件来连接到数据库（dbconnect.py），它有一个名为connection的函数。&lt;/p&gt;
-
-&lt;p&gt;我们对POST方法进行与前面相同的检查。如果是这样，我们将查询数据库以查看该人员输入的用户名是否在数据库中，而不是忘记使用thwart来防止SQL注入。&lt;/p&gt;
-
-&lt;p&gt;接下来，如果用户名存在，我们然后将尝试的用户名与我们记录的散列密码进行比较，验证存储的散列的来源是否与用户尝试的密码相同。&lt;/p&gt;
-
-&lt;p&gt;如果是这样，那么我们通过Flask的会话功能登录用户，然后我们将它们发送到仪表板，因为他们都完成了登录页面。&lt;/p&gt;
-
-&lt;p&gt;如果出现任何问题，我们给出的错误只是“凭据无效，请重试”。您可以提供自定义错误，例如该用户名不存在或密码错误，但有人试图破解您的网站或用户名可以使用它的优势，知道他们错了什么。&lt;/p&gt;
-</content>
-<category term="flask" />
-<category term="hash" />
-<summary>Flask用户登录系统教程</summary>
-</entry>
-<entry>
-<title>flask框架2</title>
-<link href="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B62/" rel="alternate" type="text/html" title="flask框架2" />
-<published>2017-02-12T15:33:00+08:00</published>
-<updated>2017-02-12T15:33:00+08:00</updated>
-<id>https://zhuio.github.io/flask框架2</id>
-<content type="html" xml:base="https://zhuio.github.io/flask%E6%A1%86%E6%9E%B62/">&lt;h2 id=&quot;flask&quot;&gt;Flask教程的密码哈希&lt;/h2&gt;
-
-&lt;p&gt;虽然我们已经将密码哈希加入我们的注册页面，我想花一些时间来讨论实际发生的事情。也许你最终使用另一种语言，或者也许passlib不支持你在未来使用的Python版本。正因为如此，你应该至少在高层了解它是如何工作的。&lt;/p&gt;
-
-&lt;p&gt;它不仅对安全实践很重要，它也只是很酷的工作原理！&lt;/p&gt;
-
-&lt;p&gt;首先，你可能会理解为什么对密码进行加密很重要。如果您的数据库存储纯文本密码，至少您将自己查看密码，因此任何有权访问您的服务器的人都可以看到密码。在一个完美的世界中，没有人会侵犯用户的隐私，但这个世界并不完美。不仅如果你使用虚拟专用服务器，或者共享主机，那么为你工作的人可能窃取用户密码，黑客可能，甚至是你的服务器的主机。&lt;/p&gt;
-
-&lt;p&gt;那么，我们如何掩盖密码？遮掩原始文本很容易，我们可以对一个随机的算法做到这一点。问题是，使用密码，我们实际上需要能够验证用户将来输入作为原始密码。&lt;/p&gt;
-
-&lt;p&gt;采取的更原始的措施之一是简单的密码哈希。这是一个哈希函数应用于用户输入的内容，该哈希是作为密码存储的内容。&lt;/p&gt;
-
-&lt;p&gt;这里有一个简单的哈希脚本来说明这一点，你可以运行：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import hashlib
-password = &#39;pa$$w0rd&#39;
-h = hashlib.md5(password.encode())
-print(h.hexdigest())
-
-
-	导入hashlib，设置示例密码，创建哈希对象，打印哈希：
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;6c9b8b27dea1ddb845f96aa2567c6754&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;所以工作相当不错。如果你刚刚在数据库中看到了哈希，你不知道这是什么意思。但是，出现以下问题：运行脚本两次，或五次。你会发现每次的输出是相同的。最初，考虑到验证，你可能认为这不是一个要求吗？我们还能如何实现验证？&lt;/p&gt;
-
-&lt;p&gt;这里的问题是人们创建了大量的哈希表，特别是称为哈希查找表，在那里你可以搜索哈希，然后找到相应的明文密码。你也可以自己创建一个，只需为字符组合生成哈希。生成表需要更长的时间。这些表是大的，但不是太大，不能存储在你的笔记本电脑或上网本。&lt;/p&gt;
-
-&lt;p&gt;我们需要的是一种生成唯一哈希的方法，但是通过询问两个哈希是否来自同一个输入，尽管它们是非常不同的哈希，仍然找到一种验证哈希的方法。&lt;/p&gt;
-
-&lt;p&gt;然而，在到达之前，人们提出了一个更简单的解决方案：为什么不放置一个秘密模式的文本到每个输入的密码，只有我们的服务器知道。这就是所谓的“盐析”。&lt;/p&gt;
-
-&lt;p&gt;盐渍，虽然仍然使用，最初开始很简单。这里有一个例子说明如何盐化工作，建立我们最后的例子：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import hashlib
-
-user_entered_password = &#39;pa$$w0rd&#39;
-salt = &quot;5gz&quot;
-db_password = user_entered_password+salt
-h = hashlib.md5(db_password.encode())
-print(h.hexdigest())
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;在这里，唯一的主要区别是我们只有一个盐，我们追加到最后。然后，任何时候用户输入他们的密码，我们添加salt，哈希，然后比较这些哈希。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;de6e389819bdaa9e0ca60bb52cabccae&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;现在，盐可以在任何地方添加。也许是在中间的输入，也许在开始，也许在结束。你可以在开始时有一个盐，另一个在密码的中间，另一个在最后甚至。&lt;/p&gt;
-
-&lt;p&gt;这是很好，但有固有的风险，仍然，这里是为什么：&lt;/p&gt;
-
-&lt;p&gt;对于相同的密码，哈希始终相同。这意味着如果有人破解你生成的盐，那么他们现在通过生成哈希表破解了所有密码。这又可以进行大量的处理，但这绝不是今天的标准所无法达到的。&lt;/p&gt;
-
-&lt;p&gt;加密的一句话是，你不能依赖于安全的保密性。对加密的一个很好的测试是问自己：“如果有人发现我的加密方法，我的安全性是否受损？在许多情况下，例如用密码，对此的答案是“是的！这是一个问题。考虑有人访问您的数据库的许多原因也意味着他们有权访问您的源代码。这意味着有人可以找到你的盐。从这里，打破加密密码的整个数据库是相对快速的工作。&lt;/p&gt;
-
-&lt;p&gt;我们想要的是一种生成唯一哈希的方法，它们的源可以容易地验证，但是暴力强制将需要每个密码的强制强制，而不是整个数据库的暴力强制。让我们带上passlib的大枪。&lt;/p&gt;
-
-&lt;p&gt;如果你没有passlib，你可能不会，因为它不是标准库的一部分，做一个快速：&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install passlib&lt;/code&gt;
-or…
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install python-passlib&lt;/code&gt;
-Once you have passlib, let’s play!&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from passlib.hash import sha256_crypt
-
-password = sha256_crypt.encrypt(&quot;password&quot;)
-password2 = sha256_crypt.encrypt(&quot;password&quot;)
-
-print(password)
-print(password2)
-
-print(sha256_crypt.verify(&quot;password&quot;, password))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这里我们引入passlib的哈希能力，并使用SHA256作为算法。SHA256本质上优于md5，但是在上面的例子中你可以用“sha256”替换“md5”，看到输出的哈希值保持不变，只是稍长一些。&lt;/p&gt;
-
-&lt;p&gt;接下来，我们显示我们使用sha256_crypt从passlib哈希“密码”两次。一次到密码的变量，再一次到password2。&lt;/p&gt;
-
-&lt;p&gt;然后我们输出两者的哈希，注意他们是不同的。&lt;/p&gt;
-
-&lt;p&gt;最后，我们验证两个单独的哈希值来自同一个源。&lt;/p&gt;
-
-&lt;p&gt;果然，布尔环响了，我们有一个匹配！&lt;/p&gt;
-
-&lt;p&gt;现在，我们有一个很好的方法来保护用户密码，同时仍然能够在用户登录时验证用户。&lt;/p&gt;
-
-&lt;p&gt;现在，考虑黑客违反我们的服务器并获得对我们的源代码和我们的数据库的要求。他们可以看到一切，但现在什么？&lt;/p&gt;
-
-&lt;p&gt;现在，他们将不得不通过暴力破解密码，与以前一样，只是现在它是一次一个密码。Yikes。他们可以做的是获取他们的密码字典（通常是可能的密码的大量列表），生成一个散列，然后尝试验证这个散列对数据库中的所有密码，通过迭代每个并运行sha256_crypt.verify他们真/假反应。然而，这个过程是非常麻烦的，并且结果是缓慢的。这将需要很长时间，并且没有办法预先准备这里。你可能会想，他们不能通过生成SHA256哈希在高级准备？不，因为sha256_crypt也使用独特的盐。&lt;/p&gt;
-
-&lt;p&gt;在我写这篇文章的时候，这个方法没有已知的弱点。&lt;/p&gt;
-
-&lt;p&gt;现在，我想强调使用上面的“方法”。在方法和方法的应用之间存在主要区别。&lt;/p&gt;
-
-&lt;p&gt;另一个加密和安全性的格言通常如下：&lt;/p&gt;
-
-&lt;p&gt;“你可以在地球上拥有最坚固，最不可穿透的加固门保护一个房间，但如果墙仍然薄弱，那就没有好处。&lt;/p&gt;
-
-&lt;p&gt;忘记墙壁，天花板，甚至地面都很简单。&lt;/p&gt;
-
-&lt;p&gt;考虑你写了一个程序的逻辑多少次，认为它是坚实的，然后遇到一个错误，并“当然！你会不断犯错误，你可能知道你做了很多。有安全性，这些错误通常是未经检查，未经测试。尝试你最好的想像一个黑客，但永远记住&lt;em&gt;每个&lt;/em&gt;系统，连接到万维网，是可以攻击。只接受它，并在这个前提下工作。&lt;/p&gt;
-
-&lt;p&gt;接受passlib可能有缺陷，有一天，或者已经有人知道SHA256的缺陷。此外，大量的密码加密系统被黑客与服务器访问极其简单：&lt;/p&gt;
-
-&lt;p&gt;如果黑客获得对你的服务器的访问，并发现你的数据库被安全加密，他们可以做一些简单的事情，在登录表单上创建一个日志记录功能，它只是简单地保存用户键入的字段，到文本文件，或在别处传输数据。这显然不像一次获得整个数据库那么大，但是这种事情发生了。&lt;/p&gt;
-
-&lt;p&gt;很多人也对2FA（双因素身份验证）等事情给予了很大的信任。我讨厌爆破你的泡沫，但是，虽然这种方法使很多道理，这种方法的应用程序，你，客户端和你使用的网站非常重要。&lt;/p&gt;
-
-&lt;p&gt;作为一个开发人员，我已经设置了2FA几次。有很多选项，您可以选择安装2FA时，可以增加或阻碍安全。一个特别的，非常受欢迎的比特币钱包网站，例如，重新使用公共密钥为您的2FA。我发现这个，当我换手机。其结果是，有人可以暂时访问您的手机，访问您的帐户，重新验证2FA，您会发现在您的设备上没有任何更改。他们正在回收生成代码的公钥。现在他们只是等待你存了一大笔钱，然后他们带你。你永远不会知道你甚至是脆弱的。如果黑客也可以伪造你的会话cookie，这是另一种方式，他们可以做到这一点，他们甚至不需要你的代码。虚拟会话很难，但仍然可能。这就是为什么网站通常要求您在对帐户进行安全更改时重新输入密码。这个流行的比特币钱包网站？不，不需要重新输入您的密码。&lt;/p&gt;
-
-&lt;p&gt;尼斯安全的门，但薄弱的墙壁。&lt;/p&gt;
-
-&lt;p&gt;2FA错误的另一个很好的例子是当人们通过像Google一样使用2FA。很好，但如果你有你的2FA设置与谷歌验证器的Gmail帐户也不受2FA保护，你拧紧了。&lt;/p&gt;
-
-&lt;p&gt;大门，薄弱的墙壁。&lt;/p&gt;
-
-&lt;p&gt;最后，在让你感到脆弱之前，我将解决所有企业和服务器的最薄弱点：&lt;/p&gt;
-
-&lt;p&gt;运行他们的人。&lt;/p&gt;
-
-&lt;p&gt;最弱的环节总是人民。无论是因为他们犯错误，还是因为他们可以很容易地进行社交工程，人们通常是主要目标，或者至少是漏洞的原因。&lt;/p&gt;
-
-&lt;p&gt;我甚至不能计算我看到有多少网站被黑客入侵，因为有人提出了一个管理员，并能够获得访问。这听起来很蠢，但这个骗局很容易跌倒，特别是考虑到我们生活在今天的世界，开发人员分散，通常不是所有的本地。我个人是成功版本的受害者，我有网站的开发人员是黑客，我有无尽的尝试。这是黑客做的，他们黑客。他们不断尝试，最终他们可以通过。你的工作是使它尽可能具有挑战性。&lt;/p&gt;
-
-&lt;p&gt;这就像大多数犯罪。大多数犯罪是机会犯罪，你的工作不是最慢，最胖，最可怕的孩子从熊跑。&lt;/p&gt;
-</content>
-<category term="flask" />
-<summary>Flask教程的密码哈希</summary>
 </entry>
 </feed>
