@@ -1,0 +1,431 @@
+---
+layout: "post"
+title: "Scrapy爬虫入门教程一 安装和基本使用"
+date: "2017-04-07 12:19"
+tags:
+- scrapy
+comments: true
+---
+
+# Scrapy爬虫入门教程一 安装和基本使用
+
+
+**开发环境：**
+`Python 3.6.0 版本` （当前最新）
+`Scrapy 1.3.2 版本` （当前最新）
+
+
+### Scrapy安装
+
+Scrapy在Python 2.7和Python 3.3或更高版本上运行（除了在Windows 3上不支持Python 3）。
+
+通用方式：可以从pip安装Scrapy及其依赖：
+`pip install Scrapy`
+
+### 创建项目
+
+`scrapy startproject tutorial`
+
+
+
+项目结构：
+
+    tutorial/
+        scrapy.cfg            # 部署配置文件
+
+        tutorial/             # Python模块,代码写在这个目录下
+            __init__.py
+
+            items.py          # 项目项定义文件
+
+            pipelines.py      # 项目管道文件
+
+            settings.py       # 项目设置文件
+
+            spiders/          # 我们的爬虫/蜘蛛 目录
+                __init__.py
+
+我们第一个爬虫
+创建第一个爬虫类：tutorial/spiders/quotes_spider.py
+
+    import scrapy
+
+
+    class QuotesSpider(scrapy.Spider):
+        name = "quotes"
+
+        def start_requests(self):
+            urls = [
+                'http://quotes.toscrape.com/page/1/',
+                'http://quotes.toscrape.com/page/2/',
+            ]
+            for url in urls:
+                yield scrapy.Request(url=url, callback=self.parse)
+
+        def parse(self, response):
+            page = response.url.split("/")[-2]
+            filename = 'quotes-%s.html' % page
+            with open(filename, 'wb') as f:
+                f.write(response.body)
+            self.log('Saved file %s' % filename)
+
+-
+必须继承 scrapy.Spider
+
+-
+name：标识爬虫。它在项目中必须是唯一的，也就是说，您不能为不同的Spider设置相同的名称。
+
+-
+start_requests()：必须返回一个迭代的Requests（你可以返回请求列表或写一个生成器函数），Spider将开始抓取。后续请求将从这些初始请求连续生成。
+
+-
+parse()：将被调用来处理为每个请求下载的响应的方法。 response参数是一个TextResponse保存页面内容的实例，并且具有更多有用的方法来处理它。
+
+  该parse()方法通常解析响应，提取抓取的数据作为词典，并且还找到要跟踪的新网址并从中创建新的请求（Request）。
+
+### 如何运行我们爬虫
+
+进入项目根目录，也就是上面的tutorial目录
+`cd tutorial`
+执行爬虫：
+`scrapy crawl quotes`
+
+> quotes是上文写的爬虫名称
+
+    ... (omitted for brevity)
+    2016-12-16 21:24:05 [scrapy.core.engine] INFO: Spider opened
+    2016-12-16 21:24:05 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+    2016-12-16 21:24:05 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+    2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://quotes.toscrape.com/robots.txt> (referer: None)
+    2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://quotes.toscrape.com/page/1/> (referer: None)
+    2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://quotes.toscrape.com/page/2/> (referer: None)
+    2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-1.html
+    2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-2.html
+    2016-12-16 21:24:05 [scrapy.core.engine] INFO: Closing spider (finished)
+    ...
+
+现在，检查当前目录中的文件。您应该注意到，已经创建了两个新文件：quotes-1.html和quotes-2.html，以及相应URL的内容，parse方法解析的内容。
+
+
+上图用的是pycharm的IDE。
+
+### 提取数据
+
+学习如何使用Scrapy提取数据的最好方法是尝试使用shell Scrapy shell的选择器。
+
+`scrapy shell 'http://quotes.toscrape.com/page/1/'`
+
+> 记住，当从命令行运行Scrapy shell时，总是用引号引起url，否则包含参数的urls（即。&字符）将不起作用。
+> 在Windows上，请使用双引号：
+> scrapy shell “[http://quotes.toscrape.com/page/1/”](http://quotes.toscrape.com/page/1/%E2%80%9D)
+
+你会看到类似：
+
+    [... Scrapy log here ...]
+    2016-09-19 12:09:27 [scrapy.core.engine] DEBUG：Crawled（200）<GET http://quotes.toscrape.com/page/1/>（referer：None）
+    [s]可用Scrapy对象：
+    [s] scrapy scrapy模块（包含scrapy.Request，scrapy.Selector等）
+    [s] crawler <scrapy.crawler.Crawler object at 0x7fa91d888c90>
+    [s] item {}
+    [s] request <GET http://quotes.toscrape.com/page/1/>
+    [s] response <200 http://quotes.toscrape.com/page/1/>
+    [s] settings <scrapy.settings.Settings object at 0x7fa91d888c10>
+    [s] spider <DefaultSpider'default'at 0x7fa91c8af990>
+    [s]有用的快捷键：
+    [s] shelp（）Shell帮助（打印此帮助）
+    [s] fetch（req_or_url）Fetch请求（或URL）并更新本地对象
+    [s] view（response）在浏览器中查看响应
+    >>>
+
+#### CSS选择元素
+
+#### 提取标题
+
+尝试使用带有响应对象的CSS选择元素：
+
+    >>> response.css('title')
+    [<Selector xpath='descendant-or-self::title' data='<title>Quotes to Scrape</title>'>]
+
+返回一个Selector 的集合。
+
+从上面的标题中提取文本，您可以：
+
+    >>> response.css('title::text').extract()
+    ['Quotes to Scrape']
+
+这里有两个要注意的事情：一个是我们添加::text到CSS查询，意味着我们要直接在\<title>元素内部选择文本元素 。如果我们不指定::text，我们将获得完整的title元素，包括其标签：
+
+    >>> response.css('title').extract()
+    ['<title>Quotes to Scrape</title>']
+
+另一件事是调用的结果.extract()是一个列表，因为我们处理的是一个实例SelectorList。当你知道你只想要第一个结果，在这种情况下，你可以做：
+
+    >>> response.css('title::text').extract_first()
+    'Quotes to Scrape'
+
+也可以这样写：
+
+    >>> response.css('title::text')[0].extract()
+    'Quotes to Scrape'
+
+但是，使用.extract_first()避免了IndexError，并且None在找不到与选择匹配的任何元素时返回 。
+
+除了extract()和 extract_first()方法，您还可以使用该re()方法使用正则表达式提取：
+
+    >>> response.css('title::text').re(r'Quotes.*')
+    ['Quotes to Scrape']
+    >>> response.css('title::text').re(r'Q\w+')
+    ['Quotes']
+    >>> response.css('title::text').re(r'(\w+) to (\w+)')
+    ['Quotes', 'Scrape']
+
+了找到合适的CSS选择器使用，您可以用chrome和Firefox 的调试工具查看css。
+
+#### XPath选择元素
+
+除了CSS，Scrapy选择器还支持使用XPath表达式：
+
+    >>> response.xpath('//title')
+    [<Selector xpath='//title' data='<title>Quotes to Scrape</title>'>]
+    >>> response.xpath('//title/text()').extract_first()
+    'Quotes to Scrape'
+
+XPath表达式非常强大，是Scrapy选择器的基础。事实上，CSS选底层也是用XPath。
+
+虽然也许不像CSS选择器那么流行，XPath表达式提供了更多的功能，因为除了导航结构之外，它还可以查看内容。使用XPath，您可以选择以下内容：选择包含文本“下一页”的链接。这使得XPath非常适合于抓取任务，我们鼓励你学习XPath，即使你已经知道如何构建CSS选择器，它会使刮除更容易。
+
+**大家不要着急一下子把所以东西都介绍到，具体细节后面都会写到。**
+
+- xpath 资料：
+- 使用XPath与Scrapy选择器在这里:[http://scrapy.readthedocs.io/en/latest/topics/selectors.html#topics-selectors](http://scrapy.readthedocs.io/en/latest/topics/selectors.html#topics-selectors)
+
+#### 提取引号和作者
+
+[http://quotes.toscrape.com](http://quotes.toscrape.com)都由以下HTML元素表示：
+
+    <div class="quote">
+        <span class="text">“The world as we have created it is a process of our
+        thinking. It cannot be changed without changing our thinking.”</span>
+        <span>
+            by <small class="author">Albert Einstein</small>
+            <a href="/author/Albert-Einstein">(about)</a>
+        </span>
+        <div class="tags">
+            Tags:
+            <a class="tag" href="/tag/change/page/1/">change</a>
+            <a class="tag" href="/tag/deep-thoughts/page/1/">deep-thoughts</a>
+            <a class="tag" href="/tag/thinking/page/1/">thinking</a>
+            <a class="tag" href="/tag/world/page/1/">world</a>
+        </div>
+    </div>
+
+打开scrapy shell
+`$ scrapy shell'http://quotes.toscrape.com'`
+网站内容，可能需要翻墙，截图如下：
+
+
+
+获取selectors元素列表
+`>>> response.css("div.quote")`
+
+每个选择器允许我们对它们的子元素执行进一步的查询。
+将第一个选择器分配给一个变量，以便我们可以直接对特定的引用运行我们的CSS选择器：
+`>>> quote = response.css("div.quote")[0]`
+
+现在，从刚刚创建的对象的quote对象，提取title、author、tags：
+
+    >>> title = quote.css("span.text::text").extract_first()
+    >>> title
+    '“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”'
+    >>> author = quote.css("small.author::text").extract_first()
+    >>> author
+    'Albert Einstein'
+
+鉴于tags是字符串列表，我们可以使用该.extract()方法来获取所有的：
+
+    >>> tags = quote.css("div.tags a.tag::text").extract()
+    >>> tags
+    ['change', 'deep-thoughts', 'thinking', 'world']
+
+现在可以遍历所有的引号元素，并将它们放在一起成为一个Python字典：
+
+    >>> for quote in response.css("div.quote"):
+    ...     text = quote.css("span.text::text").extract_first()
+    ...     author = quote.css("small.author::text").extract_first()
+    ...     tags = quote.css("div.tags a.tag::text").extract()
+    ...     print(dict(text=text, author=author, tags=tags))
+    {'tags': ['change', 'deep-thoughts', 'thinking', 'world'], 'author': 'Albert Einstein', 'text': '“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”'}
+    {'tags': ['abilities', 'choices'], 'author': 'J.K. Rowling', 'text': '“It is our choices, Harry, that show what we truly are, far more than our abilities.”'}
+        ... a few more of these, omitted for brevity
+    >>>
+
+通过上面的demo，我们学会了一些基本的提取数据方法，现在我们尝试集成到我们上面的创建的爬虫中。
+
+    import scrapy
+
+
+    class QuotesSpider(scrapy.Spider):
+        name = "quotes"
+        start_urls = [
+            'http://quotes.toscrape.com/page/1/',
+            'http://quotes.toscrape.com/page/2/',
+        ]
+
+        def parse(self, response):
+            for quote in response.css('div.quote'):
+                yield {
+                    'text': quote.css('span.text::text').extract_first(),
+                    'author': quote.css('small.author::text').extract_first(),
+                    'tags': quote.css('div.tags a.tag::text').extract(),
+                }
+
+如果你运行这个爬虫，它将输出提取的数据与日志：
+
+    2016-09-19 18:57:19 [scrapy.core.scraper] DEBUG：Scraped from <200 http://quotes.toscrape.com/page/1/>
+    {'tags'：['life'，'love']，'author'：'AndréGide'，'text'：'“最好不要因为你的爱而被恨。 “'}
+    2016-09-19 18:57:19 [scrapy.core.scraper] DEBUG：Scraped from <200 http://quotes.toscrape.com/page/1/>
+    {'tags'：['edison'，'failure'，'inspirational'，'paraphrased']，'author'：'Thomas A. Edison'，'text'：“”我没有失败， 10,000种方式将无法工作。“”}
+
+### 存取数据
+
+最简单方法是直接制定导出文件：
+`scrapy crawl quotes -o quotes.json`
+
+这将生成一个quotes.json包含所有被抓取的数据，以JSON序列化的文件。
+
+出于历史原因，**Scrapy会附加到给定文件，而不是覆盖其内容。如果你运行这个命令两次，没有在第二次之前删除文件，你会得到一个破碎的JSON文件**。
+
+您还可以使用其他格式：
+`scrapy crawl quotes -o quotes.jl`
+
+### 链接界面包含的链接
+
+让我们说，不要只是从[http://quotes.toscrape.com](http://quotes.toscrape.com)的前两个页面抓取东西，你想要从网站的所有页面的报价。
+
+现在，您知道如何从页面中提取数据，让我们看看如何跟踪他们的链接。
+
+首先是提取我们要关注的网页的链接。检查我们的页面，我们可以看到有一个链接到下一页与下面的标记：
+
+    <ul class="pager">
+        <li class="next">
+            <a href="/page/2/">Next <span aria-hidden="true">&rarr;</span></a>
+        </li>
+    </ul>
+
+我们可以尝试在shell中提取它：
+
+    >>> response.css('li.next a').extract_first()
+    '<a href="/page/2/">Next <span aria-hidden="true">→</span></a>'
+
+这得到锚点元素，但我们想要的属性href。为此，Scrapy支持一个CSS扩展，让您选择属性内容，如下所示：
+
+    >>> response.css('li.next a::attr(href)').extract_first()
+    '/page/2/'
+
+让我们看看现在我们的爬虫被修改为递归的跟随到下一页的链接，从中提取数据：
+
+    import scrapy
+
+
+    class QuotesSpider(scrapy.Spider):
+        name = "quotes"
+        start_urls = [
+            'http://quotes.toscrape.com/page/1/',
+        ]
+
+        def parse(self, response):
+            for quote in response.css('div.quote'):
+                yield {
+                    'text': quote.css('span.text::text').extract_first(),
+                    'author': quote.css('small.author::text').extract_first(),
+                    'tags': quote.css('div.tags a.tag::text').extract(),
+                }
+
+            next_page = response.css('li.next a::attr(href)').extract_first()
+            if next_page is not None:
+                next_page = response.urljoin(next_page)
+                yield scrapy.Request(next_page, callback=self.parse)
+
+现在，在提取数据之后，该parse()方法寻找到下一页的链接，使用该urljoin()方法构建完整的绝对URL （因为链接可以是相对的）并且产生对下一页的新请求，将其注册为回调以处理针对下一页的数据提取，以及保持爬行通过所有页面。
+
+这里看到的是Scrapy的向下链接的机制：当你在回调方法中产生一个请求时，Scrapy会调度要发送的请求，并注册一个回调方法，在上次请求完成时执行。
+
+### 更多示例和模式
+
+这里是另一个爬虫，说明回调和以下链接，这一次提取作者信息：
+
+    import scrapy
+
+
+    class AuthorSpider(scrapy.Spider):
+        name = 'author'
+
+        start_urls = ['http://quotes.toscrape.com/']
+
+        def parse(self, response):
+            # follow links to author pages
+            for href in response.css('.author + a::attr(href)').extract():
+                yield scrapy.Request(response.urljoin(href),
+                                     callback=self.parse_author)
+
+            # follow pagination links
+            next_page = response.css('li.next a::attr(href)').extract_first()
+            if next_page is not None:
+                next_page = response.urljoin(next_page)
+                yield scrapy.Request(next_page, callback=self.parse)
+
+        def parse_author(self, response):
+            def extract_with_css(query):
+                return response.css(query).extract_first().strip()
+
+            yield {
+                'name': extract_with_css('h3.author-title::text'),
+                'birthdate': extract_with_css('.author-born-date::text'),
+                'bio': extract_with_css('.author-description::text'),
+            }
+
+这个爬虫将从主页开始，它将跟随所有指向作者页面的链接parse_author，每个链接都调用它们的回调，并且还有parse我们之前看到的回调链接。
+
+该parse_author回调定义了一个辅助函数从一个CSS查询提取和清理数据，并产生了Python字典与作者的数据。
+
+即使有很多来自同一作者的爬虫，我们不需要担心访问同一作者页多次。默认情况下，Scrapy会过滤掉已访问过的网址的重复请求，从而避免由于编程错误而导致服务器过多的问题。这可以通过设置进行配置 DUPEFILTER_CLASS。
+
+此外，一个常见的模式是使用来自多个页面的数据构建项目，使用一个技巧将附加数据传递给回调。
+
+**大家不要着急一下子把所以东西都介绍到，具体细节后面都会写到。**
+
+### 使用爬虫参数
+
+您可以通过-a 在运行它们时使用该选项为您的爬虫提供命令行参数：
+`scrapy crawl quotes -o quotes-humor.json -a tag=humor`
+
+这些参数传递给Spider的**init**方法，默​​认情况下成为spider属性。
+
+在此示例中，为tag参数提供的值将通过self.tag。您可以使用它来使您的蜘蛛仅抓取带有特定标记的引号，根据参数构建网址：
+
+    import scrapy
+
+
+    class QuotesSpider(scrapy.Spider):
+        name = "quotes"
+
+        def start_requests(self):
+            url = 'http://quotes.toscrape.com/'
+            tag = getattr(self, 'tag', None)
+            if tag is not None:
+                url = url + 'tag/' + tag
+            yield scrapy.Request(url, self.parse)
+
+        def parse(self, response):
+            for quote in response.css('div.quote'):
+                yield {
+                    'text': quote.css('span.text::text').extract_first(),
+                    'author': quote.css('small.author::text').extract_first(),
+                }
+
+            next_page = response.css('li.next a::attr(href)').extract_first()
+            if next_page is not None:
+                next_page = response.urljoin(next_page)
+                yield scrapy.Request(next_page, self.parse)
+
+如果您将tag=humor参数传递给此蜘蛛，您会注意到它只会访问humor代码中的网址，例如 [http://quotes.toscrape.com/tag/humor](http://quotes.toscrape.com/tag/humor)。
