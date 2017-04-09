@@ -3,7 +3,7 @@ layout: "post"
 title: "Scrapy爬虫入门教程八 交互式 shell 方便调试"
 date: "2017-04-09 14:31"
 tags:
-- scrapy
+- Scrapy
 comments: true
 ---
 
