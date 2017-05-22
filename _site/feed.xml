@@ -1,18 +1,393 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<generator uri="http://jekyllrb.com" version="3.4.3">Jekyll</generator>
-<link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" />
-<link href="http://localhost:4000/" rel="alternate" type="text/html" />
-<updated>2017-04-09T20:44:26+08:00</updated>
-<id>http://localhost:4000/</id>
+<generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
+<link href="https://zhuio.github.io/feed.xml" rel="self" type="application/atom+xml" />
+<link href="https://zhuio.github.io/" rel="alternate" type="text/html" />
+<updated>2017-05-20T01:51:26+08:00</updated>
+<id>https://zhuio.github.io/</id>
 <subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle>
 <entry>
+<title>Sqlite3学习笔记</title>
+<link href="https://zhuio.github.io/sqlite3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="alternate" type="text/html" title="Sqlite3学习笔记" />
+<published>2017-04-10T21:24:00+08:00</published>
+<updated>2017-04-10T21:24:00+08:00</updated>
+<id>https://zhuio.github.io/sqlite3学习笔记</id>
+<content type="html" xml:base="https://zhuio.github.io/sqlite3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">&lt;h2 id=&quot;sqlite3&quot;&gt;Sqlite3学习笔记&lt;/h2&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;开始&lt;/h2&gt;
+
+&lt;p&gt;安装:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ubuntu: sudo apt-get install sqlite3&lt;/li&gt;
+  &lt;li&gt;Mac: brew install sqlite3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;sqlite3 dbname: 若库名存在则打开,不存在则创建,不指定则创建临时的库,退出时删除.&lt;/p&gt;
+
+&lt;p&gt;可以直接在命令行执行命令: sqlite3 dbname .tables 或执行sql语句: sqlite3 dbname &quot;select * from tb&quot; (不需要’;’).&lt;/p&gt;
+
+&lt;p&gt;sqlite_master是一个特殊表, 存储有数据库的元信息, 如表(table), 索引(index), 视图(view), 触发器(trigger), 可通过select查询相关信息.&lt;/p&gt;
+
+&lt;p&gt;sql关键字以常用函数, 大小写不敏感, 反正我喜欢都小写, 因为caps lock要给esc.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;常用命令&lt;/h2&gt;
+
+&lt;p&gt;sqlite3提供的特殊命令, 以.开头:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;.help: 帮助&lt;/li&gt;
+  &lt;li&gt;.databases: 列出数据库&lt;/li&gt;
+  &lt;li&gt;.tables: 列出表名&lt;/li&gt;
+  &lt;li&gt;.open dbname: 打开数据库&lt;/li&gt;
+  &lt;li&gt;.save dbname: 保存为数据库&lt;/li&gt;
+  &lt;li&gt;.exit: 退出, 或Ctrl-D&lt;/li&gt;
+  &lt;li&gt;.schema [tbname]: 列出表, 索引, 触发器的创建语句&lt;/li&gt;
+  &lt;li&gt;.output fname.txt: 写结果到文件&lt;/li&gt;
+  &lt;li&gt;.show, 显示各种设置的默认值&lt;/li&gt;
+  &lt;li&gt;.indices tbname, 列出某表的索引&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;各种设置:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;.echo on&lt;/td&gt;
+          &lt;td&gt;off, 开启或关闭命令回显&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;.explain on&lt;/td&gt;
+          &lt;td&gt;off, 开启或关闭适合于EXPLAIN的输出模式, 更适合人阅读&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;.headers on&lt;/td&gt;
+          &lt;td&gt;off, 是否显示字段信息头&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;.stats on&lt;/td&gt;
+          &lt;td&gt;off, 开启或关闭统计信息&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;.timer on&lt;/td&gt;
+          &lt;td&gt;off, 开启或关闭命令执行的时间测量&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;模式, 即数据的显示方式, 有很多种, 但常用的就两个, .mode line用于表达式运算, .mode column用于表查询的多字段显示. 第二种通常还会开启信息头, 即字段名显示, .header on. 如果你想知道sql语句的执行时间, 可以.timer on.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;常用操作&lt;/h2&gt;
+
+&lt;p&gt;创建新表create:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create table company (
+  id int primary key not null autoincrement,
+  name text not null,
+  age int not null unique,
+  address char(50),
+  salary real default 50000.00 check(salary&amp;gt;0)
+); 注:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;int, text, real, char(5), 都是字段的类型&lt;/li&gt;
+  &lt;li&gt;char(50), 表明此字段存储字符不超过50个&lt;/li&gt;
+  &lt;li&gt;not null, 表明此字段不能为空&lt;/li&gt;
+  &lt;li&gt;primary key, 表明此字段为基键, 不能重复&lt;/li&gt;
+  &lt;li&gt;unique, 确保某列中没有重复值&lt;/li&gt;
+  &lt;li&gt;default, 当列没有值时,提供默认值&lt;/li&gt;
+  &lt;li&gt;check, 确保某列中的所有值满足一定条件&lt;/li&gt;
+  &lt;li&gt;autoincrement, 确保列中值自动增加, 自然无需手动提供&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;修改表alter:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;alter table company add column sex char(1);
+--为company表添加列sex, 类型为char(1)
+alter table company rename to old_company;
+--为表重全名 注:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sqlite3中, alter允许用户重命名表,或向现有表添加一个新列&lt;/li&gt;
+  &lt;li&gt;但不能重命名列, 删除列, 从表中添加或删除约束&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;删除表drop:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;drop table company;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;创建记录insert:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;insert into company (id, name, age, address, salary) values (1, &#39;Paul&#39;, 32, &#39;Beijing&#39;, 20000.00);
+insert into company values (1, &#39;Paul&#39;, 32, &#39;Beijing&#39;, 20000.00);
+--插入所有字段时可省略列名
+insert into company_bkp select * from company;
+--将company表中的所有记录全部插入到company_bkp表中, 两表结构必须相似
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;更新记录update:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;update company set address=&#39;Texas&#39; where id==6;
+--将id为6的记录更新address字段为Texas
+update company set address=&#39;Texas&#39;, salary=20000.00;
+--将所有记录的address字段更新为Texas, salary字段为20000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;检索记录select:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select * from company;
+select id, name from company;
+--查询company表中id和name字段
+select tbl_name from sqlite_master where type==&#39;table&#39;;
+--查询当前数据库存在的表
+select current_timestamp;
+--查询当前时间戳
+select * from company limit 6;
+--只显示查询结果的前6行
+select * from company limit 3 offset 2;
+--只显示从第3行起, 再多2行, 一共3行
+select * from company order by salary asc;
+--以salary字段升序显示记录, desc为降序
+select * from company order by name, salary asc;
+--将结果按name和salary字段升序显示, 即name相同的按salary排序
+select name, sum(salary) from company group by name;
+--将结果中相同name的salary相加, 再构成name, sum(salary)列表
+select name, sum(salary) from company group by name order by name;
+--同上, 将结果以name升序显示
+select * from company group by name having count(name) &amp;lt; 2;
+--以name分组, 相同name记录数小于2, having设置分组的过滤条件
+select distinct name from company;
+--去重, 相同name不显示
+select * from company where salary&amp;gt;10000 group by name having count(name)&amp;gt;=2 order by name
+--相同name的记录数大于或等于2, 且salary大于10000, 以name升序显示
+select * from company cross join department;
+select * from company, department;
+--将company的每一行与第二个表的每一行进行匹配, 分别有x和y行, 则结果有x*y行, 分别有x和y列, 则结果有x+y列. 交叉连接可能产生非常大的表
+select * from company [inner] join department on company.id==department.emp_id;
+--选取company的id列与department的emp_id列相等的行进行连接, 内连接是默认连接, 可省略inner, 横向连接
+select * from company join department using (id);
+--使用两表共有的id列进行相同值连接
+select * from company natural join department;
+--自动测试存在两个表中的每一列的值之间相等值
+select * from company left outer join department on company.id==department.emp_id;
+--不同于内连接, 左外连接还会合并进第一个表的非匹配行, 这些行多余的列, 即对应第二个表的列为null. 之所以第一表显示, 因为是left嘛.
+select col1, col2, ... from table1 where conditions
+union [all]
+select col1, col2, ... from table2 where conditions;
+--不局限于上面的语句, 事实上union将两个select的结果纵向连接去重.因此这要求结果必须列相同, 列类型相同. join则是横向连接. union all不去重.
+select c.id, c.name, c.age, d.dept from company as c, department as d where c.id==d.emp_id;
+select c.id, c.name, c.age, d.dept from company as c join department as d on c.id==d.emp_id;
+--通过as给表起别名
+select * from company where id in (select id from company where salary &amp;gt; 45000);
+select * from company where salary &amp;gt; 45000;
+--子查询, `()`中的select先执行, 此处两个查询相同, 可与select, insert, update, delete混合使用
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;where在所选列上设置条件, having在由group by创建的分组上设置条件&lt;/li&gt;
+  &lt;li&gt;where -&amp;gt; group by -&amp;gt; having -&amp;gt; order by&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;删除记录delete:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;delete from company where id==7
+--删除id为7的记录
+delete from company;
+--删除所有记录
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;触发器trigger:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create trigger audit_log after insert on company
+begin
+insert into audit (emp_id, entry_date) values (new.ID, datetime(&#39;now&#39;));
+end;
+--创建触发器audit_log, 当向company表执行insert操作后, 会触发向audit表插入记录, 值为插入company表的id和执行时间戳.
+select name from sqlite_master where type==&#39;trigger&#39; and tbl_name==&#39;company&#39;;
+--列出关联于company表的触发器
+drop trigger audit_log;
+--删除触发器 索引index:
+
+create index salary_index on company (salary);
+--对company表的salary列创建索引salary_index
+select name from sqlite_master where type==&#39;index&#39; and tbl_name==&#39;company&#39;;
+--列出对应于company表的索引
+select * from company indexed by salary_index where salary &amp;gt; 5000;
+--使用索引从company表中选择数据
+drop index salary_index
+--删除索引 注:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;索引可加快数据检索, 但不利于数据更新和插入&lt;/li&gt;
+  &lt;li&gt;索引不影响数据&lt;/li&gt;
+  &lt;li&gt;可对多列索引, (col1, col2)&lt;/li&gt;
+  &lt;li&gt;创建表时会自动创建主键primary key的索引&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;视图view:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create view company_view as
+select id, name, age from company;
+--为company表的id,name,age列创建视图
+select * from company_view;
+--列出视图的所有数据, 因为其只有真表的id,name,age三个列, 因此这里只列出三列
+drop view company_view;
+--删除视图 注:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可将视图认为是虚表, 它本身不真正存储数据, 它只是提供真正表的一个观察角度&lt;/li&gt;
+  &lt;li&gt;因为视图不是真正的表, 因此并不能插入或更新数据, 但可能创建触发器, 当插入或更新数据时, 执行真正的操作.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;事务:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;begin;  --事务开始
+delete from company where age==25;  --删除age等于25的所有记录
+rollback;  --回滚, 即恢复数据
+commit;  --提交更改 注:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;事务具有原子性, 即事务要么成功要么失败, 而不会停留在中间状态&lt;/li&gt;
+  &lt;li&gt;事务只与insert, update, delete一起使用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;表达式&lt;/h2&gt;
+
+&lt;p&gt;算术运算符, + - * / %, 加减乘除余.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select 10+20;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;逻辑运算符: ==, !=, &amp;gt;, &amp;lt;, &amp;gt;=, &amp;lt;=. and, or&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;where col1 &amp;gt;= 25 and col2 &amp;lt;= 90
+where col is not null
+where col like &#39;Ki%&#39;  
+--字段为Ki开头的字串, %:零或一或多个, _:一个
+where col glob &#39;Ki*&#39;  
+--同上, 大小写敏感, *:零或一或多个, ?:一个
+where col in (25, 27)  
+--字段为25或者27
+where col not in (25, 27)  
+--字段不是25也不是27
+where col between 25 and 27  
+--字段在25到27之间
+select age from company
+where exists (select age from company where salary &amp;gt; 65000)
+-- 子查询, 如果存在salary大于65000的age字段, 则列出所有age字段 位运算符: &amp;amp;amp; | ~ &amp;amp;lt;&amp;amp;lt; &amp;amp;gt;&amp;amp;gt;, 并或反左右移.
+
+select 60 | 13
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;null值, 只能用where col is null/not null, 而不能跟别的值比较. null值与零值或包含空格的字段是不同的, null是没有值, 而非值为空.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;时间函数&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;date, 日期&lt;/li&gt;
+  &lt;li&gt;time, 时间&lt;/li&gt;
+  &lt;li&gt;datetime, 日期和时间&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;strtime, 格式化字串&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select date(&#39;now&#39;);
+select strtime(&#39;%s&#39;, &#39;now&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;常用函数&lt;/h2&gt;
+
+&lt;p&gt;sqlite提供了少量常用的函数:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;count, 谋算表的行数&lt;/li&gt;
+  &lt;li&gt;max, min, 选择某列的最大值, 最小值&lt;/li&gt;
+  &lt;li&gt;avg, 计算某列的平均值&lt;/li&gt;
+  &lt;li&gt;sum, 计算某列的总和&lt;/li&gt;
+  &lt;li&gt;random, 返回伪随机数&lt;/li&gt;
+  &lt;li&gt;abs, 返回绝对值, 所有字串返回0.0&lt;/li&gt;
+  &lt;li&gt;upper, 将字符串转换为大写字母&lt;/li&gt;
+  &lt;li&gt;lower, 将字符串转换为小写字母&lt;/li&gt;
+  &lt;li&gt;length, 返回字串的长度&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;sqlite_version, 返回sqlite的版本&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select count(*) from company;
+--company表的行数, 注意, 指定特定列时, 为null值的记录不计数
+select max(salary) from company;
+--选择company表的salary列的最大值
+select avg(salary) from company;
+select sum(salary) from company;
+select random();
+select abs(-5);
+select upper(name) from company;
+--列出company表的name列的大写
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+<category term="Sqlite3" />
+<summary>Sqlite3学习笔记</summary>
+</entry>
+<entry>
 <title>Scrapy爬虫入门教程十二 Link Extractors（链接提取器）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十二 Link Extractors（链接提取器）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十二 Link Extractors（链接提取器）" />
 <published>2017-04-09T14:34:00+08:00</published>
 <updated>2017-04-09T14:34:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程十二-link-extractors（链接提取器）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/">&lt;h1 id=&quot;scrapy-link-extractors&quot;&gt;Scrapy爬虫入门教程十二 Link Extractors（链接提取器）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程十二-link-extractors（链接提取器）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/">&lt;h1 id=&quot;scrapy-link-extractors&quot;&gt;Scrapy爬虫入门教程十二 Link Extractors（链接提取器）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -42,7 +417,7 @@
 
 &lt;h3 id=&quot;lxmllinkextractor&quot;&gt;LxmlLinkExtractor&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class scrapy.linkextractors.lxmlhtml.LxmlLinkExtractor(allow=(), deny=(), allow_domains=(), deny_domains=(), deny_extensions=None, restrict_xpaths=(), restrict_css=(), tags=('a', 'area'), attrs=('href', ), canonicalize=True, unique=True, process_value=None)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class scrapy.linkextractors.lxmlhtml.LxmlLinkExtractor(allow=(), deny=(), allow_domains=(), deny_domains=(), deny_extensions=None, restrict_xpaths=(), restrict_css=(), tags=(&#39;a&#39;, &#39;area&#39;), attrs=(&#39;href&#39;, ), canonicalize=True, unique=True, process_value=None)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -68,14 +443,14 @@
 
 &lt;p&gt;例如，要从此代码中提取链接：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;a href=&quot;javascript:goToPage('../other/page.html'); return false&quot;&amp;gt;Link text&amp;lt;/a&amp;gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;a href=&quot;javascript:goToPage(&#39;../other/page.html&#39;); return false&quot;&amp;gt;Link text&amp;lt;/a&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;您可以使用以下功能process_value：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def process_value(value):
-    m = re.search(&quot;javascript:goToPage\('(.*?)'&quot;, value)
+    m = re.search(&quot;javascript:goToPage\(&#39;(.*?)&#39;&quot;, value)
     if m:
         return m.group(1)
 &lt;/code&gt;&lt;/pre&gt;
@@ -86,11 +461,11 @@
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程十一 Request和Response（请求和响应）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十一 Request和Response（请求和响应）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十一 Request和Response（请求和响应）" />
 <published>2017-04-09T14:33:00+08:00</published>
 <updated>2017-04-09T14:33:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程十一-request和response（请求和响应）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/">&lt;h1 id=&quot;scrapy-requestresponse&quot;&gt;Scrapy爬虫入门教程十一 Request和Response（请求和响应）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程十一-request和response（请求和响应）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/">&lt;h1 id=&quot;scrapy-requestresponse&quot;&gt;Scrapy爬虫入门教程十一 Request和Response（请求和响应）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -120,7 +495,7 @@ Response-&amp;gt;爬虫:数据
 
 &lt;h2 id=&quot;request-objects&quot;&gt;Request objects&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class scrapy.http.Request(url[, callback, method='GET', headers, body, cookies, meta, encoding='utf-8', priority=0, dont_filter=False, errback])
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class scrapy.http.Request(url[, callback, method=&#39;GET&#39;, headers, body, cookies, meta, encoding=&#39;utf-8&#39;, priority=0, dont_filter=False, errback])
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -149,10 +524,10 @@ Response-&amp;gt;爬虫:数据
 
   ```
   request_with_cookies = Request(url=&quot;http://www.example.com&quot;,
-                                 cookies=[{'name': 'currency',
-                                          'value': 'USD',
-                                          'domain': 'example.com',
-                                          'path': '/currency'}])
+                                 cookies=[{&#39;name&#39;: &#39;currency&#39;,
+                                          &#39;value&#39;: &#39;USD&#39;,
+                                          &#39;domain&#39;: &#39;example.com&#39;,
+                                          &#39;path&#39;: &#39;/currency&#39;}])
   ```
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
@@ -166,8 +541,8 @@ Response-&amp;gt;爬虫:数据
 &lt;p&gt;不合并Cookie的请求示例：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;request_with_cookies = Request(url=&quot;http://www.example.com&quot;,
-                               cookies={'currency': 'USD', 'country': 'UY'},
-                               meta={'dont_merge_cookies': True})
+                               cookies={&#39;currency&#39;: &#39;USD&#39;, &#39;country&#39;: &#39;UY&#39;},
+                               meta={&#39;dont_merge_cookies&#39;: True})
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -241,15 +616,15 @@ def parse_page2(self, response):
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def parse_page1(self, response):
     item = MyItem()
-    item['main_url'] = response.url
+    item[&#39;main_url&#39;] = response.url
     request = scrapy.Request(&quot;http://www.example.com/some_page.html&quot;,
                              callback=self.parse_page2)
-    request.meta['item'] = item
+    request.meta[&#39;item&#39;] = item
     yield request
 
 def parse_page2(self, response):
-    item = response.meta['item']
-    item['other_url'] = response.url
+    item = response.meta[&#39;item&#39;]
+    item[&#39;other_url&#39;] = response.url
     yield item
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -285,7 +660,7 @@ class ErrbackSpider(scrapy.Spider):
                                     dont_filter=True)
 
     def parse_httpbin(self, response):
-        self.logger.info('Got successful response from {}'.format(response.url))
+        self.logger.info(&#39;Got successful response from {}&#39;.format(response.url))
         # do something useful here...
 
     def errback_httpbin(self, failure):
@@ -293,22 +668,22 @@ class ErrbackSpider(scrapy.Spider):
         self.logger.error(repr(failure))
 
         # in case you want to do something special for some errors,
-        # you may need the failure's type:
+        # you may need the failure&#39;s type:
 
         if failure.check(HttpError):
             # these exceptions come from HttpError spider middleware
             # you can get the non-200 response
             response = failure.value.response
-            self.logger.error('HttpError on %s', response.url)
+            self.logger.error(&#39;HttpError on %s&#39;, response.url)
 
         elif failure.check(DNSLookupError):
             # this is the original request
             request = failure.request
-            self.logger.error('DNSLookupError on %s', request.url)
+            self.logger.error(&#39;DNSLookupError on %s&#39;, request.url)
 
         elif failure.check(TimeoutError, TCPTimedOutError):
             request = failure.request
-            self.logger.error('TimeoutError on %s', request.url)
+            self.logger.error(&#39;TimeoutError on %s&#39;, request.url)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -404,7 +779,7 @@ FormRequest类扩展了Request具有处理HTML表单的功能的基础。它使�
 &lt;p&gt;如果你想在你的爬虫中模拟HTML表单POST并发送几个键值字段，你可以返回一个FormRequest对象（从你的爬虫）像这样：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;return [FormRequest(url=&quot;http://www.example.com/post/action&quot;,
-                    formdata={'name': 'John Doe', 'age': '27'},
+                    formdata={&#39;name&#39;: &#39;John Doe&#39;, &#39;age&#39;: &#39;27&#39;},
                     callback=self.after_post)]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -416,13 +791,13 @@ FormRequest类扩展了Request具有处理HTML表单的功能的基础。它使�
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import scrapy
 
 class LoginSpider(scrapy.Spider):
-    name = 'example.com'
-    start_urls = ['http://www.example.com/users/login.php']
+    name = &#39;example.com&#39;
+    start_urls = [&#39;http://www.example.com/users/login.php&#39;]
 
     def parse(self, response):
         return scrapy.FormRequest.from_response(
             response,
-            formdata={'username': 'john', 'password': 'secret'},
+            formdata={&#39;username&#39;: &#39;john&#39;, &#39;password&#39;: &#39;secret&#39;},
             callback=self.after_login
         )
 
@@ -438,7 +813,7 @@ class LoginSpider(scrapy.Spider):
 
 &lt;h1 id=&quot;section-4&quot;&gt;响应对象&lt;/h1&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.http.Response(url[, status=200, headers=None, body=b'', flags=None, request=None])&lt;/code&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.http.Response(url[, status=200, headers=None, body=b&#39;&#39;, flags=None, request=None])&lt;/code&gt;
 一个Response对象表示的HTTP响应，这通常是下载（由下载），并供给到爬虫进行处理。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
@@ -463,7 +838,7 @@ class LoginSpider(scrapy.Spider):
 &lt;p&gt;&lt;strong&gt;headers&lt;/strong&gt;
 包含响应标题的类字典对象。可以使用get()返回具有指定名称的第一个标头值或getlist()返回具有指定名称的所有标头值来访问值。例如，此调用会为您提供标题中的所有Cookie：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;response.headers.getlist('Set-Cookie')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;response.headers.getlist(&#39;Set-Cookie&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -549,14 +924,14 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 &lt;p&gt;&lt;strong&gt;xpath（查询）&lt;/strong&gt;
 快捷方式&lt;code class=&quot;highlighter-rouge&quot;&gt;TextResponse.selector.xpath(query)&lt;/code&gt;：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;response.xpath('//p')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;response.xpath(&#39;//p&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;css(query)&lt;/strong&gt;
 快捷方式 &lt;code class=&quot;highlighter-rouge&quot;&gt;TextResponse.selector.css(query)&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;response.css('p')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;response.css(&#39;p&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -578,11 +953,11 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程十 Feed exports（导出文件）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十 Feed exports（导出文件）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十 Feed exports（导出文件）" />
 <published>2017-04-09T14:33:00+08:00</published>
 <updated>2017-04-09T14:33:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程十-feed-exports（导出文件）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/">&lt;h1 id=&quot;scrapy-feed-exports&quot;&gt;Scrapy爬虫入门教程十 Feed exports（导出文件）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程十-feed-exports（导出文件）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/">&lt;h1 id=&quot;scrapy-feed-exports&quot;&gt;Scrapy爬虫入门教程十 Feed exports（导出文件）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -810,11 +1185,11 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 &lt;p&gt;默认：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.extensions.feedexport.FileFeedStorage',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'file':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.extensions.feedexport.FileFeedStorage',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'stdout':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.extensions.feedexport.StdoutFeedStorage',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'s3':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.extensions.feedexport.S3FeedStorage',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'ftp':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.extensions.feedexport.FTPFeedStorage',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.extensions.feedexport.FileFeedStorage&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;file&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.extensions.feedexport.FileFeedStorage&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;stdout&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.extensions.feedexport.StdoutFeedStorage&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;s3&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.extensions.feedexport.S3FeedStorage&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;ftp&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.extensions.feedexport.FTPFeedStorage&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -822,7 +1197,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 &lt;p&gt;包含Scrapy支持的内置Feed存储后端的字典。您可以通过分配其中None的URI方案 来禁用这些后端FEED_STORAGES。例如，要禁用内置FTP存储后端（无替换），请将其放置在settings.py：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FEED_STORAGES = {
-    'ftp': None,
+    &#39;ftp&#39;: None,
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -838,13 +1213,13 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 &lt;p&gt;默认：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'json':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.exporters.JsonItemExporter',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'jsonlines':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.exporters.JsonLinesItemExporter',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'jl':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.exporters.JsonLinesItemExporter',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'csv':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.exporters.CsvItemExporter',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'xml':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.exporters.XmlItemExporter',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'marshal':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.exporters.MarshalItemExporter',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'pickle':&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'scrapy.exporters.PickleItemExporter',&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;json&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.exporters.JsonItemExporter&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;jsonlines&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.exporters.JsonLinesItemExporter&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;jl&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.exporters.JsonLinesItemExporter&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;csv&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.exporters.CsvItemExporter&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;xml&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.exporters.XmlItemExporter&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;marshal&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.exporters.MarshalItemExporter&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;pickle&#39;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&#39;scrapy.exporters.PickleItemExporter&#39;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -852,7 +1227,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 &lt;p&gt;一个包含Scrapy支持的内置feed导出器的dict。您可以通过分配其中None的序列化格式来禁用任何这些导出器FEED_EXPORTERS。例如，要禁用内置的CSV导出器（无替换），请将其放置在settings.py：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FEED_EXPORTERS = {
-    'csv': None,
+    &#39;csv&#39;: None,
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -862,11 +1237,11 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程九 Item Pipeline（项目管道）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程九 Item Pipeline（项目管道）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程九 Item Pipeline（项目管道）" />
 <published>2017-04-09T14:32:00+08:00</published>
 <updated>2017-04-09T14:32:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程九-item-pipeline（项目管道）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/">&lt;h1 id=&quot;scrapy-item-pipeline&quot;&gt;Scrapy爬虫入门教程九 Item Pipeline（项目管道）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程九-item-pipeline（项目管道）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/">&lt;h1 id=&quot;scrapy-item-pipeline&quot;&gt;Scrapy爬虫入门教程九 Item Pipeline（项目管道）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -951,9 +1326,9 @@ class PricePipeline(object):
     vat_factor = 1.15
 
     def process_item(self, item, spider):
-        if item['price']:
-            if item['price_excludes_vat']:
-                item['price'] = item['price'] * self.vat_factor
+        if item[&#39;price&#39;]:
+            if item[&#39;price_excludes_vat&#39;]:
+                item[&#39;price&#39;] = item[&#39;price&#39;] * self.vat_factor
             return item
         else:
             raise DropItem(&quot;Missing price in %s&quot; % item)
@@ -968,7 +1343,7 @@ class PricePipeline(object):
 class JsonWriterPipeline(object):
 
     def open_spider(self, spider):
-        self.file = open('items.jl', 'wb')
+        self.file = open(&#39;items.jl&#39;, &#39;wb&#39;)
 
     def close_spider(self, spider):
         self.file.close()
@@ -998,7 +1373,7 @@ class JsonWriterPipeline(object):
 
 class MongoPipeline(object):
 
-    collection_name = 'scrapy_items'
+    collection_name = &#39;scrapy_items&#39;
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
@@ -1007,8 +1382,8 @@ class MongoPipeline(object):
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            mongo_uri=crawler.settings.get('MONGO_URI'),
-            mongo_db=crawler.settings.get('MONGO_DATABASE', 'items')
+            mongo_uri=crawler.settings.get(&#39;MONGO_URI&#39;),
+            mongo_db=crawler.settings.get(&#39;MONGO_DATABASE&#39;, &#39;items&#39;)
         )
 
     def open_spider(self, spider):
@@ -1081,10 +1456,10 @@ class DuplicatesPipeline(object):
         self.ids_seen = set()
 
     def process_item(self, item, spider):
-        if item['id'] in self.ids_seen:
+        if item[&#39;id&#39;] in self.ids_seen:
             raise DropItem(&quot;Duplicate item found: %s&quot; % item)
         else:
-            self.ids_seen.add(item['id'])
+            self.ids_seen.add(item[&#39;id&#39;])
             return item
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1096,8 +1471,8 @@ class DuplicatesPipeline(object):
 &lt;p&gt;要激活项目管道组件，必须将其类添加到 ITEM_PIPELINES设置，类似于以下示例：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ITEM_PIPELINES = {
-    'myproject.pipelines.PricePipeline': 300,
-    'myproject.pipelines.JsonWriterPipeline': 800,
+    &#39;myproject.pipelines.PricePipeline&#39;: 300,
+    &#39;myproject.pipelines.JsonWriterPipeline&#39;: 800,
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1109,11 +1484,11 @@ class DuplicatesPipeline(object):
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程八 交互式 shell 方便调试</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程八 交互式 shell 方便调试" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程八 交互式 shell 方便调试" />
 <published>2017-04-09T14:31:00+08:00</published>
 <updated>2017-04-09T14:31:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程八-交互式-shell-方便调试</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/">&lt;h1 id=&quot;scrapy--shell-&quot;&gt;Scrapy爬虫入门教程八 交互式 shell 方便调试&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程八-交互式-shell-方便调试</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/">&lt;h1 id=&quot;scrapy--shell-&quot;&gt;Scrapy爬虫入门教程八 交互式 shell 方便调试&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -1175,7 +1550,7 @@ scrapy shell file:///absolute/path/to/file.html
 [ ... scrapy shell starts ... ]
 [ ... traceback ... ]
 twisted.internet.error.DNSLookupError: DNS lookup failed:
-address 'index.html' not found: [Errno -5] No address associated with hostname.
+address &#39;index.html&#39; not found: [Errno -5] No address associated with hostname.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1215,7 +1590,7 @@ address 'index.html' not found: [Errno -5] No address associated with hostname.
 &lt;p&gt;请记住，在这里提取的数据可能不一样，当你尝试它，因为那些网页不是静态的，可能已经改变了你测试这个。这个例子的唯一目的是让你熟悉Scrapy shell的工作原理。&lt;/p&gt;
 
 &lt;p&gt;首先，我们启动shell：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy shell 'http://scrapy.org' --nolog&lt;/code&gt;&lt;/p&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy shell &#39;http://scrapy.org&#39; --nolog&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;然后，shell获取URL（使用Scrapy下载器）并打印可用对象和有用的快捷方式列表（您会注意到这些行都以[s]前缀开头）：&lt;/p&gt;
 
@@ -1226,7 +1601,7 @@ address 'index.html' not found: [Errno -5] No address associated with hostname.
 [s]   request    &amp;lt;GET http://scrapy.org&amp;gt;
 [s]   response   &amp;lt;200 https://scrapy.org/&amp;gt;
 [s]   settings   &amp;lt;scrapy.settings.Settings object at 0x7f07395dd710&amp;gt;
-[s]   spider     &amp;lt;DefaultSpider 'default' at 0x7f0735891690&amp;gt;
+[s]   spider     &amp;lt;DefaultSpider &#39;default&#39; at 0x7f0735891690&amp;gt;
 [s] Useful shortcuts:
 [s]   fetch(url[, redirect=True]) Fetch URL and update local objects (by default, redirects are followed)
 [s]   fetch(req)                  Fetch a scrapy.Request and update local objects
@@ -1239,13 +1614,13 @@ address 'index.html' not found: [Errno -5] No address associated with hostname.
 
 &lt;p&gt;之后，我们可以开始使用对象：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//title/text()').extract_first()
-'Scrapy | A Fast and Powerful Scraping and Web Crawling Framework'
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//title/text()&#39;).extract_first()
+&#39;Scrapy | A Fast and Powerful Scraping and Web Crawling Framework&#39;
 
 &amp;gt;&amp;gt;&amp;gt; fetch(&quot;http://reddit.com&quot;)
 
-&amp;gt;&amp;gt;&amp;gt; response.xpath('//title/text()').extract()
-['reddit: the front page of the internet']
+&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//title/text()&#39;).extract()
+[&#39;reddit: the front page of the internet&#39;]
 
 &amp;gt;&amp;gt;&amp;gt; request = request.replace(method=&quot;POST&quot;)
 
@@ -1257,26 +1632,26 @@ address 'index.html' not found: [Errno -5] No address associated with hostname.
 &amp;gt;&amp;gt;&amp;gt; from pprint import pprint
 
 &amp;gt;&amp;gt;&amp;gt; pprint(response.headers)
-{'Accept-Ranges': ['bytes'],
- 'Cache-Control': ['max-age=0, must-revalidate'],
- 'Content-Type': ['text/html; charset=UTF-8'],
- 'Date': ['Thu, 08 Dec 2016 16:21:19 GMT'],
- 'Server': ['snooserv'],
- 'Set-Cookie': ['loid=KqNLou0V9SKMX4qb4n; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
-                'loidcreated=2016-12-08T16%3A21%3A19.445Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
-                'loid=vi0ZVe4NkxNWdlH7r7; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
-                'loidcreated=2016-12-08T16%3A21%3A19.459Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure'],
- 'Vary': ['accept-encoding'],
- 'Via': ['1.1 varnish'],
- 'X-Cache': ['MISS'],
- 'X-Cache-Hits': ['0'],
- 'X-Content-Type-Options': ['nosniff'],
- 'X-Frame-Options': ['SAMEORIGIN'],
- 'X-Moose': ['majestic'],
- 'X-Served-By': ['cache-cdg8730-CDG'],
- 'X-Timer': ['S1481214079.394283,VS0,VE159'],
- 'X-Ua-Compatible': ['IE=edge'],
- 'X-Xss-Protection': ['1; mode=block']}
+{&#39;Accept-Ranges&#39;: [&#39;bytes&#39;],
+ &#39;Cache-Control&#39;: [&#39;max-age=0, must-revalidate&#39;],
+ &#39;Content-Type&#39;: [&#39;text/html; charset=UTF-8&#39;],
+ &#39;Date&#39;: [&#39;Thu, 08 Dec 2016 16:21:19 GMT&#39;],
+ &#39;Server&#39;: [&#39;snooserv&#39;],
+ &#39;Set-Cookie&#39;: [&#39;loid=KqNLou0V9SKMX4qb4n; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure&#39;,
+                &#39;loidcreated=2016-12-08T16%3A21%3A19.445Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure&#39;,
+                &#39;loid=vi0ZVe4NkxNWdlH7r7; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure&#39;,
+                &#39;loidcreated=2016-12-08T16%3A21%3A19.459Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure&#39;],
+ &#39;Vary&#39;: [&#39;accept-encoding&#39;],
+ &#39;Via&#39;: [&#39;1.1 varnish&#39;],
+ &#39;X-Cache&#39;: [&#39;MISS&#39;],
+ &#39;X-Cache-Hits&#39;: [&#39;0&#39;],
+ &#39;X-Content-Type-Options&#39;: [&#39;nosniff&#39;],
+ &#39;X-Frame-Options&#39;: [&#39;SAMEORIGIN&#39;],
+ &#39;X-Moose&#39;: [&#39;majestic&#39;],
+ &#39;X-Served-By&#39;: [&#39;cache-cdg8730-CDG&#39;],
+ &#39;X-Timer&#39;: [&#39;S1481214079.394283,VS0,VE159&#39;],
+ &#39;X-Ua-Compatible&#39;: [&#39;IE=edge&#39;],
+ &#39;X-Xss-Protection&#39;: [&#39;1; mode=block&#39;]}
 &amp;gt;&amp;gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1319,13 +1694,13 @@ class MySpider(scrapy.Spider):
 ...
 
 &amp;gt;&amp;gt;&amp;gt; response.url
-'http://example.org'
+&#39;http://example.org&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;然后，您可以检查提取代码是否正常工作：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//h1[@class=&quot;fn&quot;]')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//h1[@class=&quot;fn&quot;]&#39;)
 []
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1352,11 +1727,11 @@ True
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程七 Item Loaders（项目加载器）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%83-item-loaders-%E9%A1%B9%E7%9B%AE%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程七 Item Loaders（项目加载器）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%83-item-loaders-%E9%A1%B9%E7%9B%AE%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程七 Item Loaders（项目加载器）" />
 <published>2017-04-09T14:31:00+08:00</published>
 <updated>2017-04-09T14:31:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程七-item-loaders（项目加载器）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%83-item-loaders-%E9%A1%B9%E7%9B%AE%E5%8A%A0%E8%BD%BD%E5%99%A8/">&lt;h1 id=&quot;scrapy-item-loaders&quot;&gt;Scrapy爬虫入门教程七 Item Loaders（项目加载器）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程七-item-loaders（项目加载器）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%83-item-loaders-%E9%A1%B9%E7%9B%AE%E5%8A%A0%E8%BD%BD%E5%99%A8/">&lt;h1 id=&quot;scrapy-item-loaders&quot;&gt;Scrapy爬虫入门教程七 Item Loaders（项目加载器）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -1383,11 +1758,11 @@ from myproject.items import Product
 
 def parse(self, response):
     l = ItemLoader(item=Product(), response=response)
-    l.add_xpath('name', '//div[@class=&quot;product_name&quot;]')
-    l.add_xpath('name', '//div[@class=&quot;product_title&quot;]')
-    l.add_xpath('price', '//p[@id=&quot;price&quot;]')
-    l.add_css('stock', 'p#stock]')
-    l.add_value('last_updated', 'today') # you can also use literal values
+    l.add_xpath(&#39;name&#39;, &#39;//div[@class=&quot;product_name&quot;]&#39;)
+    l.add_xpath(&#39;name&#39;, &#39;//div[@class=&quot;product_title&quot;]&#39;)
+    l.add_xpath(&#39;price&#39;, &#39;//p[@id=&quot;price&quot;]&#39;)
+    l.add_css(&#39;stock&#39;, &#39;p#stock]&#39;)
+    l.add_value(&#39;last_updated&#39;, &#39;today&#39;) # you can also use literal values
     return l.load_item()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1411,10 +1786,10 @@ def parse(self, response):
 &lt;p&gt;让我们看一个例子来说明如何为特定字段调用输入和输出处理器（同样适用于任何其他字段）：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;l = ItemLoader(Product(), some_selector)
-l.add_xpath('name', xpath1) # (1)
-l.add_xpath('name', xpath2) # (2)
-l.add_css('name', css) # (3)
-l.add_value('name', 'test') # (4)
+l.add_xpath(&#39;name&#39;, xpath1) # (1)
+l.add_xpath(&#39;name&#39;, xpath2) # (2)
+l.add_css(&#39;name&#39;, css) # (3)
+l.add_value(&#39;name&#39;, &#39;test&#39;) # (4)
 return l.load_item() # (5)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1487,10 +1862,10 @@ class Product(scrapy.Item):
 
 &amp;gt;&amp;gt;&amp;gt; from scrapy.loader import ItemLoader
 &amp;gt;&amp;gt;&amp;gt; il = ItemLoader(item=Product())
-&amp;gt;&amp;gt;&amp;gt; il.add_value('name', [u'Welcome to my', u'&amp;lt;strong&amp;gt;website&amp;lt;/strong&amp;gt;'])
-&amp;gt;&amp;gt;&amp;gt; il.add_value('price', [u'€', u'&amp;lt;span&amp;gt;1000&amp;lt;/span&amp;gt;'])
+&amp;gt;&amp;gt;&amp;gt; il.add_value(&#39;name&#39;, [u&#39;Welcome to my&#39;, u&#39;&amp;lt;strong&amp;gt;website&amp;lt;/strong&amp;gt;&#39;])
+&amp;gt;&amp;gt;&amp;gt; il.add_value(&#39;price&#39;, [u&#39;€&#39;, u&#39;&amp;lt;span&amp;gt;1000&amp;lt;/span&amp;gt;&#39;])
 &amp;gt;&amp;gt;&amp;gt; il.load_item()
-{'name': u'Welcome to my website', 'price': u'1000'}
+{&#39;name&#39;: u&#39;Welcome to my website&#39;, &#39;price&#39;: u&#39;1000&#39;}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1511,7 +1886,7 @@ class Product(scrapy.Item):
 &lt;p&gt;例如，假设您有一个parse_length接收文本值并从中提取长度的函数：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def  parse_length （text ， loader_context ）：
-    unit  =  loader_context 。get （'unit' ， 'm' ）
+    unit  =  loader_context 。get （&#39;unit&#39; ， &#39;m&#39; ）
     ＃...长度解析代码在这里...
     return  parsed_length
 &lt;/code&gt;&lt;/pre&gt;
@@ -1525,14 +1900,14 @@ class Product(scrapy.Item):
 通过修改当前活动的Item Loader上下文（context属性）：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; loader = ItemLoader(product)
- loader.context['unit'] = 'cm'
+ loader.context[&#39;unit&#39;] = &#39;cm&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;2.
 On Item Loader实例化（Item Loader构造函数的关键字参数存储在Item Loader上下文中）：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; loader = ItemLoader(product, unit='cm')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; loader = ItemLoader(product, unit=&#39;cm&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1540,7 +1915,7 @@ On Item Loader实例化（Item Loader构造函数的关键字参数存储在Item
 On Item Loader声明，对于那些支持使用Item Loader上下文实例化的输入/输出处理器。MapCompose是其中之一：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; class ProductLoader(ItemLoader):
-     length_out = MapCompose(parse_length, unit='cm')
+     length_out = MapCompose(parse_length, unit=&#39;cm&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1575,8 +1950,8 @@ On Item Loader声明，对于那些支持使用Item Loader上下文实例化的�
 例子：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy.loader.processors import TakeFirst
-&amp;gt;&amp;gt;&amp;gt; loader.get_value(u'name: foo', TakeFirst(), unicode.upper, re='name: (.+)')
-'FOO`
+&amp;gt;&amp;gt;&amp;gt; loader.get_value(u&#39;name: foo&#39;, TakeFirst(), unicode.upper, re=&#39;name: (.+)&#39;)
+&#39;FOO`
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1589,11 +1964,11 @@ On Item Loader声明，对于那些支持使用Item Loader上下文实例化的�
 
 &lt;p&gt;例子：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;loader.add_value('name', u'Color TV')
-loader.add_value('colours', [u'white', u'blue'])
-loader.add_value('length', u'100')
-loader.add_value('name', u'name: foo', TakeFirst(), re='name: (.+)')
-loader.add_value(None, {'name': u'foo', 'sex': u'male'})
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;loader.add_value(&#39;name&#39;, u&#39;Color TV&#39;)
+loader.add_value(&#39;colours&#39;, [u&#39;white&#39;, u&#39;blue&#39;])
+loader.add_value(&#39;length&#39;, u&#39;100&#39;)
+loader.add_value(&#39;name&#39;, u&#39;name: foo&#39;, TakeFirst(), re=&#39;name: (.+)&#39;)
+loader.add_value(None, {&#39;name&#39;: u&#39;foo&#39;, &#39;sex&#39;: u&#39;male&#39;})
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1629,9 +2004,9 @@ xpath（str） - 从中​​提取数据的XPath&lt;/p&gt;
 &lt;p&gt;例子：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# HTML snippet: &amp;lt;p class=&quot;product-name&quot;&amp;gt;Color TV&amp;lt;/p&amp;gt;
-loader.add_xpath('name', '//p[@class=&quot;product-name&quot;]')
+loader.add_xpath(&#39;name&#39;, &#39;//p[@class=&quot;product-name&quot;]&#39;)
 # HTML snippet: &amp;lt;p id=&quot;price&quot;&amp;gt;the price is $1200&amp;lt;/p&amp;gt;
-loader.add_xpath('price', '//p[@id=&quot;price&quot;]', re='the price is (.*)')
+loader.add_xpath(&#39;price&#39;, &#39;//p[@id=&quot;price&quot;]&#39;, re=&#39;the price is (.*)&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1666,9 +2041,9 @@ css（str） - 从中​​提取数据的CSS选择器
 例子：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# HTML snippet: &amp;lt;p class=&quot;product-name&quot;&amp;gt;Color TV&amp;lt;/p&amp;gt;
-loader.add_css('name', 'p.product-name')
+loader.add_css(&#39;name&#39;, &#39;p.product-name&#39;)
 # HTML snippet: &amp;lt;p id=&quot;price&quot;&amp;gt;the price is $1200&amp;lt;/p&amp;gt;
-loader.add_css('price', 'p#price', re='the price is (.*)')
+loader.add_css(&#39;price&#39;, &#39;p#price&#39;, re=&#39;the price is (.*)&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1739,8 +2114,8 @@ Selector从中提取数据的对象。它是在构造函数中给出的选择器
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;loader = ItemLoader(item=Item())
 # load stuff not in the footer
-loader.add_xpath('social', '//footer/a[@class = &quot;social&quot;]/@href')
-loader.add_xpath('email', '//footer/a[@class = &quot;email&quot;]/@href')
+loader.add_xpath(&#39;social&#39;, &#39;//footer/a[@class = &quot;social&quot;]/@href&#39;)
+loader.add_xpath(&#39;email&#39;, &#39;//footer/a[@class = &quot;email&quot;]/@href&#39;)
 loader.load_item()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1751,9 +2126,9 @@ loader.load_item()
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;loader = ItemLoader(item=Item())
 # load stuff not in the footer
-footer_loader = loader.nested_xpath('//footer')
-footer_loader.add_xpath('social', 'a[@class = &quot;social&quot;]/@href')
-footer_loader.add_xpath('email', 'a[@class = &quot;email&quot;]/@href')
+footer_loader = loader.nested_xpath(&#39;//footer&#39;)
+footer_loader.add_xpath(&#39;social&#39;, &#39;a[@class = &quot;social&quot;]/@href&#39;)
+footer_loader.add_xpath(&#39;email&#39;, &#39;a[@class = &quot;email&quot;]/@href&#39;)
 # no need to call footer_loader.load_item()
 loader.load_item()
 &lt;/code&gt;&lt;/pre&gt;
@@ -1775,7 +2150,7 @@ loader.load_item()
 from myproject.ItemLoaders import ProductLoader
 
 def strip_dashes(x):
-    return x.strip('-')
+    return x.strip(&#39;-&#39;)
 
 class SiteSpecificLoader(ProductLoader):
     name_in = MapCompose(strip_dashes, ProductLoader.name_in)
@@ -1813,8 +2188,8 @@ class XmlProductLoader(ProductLoader):
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy.loader.processors import Identity
 &amp;gt;&amp;gt;&amp;gt; proc = Identity()
-&amp;gt;&amp;gt;&amp;gt; proc(['one', 'two', 'three'])
-['one', 'two', 'three']
+&amp;gt;&amp;gt;&amp;gt; proc([&#39;one&#39;, &#39;two&#39;, &#39;three&#39;])
+[&#39;one&#39;, &#39;two&#39;, &#39;three&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1826,12 +2201,12 @@ class XmlProductLoader(ProductLoader):
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy.loader.processors import TakeFirst
 &amp;gt;&amp;gt;&amp;gt; proc = TakeFirst()
-&amp;gt;&amp;gt;&amp;gt; proc(['', 'one', 'two', 'three'])
-'one'
+&amp;gt;&amp;gt;&amp;gt; proc([&#39;&#39;, &#39;one&#39;, &#39;two&#39;, &#39;three&#39;])
+&#39;one&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.loader.processors.Join(separator=u' ')&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.loader.processors.Join(separator=u&#39; &#39;)&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;返回与构造函数中给定的分隔符联接的值，默认为。它不接受加载器上下文。u’ ‘&lt;/p&gt;
 
@@ -1841,11 +2216,11 @@ class XmlProductLoader(ProductLoader):
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy.loader.processors import Join
 &amp;gt;&amp;gt;&amp;gt; proc = Join()
-&amp;gt;&amp;gt;&amp;gt; proc(['one', 'two', 'three'])
-u'one two three'
-&amp;gt;&amp;gt;&amp;gt; proc = Join('&amp;lt;br&amp;gt;')
-&amp;gt;&amp;gt;&amp;gt; proc(['one', 'two', 'three'])
-u'one&amp;lt;br&amp;gt;two&amp;lt;br&amp;gt;three'
+&amp;gt;&amp;gt;&amp;gt; proc([&#39;one&#39;, &#39;two&#39;, &#39;three&#39;])
+u&#39;one two three&#39;
+&amp;gt;&amp;gt;&amp;gt; proc = Join(&#39;&amp;lt;br&amp;gt;&#39;)
+&amp;gt;&amp;gt;&amp;gt; proc([&#39;one&#39;, &#39;two&#39;, &#39;three&#39;])
+u&#39;one&amp;lt;br&amp;gt;two&amp;lt;br&amp;gt;three&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1859,8 +2234,8 @@ u'one&amp;lt;br&amp;gt;two&amp;lt;br&amp;gt;three'
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy.loader.processors import Compose
 &amp;gt;&amp;gt;&amp;gt; proc = Compose(lambda v: v[0], str.upper)
-&amp;gt;&amp;gt;&amp;gt; proc(['hello', 'world'])
-'HELLO'
+&amp;gt;&amp;gt;&amp;gt; proc([&#39;hello&#39;, &#39;world&#39;])
+&#39;HELLO&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1881,12 +2256,12 @@ u'one&amp;lt;br&amp;gt;two&amp;lt;br&amp;gt;three'
 &lt;p&gt;下面的例子应该说明它是如何工作的：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; def filter_world(x):
-...     return None if x == 'world' else x
+...     return None if x == &#39;world&#39; else x
 ...
 &amp;gt;&amp;gt;&amp;gt; from scrapy.loader.processors import MapCompose
 &amp;gt;&amp;gt;&amp;gt; proc = MapCompose(filter_world, unicode.upper)
-&amp;gt;&amp;gt;&amp;gt; proc([u'hello', u'world', u'this', u'is', u'scrapy'])
-[u'HELLO, u'THIS', u'IS', u'SCRAPY']
+&amp;gt;&amp;gt;&amp;gt; proc([u&#39;hello&#39;, u&#39;world&#39;, u&#39;this&#39;, u&#39;is&#39;, u&#39;scrapy&#39;])
+[u&#39;HELLO, u&#39;THIS&#39;, u&#39;IS&#39;, u&#39;SCRAPY&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1900,10 +2275,10 @@ u'one&amp;lt;br&amp;gt;two&amp;lt;br&amp;gt;three'
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy.loader.processors import SelectJmes, Compose, MapCompose
 &amp;gt;&amp;gt;&amp;gt; proc = SelectJmes(&quot;foo&quot;) #for direct use on lists and dictionaries
-&amp;gt;&amp;gt;&amp;gt; proc({'foo': 'bar'})
-'bar'
-&amp;gt;&amp;gt;&amp;gt; proc({'foo': {'bar': 'baz'}})
-{'bar': 'baz'}
+&amp;gt;&amp;gt;&amp;gt; proc({&#39;foo&#39;: &#39;bar&#39;})
+&#39;bar&#39;
+&amp;gt;&amp;gt;&amp;gt; proc({&#39;foo&#39;: {&#39;bar&#39;: &#39;baz&#39;}})
+{&#39;bar&#39;: &#39;baz&#39;}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1911,11 +2286,11 @@ u'one&amp;lt;br&amp;gt;two&amp;lt;br&amp;gt;three'
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import json
 &amp;gt;&amp;gt;&amp;gt; proc_single_json_str = Compose(json.loads, SelectJmes(&quot;foo&quot;))
-&amp;gt;&amp;gt;&amp;gt; proc_single_json_str('{&quot;foo&quot;: &quot;bar&quot;}')
-u'bar'
-&amp;gt;&amp;gt;&amp;gt; proc_json_list = Compose(json.loads, MapCompose(SelectJmes('foo')))
-&amp;gt;&amp;gt;&amp;gt; proc_json_list('[{&quot;foo&quot;:&quot;bar&quot;}, {&quot;baz&quot;:&quot;tar&quot;}]')
-[u'bar']
+&amp;gt;&amp;gt;&amp;gt; proc_single_json_str(&#39;{&quot;foo&quot;: &quot;bar&quot;}&#39;)
+u&#39;bar&#39;
+&amp;gt;&amp;gt;&amp;gt; proc_json_list = Compose(json.loads, MapCompose(SelectJmes(&#39;foo&#39;)))
+&amp;gt;&amp;gt;&amp;gt; proc_json_list(&#39;[{&quot;foo&quot;:&quot;bar&quot;}, {&quot;baz&quot;:&quot;tar&quot;}]&#39;)
+[u&#39;bar&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </content>
@@ -1924,11 +2299,11 @@ u'bar'
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程六 Items（项目）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程六 Items（项目）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程六 Items（项目）" />
 <published>2017-04-09T14:30:00+08:00</published>
 <updated>2017-04-09T14:30:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程六-items（项目）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/">&lt;h1 id=&quot;scrapy-items&quot;&gt;Scrapy爬虫入门教程六 Items（项目）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程六-items（项目）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/">&lt;h1 id=&quot;scrapy-items&quot;&gt;Scrapy爬虫入门教程六 Items（项目）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -1976,62 +2351,62 @@ class Product(scrapy.Item):
 
 &lt;h4 id=&quot;section-3&quot;&gt;创建项目&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product = Product(name='Desktop PC', price=1000)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product = Product(name=&#39;Desktop PC&#39;, price=1000)
 &amp;gt;&amp;gt;&amp;gt; print product
-Product(name='Desktop PC', price=1000)
+Product(name=&#39;Desktop PC&#39;, price=1000)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h4 id=&quot;section-4&quot;&gt;获取字段值&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product['name']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product[&#39;name&#39;]
 Desktop PC
-&amp;gt;&amp;gt;&amp;gt; product.get('name')
+&amp;gt;&amp;gt;&amp;gt; product.get(&#39;name&#39;)
 Desktop PC
 
-&amp;gt;&amp;gt;&amp;gt; product['price']
+&amp;gt;&amp;gt;&amp;gt; product[&#39;price&#39;]
 1000
 
-&amp;gt;&amp;gt;&amp;gt; product['last_updated']
+&amp;gt;&amp;gt;&amp;gt; product[&#39;last_updated&#39;]
 Traceback (most recent call last):
     ...
-KeyError: 'last_updated'
+KeyError: &#39;last_updated&#39;
 
-&amp;gt;&amp;gt;&amp;gt; product.get('last_updated', 'not set')
+&amp;gt;&amp;gt;&amp;gt; product.get(&#39;last_updated&#39;, &#39;not set&#39;)
 not set
 
-&amp;gt;&amp;gt;&amp;gt; product['lala'] # getting unknown field
+&amp;gt;&amp;gt;&amp;gt; product[&#39;lala&#39;] # getting unknown field
 Traceback (most recent call last):
     ...
-KeyError: 'lala'
+KeyError: &#39;lala&#39;
 
-&amp;gt;&amp;gt;&amp;gt; product.get('lala', 'unknown field')
-'unknown field'
+&amp;gt;&amp;gt;&amp;gt; product.get(&#39;lala&#39;, &#39;unknown field&#39;)
+&#39;unknown field&#39;
 
-&amp;gt;&amp;gt;&amp;gt; 'name' in product  # is name field populated?
+&amp;gt;&amp;gt;&amp;gt; &#39;name&#39; in product  # is name field populated?
 True
 
-&amp;gt;&amp;gt;&amp;gt; 'last_updated' in product  # is last_updated populated?
+&amp;gt;&amp;gt;&amp;gt; &#39;last_updated&#39; in product  # is last_updated populated?
 False
 
-&amp;gt;&amp;gt;&amp;gt; 'last_updated' in product.fields  # is last_updated a declared field?
+&amp;gt;&amp;gt;&amp;gt; &#39;last_updated&#39; in product.fields  # is last_updated a declared field?
 True
 
-&amp;gt;&amp;gt;&amp;gt; 'lala' in product.fields  # is lala a declared field?
+&amp;gt;&amp;gt;&amp;gt; &#39;lala&#39; in product.fields  # is lala a declared field?
 False
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h4 id=&quot;section-5&quot;&gt;设置字段值&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product [ 'last_updated' ]  =  'today'
-&amp;gt;&amp;gt;&amp;gt; product [ 'last_updated' ]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product [ &#39;last_updated&#39; ]  =  &#39;today&#39;
+&amp;gt;&amp;gt;&amp;gt; product [ &#39;last_updated&#39; ]
 today
 
-&amp;gt;&amp;gt;&amp;gt; product [ 'lala' ]  =  'test'  ＃设置未知字段
+&amp;gt;&amp;gt;&amp;gt; product [ &#39;lala&#39; ]  =  &#39;test&#39;  ＃设置未知字段
 Traceback（最近调用最后一次）：
     ...
-KeyError：'产品不支持字段：lala'
+KeyError：&#39;产品不支持字段：lala&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2040,10 +2415,10 @@ KeyError：'产品不支持字段：lala'
 &lt;p&gt;要访问所有填充值，只需使用典型的dict API：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product.keys()
-['price', 'name']
+[&#39;price&#39;, &#39;name&#39;]
 
 &amp;gt;&amp;gt;&amp;gt; product.items()
-[('price', 1000), ('name', 'Desktop PC')]
+[(&#39;price&#39;, 1000), (&#39;name&#39;, &#39;Desktop PC&#39;)]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2053,30 +2428,30 @@ KeyError：'产品不支持字段：lala'
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; product2 = Product(product)
 &amp;gt;&amp;gt;&amp;gt; print product2
-Product(name='Desktop PC', price=1000)
+Product(name=&#39;Desktop PC&#39;, price=1000)
 
 &amp;gt;&amp;gt;&amp;gt; product3 = product2.copy()
 &amp;gt;&amp;gt;&amp;gt; print product3
-Product(name='Desktop PC', price=1000)
+Product(name=&#39;Desktop PC&#39;, price=1000)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h4 id=&quot;section-8&quot;&gt;从项目创建词典：&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; dict(product) # create a dict from all populated values
-{'price': 1000, 'name': 'Desktop PC'}
+{&#39;price&#39;: 1000, &#39;name&#39;: &#39;Desktop PC&#39;}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h4 id=&quot;section-9&quot;&gt;从短片创建项目：&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; Product({'name': 'Laptop PC', 'price': 1500})
-Product(price=1500, name='Laptop PC')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; Product({&#39;name&#39;: &#39;Laptop PC&#39;, &#39;price&#39;: 1500})
+Product(price=1500, name=&#39;Laptop PC&#39;)
 
-&amp;gt;&amp;gt;&amp;gt; Product({'name': 'Laptop PC', 'lala': 1500}) # warning: unknown field in dict
+&amp;gt;&amp;gt;&amp;gt; Product({&#39;name&#39;: &#39;Laptop PC&#39;, &#39;lala&#39;: 1500}) # warning: unknown field in dict
 Traceback (most recent call last):
     ...
-KeyError: 'Product does not support field: lala'
+KeyError: &#39;Product does not support field: lala&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2095,7 +2470,7 @@ KeyError: 'Product does not support field: lala'
 &lt;p&gt;您还可以通过使用先前的字段元数据并附加更多值或更改现有值来扩展字段元数据，如下所示：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class SpecificProduct(Product):
-    name = scrapy.Field(Product.fields['name'], serializer=my_serializer)
+    name = scrapy.Field(Product.fields[&#39;name&#39;], serializer=my_serializer)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2121,11 +2496,11 @@ KeyError: 'Product does not support field: lala'
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程五 Selectors（选择器）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%BA%94-selectors-%E9%80%89%E6%8B%A9%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程五 Selectors（选择器）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%BA%94-selectors-%E9%80%89%E6%8B%A9%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程五 Selectors（选择器）" />
 <published>2017-04-09T14:30:00+08:00</published>
 <updated>2017-04-09T14:30:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程五-selectors（选择器）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%BA%94-selectors-%E9%80%89%E6%8B%A9%E5%99%A8/">&lt;h1 id=&quot;scrapy-selectors&quot;&gt;Scrapy爬虫入门教程五 Selectors（选择器）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程五-selectors（选择器）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%BA%94-selectors-%E9%80%89%E6%8B%A9%E5%99%A8/">&lt;h1 id=&quot;scrapy-selectors&quot;&gt;Scrapy爬虫入门教程五 Selectors（选择器）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -2160,24 +2535,24 @@ Scrapy自带了提取数据的机制。它们称为选择器，因为它们“�
 
 &lt;p&gt;从文本构造：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; body = '&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;span&amp;gt;&lt;/span&gt;good&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;'
-&amp;gt;&amp;gt;&amp;gt; Selector(text=body).xpath('//span/text()').extract()
-[u'good']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; body = &#39;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;span&amp;gt;&lt;/span&gt;good&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&#39;
+&amp;gt;&amp;gt;&amp;gt; Selector(text=body).xpath(&#39;//span/text()&#39;).extract()
+[u&#39;good&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;构建响应：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response = HtmlResponse(url='http://example.com', body=body)
-&amp;gt;&amp;gt;&amp;gt; Selector(response=response).xpath('//span/text()').extract()
-[u'good']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response = HtmlResponse(url=&#39;http://example.com&#39;, body=body)
+&amp;gt;&amp;gt;&amp;gt; Selector(response=response).xpath(&#39;//span/text()&#39;).extract()
+[u&#39;good&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;为了方便起见，响应对象在.selector属性上显示一个选择器，在可能的情况下使用此快捷键是完全正确的：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.selector.xpath('//span/text()').extract()
-[u'good']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.selector.xpath(&#39;//span/text()&#39;).extract()
+[u&#39;good&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2190,16 +2565,16 @@ Scrapy自带了提取数据的机制。它们称为选择器，因为它们“�
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;base&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'http://example.com/'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;base&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;http://example.com/&#39;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Example website&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'images'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'image1.html'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 1 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image1_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'image2.html'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 2 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image2_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'image3.html'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 3 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image3_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'image4.html'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 4 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image4_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'image5.html'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 5 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image5_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;images&#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;image1.html&#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 1 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image1_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;image2.html&#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 2 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image2_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;image3.html&#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 3 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image3_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;image4.html&#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 4 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image4_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;image5.html&#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Name: My image 5 &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;![](image5_thumb.jpg)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
@@ -2214,101 +2589,101 @@ Scrapy自带了提取数据的机制。它们称为选择器，因为它们“�
 
 &lt;p&gt;因此，通过查看该页面的&lt;a href=&quot;http://scrapy.readthedocs.io/en/latest/topics/selectors.html#topics-selectors-htmlcode&quot;&gt;HTML代码&lt;/a&gt;，让我们构造一个XPath来选择标题标签中的文本：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.selector.xpath('//title/text()')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.selector.xpath(&#39;//title/text()&#39;)
 [&amp;lt;Selector (text) xpath=//title/text()&amp;gt;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;使用XPath和CSS查询响应非常普遍，响应包括两个方便的快捷键：response.xpath()和response.css()：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//title/text()')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//title/text()&#39;)
 [&amp;lt;Selector (text) xpath=//title/text()&amp;gt;]
-&amp;gt;&amp;gt;&amp;gt; response.css('title::text')
+&amp;gt;&amp;gt;&amp;gt; response.css(&#39;title::text&#39;)
 [&amp;lt;Selector (text) xpath=//title/text()&amp;gt;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;正如你所看到的，.xpath()而.css()方法返回一个 SelectorList实例，它是新的选择列表。此API可用于快速选择嵌套数据：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.css('img').xpath('@src').extract()
-[u'image1_thumb.jpg',
- u'image2_thumb.jpg',
- u'image3_thumb.jpg',
- u'image4_thumb.jpg',
- u'image5_thumb.jpg']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.css(&#39;img&#39;).xpath(&#39;@src&#39;).extract()
+[u&#39;image1_thumb.jpg&#39;,
+ u&#39;image2_thumb.jpg&#39;,
+ u&#39;image3_thumb.jpg&#39;,
+ u&#39;image4_thumb.jpg&#39;,
+ u&#39;image5_thumb.jpg&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;要实际提取文本数据，必须调用选择器.extract() 方法，如下所示：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//title/text()').extract()
-[u'Example website']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//title/text()&#39;).extract()
+[u&#39;Example website&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;如果只想提取第一个匹配的元素，可以调用选择器 .extract_first()&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//div[@id=&quot;images&quot;]/a/text()').extract_first()
-u'Name: My image 1 '
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//div[@id=&quot;images&quot;]/a/text()&#39;).extract_first()
+u&#39;Name: My image 1 &#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;None如果没有找到元素则返回：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//div[@id=&quot;not-exists&quot;]/text()').extract_first() is None
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//div[@id=&quot;not-exists&quot;]/text()&#39;).extract_first() is None
 True
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;可以提供默认返回值作为参数，而不是使用None：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//div[@id=&quot;not-exists&quot;]/text()').extract_first(default='not-found')
-'not-found'
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//div[@id=&quot;not-exists&quot;]/text()&#39;).extract_first(default=&#39;not-found&#39;)
+&#39;not-found&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;请注意，CSS选择器可以使用CSS3伪元素选择文本或属性节点：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.css('title::text').extract()
-[u'Example website']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.css(&#39;title::text&#39;).extract()
+[u&#39;Example website&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;现在我们要获取基本URL和一些图像链接：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//base/@href').extract()
-[u'http://example.com/']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//base/@href&#39;).extract()
+[u&#39;http://example.com/&#39;]
 
-&amp;gt;&amp;gt;&amp;gt; response.css('base::attr(href)').extract()
-[u'http://example.com/']
+&amp;gt;&amp;gt;&amp;gt; response.css(&#39;base::attr(href)&#39;).extract()
+[u&#39;http://example.com/&#39;]
 
-&amp;gt;&amp;gt;&amp;gt; response.xpath('//a[contains(@href, &quot;image&quot;)]/@href').extract()
-[u'image1.html',
- u'image2.html',
- u'image3.html',
- u'image4.html',
- u'image5.html']
+&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//a[contains(@href, &quot;image&quot;)]/@href&#39;).extract()
+[u&#39;image1.html&#39;,
+ u&#39;image2.html&#39;,
+ u&#39;image3.html&#39;,
+ u&#39;image4.html&#39;,
+ u&#39;image5.html&#39;]
 
-&amp;gt;&amp;gt;&amp;gt; response.css('a[href*=image]::attr(href)').extract()
-[u'image1.html',
- u'image2.html',
- u'image3.html',
- u'image4.html',
- u'image5.html']
+&amp;gt;&amp;gt;&amp;gt; response.css(&#39;a[href*=image]::attr(href)&#39;).extract()
+[u&#39;image1.html&#39;,
+ u&#39;image2.html&#39;,
+ u&#39;image3.html&#39;,
+ u&#39;image4.html&#39;,
+ u&#39;image5.html&#39;]
 
-&amp;gt;&amp;gt;&amp;gt; response.xpath('//a[contains(@href, &quot;image&quot;)]/img/@src').extract()
-[u'image1_thumb.jpg',
- u'image2_thumb.jpg',
- u'image3_thumb.jpg',
- u'image4_thumb.jpg',
- u'image5_thumb.jpg']
+&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//a[contains(@href, &quot;image&quot;)]/img/@src&#39;).extract()
+[u&#39;image1_thumb.jpg&#39;,
+ u&#39;image2_thumb.jpg&#39;,
+ u&#39;image3_thumb.jpg&#39;,
+ u&#39;image4_thumb.jpg&#39;,
+ u&#39;image5_thumb.jpg&#39;]
 
-&amp;gt;&amp;gt;&amp;gt; response.css('a[href*=image] img::attr(src)').extract()
-[u'image1_thumb.jpg',
- u'image2_thumb.jpg',
- u'image3_thumb.jpg',
- u'image4_thumb.jpg',
- u'image5_thumb.jpg']
+&amp;gt;&amp;gt;&amp;gt; response.css(&#39;a[href*=image] img::attr(src)&#39;).extract()
+[u&#39;image1_thumb.jpg&#39;,
+ u&#39;image2_thumb.jpg&#39;,
+ u&#39;image3_thumb.jpg&#39;,
+ u&#39;image4_thumb.jpg&#39;,
+ u&#39;image5_thumb.jpg&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2316,23 +2691,23 @@ True
 
 &lt;p&gt;选择方法（.xpath()或.css()）返回相同类型的选择器的列表，因此您也可以调用这些选择器的选择方法。这里有一个例子：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; links = response.xpath('//a[contains(@href, &quot;image&quot;)]')
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; links = response.xpath(&#39;//a[contains(@href, &quot;image&quot;)]&#39;)
 &amp;gt;&amp;gt;&amp;gt; links.extract()
-[u'&amp;lt;a href=&quot;image1.html&quot;&amp;gt;Name: My image 1 &amp;lt;br&amp;gt;![](image1_thumb.jpg)&amp;lt;/a&amp;gt;',
- u'&amp;lt;a href=&quot;image2.html&quot;&amp;gt;Name: My image 2 &amp;lt;br&amp;gt;![](image2_thumb.jpg)&amp;lt;/a&amp;gt;',
- u'&amp;lt;a href=&quot;image3.html&quot;&amp;gt;Name: My image 3 &amp;lt;br&amp;gt;![](image3_thumb.jpg)&amp;lt;/a&amp;gt;',
- u'&amp;lt;a href=&quot;image4.html&quot;&amp;gt;Name: My image 4 &amp;lt;br&amp;gt;![](image4_thumb.jpg)&amp;lt;/a&amp;gt;',
- u'&amp;lt;a href=&quot;image5.html&quot;&amp;gt;Name: My image 5 &amp;lt;br&amp;gt;![](image5_thumb.jpg)&amp;lt;/a&amp;gt;']
+[u&#39;&amp;lt;a href=&quot;image1.html&quot;&amp;gt;Name: My image 1 &amp;lt;br&amp;gt;![](image1_thumb.jpg)&amp;lt;/a&amp;gt;&#39;,
+ u&#39;&amp;lt;a href=&quot;image2.html&quot;&amp;gt;Name: My image 2 &amp;lt;br&amp;gt;![](image2_thumb.jpg)&amp;lt;/a&amp;gt;&#39;,
+ u&#39;&amp;lt;a href=&quot;image3.html&quot;&amp;gt;Name: My image 3 &amp;lt;br&amp;gt;![](image3_thumb.jpg)&amp;lt;/a&amp;gt;&#39;,
+ u&#39;&amp;lt;a href=&quot;image4.html&quot;&amp;gt;Name: My image 4 &amp;lt;br&amp;gt;![](image4_thumb.jpg)&amp;lt;/a&amp;gt;&#39;,
+ u&#39;&amp;lt;a href=&quot;image5.html&quot;&amp;gt;Name: My image 5 &amp;lt;br&amp;gt;![](image5_thumb.jpg)&amp;lt;/a&amp;gt;&#39;]
 
 &amp;gt;&amp;gt;&amp;gt; for index, link in enumerate(links):
-...     args = (index, link.xpath('@href').extract(), link.xpath('img/@src').extract())
-...     print 'Link number %d points to url %s and image %s' % args
+...     args = (index, link.xpath(&#39;@href&#39;).extract(), link.xpath(&#39;img/@src&#39;).extract())
+...     print &#39;Link number %d points to url %s and image %s&#39; % args
 
-Link number 0 points to url [u'image1.html'] and image [u'image1_thumb.jpg']
-Link number 1 points to url [u'image2.html'] and image [u'image2_thumb.jpg']
-Link number 2 points to url [u'image3.html'] and image [u'image3_thumb.jpg']
-Link number 3 points to url [u'image4.html'] and image [u'image4_thumb.jpg']
-Link number 4 points to url [u'image5.html'] and image [u'image5_thumb.jpg']
+Link number 0 points to url [u&#39;image1.html&#39;] and image [u&#39;image1_thumb.jpg&#39;]
+Link number 1 points to url [u&#39;image2.html&#39;] and image [u&#39;image2_thumb.jpg&#39;]
+Link number 2 points to url [u&#39;image3.html&#39;] and image [u&#39;image3_thumb.jpg&#39;]
+Link number 3 points to url [u&#39;image4.html&#39;] and image [u&#39;image4_thumb.jpg&#39;]
+Link number 4 points to url [u&#39;image5.html&#39;] and image [u&#39;image5_thumb.jpg&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2342,19 +2717,19 @@ Link number 4 points to url [u'image5.html'] and image [u'image5_thumb.jpg']
 
 &lt;p&gt;以下是用于从上面的HTML代码中提取图片名称的示例：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//a[contains(@href, &quot;image&quot;)]/text()').re(r'Name:\s*(.*)')
-[u'My image 1',
- u'My image 2',
- u'My image 3',
- u'My image 4',
- u'My image 5']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//a[contains(@href, &quot;image&quot;)]/text()&#39;).re(r&#39;Name:\s*(.*)&#39;)
+[u&#39;My image 1&#39;,
+ u&#39;My image 2&#39;,
+ u&#39;My image 3&#39;,
+ u&#39;My image 4&#39;,
+ u&#39;My image 5&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;这里有一个额外的辅助往复.extract_first()进行.re()，命名.re_first()。使用它只提取第一个匹配的字符串：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//a[contains(@href, &quot;image&quot;)]/text()').re_first(r'Name:\s*(.*)')
-u'My image 1'
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//a[contains(@href, &quot;image&quot;)]/text()&#39;).re_first(r&#39;Name:\s*(.*)&#39;)
+u&#39;My image 1&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2365,20 +2740,20 @@ u'My image 1'
 &lt;p&gt;例如，假设要提取&lt;/p&gt;
 
 &lt;p&gt;元素中的所有&amp;lt;div&amp;gt; 元素。首先，你会得到所有的&amp;lt;div&amp;gt;元素：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&amp;gt; divs = response.xpath('//div')&lt;/code&gt;&lt;/p&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&amp;gt; divs = response.xpath(&#39;//div&#39;)&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;首先，你可能会使用下面的方法，这是错误的，因为它实际上&lt;/p&gt;
 
 &lt;p&gt;从文档中提取所有元素，而不仅仅是那些内部&amp;lt;div&amp;gt;元素：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; for p in divs.xpath('//p'):  # this is wrong - gets all &amp;lt;p&amp;gt; from the whole document
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; for p in divs.xpath(&#39;//p&#39;):  # this is wrong - gets all &amp;lt;p&amp;gt; from the whole document
 ...     print p.extract()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;这是正确的方式（注意点前面的.//pXPath 的点）：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; for p in divs.xpath('.//p'):  # extracts all &amp;lt;p&amp;gt; inside
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; for p in divs.xpath(&#39;.//p&#39;):  # extracts all &amp;lt;p&amp;gt; inside
 ...     print p.extract()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -2387,7 +2762,7 @@ u'My image 1'
 
 &lt;p&gt;孩子：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; for p in divs.xpath('p'):
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; for p in divs.xpath(&#39;p&#39;):
 ...     print p.extract()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -2401,15 +2776,15 @@ u'My image 1'
 &lt;p&gt;这里有一个例子来匹配元素基于其“id”属性值，没有硬编码它（如前所示）：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; # `$val` used in the expression, a `val` argument needs to be passed
-&amp;gt;&amp;gt;&amp;gt; response.xpath('//div[@id=$val]/a/text()', val='images').extract_first()
-u'Name: My image 1 '
+&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//div[@id=$val]/a/text()&#39;, val=&#39;images&#39;).extract_first()
+u&#39;Name: My image 1 &#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;这里是另一个例子，找到一个&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;标签的“id” 属性包含五个&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;a&amp;gt;&lt;/code&gt;孩子（这里我们传递的值&lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt;作为一个整数）：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//div[count(a)=$cnt]/@id', cnt=5).extract_first()
-u'images'
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath(&#39;//div[count(a)=$cnt]/@id&#39;, cnt=5).extract_first()
+u&#39;images&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2440,10 +2815,10 @@ u'images'
 ... &amp;lt;/div&amp;gt;
 ... &quot;&quot;&quot;
 &amp;gt;&amp;gt;&amp;gt; sel = Selector(text=doc, type=&quot;html&quot;)
-&amp;gt;&amp;gt;&amp;gt; sel.xpath('//li//@href').extract()
-[u'link1.html', u'link2.html', u'link3.html', u'link4.html', u'link5.html']
-&amp;gt;&amp;gt;&amp;gt; sel.xpath('//li[re:test(@class, &quot;item-\d$&quot;)]//@href').extract()
-[u'link1.html', u'link2.html', u'link4.html', u'link5.html']
+&amp;gt;&amp;gt;&amp;gt; sel.xpath(&#39;//li//@href&#39;).extract()
+[u&#39;link1.html&#39;, u&#39;link2.html&#39;, u&#39;link3.html&#39;, u&#39;link4.html&#39;, u&#39;link5.html&#39;]
+&amp;gt;&amp;gt;&amp;gt; sel.xpath(&#39;//li[re:test(@class, &quot;item-\d$&quot;)]//@href&#39;).extract()
+[u&#39;link1.html&#39;, u&#39;link2.html&#39;, u&#39;link4.html&#39;, u&#39;link5.html&#39;]
 &amp;gt;&amp;gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -2511,34 +2886,34 @@ u'images'
 ... &amp;lt;/div&amp;gt;
 ... &quot;&quot;&quot;
 &amp;gt;&amp;gt;&amp;gt; sel = Selector(text=doc, type=&quot;html&quot;)
-&amp;gt;&amp;gt;&amp;gt; for scope in sel.xpath('//div[@itemscope]'):
-...     print &quot;current scope:&quot;, scope.xpath('@itemtype').extract()
-...     props = scope.xpath('''
+&amp;gt;&amp;gt;&amp;gt; for scope in sel.xpath(&#39;//div[@itemscope]&#39;):
+...     print &quot;current scope:&quot;, scope.xpath(&#39;@itemtype&#39;).extract()
+...     props = scope.xpath(&#39;&#39;&#39;
 ...                 set:difference(./descendant::*/@itemprop,
-...                                .//*[@itemscope]/*/@itemprop)''')
+...                                .//*[@itemscope]/*/@itemprop)&#39;&#39;&#39;)
 ...     print &quot;    properties:&quot;, props.extract()
 ...     print
 
-current scope: [u'http://schema.org/Product']
-    properties: [u'name', u'aggregateRating', u'offers', u'description', u'review', u'review']
+current scope: [u&#39;http://schema.org/Product&#39;]
+    properties: [u&#39;name&#39;, u&#39;aggregateRating&#39;, u&#39;offers&#39;, u&#39;description&#39;, u&#39;review&#39;, u&#39;review&#39;]
 
-current scope: [u'http://schema.org/AggregateRating']
-    properties: [u'ratingValue', u'reviewCount']
+current scope: [u&#39;http://schema.org/AggregateRating&#39;]
+    properties: [u&#39;ratingValue&#39;, u&#39;reviewCount&#39;]
 
-current scope: [u'http://schema.org/Offer']
-    properties: [u'price', u'availability']
+current scope: [u&#39;http://schema.org/Offer&#39;]
+    properties: [u&#39;price&#39;, u&#39;availability&#39;]
 
-current scope: [u'http://schema.org/Review']
-    properties: [u'name', u'author', u'datePublished', u'reviewRating', u'description']
+current scope: [u&#39;http://schema.org/Review&#39;]
+    properties: [u&#39;name&#39;, u&#39;author&#39;, u&#39;datePublished&#39;, u&#39;reviewRating&#39;, u&#39;description&#39;]
 
-current scope: [u'http://schema.org/Rating']
-    properties: [u'worstRating', u'ratingValue', u'bestRating']
+current scope: [u&#39;http://schema.org/Rating&#39;]
+    properties: [u&#39;worstRating&#39;, u&#39;ratingValue&#39;, u&#39;bestRating&#39;]
 
-current scope: [u'http://schema.org/Review']
-    properties: [u'name', u'author', u'datePublished', u'reviewRating', u'description']
+current scope: [u&#39;http://schema.org/Review&#39;]
+    properties: [u&#39;name&#39;, u&#39;author&#39;, u&#39;datePublished&#39;, u&#39;reviewRating&#39;, u&#39;description&#39;]
 
-current scope: [u'http://schema.org/Rating']
-    properties: [u'worstRating', u'ratingValue', u'bestRating']
+current scope: [u&#39;http://schema.org/Rating&#39;]
+    properties: [u&#39;worstRating&#39;, u&#39;ratingValue&#39;, u&#39;bestRating&#39;]
 
 &amp;gt;&amp;gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -2559,39 +2934,39 @@ current scope: [u'http://schema.org/Rating']
 &lt;p&gt;例：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy import Selector
-&amp;gt;&amp;gt;&amp;gt; sel = Selector(text='&amp;lt;a href=&quot;#&quot;&amp;gt;Click here to go to the &amp;lt;strong&amp;gt;Next Page&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;')
+&amp;gt;&amp;gt;&amp;gt; sel = Selector(text=&#39;&amp;lt;a href=&quot;#&quot;&amp;gt;Click here to go to the &amp;lt;strong&amp;gt;Next Page&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;将节点集转换为字符串：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; sel.xpath('//a//text()').extract() # take a peek at the node-set
-[u'Click here to go to the ', u'Next Page']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; sel.xpath(&#39;//a//text()&#39;).extract() # take a peek at the node-set
+[u&#39;Click here to go to the &#39;, u&#39;Next Page&#39;]
 &amp;gt;&amp;gt;&amp;gt; sel.xpath(&quot;string(//a[1]//text())&quot;).extract() # convert it to string
-[u'Click here to go to the ']
+[u&#39;Click here to go to the &#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;一个节点转换为字符串，但是，拼文本本身及其所有的后代：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; sel.xpath(&quot;//a[1]&quot;).extract() # select the first node
-[u'&amp;lt;a href=&quot;#&quot;&amp;gt;Click here to go to the &amp;lt;strong&amp;gt;Next Page&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;']
+[u&#39;&amp;lt;a href=&quot;#&quot;&amp;gt;Click here to go to the &amp;lt;strong&amp;gt;Next Page&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;&#39;]
 &amp;gt;&amp;gt;&amp;gt; sel.xpath(&quot;string(//a[1])&quot;).extract() # convert it to string
-[u'Click here to go to the Next Page']
+[u&#39;Click here to go to the Next Page&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;所以，&lt;code class=&quot;highlighter-rouge&quot;&gt;.//text()&lt;/code&gt;在这种情况下使用节点集不会选择任何东西：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; sel.xpath(&quot;//a[contains(.//text(), 'Next Page')]&quot;).extract()
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; sel.xpath(&quot;//a[contains(.//text(), &#39;Next Page&#39;)]&quot;).extract()
 []
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;但是使用的&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;意思是节点，工作原理：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; sel.xpath(&quot;//a[contains(., 'Next Page')]&quot;).extract()
-[u'&amp;lt;a href=&quot;#&quot;&amp;gt;Click here to go to the &amp;lt;strong&amp;gt;Next Page&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;']
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; sel.xpath(&quot;//a[contains(., &#39;Next Page&#39;)]&quot;).extract()
+[u&#39;&amp;lt;a href=&quot;#&quot;&amp;gt;Click here to go to the &amp;lt;strong&amp;gt;Next Page&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2621,28 +2996,28 @@ current scope: [u'http://schema.org/Rating']
 &lt;p&gt;这将获得所有第一个&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;li&amp;gt;&lt;/code&gt; 元素，无论它是它的父：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; xp(&quot;//li[1]&quot;)
-[u'&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;', u'&amp;lt;li&amp;gt;4&amp;lt;/li&amp;gt;']
+[u&#39;&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;&#39;, u&#39;&amp;lt;li&amp;gt;4&amp;lt;/li&amp;gt;&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;这&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;li&amp;gt;&lt;/code&gt; 是整个文档的第一个元素：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; xp(&quot;(//li)[1]&quot;)
-[u'&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;']
+[u&#39;&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;这将获得 父&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;li&amp;gt;&lt;/code&gt; 下的所有第一个元素&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ul&amp;gt;&lt;/code&gt;：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; xp(&quot;//ul/li[1]&quot;)
-[u'&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;', u'&amp;lt;li&amp;gt;4&amp;lt;/li&amp;gt;']
+[u&#39;&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;&#39;, u&#39;&amp;lt;li&amp;gt;4&amp;lt;/li&amp;gt;&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;这将获得 整个文档中父级&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;li&amp;gt;&lt;/code&gt; 下的第一个元素&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ul&amp;gt;&lt;/code&gt;：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; xp(&quot;(//ul/li)[1]&quot;)
-[u'&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;']
+[u&#39;&amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2650,18 +3025,18 @@ current scope: [u'http://schema.org/Rating']
 
 &lt;p&gt;因为一个元素可以包含多个CSS类，所以XPath选择元素的方法是相当冗长：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;*[contains(concat(' ', normalize-space(@class), ' '), ' someclass ')]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;*[contains(concat(&#39; &#39;, normalize-space(@class), &#39; &#39;), &#39; someclass &#39;)]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;如果你使用&lt;code class=&quot;highlighter-rouge&quot;&gt;@class='someclass'&lt;/code&gt;你可能最终缺少有其他类的元素，如果你只是使用补偿，你可能会得到更多的你想要的元素，如果他们有一个不同的类名共享字符串。&lt;code class=&quot;highlighter-rouge&quot;&gt;contains(@class, 'someclass')someclass&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果你使用&lt;code class=&quot;highlighter-rouge&quot;&gt;@class=&#39;someclass&#39;&lt;/code&gt;你可能最终缺少有其他类的元素，如果你只是使用补偿，你可能会得到更多的你想要的元素，如果他们有一个不同的类名共享字符串。&lt;code class=&quot;highlighter-rouge&quot;&gt;contains(@class, &#39;someclass&#39;)someclass&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;事实证明，Scrapy选择器允许你链接选择器，所以大多数时候你可以使用CSS选择类，然后在需要时切换到XPath：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from scrapy import Selector
-&amp;gt;&amp;gt;&amp;gt; sel = Selector(text='&amp;lt;div class=&quot;hero shout&quot;&amp;gt;&amp;lt;time datetime=&quot;2014-07-23 19:00&quot;&amp;gt;Special date&amp;lt;/time&amp;gt;&amp;lt;/div&amp;gt;')
-&amp;gt;&amp;gt;&amp;gt; sel.css('.shout').xpath('./time/@datetime').extract()
-[u'2014-07-23 19:00']
+&amp;gt;&amp;gt;&amp;gt; sel = Selector(text=&#39;&amp;lt;div class=&quot;hero shout&quot;&amp;gt;&amp;lt;time datetime=&quot;2014-07-23 19:00&quot;&amp;gt;Special date&amp;lt;/time&amp;gt;&amp;lt;/div&amp;gt;&#39;)
+&amp;gt;&amp;gt;&amp;gt; sel.css(&#39;.shout&#39;).xpath(&#39;./time/@datetime&#39;).extract()
+[u&#39;2014-07-23 19:00&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2840,8 +3215,8 @@ current scope: [u'http://schema.org/Rating']
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.selector.remove_namespaces()
 &amp;gt;&amp;gt;&amp;gt; response.xpath(&quot;//link&quot;)
-[&amp;lt;Selector xpath='//link' data=u'&amp;lt;link xmlns=&quot;http://www.w3.org/2005/Atom'&amp;gt;,
- &amp;lt;Selector xpath='//link' data=u'&amp;lt;link xmlns=&quot;http://www.w3.org/2005/Atom'&amp;gt;,
+[&amp;lt;Selector xpath=&#39;//link&#39; data=u&#39;&amp;lt;link xmlns=&quot;http://www.w3.org/2005/Atom&#39;&amp;gt;,
+ &amp;lt;Selector xpath=&#39;//link&#39; data=u&#39;&amp;lt;link xmlns=&quot;http://www.w3.org/2005/Atom&#39;&amp;gt;,
  ...
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -2858,11 +3233,11 @@ current scope: [u'http://schema.org/Rating']
 </entry>
 <entry>
 <title>Scrapy爬虫入门教程四 Spider（爬虫）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%9B%9B-spider-%E7%88%AC%E8%99%AB/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程四 Spider（爬虫）" />
+<link href="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%9B%9B-spider-%E7%88%AC%E8%99%AB/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程四 Spider（爬虫）" />
 <published>2017-04-09T14:29:00+08:00</published>
 <updated>2017-04-09T14:29:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程四-spider（爬虫）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%9B%9B-spider-%E7%88%AC%E8%99%AB/">&lt;h1 id=&quot;scrapy-spider&quot;&gt;Scrapy爬虫入门教程四 Spider（爬虫）&lt;/h1&gt;
+<id>https://zhuio.github.io/scrapy爬虫入门教程四-spider（爬虫）</id>
+<content type="html" xml:base="https://zhuio.github.io/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%9B%9B-spider-%E7%88%AC%E8%99%AB/">&lt;h1 id=&quot;scrapy-spider&quot;&gt;Scrapy爬虫入门教程四 Spider（爬虫）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
@@ -2948,11 +3323,11 @@ current scope: [u'http://schema.org/Rating']
 例如，如果您需要通过使用POST请求登录来启动，您可以：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class MySpider(scrapy.Spider):
-    name = 'myspider'
+    name = &#39;myspider&#39;
 
     def start_requests(self):
         return [scrapy.FormRequest(&quot;http://www.example.com/login&quot;,
-                                   formdata={'user': 'john', 'pass': 'secret'},
+                                   formdata={&#39;user&#39;: &#39;john&#39;, &#39;pass&#39;: &#39;secret&#39;},
                                    callback=self.logged_in)]
 
     def logged_in(self, response):
@@ -2991,16 +3366,16 @@ current scope: [u'http://schema.org/Rating']
 
 
 class MySpider(scrapy.Spider):
-    name = 'example.com'
-    allowed_domains = ['example.com']
+    name = &#39;example.com&#39;
+    allowed_domains = [&#39;example.com&#39;]
     start_urls = [
-        'http://www.example.com/1.html',
-        'http://www.example.com/2.html',
-        'http://www.example.com/3.html',
+        &#39;http://www.example.com/1.html&#39;,
+        &#39;http://www.example.com/2.html&#39;,
+        &#39;http://www.example.com/3.html&#39;,
     ]
 
     def parse(self, response):
-        self.logger.info('A response from %s just arrived!', response.url)
+        self.logger.info(&#39;A response from %s just arrived!&#39;, response.url)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -3009,19 +3384,19 @@ class MySpider(scrapy.Spider):
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import scrapy
 
 class MySpider(scrapy.Spider):
-    name = 'example.com'
-    allowed_domains = ['example.com']
+    name = &#39;example.com&#39;
+    allowed_domains = [&#39;example.com&#39;]
     start_urls = [
-        'http://www.example.com/1.html',
-        'http://www.example.com/2.html',
-        'http://www.example.com/3.html',
+        &#39;http://www.example.com/1.html&#39;,
+        &#39;http://www.example.com/2.html&#39;,
+        &#39;http://www.example.com/3.html&#39;,
     ]
 
     def parse(self, response):
-        for h3 in response.xpath('//h3').extract():
+        for h3 in response.xpath(&#39;//h3&#39;).extract():
             yield {&quot;title&quot;: h3}
 
-        for url in response.xpath('//a/@href').extract():
+        for url in response.xpath(&#39;//a/@href&#39;).extract():
             yield scrapy.Request(url, callback=self.parse)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3032,19 +3407,19 @@ class MySpider(scrapy.Spider):
 from myproject.items import MyItem
 
 class MySpider(scrapy.Spider):
-    name = 'example.com'
-    allowed_domains = ['example.com']
+    name = &#39;example.com&#39;
+    allowed_domains = [&#39;example.com&#39;]
 
     def start_requests(self):
-        yield scrapy.Request('http://www.example.com/1.html', self.parse)
-        yield scrapy.Request('http://www.example.com/2.html', self.parse)
-        yield scrapy.Request('http://www.example.com/3.html', self.parse)
+        yield scrapy.Request(&#39;http://www.example.com/1.html&#39;, self.parse)
+        yield scrapy.Request(&#39;http://www.example.com/2.html&#39;, self.parse)
+        yield scrapy.Request(&#39;http://www.example.com/3.html&#39;, self.parse)
 
     def parse(self, response):
-        for h3 in response.xpath('//h3').extract():
+        for h3 in response.xpath(&#39;//h3&#39;).extract():
             yield MyItem(title=h3)
 
-        for url in response.xpath('//a/@href').extract():
+        for url in response.xpath(&#39;//a/@href&#39;).extract():
             yield scrapy.Request(url, callback=self.parse)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3062,11 +3437,11 @@ class MySpider(scrapy.Spider):
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import scrapy
 
 class MySpider(scrapy.Spider):
-    name = 'myspider'
+    name = &#39;myspider&#39;
 
     def __init__(self, category=None, *args, **kwargs):
         super(MySpider, self).__init__(*args, **kwargs)
-        self.start_urls = ['http://www.example.com/categories/%s' % category]
+        self.start_urls = [&#39;http://www.example.com/categories/%s&#39; % category]
         # ...
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3076,10 +3451,10 @@ class MySpider(scrapy.Spider):
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import scrapy
 
 class MySpider(scrapy.Spider):
-    name = 'myspider'
+    name = &#39;myspider&#39;
 
     def start_requests(self):
-        yield scrapy.Request('http://www.example.com/categories/%s' % self.category)
+        yield scrapy.Request(&#39;http://www.example.com/categories/%s&#39; % self.category)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -3149,25 +3524,25 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
 class MySpider(CrawlSpider):
-    name = 'example.com'
-    allowed_domains = ['example.com']
-    start_urls = ['http://www.example.com']
+    name = &#39;example.com&#39;
+    allowed_domains = [&#39;example.com&#39;]
+    start_urls = [&#39;http://www.example.com&#39;]
 
     rules = (
-        # Extract links matching 'category.php' (but not matching 'subsection.php')
+        # Extract links matching &#39;category.php&#39; (but not matching &#39;subsection.php&#39;)
         # and follow links from them (since no callback means follow=True by default).
-        Rule(LinkExtractor(allow=('category\.php', ), deny=('subsection\.php', ))),
+        Rule(LinkExtractor(allow=(&#39;category\.php&#39;, ), deny=(&#39;subsection\.php&#39;, ))),
 
-        # Extract links matching 'item.php' and parse them with the spider's method parse_item
-        Rule(LinkExtractor(allow=('item\.php', )), callback='parse_item'),
+        # Extract links matching &#39;item.php&#39; and parse them with the spider&#39;s method parse_item
+        Rule(LinkExtractor(allow=(&#39;item\.php&#39;, )), callback=&#39;parse_item&#39;),
     )
 
     def parse_item(self, response):
-        self.logger.info('Hi, this is an item page! %s', response.url)
+        self.logger.info(&#39;Hi, this is an item page! %s&#39;, response.url)
         item = scrapy.Item()
-        item['id'] = response.xpath('//td[@id=&quot;item_id&quot;]/text()').re(r'ID: (\d+)')
-        item['name'] = response.xpath('//td[@id=&quot;item_name&quot;]/text()').extract()
-        item['description'] = response.xpath('//td[@id=&quot;item_description&quot;]/text()').extract()
+        item[&#39;id&#39;] = response.xpath(&#39;//td[@id=&quot;item_id&quot;]/text()&#39;).re(r&#39;ID: (\d+)&#39;)
+        item[&#39;name&#39;] = response.xpath(&#39;//td[@id=&quot;item_name&quot;]/text()&#39;).extract()
+        item[&#39;description&#39;] = response.xpath(&#39;//td[@id=&quot;item_description&quot;]/text()&#39;).extract()
         return item
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3186,15 +3561,15 @@ XMLFeedSpider设计用于通过以特定节点名称迭代XML订阅源来解析X
 定义要使用的迭代器的字符串。它可以是：&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;'iternodes'&lt;/code&gt; - 基于正则表达式的快速迭代器&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;'html'&lt;/code&gt;- 使用的迭代器Selector。请记住，这使用DOM解析，并且必须加载所有DOM在内存中，这可能是一个大饲料的问题&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;'xml'&lt;/code&gt;- 使用的迭代器Selector。请记住，这使用DOM解析，并且必须加载所有DOM在内存中，这可能是一个大饲料的问题
-它默认为：&lt;code class=&quot;highlighter-rouge&quot;&gt;'iternodes'&lt;/code&gt;。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&#39;iternodes&#39;&lt;/code&gt; - 基于正则表达式的快速迭代器&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&#39;html&#39;&lt;/code&gt;- 使用的迭代器Selector。请记住，这使用DOM解析，并且必须加载所有DOM在内存中，这可能是一个大饲料的问题&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&#39;xml&#39;&lt;/code&gt;- 使用的迭代器Selector。请记住，这使用DOM解析，并且必须加载所有DOM在内存中，这可能是一个大饲料的问题
+它默认为：&lt;code class=&quot;highlighter-rouge&quot;&gt;&#39;iternodes&#39;&lt;/code&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;itertag&lt;/code&gt;
 一个具有要迭代的节点（或元素）的名称的字符串。示​​例：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;itertag = 'product'&lt;/code&gt;&lt;/p&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;itertag = &#39;product&#39;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;namespaces&lt;/code&gt;
 定义该文档中将使用此爬虫处理的命名空间的元组列表。在 与将用于自动注册使用的命名空间 的方法。(prefix, uri)prefixuriregister_namespace()&lt;/p&gt;
@@ -3205,8 +3580,8 @@ XMLFeedSpider设计用于通过以特定节点名称迭代XML订阅源来解析X
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class YourSpider(XMLFeedSpider):
 
-    namespaces = [('n', 'http://www.sitemaps.org/schemas/sitemap/0.9')]
-    itertag = 'n:url'
+    namespaces = [(&#39;n&#39;, &#39;http://www.sitemaps.org/schemas/sitemap/0.9&#39;)]
+    itertag = &#39;n:url&#39;
     # ...
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3230,19 +3605,19 @@ XMLFeedSpider设计用于通过以特定节点名称迭代XML订阅源来解析X
 from myproject.items import TestItem
 
 class MySpider(XMLFeedSpider):
-    name = 'example.com'
-    allowed_domains = ['example.com']
-    start_urls = ['http://www.example.com/feed.xml']
-    iterator = 'iternodes'  # This is actually unnecessary, since it's the default value
-    itertag = 'item'
+    name = &#39;example.com&#39;
+    allowed_domains = [&#39;example.com&#39;]
+    start_urls = [&#39;http://www.example.com/feed.xml&#39;]
+    iterator = &#39;iternodes&#39;  # This is actually unnecessary, since it&#39;s the default value
+    itertag = &#39;item&#39;
 
     def parse_node(self, response, node):
-        self.logger.info('Hi, this is a &amp;lt;%s&amp;gt; node!: %s', self.itertag, ''.join(node.extract()))
+        self.logger.info(&#39;Hi, this is a &amp;lt;%s&amp;gt; node!: %s&#39;, self.itertag, &#39;&#39;.join(node.extract()))
 
         item = TestItem()
-        item['id'] = node.xpath('@id').extract()
-        item['name'] = node.xpath('name').extract()
-        item['description'] = node.xpath('description').extract()
+        item[&#39;id&#39;] = node.xpath(&#39;@id&#39;).extract()
+        item[&#39;name&#39;] = node.xpath(&#39;name&#39;).extract()
+        item[&#39;description&#39;] = node.xpath(&#39;description&#39;).extract()
         return item
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3274,20 +3649,20 @@ CSV文件中每个字段的包含字符的字符串默认为’”‘（引号�
 from myproject.items import TestItem
 
 class MySpider(CSVFeedSpider):
-    name = 'example.com'
-    allowed_domains = ['example.com']
-    start_urls = ['http://www.example.com/feed.csv']
-    delimiter = ';'
-    quotechar = &quot;'&quot;
-    headers = ['id', 'name', 'description']
+    name = &#39;example.com&#39;
+    allowed_domains = [&#39;example.com&#39;]
+    start_urls = [&#39;http://www.example.com/feed.csv&#39;]
+    delimiter = &#39;;&#39;
+    quotechar = &quot;&#39;&quot;
+    headers = [&#39;id&#39;, &#39;name&#39;, &#39;description&#39;]
 
     def parse_row(self, response, row):
-        self.logger.info('Hi, this is a row!: %r', row)
+        self.logger.info(&#39;Hi, this is a row!: %r&#39;, row)
 
         item = TestItem()
-        item['id'] = row['id']
-        item['name'] = row['name']
-        item['description'] = row['description']
+        item[&#39;id&#39;] = row[&#39;id&#39;]
+        item[&#39;name&#39;] = row[&#39;name&#39;]
+        item[&#39;description&#39;] = row[&#39;description&#39;]
         return item
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3313,7 +3688,7 @@ SitemapSpider允许您通过使用&lt;a href=&quot;http://www.sitemaps.org/&quot
 &lt;/ul&gt;
 
 &lt;p&gt;例如：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sitemap_rules = [('/product/', 'parse_product')]&lt;/code&gt;&lt;/p&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sitemap_rules = [(&#39;/product/&#39;, &#39;parse_product&#39;)]&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;规则按顺序应用，只有匹配的第一个将被使用。
 如果省略此属性，则会在parse回调中处理在站点地图中找到的所有网址。&lt;/p&gt;
@@ -3346,7 +3721,7 @@ SitemapSpider允许您通过使用&lt;a href=&quot;http://www.sitemaps.org/&quot
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from scrapy.spiders import SitemapSpider
 
 class MySpider(SitemapSpider):
-    sitemap_urls = ['http://www.example.com/sitemap.xml']
+    sitemap_urls = [&#39;http://www.example.com/sitemap.xml&#39;]
 
     def parse(self, response):
         pass # ... scrape item here ...
@@ -3358,10 +3733,10 @@ class MySpider(SitemapSpider):
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from scrapy.spiders import SitemapSpider
 
 class MySpider(SitemapSpider):
-    sitemap_urls = ['http://www.example.com/sitemap.xml']
+    sitemap_urls = [&#39;http://www.example.com/sitemap.xml&#39;]
     sitemap_rules = [
-        ('/product/', 'parse_product'),
-        ('/category/', 'parse_category'),
+        (&#39;/product/&#39;, &#39;parse_product&#39;),
+        (&#39;/category/&#39;, &#39;parse_category&#39;),
     ]
 
     def parse_product(self, response):
@@ -3377,11 +3752,11 @@ class MySpider(SitemapSpider):
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from scrapy.spiders import SitemapSpider
 
 class MySpider(SitemapSpider):
-    sitemap_urls = ['http://www.example.com/robots.txt']
+    sitemap_urls = [&#39;http://www.example.com/robots.txt&#39;]
     sitemap_rules = [
-        ('/shop/', 'parse_shop'),
+        (&#39;/shop/&#39;, &#39;parse_shop&#39;),
     ]
-    sitemap_follow = ['/sitemap_shops']
+    sitemap_follow = [&#39;/sitemap_shops&#39;]
 
     def parse_shop(self, response):
         pass # ... scrape shop here ...
@@ -3393,12 +3768,12 @@ class MySpider(SitemapSpider):
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from scrapy.spiders import SitemapSpider
 
 class MySpider(SitemapSpider):
-    sitemap_urls = ['http://www.example.com/robots.txt']
+    sitemap_urls = [&#39;http://www.example.com/robots.txt&#39;]
     sitemap_rules = [
-        ('/shop/', 'parse_shop'),
+        (&#39;/shop/&#39;, &#39;parse_shop&#39;),
     ]
 
-    other_urls = ['http://www.example.com/about']
+    other_urls = [&#39;http://www.example.com/about&#39;]
 
     def start_requests(self):
         requests = list(super(MySpider, self).start_requests())
@@ -3415,446 +3790,5 @@ class MySpider(SitemapSpider):
 </content>
 <category term="Scrapy" />
 <summary>Scrapy爬虫入门教程四 Spider（爬虫）</summary>
-</entry>
-<entry>
-<title>Scrapy爬虫入门教程三 命令行工具介绍和示例</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%89-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%A4%BA%E4%BE%8B/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程三 命令行工具介绍和示例" />
-<published>2017-04-09T11:55:00+08:00</published>
-<updated>2017-04-09T11:55:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程三-命令行工具介绍和示例</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%89-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%A4%BA%E4%BE%8B/">&lt;h1 id=&quot;scrapy-&quot;&gt;Scrapy爬虫入门教程三 命令行工具介绍和示例&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Scrapy 1.3.2 版本&lt;/code&gt; （当前最新）&lt;/p&gt;
-
-&lt;p&gt;[toc]&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;命令行工具&lt;/h2&gt;
-
-&lt;p&gt;Scrapy是通过scrapy命令行工具来控制的，当前最新版本0.10&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;配置设置&lt;/h3&gt;
-
-&lt;p&gt;Scrapy将scrapy.cfg在标准位置的ini样式文件中查找配置参数：&lt;/p&gt;
-
-&lt;p&gt;1.
-系统默认配置：&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/scrapy.cfg&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;c:\scrapy\scrapy.cfg&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;2.
-全局配置文件：&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.config/scrapy.cfg&lt;/code&gt;（&lt;code class=&quot;highlighter-rouge&quot;&gt;$XDG_CONFIG_HOME&lt;/code&gt;）和&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.scrapy.cfg&lt;/code&gt;（&lt;code class=&quot;highlighter-rouge&quot;&gt;$HOME&lt;/code&gt;）用于&lt;/p&gt;
-
-&lt;p&gt;3.
-项目配置文件：&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy.cfg&lt;/code&gt; 在scrapy项目的根目录中。&lt;/p&gt;
-
-&lt;p&gt;来自这些文件的设置将按照所列的优先顺序进行合并：用户定义的值比系统级默认值具有更高的优先级，&lt;strong&gt;项目范围的设置将在定义时覆盖所有其他设置&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;Scrapy也理解，并且可以通过配置一些环境变量。目前这些是：&lt;/p&gt;
-
-&lt;p&gt;SCRAPY_SETTINGS_MODULE（&lt;a href=&quot;http://scrapy.readthedocs.io/en/latest/topics/settings.html#topics-settings-module-envvar&quot;&gt;请参阅指定设置&lt;/a&gt;）
-SCRAPY_PROJECT
-SCRAPY_PYTHON_SHELL（&lt;a href=&quot;http://scrapy.readthedocs.io/en/latest/topics/shell.html#topics-shell&quot;&gt;见Scrapy shell&lt;/a&gt;）&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;scrapy&quot;&gt;Scrapy项目的默认结构&lt;/h2&gt;
-
-&lt;p&gt;在深入了解命令行工具及其子命令之前，让我们先了解Scrapy项目的目录结构。&lt;/p&gt;
-
-&lt;p&gt;虽然可以修改，但所有Scrapy项目默认情况下具有相同的文件结构，类似于：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scrapy.cfg
-myproject/
-    __init__.py
-    items.py
-    pipelines.py
-    settings.py
-    spiders/
-        __init__.py
-        spider1.py
-        spider2.py
-        ...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;其中，目录scrapy.cfg文件位于项目的根目录。该文件包含定义项目设置的python模块的名称。这里是一个例子：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[settings]
-default = myproject.settings
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;scrapy-1&quot;&gt;使用scrapy工具&lt;/h2&gt;
-
-&lt;p&gt;您可以从运行没有参数的Scrapy工具开始，它将打印一些使用帮助和可用的命令：
-直接在项目根目录的命令行输入： scrapy&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;会得到如下提示：
-Scrapy 1.3.2 - no active project
-
-Usage:
-  scrapy &amp;lt;command&amp;gt; [options] [args]
-
-Available commands:
-  bench         Run quick benchmark test
-  commands
-  fetch         Fetch a URL using the Scrapy downloader
-  genspider     Generate new spider using pre-defined templates
-  runspider     Run a self-contained spider (without creating a project)
-  settings      Get settings values
-  shell         Interactive scraping console
-  startproject  Create new project
-  version       Print Scrapy version
-  view          Open URL in browser, as seen by Scrapy
-
-  [ more ]      More commands available when run from project directory
-
-Use &quot;scrapy &amp;lt;command&amp;gt; -h&quot; to see more info about a command
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;创建项目&lt;/h3&gt;
-
-&lt;p&gt;你通常用这个scrapy工具做的第一件事是创建你的Scrapy项目：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy  startproject  myproject  [ project_dir ]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这将在该project_dir目录下创建一个Scrapy项目。如果project_dir没有指定，project_dir将会和myproject名称一样。&lt;/p&gt;
-
-&lt;p&gt;接下来，进入新的项目目录：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;cd  project_dir&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;您可以使用scrapy命令从那里管理和控制您的项目。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;控制项目&lt;/h3&gt;
-
-&lt;p&gt;您可以使用scrapy项目内部的工具来控制和管理它们。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;大家不要着急一下子把所以东西都介绍到，具体细节后面都会写到。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;例如，要创建一个新的爬虫：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy genspider mydomain mydomain.com&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;通过上述命令创建了一个spider name为mydomain的爬虫，start_urls为&lt;a href=&quot;http://www.cnblogs.com/%E7%9A%84%E7%88%AC%E8%99%AB%E3%80%82&quot;&gt;http://www.cnblogs.com/的爬虫。&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;一些Scrapy命令（如crawl）必须从Scrapy项目内部运行。请参阅命令参考下文中的哪些命令必须从内部项目运行的&lt;a href=&quot;http://scrapy.readthedocs.io/en/latest/topics/commands.html#topics-commands-ref&quot;&gt;详细信息&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;还要记住，一些命令在从项目中运行时可能有稍微不同的行为。例如，user_agent如果正在获取的URL与某个特定的爬虫相关联，fetch命令将使用爬虫覆盖的行为（例如属性覆盖用户代理）。这是有意的，因为该fetch命令用于检查爬虫程序如何下载页面。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;常用的工具命令&lt;/h2&gt;
-
-&lt;p&gt;此部分包含可用内置命令的列表，其中包含描述和一些用法示例。记住，您可以随时通过运行以下命令获得有关每个命令的更多信息：&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy &amp;lt;command&amp;gt; -h&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;你可以看到所有可用的命令：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy  -h&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;上面两种命令，它们只能在Scrapy项目内部工作，也可以全局命令的情况下工作（但它们可能会被项目内的配置覆盖）。&lt;/p&gt;
-
-&lt;p&gt;-
-全局命令：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;[startproject]&lt;/li&gt;
-  &lt;li&gt;[genspider]&lt;/li&gt;
-  &lt;li&gt;[settings]&lt;/li&gt;
-  &lt;li&gt;[runspider]&lt;/li&gt;
-  &lt;li&gt;[shell]&lt;/li&gt;
-  &lt;li&gt;[fetch]&lt;/li&gt;
-  &lt;li&gt;[view]&lt;/li&gt;
-  &lt;li&gt;[version]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-
-仅项目命令：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;[crawl]&lt;/li&gt;
-  &lt;li&gt;[check]&lt;/li&gt;
-  &lt;li&gt;[list]&lt;/li&gt;
-  &lt;li&gt;[edit]&lt;/li&gt;
-  &lt;li&gt;[parse]&lt;/li&gt;
-  &lt;li&gt;[bench]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;startproject&quot;&gt;startproject&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy startproject &amp;lt;project_name&amp;gt; [project_dir]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;在目录project_name下创建一个名为的Scrapy项目project_dir 。如果project_dir没有指定，project_dir将会和myproject名称一样。&lt;/p&gt;
-
-&lt;p&gt;用法示例：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;$ scrapy startproject myproject&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;genspider&quot;&gt;genspider&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy genspider [-t template] &amp;lt;name&amp;gt; &amp;lt;domain&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;在当前文件夹或当前项目的spiders文件夹中创建一个新的爬虫，如果从项目中调用。该&lt;name&gt;参数设置为爬虫的name，而&lt;domain&gt;用于生成allowed_domains和start_urls爬虫的属性。&lt;/domain&gt;&lt;/name&gt;&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy genspider -l
-Available templates:
-  basic
-  crawl
-  csvfeed
-  xmlfeed
-
-$ scrapy genspider example example.com
-Created spider 'example' using template 'basic'
-
-$ scrapy genspider -t crawl scrapyorg scrapy.org
-Created spider 'scrapyorg' using template 'crawl'
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这只是一个方便的快捷命令，用于创建基于预定义模板的爬虫，但当然不是唯一的方式来创建爬虫。您可以自己创建爬虫源代码文件，而不是使用此命令。&lt;/p&gt;
-
-&lt;h3 id=&quot;crawl&quot;&gt;crawl&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy crawl &amp;lt;spider&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;使用爬虫开始爬行。&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy crawl myspider
-[ ... myspider starts crawling ... ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;check&quot;&gt;check&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy check [-l] &amp;lt;spider&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy check -l
-first_spider
-  * parse
-  * parse_item
-second_spider
-  * parse
-  * parse_item
-
-$ scrapy check
-[FAILED] first_spider:parse_item
-&amp;gt;&amp;gt;&amp;gt; 'RetailPricex' field is missing
-
-[FAILED] first_spider:parse
-&amp;gt;&amp;gt;&amp;gt; Returned 92 requests, expected 0..4
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;list&quot;&gt;list&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy list&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;列出当前项目中的所有可用爬虫。每行输出一个爬虫。&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy列表
-spider1
-spider2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;edit&quot;&gt;edit&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy edit &amp;lt;spider&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;此命令仅作为最常见情况的方便快捷方式提供，开发人员当然可以选择任何工具或IDE来编写和调试他的爬虫。&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ scrapy edit spider1&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;fetch&quot;&gt;fetch&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy fetch &amp;lt;url&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;使用Scrapy下载器下载给定的URL，并将内容写入标准输出。&lt;/p&gt;
-
-&lt;p&gt;这个命令的有趣的事情是它获取爬虫下载它的页面。例如，如果爬虫有一个USER_AGENT 属性覆盖用户代理，它将使用那个。&lt;/p&gt;
-
-&lt;p&gt;所以这个命令可以用来“看”你的爬虫如何获取一个页面。&lt;/p&gt;
-
-&lt;p&gt;如果在项目外部使用，将不应用特定的每个爬虫行为，它将只使用默认的Scrapy下载器设置。&lt;/p&gt;
-
-&lt;p&gt;支持的选项：&lt;/p&gt;
-
-&lt;p&gt;–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫
-–headers：打印响应的HTTP头，而不是响应的正文
-–no-redirect：不遵循HTTP 3xx重定向（默认是遵循它们）&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy fetch --nolog http://www.example.com/some/page.html
-[ ... html content here ... ]
-
-$ scrapy fetch --nolog --headers http://www.example.com/
-{'Accept-Ranges': ['bytes'],
- 'Age': ['1263   '],
- 'Connection': ['close     '],
- 'Content-Length': ['596'],
- 'Content-Type': ['text/html; charset=UTF-8'],
- 'Date': ['Wed, 18 Aug 2010 23:59:46 GMT'],
- 'Etag': ['&quot;573c1-254-48c9c87349680&quot;'],
- 'Last-Modified': ['Fri, 30 Jul 2010 15:30:18 GMT'],
- 'Server': ['Apache/2.2.3 (CentOS)']}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;view&quot;&gt;view&lt;/h3&gt;
-
-&lt;p&gt;语法:
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy view &amp;lt;url&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;在浏览器中打开给定的URL，因为您的Scrapy爬虫会“看到”它。有时，爬虫会看到与普通用户不同的网页，因此可以用来检查爬虫“看到了什么”并确认它是您期望的。&lt;/p&gt;
-
-&lt;p&gt;支持的选项：&lt;/p&gt;
-
-&lt;p&gt;–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫
-–no-redirect：不遵循HTTP 3xx重定向（默认是遵循它们）
-用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy view http://www.example.com/some/page.html
-[ ... browser starts ... ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;shell&quot;&gt;shell&lt;/h3&gt;
-
-&lt;p&gt;语法:
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy shell [url]&lt;/code&gt;
-启动给定URL（如果给定）的Scrapy shell，如果没有给出URL，则为空。还支持UNIX样式的本地文件路径，相对于 ./或../前缀或绝对文件路径。有关详细信息，&lt;a href=&quot;http://scrapy.readthedocs.io/en/latest/topics/shell.html#topics-shell&quot;&gt;请参阅Scrapy shell。&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;支持的选项：&lt;/p&gt;
-
-&lt;p&gt;–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫
--c code：评估shell中的代码，打印结果并退出
-–no-redirect：不遵循HTTP 3xx重定向（默认是遵循它们）; 这只影响你可以在命令行上作为参数传递的URL; 一旦你在shell中，fetch(url)默认情况下仍然会遵循HTTP重定向。
-用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy shell http://www.example.com/some/page.html
-[ ... scrapy shell starts ... ]
-
-$ scrapy shell --nolog http://www.example.com/ -c '(response.status, response.url)'
-(200, 'http://www.example.com/')
-
-# shell follows HTTP redirects by default
-$ scrapy shell --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F -c '(response.status, response.url)'
-(200, 'http://example.com/')
-
-# you can disable this with --no-redirect
-# (only for the URL passed as command line argument)
-$ scrapy shell --no-redirect --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F -c '(response.status, response.url)'
-(302, 'http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F')
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;parse&quot;&gt;parse&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy parse &amp;lt;url&amp;gt; [options]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;获取给定的URL并使用处理它的爬虫解析它，使用通过–callback选项传递的方法，或者parse如果没有给出。&lt;/p&gt;
-
-&lt;p&gt;支持的选项：&lt;/p&gt;
-
-&lt;p&gt;–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫
-–a NAME=VALUE：set spider argument（可以重复）
-–callback或者-c：spider方法用作回调来解析响应
-–pipelines：通过管道处理项目
-–rules或者-r：使用CrawlSpider 规则来发现用于解析响应的回调（即，spider方法）
-–noitems：不显示已抓取的项目
-–nolinks：不显示提取的链接
-–nocolour：避免使用pygments来着色输出
-–depth或-d：请求应递归跟踪的深度级别（默认值：1）
-–verbose或-v：显示每个深度级别的信息
-用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy parse http://www.example.com/ -c parse_item
-[ ... scrapy log lines crawling example.com spider ... ]
-
-&amp;gt;&amp;gt;&amp;gt; STATUS DEPTH LEVEL 1 &amp;lt;&amp;lt;&amp;lt;
-# Scraped Items  ------------------------------------------------------------
-[{'name': u'Example item',
- 'category': u'Furniture',
- 'length': u'12 cm'}]
-
-# Requests  -----------------------------------------------------------------
-[]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;settings&quot;&gt;settings&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy settings [options]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;获取Scrapy设置的值。&lt;/p&gt;
-
-&lt;p&gt;如果在项目中使用，它将显示项目设置值，否则将显示该设置的默认Scrapy值。&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy settings --get BOT_NAME
-scrapybot
-$ scrapy settings --get DOWNLOAD_DELAY
-0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;runspider&quot;&gt;runspider&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy runspider &amp;lt;spider_file.py&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;运行一个自包含在Python文件中的爬虫，而不必创建一个项目。&lt;/p&gt;
-
-&lt;p&gt;用法示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy runspider myspider.py
-[...爬虫开始爬行...]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;version&quot;&gt;version&lt;/h3&gt;
-
-&lt;p&gt;语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy version [-v]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;打印Scrapy版本。如果使用-v它也打印Python，Twisted和平台信息，这是有用的错误报告。&lt;/p&gt;
-
-&lt;h3 id=&quot;bench&quot;&gt;bench&lt;/h3&gt;
-
-&lt;p&gt;新版本0.17。
-语法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy bench&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;运行快速基准测试。&lt;a href=&quot;http://scrapy.readthedocs.io/en/latest/topics/benchmarking.html#benchmarking&quot;&gt;基准&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;自定义项目命令&lt;/h3&gt;
-
-&lt;p&gt;您还可以使用COMMANDS_MODULE设置添加自定义项目命令 。有关如何实现命令的示例，请参阅&lt;a href=&quot;https://github.com/scrapy/scrapy/tree/master/scrapy/commands&quot;&gt;scrapy/commands&lt;/a&gt;中的Scrapy命令。&lt;/p&gt;
-</content>
-<category term="Scrapy" />
-<summary>Scrapy爬虫入门教程三 命令行工具介绍和示例</summary>
 </entry>
 </feed>
