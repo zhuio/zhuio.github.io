@@ -1,0 +1,19 @@
+---
+layout: "post"
+title: "anaconda简单使用"
+date: "2017-05-23 01:19"
+tags:
+- anaconda
+comments: true
+---
+
+### anaconda基本命令
+
+
+      conda create -n pyenv python=3.5
+
+
+### anaconda加速
+
+      conda config --add channels 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/'
+      conda config --set show_channel_urls yes
