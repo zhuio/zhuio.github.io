@@ -1,0 +1,30 @@
+---
+layout: "post"
+title: "docker"
+date: "2017-05-26 11:16"
+tags:
+- docker
+comments: true
+---
+
+###docker最基本的使用方法
+
+####docker国内加速
+使用网易hub加速
+地址
+
+      https://c.163.com/wiki/index.php?title=DockerHub%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F
+
+ubuntu
+
+      $ sudo echo "DOCKER_OPTS=\"\$DOCKER_OPTS --registry-mirror=http://hub-mirror.c.163.com\"" >> /etc/default/docker
+      $ service docker restart
+
+#####建立Dockerfile
+
+      https://hub.docker.com/
+
+####docker 常用命令
+
+      docker build //建立container
+      docker run //运行docker
