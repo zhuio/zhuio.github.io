@@ -63,7 +63,7 @@ weibo:              EDM_LOVER
 #hackernews:        username
 
 # Gems
-gems:
+plugins:
   - jekyll-mentions
   - jekyll-feed
   - jekyll-sitemap

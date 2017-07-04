@@ -1,0 +1,40 @@
+---
+layout: "post"
+title: "网易云音乐（高品质音乐）（MV）离线脚本"
+date: "2017-07-04 20:01"
+tags:
+- netmusic
+project: true
+comments: true
+---
+## net_music_DT320
+
+[github地址](https://github.com/zhuio/net_music_DT320)
+
+第一步：获取列表ID
+
+到网易云音乐的网页客户端，点开列表网址，在网址栏中找到列表ID
+
+第二步：
+
+下载python3和requests库
+
+第三步：
+
+python3 net_music_320_Tool.py
+
+## 获取网易云音乐1080P MV
+
+[github地址](https://github.com/zhuio/net_music_mv)
+
+第一步：
+
+下载python 和requests
+
+第二步：
+
+python net_music_mv.py
+
+第三步：
+
+输入网易云音乐的歌单ID，如果有1080P MV的话，则下载
