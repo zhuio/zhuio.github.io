@@ -18,11 +18,11 @@ comments: true
 新建shadowsocks文件夹存放pac文件
 
     mkdir ~/shadowsocks
-    cd shadowsocks
+    cd ~/shadowsocks
     
 生成pac文件
 
-    genpac --proxy="SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" -o autoproxy.pac --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
+    sudo genpac --proxy="SOCKS5 127.0.0.1:1080" -o autoproxy.pac --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
 
 设置系统网络代理为自动代理
 
