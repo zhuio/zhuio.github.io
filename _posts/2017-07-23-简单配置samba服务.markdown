@@ -1,0 +1,46 @@
+---
+layout: "post"
+title: "简单配置samba服务"
+date: "2017-07-23 12:24"
+tags:
+- samba
+comments: true
+---
+# 简单的配置 samba 共享
+
+
+> **建立一个要共享的目录**
+
+这里我直接建立了 `/home/share` 我是准备把这整个目录作为共享
+
+    sudo mkdir /home/share
+
+然后修改这个目录的权限为 `777`， 如果做只读共享可以不用这么大的权限
+
+    sudo chmod 777 -R /home/share
+
+> **修改 samba 的配置文件**
+
+    sudo vim /etc/samba/smb.conf +
+
+vim 在文件参数后面接 `+` 可以直接打开到文件末尾，相当于在命令行模式下按 `G`
+然后直接按 o 可以在下一行插入下面内容
+
+    [share]
+        path=/home/share
+        available = yes
+        browseable = yes
+        public = yes
+        writable = yes
+
+Notice: 如果你想让必须知道 samba 帐号密码的用户才可以打开共享目录，可以把 public 设置为 no
+
+> **建立用来访问的  samba 用户**
+
+    useradd share
+    smbpasswd -a share
+
+> **启动或重启 samba 服务**
+
+    sudo /etc/init.d/samba start        //启动服务
+    sudo /etc/init.d/samba restart      //重启服务

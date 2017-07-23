@@ -1,36 +1,166 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-<generator uri="http://jekyllrb.com" version="3.5.0">Jekyll</generator>
-<link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" />
-<link href="http://localhost:4000/" rel="alternate" type="text/html" />
-<updated>2017-07-04T20:10:36+08:00</updated>
-<id>http://localhost:4000/</id>
-<subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle>
-<entry>
-<title>图片爬虫</title>
-<link href="http://localhost:4000/%E5%9B%BE%E7%89%87%E7%88%AC%E8%99%AB/" rel="alternate" type="text/html" title="图片爬虫" />
-<published>2017-07-04T20:10:00+08:00</published>
-<updated>2017-07-04T20:10:00+08:00</updated>
-<id>http://localhost:4000/图片爬虫</id>
-<content type="html" xml:base="http://localhost:4000/%E5%9B%BE%E7%89%87%E7%88%AC%E8%99%AB/">&lt;h2 id=&quot;section&quot;&gt;两个图片爬虫&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-07-23T12:30:13+08:00</updated><id>http://localhost:4000/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">在安卓手机上安装linux</title><link href="http://localhost:4000/%E5%9C%A8%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA%E4%B8%8A%E5%AE%89%E8%A3%85linux/" rel="alternate" type="text/html" title="在安卓手机上安装linux" /><published>2017-07-23T12:28:00+08:00</published><updated>2017-07-23T12:28:00+08:00</updated><id>http://localhost:4000/%E5%9C%A8%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA%E4%B8%8A%E5%AE%89%E8%A3%85linux</id><content type="html" xml:base="http://localhost:4000/%E5%9C%A8%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA%E4%B8%8A%E5%AE%89%E8%A3%85linux/">&lt;h1 id=&quot;是时候给你的android来一发linux了&quot;&gt;是时候给你的android来一发Linux了&lt;/h1&gt;
 
-&lt;h3 id=&quot;meizitucom&quot;&gt;meizitu.com爬虫&lt;/h3&gt;
+&lt;p&gt;﻿先来一张配置好的图片，我主要是用来下pt所以只装了个transmission.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-4b0d076b2e66f880.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;首先准备3个app&lt;/p&gt;
+
+&lt;p&gt;Linux deploy&lt;/p&gt;
+
+&lt;p&gt;VNC viewer&lt;/p&gt;
+
+&lt;p&gt;juiceSSH&lt;/p&gt;
+
+&lt;p&gt;然后打开Linux deploy&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-f8c1a8335a0eaadc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击右下角的小箭头&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-b02c34b376fc4979.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上面的设置基本不用动，当然也可以根据自己的需要配置。&lt;/p&gt;
+
+&lt;p&gt;如果要图形界面，把这3项勾选。&lt;/p&gt;
+
+&lt;p&gt;挂载点/sdcard，这样就可以访问sdcard了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-13e85abf4abbf5ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;然后返回这里&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-bfd432b7b519d0d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;点击右上角3个点&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-274ac75505e103ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-bcf3c1b979015878.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;选择安装就可以了，当出现«&amp;lt;deploy时说明安装成功了，整个过程还是比较简单的。&lt;/p&gt;
+
+&lt;p&gt;要登录图形界面的话需要配置一下VNC&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-26778b0656614d1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;下一步，会要求你填密码，在刚才的配置界面里面。&lt;/p&gt;
+
+&lt;p&gt;然后不出意外你就连接成功了。SSH配置大同小异，不再赘述。&lt;/p&gt;
+
+&lt;p&gt;进去之后会看到桌面，跟电脑一样。&lt;/p&gt;
+
+&lt;p&gt;不过我遇到几个问题，一是浏览器不能用，不过也没啥意义，二是中文乱码。下面讲一下怎么解决。&lt;/p&gt;
+
+&lt;p&gt;1.浏览器打不开我重新装了一个iceweasel,然后默认浏览器也能打开了，不知道为啥，反正是能打开了。&lt;/p&gt;
+
+&lt;p&gt;sudo apt install iceweasel&lt;/p&gt;
+
+&lt;p&gt;2.解决中文字体乱码&lt;/p&gt;
+
+&lt;p&gt;打开终端&lt;/p&gt;
+
+&lt;p&gt;sudo dpkg-reconfigure locales&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-4bd98c85dbbdc9de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-6dfd85e212c17c1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;按照上面的选，然后下一步。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-9a50c09a37e2e577.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;确定。&lt;/p&gt;
+
+&lt;p&gt;然后安装中文字体&lt;/p&gt;
+
+&lt;p&gt;﻿sudo apt-get install ttf-wqy-zenhei&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1498027-19556a9334ceac8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片发自简书App&lt;/p&gt;
+
+&lt;p&gt;感谢小溪帮忙，我第一个装不上，不过不影响。&lt;/p&gt;
+
+&lt;p&gt;装完之后重启一下,大功告成。&lt;/p&gt;</content><author><name></name></author><category term="linux deploy" /><category term="android" /><summary type="html">是时候给你的android来一发Linux了</summary></entry><entry><title type="html">简单配置samba服务</title><link href="http://localhost:4000/%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1/" rel="alternate" type="text/html" title="简单配置samba服务" /><published>2017-07-23T12:24:00+08:00</published><updated>2017-07-23T12:24:00+08:00</updated><id>http://localhost:4000/%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1</id><content type="html" xml:base="http://localhost:4000/%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1/">&lt;h1 id=&quot;简单的配置-samba-共享&quot;&gt;简单的配置 samba 共享&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;建立一个要共享的目录&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这里我直接建立了 &lt;code class=&quot;highlighter-rouge&quot;&gt;/home/share&lt;/code&gt; 我是准备把这整个目录作为共享&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo mkdir /home/share
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后修改这个目录的权限为 &lt;code class=&quot;highlighter-rouge&quot;&gt;777&lt;/code&gt;， 如果做只读共享可以不用这么大的权限&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chmod 777 -R /home/share
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;修改 samba 的配置文件&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo vim /etc/samba/smb.conf +
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;vim 在文件参数后面接 &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; 可以直接打开到文件末尾，相当于在命令行模式下按 &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt;
+然后直接按 o 可以在下一行插入下面内容&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[share]
+    path=/home/share
+    available = yes
+    browseable = yes
+    public = yes
+    writable = yes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice: 如果你想让必须知道 samba 帐号密码的用户才可以打开共享目录，可以把 public 设置为 no&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;建立用来访问的  samba 用户&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;useradd share
+smbpasswd -a share
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;启动或重启 samba 服务&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo /etc/init.d/samba start        //启动服务
+sudo /etc/init.d/samba restart      //重启服务
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="samba" /><summary type="html">简单的配置 samba 共享</summary></entry><entry><title type="html">图片爬虫</title><link href="http://localhost:4000/%E5%9B%BE%E7%89%87%E7%88%AC%E8%99%AB/" rel="alternate" type="text/html" title="图片爬虫" /><published>2017-07-04T20:10:00+08:00</published><updated>2017-07-04T20:10:00+08:00</updated><id>http://localhost:4000/%E5%9B%BE%E7%89%87%E7%88%AC%E8%99%AB</id><content type="html" xml:base="http://localhost:4000/%E5%9B%BE%E7%89%87%E7%88%AC%E8%99%AB/">&lt;h2 id=&quot;两个图片爬虫&quot;&gt;两个图片爬虫&lt;/h2&gt;
+
+&lt;h3 id=&quot;meizitucom爬虫&quot;&gt;meizitu.com爬虫&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/zhuio/meizitu&quot;&gt;meizitu.com爬虫地址&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;mmjpgcom&quot;&gt;mmjpg.com爬虫&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/zhuio/mmjpg-spider&quot;&gt;mmjpg.com爬虫地址&lt;/a&gt;&lt;/p&gt;
-</content>
-<category term="爬虫" />
-<category term="scrapy" />
-<summary>两个图片爬虫</summary>
-</entry>
-<entry>
-<title>网易云音乐（高品质音乐）（MV）离线脚本</title>
-<link href="http://localhost:4000/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90-%E9%AB%98%E5%93%81%E8%B4%A8%E9%9F%B3%E4%B9%90-mv-%E7%A6%BB%E7%BA%BF%E8%84%9A%E6%9C%AC/" rel="alternate" type="text/html" title="网易云音乐（高品质音乐）（MV）离线脚本" />
-<published>2017-07-04T20:01:00+08:00</published>
-<updated>2017-07-04T20:01:00+08:00</updated>
-<id>http://localhost:4000/网易云音乐（高品质音乐）（mv）离线脚本</id>
-<content type="html" xml:base="http://localhost:4000/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90-%E9%AB%98%E5%93%81%E8%B4%A8%E9%9F%B3%E4%B9%90-mv-%E7%A6%BB%E7%BA%BF%E8%84%9A%E6%9C%AC/">&lt;h2 id=&quot;netmusicdt320&quot;&gt;net_music_DT320&lt;/h2&gt;
+&lt;h3 id=&quot;mmjpgcom爬虫&quot;&gt;mmjpg.com爬虫&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/zhuio/mmjpg-spider&quot;&gt;mmjpg.com爬虫地址&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="爬虫" /><category term="scrapy" /><summary type="html">两个图片爬虫</summary></entry><entry><title type="html">网易云音乐（高品质音乐）（MV）离线脚本</title><link href="http://localhost:4000/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90-%E9%AB%98%E5%93%81%E8%B4%A8%E9%9F%B3%E4%B9%90-mv-%E7%A6%BB%E7%BA%BF%E8%84%9A%E6%9C%AC/" rel="alternate" type="text/html" title="网易云音乐（高品质音乐）（MV）离线脚本" /><published>2017-07-04T20:01:00+08:00</published><updated>2017-07-04T20:01:00+08:00</updated><id>http://localhost:4000/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90(%E9%AB%98%E5%93%81%E8%B4%A8%E9%9F%B3%E4%B9%90)(mv)%E7%A6%BB%E7%BA%BF%E8%84%9A%E6%9C%AC</id><content type="html" xml:base="http://localhost:4000/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90-%E9%AB%98%E5%93%81%E8%B4%A8%E9%9F%B3%E4%B9%90-mv-%E7%A6%BB%E7%BA%BF%E8%84%9A%E6%9C%AC/">&lt;h2 id=&quot;net_music_dt320&quot;&gt;net_music_DT320&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/zhuio/net_music_DT320&quot;&gt;github地址&lt;/a&gt;&lt;/p&gt;
 
@@ -46,7 +176,7 @@
 
 &lt;p&gt;python3 net_music_320_Tool.py&lt;/p&gt;
 
-&lt;h2 id=&quot;p-mv&quot;&gt;获取网易云音乐1080P MV&lt;/h2&gt;
+&lt;h2 id=&quot;获取网易云音乐1080p-mv&quot;&gt;获取网易云音乐1080P MV&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/zhuio/net_music_mv&quot;&gt;github地址&lt;/a&gt;&lt;/p&gt;
 
@@ -60,18 +190,7 @@
 
 &lt;p&gt;第三步：&lt;/p&gt;
 
-&lt;p&gt;输入网易云音乐的歌单ID，如果有1080P MV的话，则下载&lt;/p&gt;
-</content>
-<category term="netmusic" />
-<summary>net_music_DT320</summary>
-</entry>
-<entry>
-<title>docker</title>
-<link href="http://localhost:4000/docker/" rel="alternate" type="text/html" title="docker" />
-<published>2017-05-26T11:16:00+08:00</published>
-<updated>2017-05-26T11:16:00+08:00</updated>
-<id>http://localhost:4000/docker</id>
-<content type="html" xml:base="http://localhost:4000/docker/">&lt;p&gt;###docker最基本的使用方法&lt;/p&gt;
+&lt;p&gt;输入网易云音乐的歌单ID，如果有1080P MV的话，则下载&lt;/p&gt;</content><author><name></name></author><category term="netmusic" /><summary type="html">net_music_DT320</summary></entry><entry><title type="html">docker</title><link href="http://localhost:4000/docker/" rel="alternate" type="text/html" title="docker" /><published>2017-05-26T11:16:00+08:00</published><updated>2017-05-26T11:16:00+08:00</updated><id>http://localhost:4000/docker</id><content type="html" xml:base="http://localhost:4000/docker/">&lt;p&gt;###docker最基本的使用方法&lt;/p&gt;
 
 &lt;p&gt;####docker国内加速
 使用网易hub加速
@@ -99,42 +218,20 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  docker build //建立container
   docker run //运行docker
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</content>
-<category term="docker" />
-<summary>###docker最基本的使用方法</summary>
-</entry>
-<entry>
-<title>anaconda简单使用</title>
-<link href="http://localhost:4000/anaconda%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" rel="alternate" type="text/html" title="anaconda简单使用" />
-<published>2017-05-23T01:19:00+08:00</published>
-<updated>2017-05-23T01:19:00+08:00</updated>
-<id>http://localhost:4000/anaconda简单使用</id>
-<content type="html" xml:base="http://localhost:4000/anaconda%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">&lt;h3 id=&quot;anaconda&quot;&gt;anaconda基本命令&lt;/h3&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="docker" /><summary type="html">###docker最基本的使用方法</summary></entry><entry><title type="html">anaconda简单使用</title><link href="http://localhost:4000/anaconda%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" rel="alternate" type="text/html" title="anaconda简单使用" /><published>2017-05-23T01:19:00+08:00</published><updated>2017-05-23T01:19:00+08:00</updated><id>http://localhost:4000/anaconda%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8</id><content type="html" xml:base="http://localhost:4000/anaconda%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">&lt;h3 id=&quot;anaconda基本命令&quot;&gt;anaconda基本命令&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  conda create -n pyenv python=3.5
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;anaconda-1&quot;&gt;anaconda加速&lt;/h3&gt;
+&lt;h3 id=&quot;anaconda加速&quot;&gt;anaconda加速&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  conda config --add channels 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/'
   conda config --set show_channel_urls yes
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</content>
-<category term="anaconda" />
-<summary>anaconda基本命令</summary>
-</entry>
-<entry>
-<title>Sqlite3学习笔记</title>
-<link href="http://localhost:4000/sqlite3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="alternate" type="text/html" title="Sqlite3学习笔记" />
-<published>2017-04-10T21:24:00+08:00</published>
-<updated>2017-04-10T21:24:00+08:00</updated>
-<id>http://localhost:4000/sqlite3学习笔记</id>
-<content type="html" xml:base="http://localhost:4000/sqlite3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">&lt;h2 id=&quot;sqlite3&quot;&gt;Sqlite3学习笔记&lt;/h2&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="anaconda" /><summary type="html">anaconda基本命令</summary></entry><entry><title type="html">Sqlite3学习笔记</title><link href="http://localhost:4000/sqlite3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="alternate" type="text/html" title="Sqlite3学习笔记" /><published>2017-04-10T21:24:00+08:00</published><updated>2017-04-10T21:24:00+08:00</updated><id>http://localhost:4000/sqlite3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0</id><content type="html" xml:base="http://localhost:4000/sqlite3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">&lt;h2 id=&quot;sqlite3学习笔记&quot;&gt;Sqlite3学习笔记&lt;/h2&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;开始&lt;/h2&gt;
+&lt;h2 id=&quot;开始&quot;&gt;开始&lt;/h2&gt;
 
 &lt;p&gt;安装:&lt;/p&gt;
 
@@ -151,7 +248,7 @@
 
 &lt;p&gt;sql关键字以常用函数, 大小写不敏感, 反正我喜欢都小写, 因为caps lock要给esc.&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;常用命令&lt;/h2&gt;
+&lt;h2 id=&quot;常用命令&quot;&gt;常用命令&lt;/h2&gt;
 
 &lt;p&gt;sqlite3提供的特殊命令, 以.开头:&lt;/p&gt;
 
@@ -225,7 +322,7 @@
 
 &lt;p&gt;模式, 即数据的显示方式, 有很多种, 但常用的就两个, .mode line用于表达式运算, .mode column用于表查询的多字段显示. 第二种通常还会开启信息头, 即字段名显示, .header on. 如果你想知道sql语句的执行时间, 可以.timer on.&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;常用操作&lt;/h2&gt;
+&lt;h2 id=&quot;常用操作&quot;&gt;常用操作&lt;/h2&gt;
 
 &lt;p&gt;创建新表create:&lt;/p&gt;
 
@@ -417,7 +514,7 @@ commit;  --提交更改 注:
   &lt;li&gt;事务只与insert, update, delete一起使用&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;表达式&lt;/h2&gt;
+&lt;h2 id=&quot;表达式&quot;&gt;表达式&lt;/h2&gt;
 
 &lt;p&gt;算术运算符, + - * / %, 加减乘除余.&lt;/p&gt;
 
@@ -449,7 +546,7 @@ select 60 | 13
 
 &lt;p&gt;null值, 只能用where col is null/not null, 而不能跟别的值比较. null值与零值或包含空格的字段是不同的, null是没有值, 而非值为空.&lt;/p&gt;
 
-&lt;h2 id=&quot;section-4&quot;&gt;时间函数&lt;/h2&gt;
+&lt;h2 id=&quot;时间函数&quot;&gt;时间函数&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;date, 日期&lt;/li&gt;
@@ -465,7 +562,7 @@ select strtime('%s', 'now');
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-5&quot;&gt;常用函数&lt;/h2&gt;
+&lt;h2 id=&quot;常用函数&quot;&gt;常用函数&lt;/h2&gt;
 
 &lt;p&gt;sqlite提供了少量常用的函数:&lt;/p&gt;
 
@@ -495,25 +592,13 @@ select upper(name) from company;
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
-<category term="Sqlite3" />
-<summary>Sqlite3学习笔记</summary>
-</entry>
-<entry>
-<title>Scrapy爬虫入门教程十二 Link Extractors（链接提取器）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十二 Link Extractors（链接提取器）" />
-<published>2017-04-09T14:34:00+08:00</published>
-<updated>2017-04-09T14:34:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程十二-link-extractors（链接提取器）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/">&lt;h1 id=&quot;scrapy-link-extractors&quot;&gt;Scrapy爬虫入门教程十二 Link Extractors（链接提取器）&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="Sqlite3" /><summary type="html">Sqlite3学习笔记</summary></entry><entry><title type="html">Scrapy爬虫入门教程十二 Link Extractors（链接提取器）</title><link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十二 Link Extractors（链接提取器）" /><published>2017-04-09T14:34:00+08:00</published><updated>2017-04-09T14:34:00+08:00</updated><id>http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors(%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8)</id><content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-link-extractors-%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8/">&lt;h1 id=&quot;scrapy爬虫入门教程十二-link-extractors链接提取器&quot;&gt;Scrapy爬虫入门教程十二 Link Extractors（链接提取器）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Scrapy 1.3.2 版本&lt;/code&gt; （当前最新）&lt;/p&gt;
 
-&lt;h1 id=&quot;section&quot;&gt;链接提取器&lt;/h1&gt;
+&lt;h1 id=&quot;链接提取器&quot;&gt;链接提取器&lt;/h1&gt;
 
 &lt;p&gt;链接提取器是其唯一目的是从&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy.http.Response&lt;/code&gt;最终将跟随的网页（对象）提取链接的对象。&lt;/p&gt;
 
@@ -523,7 +608,7 @@ select upper(name) from company;
 
 &lt;p&gt;链接提取程序&lt;code class=&quot;highlighter-rouge&quot;&gt;CrawlSpider&lt;/code&gt; 通过一组规则在类中使用（可以在Scrapy中使用），但是您也可以在爬虫中使用它，即使不从其中&lt;code class=&quot;highlighter-rouge&quot;&gt;CrawlSpider&lt;/code&gt;提取子类 ，因为其目的非常简单：提取链接。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;内置链接提取器参考&lt;/h2&gt;
+&lt;h2 id=&quot;内置链接提取器参考&quot;&gt;内置链接提取器参考&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy.linkextractors&lt;/code&gt;模块中提供了与Scrapy捆绑在一起的链接提取器类 。&lt;/p&gt;
 
@@ -574,24 +659,13 @@ select upper(name) from company;
     if m:
         return m.group(1)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</content>
-<category term="Scrapy" />
-<summary>Scrapy爬虫入门教程十二 Link Extractors（链接提取器）</summary>
-</entry>
-<entry>
-<title>Scrapy爬虫入门教程十一 Request和Response（请求和响应）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十一 Request和Response（请求和响应）" />
-<published>2017-04-09T14:33:00+08:00</published>
-<updated>2017-04-09T14:33:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程十一-request和response（请求和响应）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/">&lt;h1 id=&quot;scrapy-requestresponse&quot;&gt;Scrapy爬虫入门教程十一 Request和Response（请求和响应）&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="Scrapy" /><summary type="html">Scrapy爬虫入门教程十二 Link Extractors（链接提取器）</summary></entry><entry><title type="html">Scrapy爬虫入门教程十一 Request和Response（请求和响应）</title><link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十一 Request和Response（请求和响应）" /><published>2017-04-09T14:33:00+08:00</published><updated>2017-04-09T14:33:00+08:00</updated><id>http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse(%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94)</id><content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-request%E5%92%8Cresponse-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/">&lt;h1 id=&quot;scrapy爬虫入门教程十一-request和response请求和响应&quot;&gt;Scrapy爬虫入门教程十一 Request和Response（请求和响应）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Scrapy 1.3.2 版本&lt;/code&gt; （当前最新）&lt;/p&gt;
 
-&lt;h1 id=&quot;section&quot;&gt;请求和响应&lt;/h1&gt;
+&lt;h1 id=&quot;请求和响应&quot;&gt;请求和响应&lt;/h1&gt;
 
 &lt;p&gt;Scrapy的Request和Response对象用于爬网网站。&lt;/p&gt;
 
@@ -631,7 +705,7 @@ Response-&amp;gt;爬虫:数据
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;meta（dict）&lt;/code&gt; - 属性的初始值Request.meta。如果给定，在此参数中传递的dict将被浅复制。&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;body（str或unicode）&lt;/code&gt; - 请求体。如果unicode传递了a，那么它被编码为 str使用传递的编码（默认为utf-8）。如果 body没有给出，则存储一个空字符串。不管这个参数的类型，存储的最终值将是一个str（不会是unicode或None）。&lt;/li&gt;
   &lt;li&gt;
-    &lt;h2 id=&quot;headersdict---dict-nonehttp&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;headers（dict）&lt;/code&gt; - 这个请求的头。dict值可以是字符串（对于单值标头）或列表（对于多值标头）。如果 None作为值传递，则不会发送HTTP头。&lt;/h2&gt;
+    &lt;h2 id=&quot;headersdict---这个请求的头dict值可以是字符串对于单值标头或列表对于多值标头如果-none作为值传递则不会发送http头&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;headers（dict）&lt;/code&gt; - 这个请求的头。dict值可以是字符串（对于单值标头）或列表（对于多值标头）。如果 None作为值传递，则不会发送HTTP头。&lt;/h2&gt;
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cookie（dict或list）&lt;/code&gt; - 请求cookie。这些可以以两种形式发送。&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -672,7 +746,7 @@ Response-&amp;gt;爬虫:数据
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;encoding（string）&lt;/code&gt; - 此请求的编码（默认为’utf-8’）。此编码将用于对URL进行百分比编码，并将正文转换为str（如果给定unicode）。&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;priority（int）&lt;/code&gt; - 此请求的优先级（默认为0）。调度器使用优先级来定义用于处理请求的顺序。具有较高优先级值的请求将较早执行。允许负值以指示相对低优先级。&lt;/li&gt;
   &lt;li&gt;
-    &lt;h2 id=&quot;dontfilterboolean---false&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dont_filter（boolean）&lt;/code&gt; - 表示此请求不应由调度程序过滤。当您想要多次执行相同的请求时忽略重复过滤器时使用。小心使用它，或者你会进入爬行循环。默认为False。&lt;/h2&gt;
+    &lt;h2 id=&quot;dont_filterboolean---表示此请求不应由调度程序过滤当您想要多次执行相同的请求时忽略重复过滤器时使用小心使用它或者你会进入爬行循环默认为false&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dont_filter（boolean）&lt;/code&gt; - 表示此请求不应由调度程序过滤。当您想要多次执行相同的请求时忽略重复过滤器时使用。小心使用它，或者你会进入爬行循环。默认为False。&lt;/h2&gt;
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;errback（callable）&lt;/code&gt; - 如果在处理请求时引发任何异常，将调用的函数。这包括失败的404 HTTP错误等页面。它接收一个&lt;a href=&quot;https://twistedmatrix.com/documents/current/api/twisted.python.failure.Failure.html&quot;&gt;Twisted Failure&lt;/a&gt;实例作为第一个参数。有关更多信息，请参阅&lt;a href=&quot;https://doc.scrapy.org/en/1.3/topics/request-response.html#topics-request-response-ref-errbacks&quot;&gt;使用errbacks在请求处理&lt;/a&gt;中&lt;a href=&quot;https://doc.scrapy.org/en/1.3/topics/request-response.html#topics-request-response-ref-errbacks&quot;&gt;捕获异常&lt;/a&gt;。&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -714,7 +788,7 @@ Response-&amp;gt;爬虫:数据
 &lt;code class=&quot;highlighter-rouge&quot;&gt;replace([url, method, headers, body, cookies, meta, encoding, dont_filter, callback, errback])&lt;/code&gt;
 返回具有相同成员的Request对象，但通过指定的任何关键字参数赋予新值的成员除外。该属性Request.meta是默认复制（除非新的值在给定的meta参数）。另请参见 &lt;a href=&quot;https://doc.scrapy.org/en/1.3/topics/request-response.html#topics-request-response-ref-request-callback-arguments&quot;&gt;将附加数据传递给回调函数&lt;/a&gt;。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;将附加数据传递给回调函数&lt;/h3&gt;
+&lt;h3 id=&quot;将附加数据传递给回调函数&quot;&gt;将附加数据传递给回调函数&lt;/h3&gt;
 
 &lt;p&gt;请求的回调是当下载该请求的响应时将被调用的函数。将使用下载的Response对象作为其第一个参数来调用回调函数。&lt;/p&gt;
 
@@ -749,7 +823,7 @@ def parse_page2(self, response):
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;errbacks&quot;&gt;使用errbacks在请求处理中捕获异常&lt;/h3&gt;
+&lt;h3 id=&quot;使用errbacks在请求处理中捕获异常&quot;&gt;使用errbacks在请求处理中捕获异常&lt;/h3&gt;
 
 &lt;p&gt;请求的errback是在处理异常时被调用的函数。&lt;/p&gt;
 
@@ -809,7 +883,7 @@ class ErrbackSpider(scrapy.Spider):
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;requestmeta&quot;&gt;Request.meta特殊键&lt;/h2&gt;
+&lt;h2 id=&quot;requestmeta特殊键&quot;&gt;Request.meta特殊键&lt;/h2&gt;
 
 &lt;p&gt;该&lt;code class=&quot;highlighter-rouge&quot;&gt;Request.meta&lt;/code&gt;属性可以包含任何任意数据，但有一些特殊的键由Scrapy及其内置扩展识别。&lt;/p&gt;
 
@@ -836,15 +910,15 @@ proxy
 
 &lt;p&gt;用于执行请求的出站IP地址的IP。&lt;/p&gt;
 
-&lt;h4 id=&quot;downloadtimeout&quot;&gt;download_timeout&lt;/h4&gt;
+&lt;h4 id=&quot;download_timeout&quot;&gt;download_timeout&lt;/h4&gt;
 
 &lt;p&gt;下载器在超时前等待的时间量（以秒为单位）。参见：&lt;code class=&quot;highlighter-rouge&quot;&gt;DOWNLOAD_TIMEOUT&lt;/code&gt;。&lt;/p&gt;
 
-&lt;h4 id=&quot;downloadlatency&quot;&gt;download_latency&lt;/h4&gt;
+&lt;h4 id=&quot;download_latency&quot;&gt;download_latency&lt;/h4&gt;
 
 &lt;p&gt;自请求已启动以来，用于获取响应的时间量，即通过网络发送的HTTP消息。此元键仅在响应已下载时可用。虽然大多数其他元键用于控制Scrapy行为，但这应该是只读的。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;请求子类&lt;/h2&gt;
+&lt;h2 id=&quot;请求子类&quot;&gt;请求子类&lt;/h2&gt;
 
 &lt;p&gt;这里是内置子类的Request列表。您还可以将其子类化以实现您自己的自定义功能。&lt;/p&gt;
 
@@ -892,9 +966,9 @@ FormRequest类扩展了Request具有处理HTML表单的功能的基础。它使�
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;请求使用示例&lt;/h3&gt;
+&lt;h3 id=&quot;请求使用示例&quot;&gt;请求使用示例&lt;/h3&gt;
 
-&lt;h4 id=&quot;formrequesthttp-post&quot;&gt;使用FormRequest通过HTTP POST发送数据&lt;/h4&gt;
+&lt;h4 id=&quot;使用formrequest通过http-post发送数据&quot;&gt;使用FormRequest通过HTTP POST发送数据&lt;/h4&gt;
 
 &lt;p&gt;如果你想在你的爬虫中模拟HTML表单POST并发送几个键值字段，你可以返回一个FormRequest对象（从你的爬虫）像这样：&lt;/p&gt;
 
@@ -904,7 +978,7 @@ FormRequest类扩展了Request具有处理HTML表单的功能的基础。它使�
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;formrequestfromresponse&quot;&gt;使用FormRequest.from_response（）来模拟用户登录&lt;/h4&gt;
+&lt;h4 id=&quot;使用formrequestfrom_response来模拟用户登录&quot;&gt;使用FormRequest.from_response（）来模拟用户登录&lt;/h4&gt;
 
 &lt;p&gt;网站通常通过元素（例如会话相关数据或认证令牌（用于登录页面））提供预填充的表单字段。进行剪贴时，您需要自动预填充这些字段，并且只覆盖其中的一些，例如用户名和密码。您可以使用 此作业的方法。这里有一个使用它的爬虫示例：&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;input type=&quot;hidden&quot;&amp;gt; FormRequest.from_response()&lt;/code&gt;&lt;/p&gt;
 
@@ -931,7 +1005,7 @@ class LoginSpider(scrapy.Spider):
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h1 id=&quot;section-4&quot;&gt;响应对象&lt;/h1&gt;
+&lt;h1 id=&quot;响应对象&quot;&gt;响应对象&lt;/h1&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.http.Response(url[, status=200, headers=None, body=b'', flags=None, request=None])&lt;/code&gt;
 一个Response对象表示的HTTP响应，这通常是下载（由下载），并供给到爬虫进行处理。&lt;/p&gt;
@@ -1001,11 +1075,11 @@ Response.request.url并不总是等于Response.url
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;响应子类&lt;/h3&gt;
+&lt;h3 id=&quot;响应子类&quot;&gt;响应子类&lt;/h3&gt;
 
 &lt;p&gt;这里是可用的内置Response子类的列表。您还可以将Response类子类化以实现您自己的功能。&lt;/p&gt;
 
-&lt;h4 id=&quot;textresponse&quot;&gt;TextResponse对象&lt;/h4&gt;
+&lt;h4 id=&quot;textresponse对象&quot;&gt;TextResponse对象&lt;/h4&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.http.TextResponse(url[, encoding[, ...]])&lt;/code&gt;&lt;/p&gt;
 
@@ -1058,32 +1132,21 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 &lt;p&gt;&lt;strong&gt;body_as_unicode()&lt;/strong&gt;
 同样text，但可用作方法。保留此方法以实现向后兼容; 请喜欢response.text。&lt;/p&gt;
 
-&lt;h4 id=&quot;htmlresponse&quot;&gt;HtmlResponse对象&lt;/h4&gt;
+&lt;h4 id=&quot;htmlresponse对象&quot;&gt;HtmlResponse对象&lt;/h4&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.http.HtmlResponse（url [，... ] ）&lt;/code&gt;
 本HtmlResponse类的子类，TextResponse 这增加了通过查看HTML编码自动发现支持META HTTP-EQUIV属性。见TextResponse.encoding。&lt;/p&gt;
 
-&lt;h4 id=&quot;xmlresponse&quot;&gt;XmlResponse对象&lt;/h4&gt;
+&lt;h4 id=&quot;xmlresponse对象&quot;&gt;XmlResponse对象&lt;/h4&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;class scrapy.http.XmlResponse（url [，... ] ）&lt;/code&gt;
-本XmlResponse类的子类，TextResponse这增加了通过查看XML声明线路编码自动发现支持。见TextResponse.encoding。&lt;/p&gt;
-</content>
-<category term="Scrapy" />
-<summary>Scrapy爬虫入门教程十一 Request和Response（请求和响应）</summary>
-</entry>
-<entry>
-<title>Scrapy爬虫入门教程十 Feed exports（导出文件）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十 Feed exports（导出文件）" />
-<published>2017-04-09T14:33:00+08:00</published>
-<updated>2017-04-09T14:33:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程十-feed-exports（导出文件）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/">&lt;h1 id=&quot;scrapy-feed-exports&quot;&gt;Scrapy爬虫入门教程十 Feed exports（导出文件）&lt;/h1&gt;
+本XmlResponse类的子类，TextResponse这增加了通过查看XML声明线路编码自动发现支持。见TextResponse.encoding。&lt;/p&gt;</content><author><name></name></author><category term="Scrapy" /><summary type="html">Scrapy爬虫入门教程十一 Request和Response（请求和响应）</summary></entry><entry><title type="html">Scrapy爬虫入门教程十 Feed exports（导出文件）</title><link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程十 Feed exports（导出文件）" /><published>2017-04-09T14:33:00+08:00</published><updated>2017-04-09T14:33:00+08:00</updated><id>http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports(%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6)</id><content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8D%81-feed-exports-%E5%AF%BC%E5%87%BA%E6%96%87%E4%BB%B6/">&lt;h1 id=&quot;scrapy爬虫入门教程十-feed-exports导出文件&quot;&gt;Scrapy爬虫入门教程十 Feed exports（导出文件）&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Scrapy 1.3.2 版本&lt;/code&gt; （当前最新）&lt;/p&gt;
 
-&lt;h1 id=&quot;section&quot;&gt;导出文件&lt;/h1&gt;
+&lt;h1 id=&quot;导出文件&quot;&gt;导出文件&lt;/h1&gt;
 
 &lt;p&gt;新版本0.10。&lt;/p&gt;
 
@@ -1091,7 +1154,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 
 &lt;p&gt;Scrapy使用Feed导出功能即时提供此功能，这允许您使用多个序列化格式和存储后端来生成包含已抓取项目的Feed。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;序列化格式&lt;/h2&gt;
+&lt;h2 id=&quot;序列化格式&quot;&gt;序列化格式&lt;/h2&gt;
 
 &lt;p&gt;为了序列化抓取的数据，Feed导出使用项导出器。这些格式是开箱即用的：&lt;/p&gt;
 
@@ -1150,7 +1213,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;存储&lt;/h2&gt;
+&lt;h2 id=&quot;存储&quot;&gt;存储&lt;/h2&gt;
 
 &lt;p&gt;使用Feed导出时，您可以使用&lt;a href=&quot;https://en.wikipedia.org/wiki/Uniform_Resource_Identifier&quot;&gt;URI&lt;/a&gt;（通过FEED_URI设置）定义在哪里存储Feed 。Feed导出支持由URI方案定义的多个存储后端类型。&lt;/p&gt;
 
@@ -1167,7 +1230,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;uri&quot;&gt;存储URI参数&lt;/h2&gt;
+&lt;h2 id=&quot;存储uri参数&quot;&gt;存储URI参数&lt;/h2&gt;
 
 &lt;p&gt;存储URI还可以包含在创建订阅源时被替换的参数。这些参数是：&lt;/p&gt;
 
@@ -1189,9 +1252,9 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;s3://mybucket/scraping/feeds/%(name)s/%(time)s.json&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;存储后端&lt;/h2&gt;
+&lt;h2 id=&quot;存储后端&quot;&gt;存储后端&lt;/h2&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;本地文件系统&lt;/h3&gt;
+&lt;h3 id=&quot;本地文件系统&quot;&gt;本地文件系统&lt;/h3&gt;
 
 &lt;p&gt;订阅源存储在本地文件系统中。&lt;/p&gt;
 
@@ -1231,7 +1294,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AWS_SECRET_ACCESS_KEY&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;标准输出&lt;/h3&gt;
+&lt;h3 id=&quot;标准输出&quot;&gt;标准输出&lt;/h3&gt;
 
 &lt;p&gt;Feed被写入Scrapy进程的标准输出。&lt;/p&gt;
 
@@ -1241,7 +1304,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
   &lt;li&gt;所需的外部库：none&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-6&quot;&gt;设置&lt;/h2&gt;
+&lt;h2 id=&quot;设置&quot;&gt;设置&lt;/h2&gt;
 
 &lt;p&gt;这些是用于配置Feed导出的设置：&lt;/p&gt;
 
@@ -1255,7 +1318,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
   &lt;li&gt;FEED_EXPORT_FIELDS&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;feeduri&quot;&gt;FEED_URI&lt;/h3&gt;
+&lt;h3 id=&quot;feed_uri&quot;&gt;FEED_URI&lt;/h3&gt;
 
 &lt;p&gt;默认： None&lt;/p&gt;
 
@@ -1263,11 +1326,11 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 
 &lt;p&gt;启用Feed导出时需要此设置。&lt;/p&gt;
 
-&lt;h3 id=&quot;feedformat&quot;&gt;FEED_FORMAT&lt;/h3&gt;
+&lt;h3 id=&quot;feed_format&quot;&gt;FEED_FORMAT&lt;/h3&gt;
 
 &lt;p&gt;要用于Feed的序列化格式。有关可能的值，请参阅 序列化格式。&lt;/p&gt;
 
-&lt;h3 id=&quot;feedexportencoding&quot;&gt;FEED_EXPORT_ENCODING&lt;/h3&gt;
+&lt;h3 id=&quot;feed_export_encoding&quot;&gt;FEED_EXPORT_ENCODING&lt;/h3&gt;
 
 &lt;p&gt;默认： None&lt;/p&gt;
 
@@ -1277,7 +1340,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 
 &lt;p&gt;使用utf-8，如果你想UTF-8 JSON了。&lt;/p&gt;
 
-&lt;h3 id=&quot;feedexportfields&quot;&gt;FEED_EXPORT_FIELDS&lt;/h3&gt;
+&lt;h3 id=&quot;feed_export_fields&quot;&gt;FEED_EXPORT_FIELDS&lt;/h3&gt;
 
 &lt;p&gt;默认： None&lt;/p&gt;
 
@@ -1289,7 +1352,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 
 &lt;p&gt;如果导出器需要一组固定的字段（CSV导出格式为这种情况 ），并且FEED_EXPORT_FIELDS为空或无，则Scrapy会尝试从导出的​​数据中推断字段名称 - 当前它使用第一个项目中的字段名称。&lt;/p&gt;
 
-&lt;h3 id=&quot;feedstoreempty&quot;&gt;FEED_STORE_EMPTY&lt;/h3&gt;
+&lt;h3 id=&quot;feed_store_empty&quot;&gt;FEED_STORE_EMPTY&lt;/h3&gt;
 
 &lt;p&gt;默认： False&lt;/p&gt;
 
@@ -1300,7 +1363,7 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 
 &lt;p&gt;包含您的项目支持的其他Feed存储后端的字典。键是URI方案，值是存储类的路径。&lt;/p&gt;
 
-&lt;h3 id=&quot;feedstoragesbase&quot;&gt;FEED_STORAGES_BASE&lt;/h3&gt;
+&lt;h3 id=&quot;feed_storages_base&quot;&gt;FEED_STORAGES_BASE&lt;/h3&gt;
 
 &lt;p&gt;默认：&lt;/p&gt;
 
@@ -1322,13 +1385,13 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;feedexporters&quot;&gt;FEED_EXPORTERS&lt;/h3&gt;
+&lt;h3 id=&quot;feed_exporters&quot;&gt;FEED_EXPORTERS&lt;/h3&gt;
 
 &lt;p&gt;默认： {}&lt;/p&gt;
 
 &lt;p&gt;包含您的项目支持的其他导出器的字典。键是序列化格式，值是Item exporter类的路径。&lt;/p&gt;
 
-&lt;h3 id=&quot;feedexportersbase&quot;&gt;FEED_EXPORTERS_BASE&lt;/h3&gt;
+&lt;h3 id=&quot;feed_exporters_base&quot;&gt;FEED_EXPORTERS_BASE&lt;/h3&gt;
 
 &lt;p&gt;默认：&lt;/p&gt;
 
@@ -1350,499 +1413,4 @@ unicode(response.body)不是一个正确的方法来将响应身体转换为unic
     'csv': None,
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</content>
-<category term="Scrapy" />
-<summary>Scrapy爬虫入门教程十 Feed exports（导出文件）</summary>
-</entry>
-<entry>
-<title>Scrapy爬虫入门教程九 Item Pipeline（项目管道）</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程九 Item Pipeline（项目管道）" />
-<published>2017-04-09T14:32:00+08:00</published>
-<updated>2017-04-09T14:32:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程九-item-pipeline（项目管道）</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/">&lt;h1 id=&quot;scrapy-item-pipeline&quot;&gt;Scrapy爬虫入门教程九 Item Pipeline（项目管道）&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Scrapy 1.3.2 版本&lt;/code&gt; （当前最新）&lt;/p&gt;
-
-&lt;h1 id=&quot;item-pipeline&quot;&gt;Item Pipeline（项目管道）&lt;/h1&gt;
-
-&lt;p&gt;在项目被蜘蛛抓取后，它被发送到项目管道，它通过顺序执行的几个组件来处理它。&lt;/p&gt;
-
-&lt;p&gt;每个项目管道组件（有时称为“Item Pipeline”）是一个实现简单方法的Python类。他们接收一个项目并对其执行操作，还决定该项目是否应该继续通过流水线或被丢弃并且不再被处理。&lt;/p&gt;
-
-&lt;p&gt;项目管道的典型用途是：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;清理HTML数据&lt;/li&gt;
-  &lt;li&gt;验证抓取的数据（检查项目是否包含特定字段）&lt;/li&gt;
-  &lt;li&gt;检查重复（并删除）&lt;/li&gt;
-  &lt;li&gt;将刮取的项目存储在数据库中&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;编写自己的项目管道&lt;/h2&gt;
-
-&lt;p&gt;每个项目管道组件是一个Python类，必须实现以下方法：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;process_item(self, item, spider)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;对于每个项目管道组件调用此方法。process_item() 必须：返回一个带数据的dict，返回一个Item （或任何后代类）对象，返回一个Twisted Deferred或者raise DropItemexception。丢弃的项目不再由其他管道组件处理。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;item（Itemobject或dict） - 剪切的项目&lt;/li&gt;
-  &lt;li&gt;Spider（Spider对象） - 抓取物品的蜘蛛&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;另外，它们还可以实现以下方法：&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;open_spider(self, spider)&lt;/code&gt;
-当蜘蛛打开时调用此方法。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;蜘蛛（Spider对象） - 打开的蜘蛛&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;close_spider(self, spider)&lt;/code&gt;
-当蜘蛛关闭时调用此方法。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;蜘蛛（Spider对象） - 被关闭的蜘蛛&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;from_crawler(cls, crawler)&lt;/code&gt;
-如果存在，则调用此类方法以从a创建流水线实例Crawler。它必须返回管道的新实例。Crawler对象提供对所有Scrapy核心组件（如设置和信号）的访问; 它是管道访问它们并将其功能挂钩到Scrapy中的一种方式。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;crawler（Crawlerobject） - 使用此管道的crawler&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;项目管道示例&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;价格验证和丢弃项目没有价格&lt;/h3&gt;
-
-&lt;p&gt;让我们来看看以下假设的管道，它调整 price那些不包括增值税（price_excludes_vat属性）的项目的属性，并删除那些不包含价格的项目：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from scrapy.exceptions import DropItem
-
-class PricePipeline(object):
-
-    vat_factor = 1.15
-
-    def process_item(self, item, spider):
-        if item['price']:
-            if item['price_excludes_vat']:
-                item['price'] = item['price'] * self.vat_factor
-            return item
-        else:
-            raise DropItem(&quot;Missing price in %s&quot; % item)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;将项目写入JSON文件
-以下管道将所有抓取的项目（来自所有蜘蛛）存储到单个items.jl文件中，每行包含一个项目，以JSON格式序列化：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import json
-
-class JsonWriterPipeline(object):
-
-    def open_spider(self, spider):
-        self.file = open('items.jl', 'wb')
-
-    def close_spider(self, spider):
-        self.file.close()
-
-    def process_item(self, item, spider):
-        line = json.dumps(dict(item)) + &quot;\n&quot;
-        self.file.write(line)
-        return item
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;JsonWriterPipeline的目的只是介绍如何编写项目管道。如果您真的想要将所有抓取的项目存储到JSON文件中，则应使用Feed导出。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;mongodb&quot;&gt;将项目写入MongoDB&lt;/h3&gt;
-
-&lt;p&gt;在这个例子中，我们使用&lt;a href=&quot;https://api.mongodb.org/python/current/&quot;&gt;pymongo&lt;/a&gt;将项目写入&lt;a href=&quot;https://www.mongodb.org/&quot;&gt;MongoDB&lt;/a&gt;。MongoDB地址和数据库名称在Scrapy设置中指定; MongoDB集合以item类命名。&lt;/p&gt;
-
-&lt;p&gt;这个例子的要点是显示如何使用&lt;code class=&quot;highlighter-rouge&quot;&gt;from_crawler()&lt;/code&gt;方法和如何正确清理资源：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import pymongo
-
-class MongoPipeline(object):
-
-    collection_name = 'scrapy_items'
-
-    def __init__(self, mongo_uri, mongo_db):
-        self.mongo_uri = mongo_uri
-        self.mongo_db = mongo_db
-
-    @classmethod
-    def from_crawler(cls, crawler):
-        return cls(
-            mongo_uri=crawler.settings.get('MONGO_URI'),
-            mongo_db=crawler.settings.get('MONGO_DATABASE', 'items')
-        )
-
-    def open_spider(self, spider):
-        self.client = pymongo.MongoClient(self.mongo_uri)
-        self.db = self.client[self.mongo_db]
-
-    def close_spider(self, spider):
-        self.client.close()
-
-    def process_item(self, item, spider):
-        self.db[self.collection_name].insert(dict(item))
-        return item
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;拍摄项目的屏幕截图&lt;/h3&gt;
-
-&lt;p&gt;此示例演示如何从方法返回Deferredprocess_item()。它使用Splash来呈现项目网址的屏幕截图。Pipeline请求本地运行的Splash实例。在请求被下载并且Deferred回调触发后，它将项目保存到一个文件并将文件名添加到项目。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import scrapy
-import hashlib
-from urllib.parse import quote
-
-
-class ScreenshotPipeline(object):
-    &quot;&quot;&quot;Pipeline that uses Splash to render screenshot of
-    every Scrapy item.&quot;&quot;&quot;
-
-    SPLASH_URL = &quot;http://localhost:8050/render.png?url={}&quot;
-
-    def process_item(self, item, spider):
-        encoded_item_url = quote(item[&quot;url&quot;])
-        screenshot_url = self.SPLASH_URL.format(encoded_item_url)
-        request = scrapy.Request(screenshot_url)
-        dfd = spider.crawler.engine.download(request, spider)
-        dfd.addBoth(self.return_item, item)
-        return dfd
-
-    def return_item(self, response, item):
-        if response.status != 200:
-            # Error happened, return item.
-            return item
-
-        # Save screenshot to file, filename will be hash of url.
-        url = item[&quot;url&quot;]
-        url_hash = hashlib.md5(url.encode(&quot;utf8&quot;)).hexdigest()
-        filename = &quot;{}.png&quot;.format(url_hash)
-        with open(filename, &quot;wb&quot;) as f:
-            f.write(response.body)
-
-        # Store filename in item.
-        item[&quot;screenshot_filename&quot;] = filename
-        return item
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;复制过滤器&lt;/h3&gt;
-
-&lt;p&gt;用于查找重复项目并删除已处理的项目的过滤器。假设我们的项目具有唯一的ID，但是我们的蜘蛛会返回具有相同id的多个项目：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from scrapy.exceptions import DropItem
-
-class DuplicatesPipeline(object):
-
-    def __init__(self):
-        self.ids_seen = set()
-
-    def process_item(self, item, spider):
-        if item['id'] in self.ids_seen:
-            raise DropItem(&quot;Duplicate item found: %s&quot; % item)
-        else:
-            self.ids_seen.add(item['id'])
-            return item
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;激活项目管道组件&lt;/h2&gt;
-
-&lt;p&gt;要激活项目管道组件，必须将其类添加到 ITEM_PIPELINES设置，类似于以下示例：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ITEM_PIPELINES = {
-    'myproject.pipelines.PricePipeline': 300,
-    'myproject.pipelines.JsonWriterPipeline': 800,
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;您在此设置中分配给类的整数值确定它们运行的​​顺序：项目从较低值到较高值类。通常将这些数字定义在0-1000范围内。&lt;/p&gt;
-</content>
-<category term="Scrapy" />
-<summary>Scrapy爬虫入门教程九 Item Pipeline（项目管道）</summary>
-</entry>
-<entry>
-<title>Scrapy爬虫入门教程八 交互式 shell 方便调试</title>
-<link href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/" rel="alternate" type="text/html" title="Scrapy爬虫入门教程八 交互式 shell 方便调试" />
-<published>2017-04-09T14:31:00+08:00</published>
-<updated>2017-04-09T14:31:00+08:00</updated>
-<id>http://localhost:4000/scrapy爬虫入门教程八-交互式-shell-方便调试</id>
-<content type="html" xml:base="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/">&lt;h1 id=&quot;scrapy--shell-&quot;&gt;Scrapy爬虫入门教程八 交互式 shell 方便调试&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;开发环境：&lt;/strong&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Python 3.6.0 版本&lt;/code&gt; （当前最新）
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Scrapy 1.3.2 版本&lt;/code&gt; （当前最新）&lt;/p&gt;
-
-&lt;h1 id=&quot;scrapy-shell&quot;&gt;Scrapy shell&lt;/h1&gt;
-
-&lt;p&gt;Scrapy shell是一个交互式shell，您可以在此快速尝试和调试您的抓取代码，而无需运行爬虫程序。它用于测试数据提取代码，但实际上可以使用它来测试任何类型的代码，因为它也是一个常规的Python shell。&lt;/p&gt;
-
-&lt;p&gt;shell用于测试XPath或CSS表达式，并查看它们如何工作，以及他们从您要尝试抓取的网页中提取的数据。它允许您在编写爬虫时交互式测试表达式，而无需运行爬虫来测试每个更改。&lt;/p&gt;
-
-&lt;p&gt;一旦你熟悉了Scrapy shell，你会发现它是开发和调试你的爬虫的一个非常宝贵的工具。&lt;/p&gt;
-
-&lt;h2 id=&quot;shell&quot;&gt;配置shell&lt;/h2&gt;
-
-&lt;p&gt;如果你安装了&lt;a href=&quot;http://ipython.org/&quot;&gt;IPython&lt;/a&gt;，Scrapy shell会使用它（而不是标准的Python控制台）。该IPython的控制台功能更强大，并提供智能自动完成和彩色输出，等等。&lt;/p&gt;
-
-&lt;p&gt;我们强烈建议您安装IPython，特别是如果你正在使用Unix系统（IPython擅长）。有关 详细信息，请参阅&lt;a href=&quot;http://ipython.org/install.html&quot;&gt;IPython安装指南&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;Scrapy还支持&lt;a href=&quot;http://www.bpython-interpreter.org/&quot;&gt;bpython&lt;/a&gt;，并且将尝试在IPython 不可用的地方使用它。&lt;/p&gt;
-
-&lt;p&gt;通过scrapy的设置，您可以配置为使用中的任何一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;ipython&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;bpython&lt;/code&gt;或标准&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;外壳，安装无论哪个。这是通过设置&lt;code class=&quot;highlighter-rouge&quot;&gt;SCRAPY_PYTHON_SHELL&lt;/code&gt;环境变量来完成的; 或通过在scrapy.cfg中定义它：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[settings]
-shell = bpython
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;shell-1&quot;&gt;启动shell&lt;/h2&gt;
-
-&lt;p&gt;要启动Scrapy shell，可以使用如下shell命令：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scrapy shell &amp;lt;url&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;其中，&lt;url&gt;是您要抓取的网址。&lt;/url&gt;&lt;/p&gt;
-
-&lt;p&gt;shell也适用于本地文件。如果你想玩一个网页的本地副本，这可以很方便。shell了解本地文件的以下语法：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# UNIX-style
-scrapy shell ./path/to/file.html
-scrapy shell ../other/path/to/file.html
-scrapy shell /absolute/path/to/file.html
-
-# File URI
-scrapy shell file:///absolute/path/to/file.html
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;当使用相对文件路径时，是显式的，并在它们前面./（或../相关时）。 将不会像一个人所期望的那样工作（这是设计，而不是一个错误）。scrapy shell index.html
-因为shell喜欢文件URI上的HTTP URL，并且index.html在语法上类似example.com， shell会将其视为index.html域名并触发DNS查找错误：&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scrapy shell index.html
-[ ... scrapy shell starts ... ]
-[ ... traceback ... ]
-twisted.internet.error.DNSLookupError: DNS lookup failed:
-address 'index.html' not found: [Errno -5] No address associated with hostname.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;shell将不会预先测试index.html 当前目录中是否存在调用的文件。再次，明确。&lt;/p&gt;
-
-&lt;h2 id=&quot;shell-2&quot;&gt;使用shell&lt;/h2&gt;
-
-&lt;p&gt;Scrapy shell只是一个普通的Python控制台（或IPython控制台，如果你有它），为方便起见，它提供了一些额外的快捷方式功能。&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;可用快捷键&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;shelp()&lt;/code&gt; - 打印有可用对象和快捷方式列表的帮助
-*&lt;code class=&quot;highlighter-rouge&quot;&gt;fetch(url[, redirect=True])&lt;/code&gt; - 从给定的URL获取新的响应，并相应地更新所有相关对象。你可以选择要求HTTP 3xx重定向，不要通过redirect=False&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fetch(request)&lt;/code&gt; - 从给定请求获取新响应，并相应地更新所有相关对象。&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;view(response)&lt;/code&gt; - 在本地Web浏览器中打开给定的响应，以进行检查。这将向响应正文添加一个&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base&quot;&gt;&lt;base /&gt;标记&lt;/a&gt;，以便正确显示外部链接（如图片和样式表）。但请注意，这将在您的计算机中创建一个临时文件，不会自动删除。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;scrapy&quot;&gt;可用Scrapy对象&lt;/h3&gt;
-
-&lt;p&gt;Scrapy shell自动从下载的页面创建一些方便的对象，如Response对象和 Selector对象（对于HTML和XML内容）。&lt;/p&gt;
-
-&lt;p&gt;这些对象是：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;crawler- 当前Crawler对象。&lt;/li&gt;
-  &lt;li&gt;spider- 已知处理URL的Spider，或者Spider如果没有为当前URL找到的爬虫，则为 对象&lt;/li&gt;
-  &lt;li&gt;request- Request最后一个抓取页面的对象。您可以replace() 使用fetch 快捷方式或使用快捷方式获取新请求（而不离开shell）来修改此请求。&lt;/li&gt;
-  &lt;li&gt;response- 包含Response最后一个抓取页面的对象&lt;/li&gt;
-  &lt;li&gt;settings- 当前&lt;a href=&quot;http://scrapy.readthedocs.io/en/latest/topics/settings.html#topics-settings&quot;&gt;Scrapy设置&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;shell-3&quot;&gt;shell会话的示例&lt;/h2&gt;
-
-&lt;p&gt;下面是一个典型的shell会话示例，我们首先抓取 &lt;a href=&quot;http://scrapy.org%E9%A1%B5%E9%9D%A2%EF%BC%8C%E7%84%B6%E5%90%8E%E7%BB%A7%E7%BB%AD%E6%8A%93%E5%8F%96https://reddit.com&quot;&gt;http://scrapy.org页面，然后继续抓取https://reddit.com&lt;/a&gt; 页面。最后，我们将（Reddit）请求方法修改为POST并重新获取它获取错误。我们通过在Windows中键入Ctrl-D（在Unix系统中）或Ctrl-Z结束会话。&lt;/p&gt;
-
-&lt;p&gt;请记住，在这里提取的数据可能不一样，当你尝试它，因为那些网页不是静态的，可能已经改变了你测试这个。这个例子的唯一目的是让你熟悉Scrapy shell的工作原理。&lt;/p&gt;
-
-&lt;p&gt;首先，我们启动shell：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy shell 'http://scrapy.org' --nolog&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;然后，shell获取URL（使用Scrapy下载器）并打印可用对象和有用的快捷方式列表（您会注意到这些行都以[s]前缀开头）：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[s] Available Scrapy objects:
-[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)
-[s]   crawler    &amp;lt;scrapy.crawler.Crawler object at 0x7f07395dd690&amp;gt;
-[s]   item       {}
-[s]   request    &amp;lt;GET http://scrapy.org&amp;gt;
-[s]   response   &amp;lt;200 https://scrapy.org/&amp;gt;
-[s]   settings   &amp;lt;scrapy.settings.Settings object at 0x7f07395dd710&amp;gt;
-[s]   spider     &amp;lt;DefaultSpider 'default' at 0x7f0735891690&amp;gt;
-[s] Useful shortcuts:
-[s]   fetch(url[, redirect=True]) Fetch URL and update local objects (by default, redirects are followed)
-[s]   fetch(req)                  Fetch a scrapy.Request and update local objects
-[s]   shelp()           Shell help (print this help)
-[s]   view(response)    View response in a browser
-
-&amp;gt;&amp;gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;之后，我们可以开始使用对象：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//title/text()').extract_first()
-'Scrapy | A Fast and Powerful Scraping and Web Crawling Framework'
-
-&amp;gt;&amp;gt;&amp;gt; fetch(&quot;http://reddit.com&quot;)
-
-&amp;gt;&amp;gt;&amp;gt; response.xpath('//title/text()').extract()
-['reddit: the front page of the internet']
-
-&amp;gt;&amp;gt;&amp;gt; request = request.replace(method=&quot;POST&quot;)
-
-&amp;gt;&amp;gt;&amp;gt; fetch(request)
-
-&amp;gt;&amp;gt;&amp;gt; response.status
-404
-
-&amp;gt;&amp;gt;&amp;gt; from pprint import pprint
-
-&amp;gt;&amp;gt;&amp;gt; pprint(response.headers)
-{'Accept-Ranges': ['bytes'],
- 'Cache-Control': ['max-age=0, must-revalidate'],
- 'Content-Type': ['text/html; charset=UTF-8'],
- 'Date': ['Thu, 08 Dec 2016 16:21:19 GMT'],
- 'Server': ['snooserv'],
- 'Set-Cookie': ['loid=KqNLou0V9SKMX4qb4n; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
-                'loidcreated=2016-12-08T16%3A21%3A19.445Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
-                'loid=vi0ZVe4NkxNWdlH7r7; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
-                'loidcreated=2016-12-08T16%3A21%3A19.459Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure'],
- 'Vary': ['accept-encoding'],
- 'Via': ['1.1 varnish'],
- 'X-Cache': ['MISS'],
- 'X-Cache-Hits': ['0'],
- 'X-Content-Type-Options': ['nosniff'],
- 'X-Frame-Options': ['SAMEORIGIN'],
- 'X-Moose': ['majestic'],
- 'X-Served-By': ['cache-cdg8730-CDG'],
- 'X-Timer': ['S1481214079.394283,VS0,VE159'],
- 'X-Ua-Compatible': ['IE=edge'],
- 'X-Xss-Protection': ['1; mode=block']}
-&amp;gt;&amp;gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;shell-4&quot;&gt;从爬虫调用shell检查响应&lt;/h2&gt;
-
-&lt;p&gt;有时候，你想检查在爬虫的某一点被处理的响应，如果只检查你期望的响应到达那里。&lt;/p&gt;
-
-&lt;p&gt;这可以通过使用该&lt;code class=&quot;highlighter-rouge&quot;&gt;scrapy.shell.inspect_response&lt;/code&gt;功能来实现。&lt;/p&gt;
-
-&lt;p&gt;下面是一个如何从爬虫调用它的例子：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import scrapy
-
-
-class MySpider(scrapy.Spider):
-    name = &quot;myspider&quot;
-    start_urls = [
-        &quot;http://example.com&quot;,
-        &quot;http://example.org&quot;,
-        &quot;http://example.net&quot;,
-    ]
-
-    def parse(self, response):
-        # We want to inspect one specific response.
-        if &quot;.org&quot; in response.url:
-            from scrapy.shell import inspect_response
-            inspect_response(response, self)
-
-        # Rest of parsing code.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;当你运行爬虫，你会得到类似的东西：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2014-01-23 17:48:31-0400 [scrapy.core.engine] DEBUG: Crawled (200) &amp;lt;GET http://example.com&amp;gt; (referer: None)
-2014-01-23 17:48:31-0400 [scrapy.core.engine] DEBUG: Crawled (200) &amp;lt;GET http://example.org&amp;gt; (referer: None)
-[s] Available Scrapy objects:
-[s]   crawler    &amp;lt;scrapy.crawler.Crawler object at 0x1e16b50&amp;gt;
-...
-
-&amp;gt;&amp;gt;&amp;gt; response.url
-'http://example.org'
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;然后，您可以检查提取代码是否正常工作：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; response.xpath('//h1[@class=&quot;fn&quot;]')
-[]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;不，不是。因此，您可以在Web浏览器中打开响应，看看它是否是您期望的响应：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; view(response)
-True
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;最后，您按Ctrl-D（或Windows中的Ctrl-Z）退出外壳并继续抓取：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; ^D
-2014-01-23 17:50:03-0400 [scrapy.core.engine] DEBUG: Crawled (200) &amp;lt;GET http://example.net&amp;gt; (referer: None)
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;请注意，您不能使用fetch此处的快捷方式，因为Scrapy引擎被shell阻止。然而，在你离开shell之后，爬虫会继续爬到它停止的地方，如上图所示。&lt;/p&gt;
-</content>
-<category term="Scrapy" />
-<summary>Scrapy爬虫入门教程八 交互式 shell 方便调试</summary>
-</entry>
-</feed>
+&lt;/div&gt;</content><author><name></name></author><category term="Scrapy" /><summary type="html">Scrapy爬虫入门教程十 Feed exports（导出文件）</summary></entry></feed>

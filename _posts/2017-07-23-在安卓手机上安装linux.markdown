@@ -1,0 +1,117 @@
+---
+layout: "post"
+title: "在安卓手机上安装linux"
+date: "2017-07-23 12:28"
+tags:
+- linux deploy
+- android
+comments: true
+---
+
+# 是时候给你的android来一发Linux了
+
+
+
+﻿先来一张配置好的图片，我主要是用来下pt所以只装了个transmission.
+
+![](http://upload-images.jianshu.io/upload_images/1498027-4b0d076b2e66f880.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+
+
+首先准备3个app
+
+Linux deploy
+
+VNC viewer
+
+juiceSSH
+
+然后打开Linux deploy
+
+![](http://upload-images.jianshu.io/upload_images/1498027-f8c1a8335a0eaadc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+
+点击右下角的小箭头
+
+![](http://upload-images.jianshu.io/upload_images/1498027-b02c34b376fc4979.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+
+上面的设置基本不用动，当然也可以根据自己的需要配置。
+
+如果要图形界面，把这3项勾选。
+
+挂载点/sdcard，这样就可以访问sdcard了。
+
+![](http://upload-images.jianshu.io/upload_images/1498027-13e85abf4abbf5ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+然后返回这里
+
+![](http://upload-images.jianshu.io/upload_images/1498027-bfd432b7b519d0d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+点击右上角3个点
+
+![](http://upload-images.jianshu.io/upload_images/1498027-274ac75505e103ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+![](http://upload-images.jianshu.io/upload_images/1498027-bcf3c1b979015878.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+选择安装就可以了，当出现<<<deploy时说明安装成功了，整个过程还是比较简单的。
+
+要登录图形界面的话需要配置一下VNC
+
+![](http://upload-images.jianshu.io/upload_images/1498027-26778b0656614d1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+下一步，会要求你填密码，在刚才的配置界面里面。
+
+然后不出意外你就连接成功了。SSH配置大同小异，不再赘述。
+
+进去之后会看到桌面，跟电脑一样。
+
+不过我遇到几个问题，一是浏览器不能用，不过也没啥意义，二是中文乱码。下面讲一下怎么解决。
+
+1.浏览器打不开我重新装了一个iceweasel,然后默认浏览器也能打开了，不知道为啥，反正是能打开了。
+
+sudo apt install iceweasel
+
+2.解决中文字体乱码
+
+打开终端
+
+sudo dpkg-reconfigure locales
+
+![](http://upload-images.jianshu.io/upload_images/1498027-4bd98c85dbbdc9de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+![](http://upload-images.jianshu.io/upload_images/1498027-6dfd85e212c17c1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+按照上面的选，然后下一步。
+
+![](http://upload-images.jianshu.io/upload_images/1498027-9a50c09a37e2e577.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+确定。
+
+然后安装中文字体
+
+﻿sudo apt-get install ttf-wqy-zenhei
+
+![](http://upload-images.jianshu.io/upload_images/1498027-19556a9334ceac8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1440/q/50)
+
+图片发自简书App
+
+感谢小溪帮忙，我第一个装不上，不过不影响。
+
+装完之后重启一下,大功告成。
