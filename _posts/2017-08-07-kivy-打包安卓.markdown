@@ -1,0 +1,53 @@
+---
+layout: "post"
+title: "kivy 打包安卓"
+date: "2017-08-07 14:57"
+tags:
+- kivy
+- android
+comments: true
+---
+
+**1.安装 Buildozer  **
+
+    pip install buildozer
+
+**2.安装 依赖包**   https://buildozer.readthedocs.io/en/latest/installation.html#targeting-android
+
+**3.初始化**
+
+在你的kivy应用文件夹下运行  程序主文件名需为main.py  
+
+    buildozer init
+
+在main.py中添加 __version__ ="1.0"
+
+**4.生成apk**
+
+    buildozer android_new debug
+
+**4.1--生成过程遇到sdk列表无法下载的问题**
+
+运行~/.buildozer/android/platform/android-sdk-20/tools里的 android文件
+
+在tool/options中添加代理 mirrors.neusoft.edu.cn  80   然后安装默认选中的更新 及安装api 14和8
+
+**4.2--修改你要生成的程序文件夹下的buildozer.spec文件中的# Android specific**
+
+    # (bool) Indicate if the application should be fullscreen or not
+    fullscreen = 1
+
+    # (list) Permissions
+    android.permissions = INTERNET
+
+    # (int) Android API to use
+    android.api = 14      -----为前面已安装的api
+
+    # (int) Minimum API required
+    android.minapi = 8
+
+    # (int) Android SDK version to use
+    android.sdk = 20    -----根据默认生成
+
+    # (str) Android NDK version to use
+    android.ndk = 9c  -----根据默认生成
