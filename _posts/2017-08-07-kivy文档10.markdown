@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档10"
+date: "2017-08-07 16:07"
 tags:
 - kivy
 comments: true
@@ -538,5 +538,3 @@ Button:
 ```
 
 就这么多了。现在当我们再次运行 main.py的时候，controller.kv 就会被加载，然后 Button 按钮和 Label 文本标签就会出现，并且根据触摸事件进行响应了。
-
-

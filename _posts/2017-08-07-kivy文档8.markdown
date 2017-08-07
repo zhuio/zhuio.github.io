@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档8"
+date: "2017-08-07 16:06"
 tags:
 - kivy
 comments: true
@@ -653,6 +653,3 @@ Kivy 的默认长度单位是像素 pixel，所有的尺寸和位置都用这个
 ## 使用屏幕管理器进行屏幕分割
 
 如果你的应用程序要包含多个程序，那可能就需要从一个[屏幕 `Screen`](https://kivy.org/docs/api-kivy.uix.screenmanager.html#kivy.uix.screenmanager.Screen "kivy.uix.screenmanager.Screen")到另一个[屏幕 `Screen`](https://kivy.org/docs/api-kivy.uix.screenmanager.html#kivy.uix.screenmanager.Screen "kivy.uix.screenmanager.Screen")提供一个导航的通道。幸运的是，正好有一个[屏幕管理器类`ScreenManager`](https://kivy.org/docs/api-kivy.uix.screenmanager.html#kivy.uix.screenmanager.ScreenManager "kivy.uix.screenmanager.ScreenManager")，这个类允许你来定义分开的各个屏幕，设置屏幕管理器的[`TransitionBase`](https://kivy.org/docs/api-kivy.uix.screenmanager.html#kivy.uix.screenmanager.TransitionBase "kivy.uix.screenmanager.TransitionBase")就可以实现从一个屏幕到另一个屏幕的跳转导航。
-
-
-

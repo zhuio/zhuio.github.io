@@ -1,12 +1,11 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档18"
+date: "2017-08-07 16:10"
 tags:
 - kivy
 comments: true
 ---
-
 # Kivy中文编程指南：打包为 iOS 系统可执行文件
 
 [英文原文](https://kivy.org/docs/guide/packaging-ios.html)
@@ -146,10 +145,3 @@ Kivy 开发者将所有链接库的 app 二进制文件合并成了一个名为 
 * [ProcessCraft on iTunes](http://itunes.apple.com/us/app/processcraft/id526377075)
 
 更详细的列表可以参考 [Kivy wiki](https://github.com/kivy/kivy/wiki/List-of-Kivy-Projects).
-
-
-
-
-
-
-

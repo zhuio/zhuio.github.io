@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档14"
+date: "2017-08-07 16:10"
 tags:
 - kivy
 comments: true
@@ -121,4 +121,3 @@ Android 工具链现在挺稳定的，一定程度上基本能适用于各种设
 当前在技术上存在的一个限制就是 Android 构建工具只能生成 ARM 平台的 APK 文件，这些文件不能运行于 X86 处理器的 Android 设备上，好在目前 这类 X86 的 Android 设备还不是主流。不过对 X86 处理器的 Android 设备的支持是后续要添加的。
 
 因为目前 Kivy 基本上能在绝大多数 Android 设备上面良好运行了，所以之前的那个设备支持列表就关荣退休了—只要满足上面的要求的 Android 设备，基本就都能够使用。
-

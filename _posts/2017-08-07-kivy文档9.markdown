@@ -1,11 +1,12 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档9"
+date: "2017-08-07 16:06"
 tags:
 - kivy
 comments: true
 ---
+
 
 # Kivy中文编程指南：图形
 
@@ -151,4 +152,3 @@ class MyWidget(Widget):
 
 
 要注意更新指令的方法是更好的选择，因为这样减少了开销，并且避免了创建新指令。
-

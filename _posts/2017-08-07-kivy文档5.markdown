@@ -1,11 +1,12 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档5"
+date: "2017-08-07 16:04"
 tags:
 - kivy
 comments: true
 ---
+
 
 # Kivy中文编程指南：架构概览
 
@@ -48,31 +49,31 @@ Kivy自带的所有控件，都使用了这个图形接口；出于性能的考�
 
 
 核心模块也就是kivy.core，这个包里面提供了常用的各种功能，比如：
- 
- 
+
+
 * Clock
- 
+
  时钟类，可以用于安排计时器事件。同时支持一次性计时和周期性计时。
- 
+
 * Cache
- 
+
  If you need to cache something that you use often, you can use our class for that instead of writing your own.
- 
+
  缓存类，如果有一些经常用到的数据需要缓存，就可以用这个类，而不用自己写了。
- 
+
 * Gesture Detection
- 
+
  手势识别，这个可以用来识别各种划动行为，比如画个圆圈或者方块之类的。可以训练来识别你自己设计的图形。
- 
+
 * Kivy Language
- 
+
  Kivy语言，这个是用来简洁高效地描述Kivy应用的用户界面的。
- 
+
 * Properties
-  
+
  这里这些属性和Python语言中的属性不同。这里是我们专门写的一些类，通过用户界面描述来连接控件代码。
- 
- 
+
+
 
 
 
@@ -81,20 +82,20 @@ Kivy自带的所有控件，都使用了这个图形接口；出于性能的考�
 ## UIX（控件和布局）
 
 UIX用户界面模块，包含了常用的各种控件和布局，可以通过复用来快速构建用户界面。
- 
- 
- 
- 
+
+
+
+
 * Widgets 控件
- 
+
  控件是各种用户界面元素，可以添加到程序中来提供各种功能。有的可见，有的不可见。文件浏览器，按钮、滑动页、列表等等，这都属于控件。控件接收动作事件。
- 
- 
+
+
 * Layouts 布局
- 
+
  布局是控件的排列方式。当然，你也可以自己自定义控件的位置，不过从我们提供的预设布局中选择一个来使用，会更方便很多。网格布局、箱式布局等等，都是布局了。你还可以试试复杂的多层网状布局。
- 
- 
+
+
 
 ## 模块化
 
@@ -114,29 +115,29 @@ Kivy抽象了各种输入类型和输入设备，比如触控，鼠标按键，�
 
 
 这些输入类型，在Kivy中都用Touch()类的实例来表示。（请注意，这里可不仅仅是针对手指去触摸的那种touch，而是所有可以这样抽象表示的输入事件。这里用**Touch**只是为了方便而这么简称一下。就想象一下，这些**Touches**就是在用户界面或者显示屏上面的那些个**点击行为**。 ）Touch的实例或者对象，有三种状态。当这个Touch进入了其中的某一个状态，你的程序就会被告知此事件的发生。Touch的三种状态如下：
- 
- 
- 
- 
+
+
+
+
 * Down 落下
- 
+
  处于落下状态，只能有一次，就是在发生Touch事件的初始时刻。
 
- 
- 
+
+
 * Move 移动
- 
+
  这个状态的时间无上限。在一个Touch的生命周期中可以没有这个状态。移动状态只发生在Touch的2D平面位置发生变化的情况下。
- 
+
 * Up 抬起
- 
+
  A touch goes up at most once, or never. In practice you will almost always receive an up event because nobody is going to hold a finger on the screen for all eternity, but it is not guaranteed. If you know the input sources your users will be using, you will know whether or not you can rely on this state being entered.
- 
+
  一个Touch要么只能抬起一次，要么就不发生。而实际应用中你会经常遇到Up时间，因为没有人会一直把手指按到屏幕上，不过也有未必就绝对不会有这种情况。若事先知道用户用的输入设备，就可以确定能否完全依靠用户的输入状态。
- 
+
   （译者注：以手指触摸屏幕为例，只有开始接触的时候是Down手指落下这个状态，之后移动就是接下来的Move移动状态，手指抬起来的时候就是Up即抬起状态了；如果以鼠标左键点击为例，按下去左键的时候是Down，按住左键不放进行拖动就是Move，松开左键就是Up了。这段我特别解释一下，因为自己翻译的太生硬了。）
- 
- 
+
+
 
 
 
@@ -170,5 +171,3 @@ def on_touch_down(self, touch):
 
 
 经常有一种情况，就是你可能要让一个控件只在屏幕上某个特定的**区域**来监听Touch事件。这时候就可以使用控件的collide_point()方法来实现此目的。只需要把Touch的位置发给该方法，然后如果此位置位于**监听区域**则返回True，反之返回False。默认情况下，这个方法会监听屏幕上的一个矩形区域，根据控件的中心坐标（x & y坐标系），以及空间尺寸（宽度和高度），不过你也可以用自己的类覆盖掉这一行为。
-
-

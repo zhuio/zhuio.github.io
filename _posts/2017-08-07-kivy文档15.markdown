@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档15"
+date: "2017-08-07 16:10"
 tags:
 - kivy
 comments: true

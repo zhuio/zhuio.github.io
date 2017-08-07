@@ -1,11 +1,12 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档21"
+date: "2017-08-07 16:10"
 tags:
 - kivy
 comments: true
 ---
+
 
 # Kivy中文编程指南：更好用 Android 打包虚拟机
 

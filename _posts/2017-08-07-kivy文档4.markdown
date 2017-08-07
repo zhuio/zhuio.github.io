@@ -1,11 +1,12 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档4"
+date: "2017-08-07 16:02"
 tags:
 - kivy
 comments: true
 ---
+
 
 # Kivy中文编程指南：配置修改
 
@@ -122,4 +123,3 @@ os.environ['KIVY_HOME'] = folder>
 ## 详细理解配置项
 
 在[kivy.config](http://kivy.org/docs/api-kivy.config.html#module-kivy.config "kivy.config") 模块中可以看到全部的配置项的解释。
-

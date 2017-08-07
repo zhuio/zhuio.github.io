@@ -1,11 +1,12 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档3"
+date: "2017-08-07 16:02"
 tags:
 - kivy
 comments: true
 ---
+
 
 # Kivy中文编程指南：环境变量
 
@@ -21,7 +22,7 @@ Kivy的初始化和很多行为都可以通过各种环境变量来控制。
 ```Bash
 $ KIVY_TEXT=pil python main.py
 ```
-(译者注：PIL，Python Imaging Library, Python 下常用的绘图库) 
+(译者注：PIL，Python Imaging Library, Python 下常用的绘图库)
 
 
 所有的这些环境变量的修改设定都需要在导入Kivy之前进行，具体如下所示：
@@ -231,7 +232,7 @@ Kivy.core会尝试使用所在平台的最优实现。如果要测试或者定�
 这个是用来设定Metrics.fontscale，字体大小。
 
 * 从Kivy1.5.0版本开始提供
- 
+
 
 
 
@@ -283,6 +284,3 @@ Kivy.core会尝试使用所在平台的最优实现。如果要测试或者定�
 * 6: DISPMANX_ID_FORCE_OTHER
 
 （译者注：上面0-6分别是不同的显示输出端口，相信很容易看懂，大家探索一下吧。）
-
-
-

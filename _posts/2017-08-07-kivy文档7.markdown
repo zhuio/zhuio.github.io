@@ -1,5 +1,14 @@
 ---
 layout: "post"
+title: "kivy文档7"
+date: "2017-08-07 16:06"
+tags:
+- kivy
+comments: true
+---
+
+---
+layout: "post"
 title: "kivy文档"
 date: "2017-08-07 15:45"
 tags:
@@ -43,7 +52,7 @@ Input providers -> Motion event -> Post processing -> Dispatch to Window
 * Non-Touch非触控事件：其余的各种事件。例如加速度传感器就是一个持续的事件，不具有坐标位置。这一事件没有起止，一直在发生。这类的事件都不通过控件树来分派。
 
 
-Motion动作事件是由[`InputProvider`](https://kivy.org/docs/api-kivy.input.providers.html#module-kivy.input.providers "kivy.input.providers")生成的。 
+Motion动作事件是由[`InputProvider`](https://kivy.org/docs/api-kivy.input.providers.html#module-kivy.input.providers "kivy.input.providers")生成的。
 InputProvider这个类就是负责读取输入事件，这些输入事件的来源可以是操作系统，网络或者其他的应用程序。如下这几个都是已有的输入源：
 
 * [`TuioMotionEventProvider`](https://kivy.org/docs/api-kivy.input.providers.tuio.html#kivy.input.providers.tuio.TuioMotionEventProvider "kivy.input.providers.tuio.TuioMotionEventProvider")：创建一个UDP服务端，侦听TUIO/OSC信息。
@@ -353,6 +362,3 @@ def on_touch_up(self, touch):
 
 
 想要了解更多Touch事件如何控制以及如何在控件之间传递，可以阅读一下[Widget touch event bubbling](https://kivy.org/docs/api-kivy.uix.widget.html#widget-event-bubbling)这部分内容。
-
-
-

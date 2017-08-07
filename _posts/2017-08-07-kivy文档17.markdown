@@ -1,12 +1,11 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档17"
+date: "2017-08-07 16:10"
 tags:
 - kivy
 comments: true
 ---
-
 # Kivy中文编程指南：打包为 Mac 系统可执行文件
 
 [英文原文](https://kivy.org/docs/guide/packaging-osx.html)

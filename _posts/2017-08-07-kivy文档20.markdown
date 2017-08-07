@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档20"
+date: "2017-08-07 16:10"
 tags:
 - kivy
 comments: true
 ---
-
-
 
 ##解决Mac系统上Kivy-Desinger因Garden安装位置不匹配导致的filebrowser无法导入的问题
 
@@ -96,7 +94,7 @@ Details here:
 ```Bash
 [INFO              ] Logger: Record log in /Applications/Kivy.app/Contents/Resources/.kivy/logs/kivy_15-12-29_18.txt
 [INFO              ] Kivy: v1.9.0
-[INFO              ] Python: v2.7.10 (default, Jul 14 2015, 19:46:27) 
+[INFO              ] Python: v2.7.10 (default, Jul 14 2015, 19:46:27)
 [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)]
 [INFO              ] Image: Providers: img_tex, img_imageio, img_dds, img_gif, img_sdl2 (img_pil, img_ffpyplayer ignored)
 [INFO              ] Factory: 173 symbols loaded

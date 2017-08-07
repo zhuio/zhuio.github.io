@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档13"
+date: "2017-08-07 16:09"
 tags:
 - kivy
 comments: true
@@ -200,5 +200,3 @@ a = Analysis(['examples-path\\demo\\touchtracer\\main.py'],
 前面的这些例子都用到了 `*[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins + gstreamer.dep_bins)],` 这样的语句来保证 PyInstaller 把所有依赖包用到的 dll 都添加进去。如果不是用 wheel 的方法安装的 Kivy，那么这些命令就很可能失败，比如 `kivy.deps.sdl2` 可能就无法导入。这时候，你就必须得找到这些 dll 文件的位置，然后手动地一个个传递给 `Tree` 类，传递方法和上面说的基本差不多了。
 
 （译者注：Windows 平台还是推荐用 wheel 二进制安装，省心多了。）
-
-

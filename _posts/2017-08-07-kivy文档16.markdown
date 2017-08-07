@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "kivy文档"
-date: "2017-08-07 15:45"
+title: "kivy文档16"
+date: "2017-08-07 16:10"
 tags:
 - kivy
 comments: true
@@ -50,7 +50,3 @@ comments: true
 arm-linux-androideabi-gcc: Internal error: Killed (program cc1)
 ```
 如果出现了上面这种情况，检查一下 Kivy 虚拟机的剩余内存，如果内存不足，就在虚拟机设置里面多增加一些吧。
-
-
-
-

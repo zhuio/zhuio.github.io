@@ -1,5 +1,13 @@
 ---
 layout: "post"
+title: "kivy文档12"
+date: "2017-08-07 16:09"
+tags:
+- kivy
+comments: true
+---
+---
+layout: "post"
 title: "kivy文档"
 date: "2017-08-07 15:45"
 tags:
@@ -91,5 +99,3 @@ ID 为 Xuton 的一位好心朋友开发了一个扩展文件，可以提供 Kiv
 * [kivy-eclipse-and-pydev-also-pypy](http://stackoverflow.com/questions/9768489/kivy-eclipse-and-pydev-also-pypy)
 * [How to Set up Wing IDE for Kivy on Windows](http://www.blog.pythonlibrary.org/2013/11/18/how-to-set-up-wing-ide-for-kivy-on-windows/)
 * [Kv language definition file for gedit](https://wiki.gnome.org/Projects/GtkSourceView/LanguageDefinitions?action=AttachFile&do=view&target=kv.lang)
-
-
