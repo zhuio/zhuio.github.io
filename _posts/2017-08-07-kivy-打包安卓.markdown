@@ -8,13 +8,15 @@ tags:
 comments: true
 ---
 
-**1.安装 Buildozer  **
+** 1.安装 Buildozer  **
 
     pip install buildozer
 
-**2.安装 依赖包**   https://buildozer.readthedocs.io/en/latest/installation.html#targeting-android
+** 2.安装 依赖包**  
 
-**3.初始化**
+     https://buildozer.readthedocs.io/en/latest/installation.html#targeting-android
+
+** 3.初始化**
 
 在你的kivy应用文件夹下运行  程序主文件名需为main.py  
 
