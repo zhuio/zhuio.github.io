@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>kivy文档7 – 朱智博在Github上的Blog</title> <meta name="description" content="朱智博，朱智博的博客，zhuio,zhuio.github.io,"> <meta name="keywords" content="kivy"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="http://localhost:4000/assets/img/logo.png"> <meta name="twitter:title" content="kivy文档7"> <meta name="twitter:description" content="layout: “post”title: “kivy文档”date: “2017-08-07 15:45”tags: kivycomments: true—"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="kivy文档7"> <meta property="og:description" content="layout: “post”title: “kivy文档”date: “2017-08-07 15:45”tags: kivycomments: true—"> <meta property="og:url" content="http://localhost:4000/kivy%E6%96%87%E6%A1%A37/"> <meta property="og:site_name" content="朱智博在Github上的Blog"> <meta property="og:image" content="http://localhost:4000/assets/img/logo.png"> <link rel="canonical" href="http://localhost:4000/kivy%E6%96%87%E6%A1%A37/"> <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="朱智博在Github上的Blog Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"> <!-- JS --> <script src="http://localhost:4000/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="http://localhost:4000/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png"> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(http://localhost:4000/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <li><a href="http://localhost:4000/">Home</a></li> <li> <a href="#">About</a> <ul class="dl-submenu"> <li> <img src="http://localhost:4000/assets/img/logo.png" alt="朱智博在Github上的Blog photo" class="author-photo"> <h4>朱智博在Github上的Blog</h4> <p>朱智博，朱智博的博客，zhuio,zhuio.github.io,</p> </li> <li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:185560083@qq.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/zhuio" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> <li> <a href="http://www.weibo.com/EDM_LOVER" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <li> <a href="#">Posts</a> <ul class="dl-submenu"> <li><a href="http://localhost:4000/posts/">All Posts</a></li> <li><a href="http://localhost:4000/tags/">All Tags</a></li> </ul> </li> <li><a href="http://localhost:4000/projects/">Projects</a></li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>kivy文档7</h1> <h4>07 Aug 2017</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~3 minutes </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="http://localhost:4000/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <hr> <p>layout: “post” title: “kivy文档” date: “2017-08-07 15:45” tags:</p> <ul> <li>kivy comments: true —</li> </ul> <h1 id="kivy中文编程指南输入管理">Kivy中文编程指南：输入管理</h1> <p><a href="kivy.org/docs/guide/inputs.html">英文原文</a></p> <p>##译者前言 这一章节比上一章节翻译的还差，最近睡眠不太好，术后恢复比较差，大家凑合看看，看不下去给指出来一下比较不好理解和绕的地方，以及错误的地方，我一定即时修改。</p> <h2 id="输入体系">输入体系</h2> <p>Kivy能处理绝大多数的输入类型：鼠标，触摸屏，加速器，陀螺仪等等。并且针对以下平台能够处理多点触控的原生协议：Tuio, WM_Touch, MacMultitouchSupport, MT Protocol A/B 以及 Android。（译者注：第一个TUIO应该是通用多点触控，第二个怀疑是WindowsMobile的，第三个是苹果的多点触控，第四个不知道是啥，最后一个是Android的。）</p> <p>整体上输入体系的结构概括起来如下所示：</p>
+<pre><code class="language-HTML">Input providers -&gt; Motion event -&gt; Post processing -&gt; Dispatch to Window
+
+输入源 -&gt; 动作事件 -&gt; 事后处理 -&gt; 分派到窗口
+</code></pre>
+<p>所有输入事件的类是<a href="https://kivy.org/docs/api-kivy.input.motionevent.html#kivy.input.motionevent.MotionEvent" title="kivy.input.motionevent.MotionEvent"><code class="highlighter-rouge">MotionEvent</code></a>。这个类生成两种事件：</p> <ul> <li> <p>Touch触控事件：包含位置信息，至少X和Y坐标位置的一种Motion动作事件。所有这种Touch事件都通过控件树进行分派。</p> </li> <li> <p>Non-Touch非触控事件：其余的各种事件。例如加速度传感器就是一个持续的事件，不具有坐标位置。这一事件没有起止，一直在发生。这类的事件都不通过控件树来分派。</p> </li> </ul> <p>Motion动作事件是由<a href="https://kivy.org/docs/api-kivy.input.providers.html#module-kivy.input.providers" title="kivy.input.providers"><code class="highlighter-rouge">InputProvider</code></a>生成的。 InputProvider这个类就是负责读取输入事件，这些输入事件的来源可以是操作系统，网络或者其他的应用程序。如下这几个都是已有的输入源：</p> <ul> <li>
+<a href="https://kivy.org/docs/api-kivy.input.providers.tuio.html#kivy.input.providers.tuio.TuioMotionEventProvider" title="kivy.input.providers.tuio.TuioMotionEventProvider"><code class="highlighter-rouge">TuioMotionEventProvider</code></a>：创建一个UDP服务端，侦听TUIO/OSC信息。</li> <li>
+<code class="highlighter-rouge">WM_MotionEventProvider</code>：使用Windows API来读取多点触控信息并发送给Kivy。</li> <li>
+<code class="highlighter-rouge">ProbeSysfsHardwareProbe</code>：在Linux中，遍历连接到计算机的所有硬件，并为找到的每个多点触摸设备附加一个多点触摸输入提供程序。</li> <li>还有很多很多啦！</li> </ul> <p>当你写一个应用程序的时候，就不用再去重造一个输入源了。Kivy会自动检测可用的硬件。然而，如果你想要支持某些特殊定制的专门硬件，就可能得对Kivy的配置进行一下调整才行。</p> <p>在新建的Motion动作事件被传递给用户之前，Kivy会先对输入进行处理。Kivy会对每一个动作事件进行分析来检查和纠正错误输入，也是保证能提供有意义的解释，比如：</p> <ul> <li>根据姿势和持续时间来检测双击或三次点击；</li> <li>在硬件设备精度不佳的情况下提高事件精确度；</li> <li>原生触摸硬件若在近似相同位置发送事件则降低生成事件数量。</li> </ul> <p>经过上面这些步骤之后，这个Motion动作事件就会被分派给对应的窗口。正如之前解释过的，并非所有事件都分派给整个控件树，程序窗口要对事件进行过滤筛选。对于一个给定的事件：</p> <ul> <li> <p>如果仅仅是一个Motion动作事件，那它就会被分派给<a href="https://kivy.org/docs/api-kivy.core.window.html#kivy.core.window.WindowBase.on_motion" title="kivy.core.window.WindowBase.on_motion"><code class="highlighter-rouge">on_motion()</code></a>；</p> </li> <li> <p>如果是一个Touch事件，这个触摸控件的坐标位置（x,y)（范围在0-1）会被调整到与窗口尺寸（宽高）相适应，然后对应发给下面这些方法：</p> <ul> <li><a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.on_touch_down" title="kivy.uix.widget.Widget.on_touch_down"><code class="highlighter-rouge">on_touch_down()</code></a></li> <li><a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.on_touch_move" title="kivy.uix.widget.Widget.on_touch_move"><code class="highlighter-rouge">on_touch_move()</code></a></li> <li><a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.on_touch_up" title="kivy.uix.widget.Widget.on_touch_up"><code class="highlighter-rouge">on_touch_up()</code></a></li> </ul> </li> </ul> <h2 id="motion动作事件的属性">Motion动作事件的属性</h2> <p>你用的硬件和输入源可能允许你能获取到更多信息。比如一个Touch触摸输入不仅有坐标位置（x,y），还可能有压力强度信息，触摸范围大小，加速度矢量等等。</p> <p>在Motion动作事件中，有一个字符串作为profile属性，用于说明该事件内都有那些可用的效果。假如咱们有下面这样的一个<code class="highlighter-rouge">on_touch_move</code>方法：</p>
+<pre><code class="language-Python">def on_touch_move(self, touch):
+    print(touch.profile)
+    return super(..., self).on_touch_move(touch)
+</code></pre>
+<p>在控制台的打印输出可能是：</p>
+<pre><code class="language-Bash">['pos', 'angle']
+</code></pre>
+<h4 id="特别注意">特别注意</h4> <p>很多人可能会把这里Motion事件的Profile属性的名字与对应的Property属性弄混。一定要注意，可用Profile属性中存在<code class="highlighter-rouge">angle</code>，并不意味着Touch事件对象也必须有一个<code class="highlighter-rouge">angle</code>的Property属性。</p> <p>对应profile属性<code class="highlighter-rouge">'pos'</code>，property属性中有位置信息<code class="highlighter-rouge">pos</code>，<code class="highlighter-rouge">x</code>,<code class="highlighter-rouge">y</code>。profile属性<code class="highlighter-rouge">angle</code>，property属性对应的是有角度<code class="highlighter-rouge">a</code>。刚刚我们就说了，对touchTouch事件来说，profile属性中按照惯例是必须有位置属性<code class="highlighter-rouge">pos</code>的，但不一定有角度属性<code class="highlighter-rouge">angle</code>。对角度属性<code class="highlighter-rouge">angle</code>是否存在，可以用下面的方法来检测一下：</p>
+<pre><code class="language-Python">def on_touch_move(self, touch):
+    print('The touch is at position', touch.pos)
+    if 'angle' in touch.profile:
+        print('The touch angle is', touch.a)
+</code></pre>
+<p>在<a href="https://kivy.org/docs/api-kivy.input.motionevent.html#module-kivy.input.motionevent" title="kivy.input.motionevent"><code class="highlighter-rouge">motionevent</code></a>文档中，可以找到所有可用profile属性的列表。</p> <p>##Touch事件</p> <p>有一种特殊的<a href="https://kivy.org/docs/api-kivy.input.motionevent.html#kivy.input.motionevent.MotionEvent" title="kivy.input.motionevent.MotionEvent"><code class="highlighter-rouge">MotionEvent</code>动作事件</a> ，这种事件的<a href="https://kivy.org/docs/api-kivy.input.motionevent.html#kivy.input.motionevent.MotionEvent.is_touch" title="kivy.input.motionevent.MotionEvent.is_touch"><code class="highlighter-rouge">is_touch</code></a> 方法返回的是True，这就是Touch事件。</p> <p>所有的Touch事件，都默认就有X和Y的坐标信息，与窗口的宽度和高度相匹配。换句话说就是所有的Touch事件都有<code class="highlighter-rouge">pos</code>这一profile属性。</p> <h3 id="基本简介">基本简介</h3> <p>默认情况下，Touch事件会被分派给所有当前显示的控件。也就是说无论这个Touch是否发生在控件的物理范围内，控件都会收到它。</p> <p>如果你接触过其他的GUI框架，可能觉得这特点挺违背直觉的。一般的GUI框架里面，都是把屏幕分割成多个几何区域，然后只在发生区域内的控件才会被分派到触摸或者鼠标事件。</p> <p>这个设定对触摸输入的情景来说就过于严格了。因为用手指划，之间点戳，还有长时间按，都可能会有偏移导致落到 用户希望进行交互的控件外的情景。</p> <p>为了提供最大的灵活性，Kivy会把事件分派给所有控件，然后让控件来自行决定如何应对这些事件。如果你只希望在某个控件内对Touch事件作出反应，只需要按照如下方法进行一下检测：</p>
+<pre><code class="language-Python">def on_touch_down(self, touch):
+    if self.collide_point(*touch.pos):
+        # The touch has occurred inside the widgets area. Do stuff!
+        pass
+</code></pre>
+<h3 id="坐标位置">坐标位置</h3> <p>一旦你使用一个带有矩阵变换的控件，就一定要处理好Touch事件中的矩阵变换。例如<a href="https://kivy.org/docs/api-kivy.uix.scatter.html#kivy.uix.scatter.Scatter" title="kivy.uix.scatter.Scatter"><code class="highlighter-rouge">Scatter</code></a>这样的某些控件，自身会有矩阵变换，这就意味着Touch事件也必须用Scatter矩阵进行处理，这样才能正确地把Touch事件的位置分派给Scatter的子控件。</p> <ul> <li>从上层空间到本地空间获取坐标： <a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.to_local" title="kivy.uix.widget.Widget.to_local"><code class="highlighter-rouge">to_local()</code></a>
+</li> <li>从本地空间到上层空间获取坐标： <a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.to_parent" title="kivy.uix.widget.Widget.to_parent"><code class="highlighter-rouge">to_parent()</code></a>
+</li> <li>从本地空间到窗口空间获取坐标： <a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.to_window" title="kivy.uix.widget.Widget.to_window"><code class="highlighter-rouge">to_window()</code></a>
+</li> <li>从窗口空间到本地空间获取坐标： <a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.to_widget" title="kivy.uix.widget.Widget.to_widget"><code class="highlighter-rouge">to_widget()</code></a>
+</li> </ul> <p>一定要使用上面方法当中的某一种来确保内容坐标系适配正确。然后下面这段代码里是Scatter的实现：</p>
+<pre><code class="language-Python">def on_touch_down(self, touch):
+    # push the current coordinate, to be able to restore it later
+	# 这里用push先把当前的坐标位置存留起来，以后就还可以恢复到这个坐标
+    touch.push()
+
+    # transform the touch coordinate to local space
+	# 接下来就是把Touch的坐标转换成本地空间的坐标
+    touch.apply_transform_2d(self.to_local)
+
+    # dispatch the touch as usual to children
+    # the coordinate in the touch is now in local space
+	# 转换之后把这个Touch事件按照惯例分派给子控件
+	# Touch事件的坐标位置现在就是本地空间的了
+    ret = super(..., self).on_touch_down(touch)
+
+    # whatever the result, don't forget to pop your transformation
+    # after the call, so the coordinate will be back in parent space
+	#无论结果如何，一定记得把这个转换用pop弹出
+	# 之后，坐标就又恢复成上层空间的了
+    touch.pop()
+
+    # return the result (depending what you want.)
+	# 最后就是返回结果了
+    return ret
+</code></pre>
+<h3 id="touch事件的形状">Touch事件的形状</h3> <p>If the touch has a shape, it will be reflected in the ‘shape’ property. Right now, only a <a href="https://kivy.org/docs/api-kivy.input.shape.html#kivy.input.shape.ShapeRect" title="kivy.input.shape.ShapeRect"><code class="highlighter-rouge">ShapeRect</code></a> can be exposed:</p> <p>如果你的Touch事件有某个形状，这个信息会反映在<code class="highlighter-rouge">shape</code>这一property属性中。目前能用的就是一个 <a href="https://kivy.org/docs/api-kivy.input.shape.html#kivy.input.shape.ShapeRect" title="kivy.input.shape.ShapeRect"><code class="highlighter-rouge">ShapeRect</code></a>：</p>
+<pre><code class="language-Python">from kivy.input.shape import ShapeRect
+def on_touch_move(self, touch):
+    if isinstance(touch.shape, ShapeRect):
+        print('My touch have a rectangle shape of size',
+            (touch.shape.width, touch.shape.height))
+    # ...
+</code></pre>
+<h3 id="双击">双击</h3> <p>A double tap is the action of tapping twice within a time and a distance. It’s calculated by the doubletap post-processing module. You can test if the current touch is one of a double tap or not:</p> <p>双击是一种特定动作，在一小段时间和很短的一小段特定距离内敲击两下。双击的计算识别是通过一个双击后处理模块来实现的。可以用如下代码来检测当前的Touch是否是双击动作中的一下：</p>
+<pre><code class="language-Python">def on_touch_down(self, touch):
+    if touch.is_double_tap:
+        print('Touch is a double tap !')
+        print(' - interval is', touch.double_tap_time)
+        print(' - distance between previous is', touch.double_tap_distance)
+    # ...
+</code></pre>
+<h3 id="三次点击">三次点击</h3> <p>A triple tap is the action of tapping thrice within a time and a distance. It’s calculated by the tripletap post-processing module. You can test if the current touch is one of a triple tap or not:</p> <p>三次点击和双击的概念类似，只不过是变成了点击三次。这个是通过一个三次点击后处理模块来计算识别的。可以用如下代码来检测当前的Touch是否是三次点击动作中的一下：</p>
+<pre><code class="language-Python">def on_touch_down(self, touch):
+    if touch.is_triple_tap:
+        print('Touch is a triple tap !')
+        print(' - interval is', touch.triple_tap_time)
+        print(' - distance between previous is', touch.triple_tap_distance)
+    # ...
+</code></pre>
+<h3 id="拖放事件">拖放事件</h3> <p>父控件可能会从<code class="highlighter-rouge">on_touch_down</code>中分派Touch事件到子控件，而不从<code class="highlighter-rouge">on_touch_move</code>或<code class="highlighter-rouge">on_touch_up</code>分派。这可能发生在某些特定情况知悉啊，比如一个Touch处于父控件的边界之外，这样父控件就会决定不对子控件通知这个Touch。</p> <p>But you might want to do something in <code class="highlighter-rouge">on_touch_up</code>. Say you started something in the <code class="highlighter-rouge">on_touch_down</code> event, like playing a sound, and you’d like to finish things on the <code class="highlighter-rouge">on_touch_up</code> event. Grabbing is what you need.</p> <p>不过有可能你还是得处理一下<code class="highlighter-rouge">on_touch_up</code>。比方说，你开始是<code class="highlighter-rouge">on_touch_down</code>事件，假设是按下播放语音之类的，然后你希望当手指抬起的时候<code class="highlighter-rouge">on_touch_up</code>事件发生的时候就结束任务。这时候就需要有Grab拖放事件了。</p> <p>When you grab a touch, you will always receive the move and up event. But there are some limitations to grabbing:</p> <p>拖放一个Touch的时候，总会收到移动和抬起事件。但对拖放有如下的限制：</p> <ul> <li> <p>至少会两次收到这个事件：一次是从父控件正常收到的事件，还有一次是从窗口获取的Grab拖放事件。</p> </li> <li> <p>有可能你没有进行拖放，但还是会收到一个拖放Touch事件：这可能是因为在子控件处于拖放状态时，父控件发来了一个Touch事件。</p> </li> <li> <p>在拖放状态下，Touch事件的坐标不会转换成控件空间的坐标，因为这个Touch事件是直接来自窗口的。所以要手动将坐标转换到本地空间。</p> </li> </ul> <p>下面这段代码展示了对拖放的使用：</p>
+<pre><code class="language-Python">def on_touch_down(self, touch):
+    if self.collide_point(*touch.pos):
+
+        # if the touch collides with our widget, let's grab it
+        touch.grab(self)
+
+        # and accept the touch.
+        return True
+
+def on_touch_up(self, touch):
+    # here, you don't check if the touch collides or things like that.
+    # you just need to check if it's a grabbed touch event
+    if touch.grab_current is self:
+
+        # ok, the current touch is dispatched for us.
+        # do something interesting here
+        print('Hello world!')
+
+        # don't forget to ungrab ourself, or you might have side effects
+        touch.ungrab(self)
+
+        # and accept the last up
+        return True
+</code></pre>
+<h3 id="touch事件管理">Touch事件管理</h3> <p>想要了解更多Touch事件如何控制以及如何在控件之间传递，可以阅读一下<a href="https://kivy.org/docs/api-kivy.uix.widget.html#widget-event-bubbling">Widget touch event bubbling</a>这部分内容。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="http://localhost:4000/tags/#kivy" title="Pages tagged kivy" class="tag"><span class="term">kivy</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/kivy%E6%96%87%E6%A1%A37/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Share</span> </a> <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/kivy%E6%96%87%E6%A1%A37/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=http://localhost:4000/kivy%E6%96%87%E6%A1%A37/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <h101> <!-- 多说评论框 start --> <div class="ds-thread" data-thread-key="" data-title="kivy文档7" data-url="http://localhost:4000"></div> <!-- 多说评论框 end --> <!-- 多说公共JS代码 start (一个网页只需插入一次) --> <script type="text/javascript"> var duoshuoQuery = {short_name:"zhuio"}; (function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true; ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds); })(); </script> <!-- 多说公共JS代码 end --> </h101> </header> <!-- JS --> <script src="http://localhost:4000/assets/js/jquery-1.12.0.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.dlmenu.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.goup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.magnific-popup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.fitvid.min.js"></script> <script src="http://localhost:4000/assets/js/scripts.js"></script> <script type="text/javascript"> var disqus_shortname = 'zhuio-github-io'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> <!-- MathJax --> <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> </body> </html>

@@ -1,0 +1,11 @@
+---
+layout: "post"
+title: "atom加速"
+date: "2017-08-29 12:59"
+tags:
+- atom
+comments: true
+---
+### atom加速
+
+    apm config set registry http://registry.npm.taobao.org/
