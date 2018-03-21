@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>Scrapy爬虫入门教程三 命令行工具介绍和示例 – 朱智博在Github上的Blog</title> <meta name="description" content="朱智博，朱智博的博客，zhuio,zhuio.github.io,"> <meta name="keywords" content="Scrapy"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="http://localhost:4000/assets/img/logo.png"> <meta name="twitter:title" content="Scrapy爬虫入门教程三 命令行工具介绍和示例"> <meta name="twitter:description" content="Scrapy爬虫入门教程三 命令行工具介绍和示例"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="Scrapy爬虫入门教程三 命令行工具介绍和示例"> <meta property="og:description" content="Scrapy爬虫入门教程三 命令行工具介绍和示例"> <meta property="og:url" content="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%89-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%A4%BA%E4%BE%8B/"> <meta property="og:site_name" content="朱智博在Github上的Blog"> <meta property="og:image" content="http://localhost:4000/assets/img/logo.png"> <link rel="canonical" href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%89-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%A4%BA%E4%BE%8B/"> <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="朱智博在Github上的Blog Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"> <!-- JS --> <script src="http://localhost:4000/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="http://localhost:4000/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png"> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(http://localhost:4000/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <li><a href="http://localhost:4000/">Home</a></li> <li> <a href="#">About</a> <ul class="dl-submenu"> <li> <img src="http://localhost:4000/assets/img/logo.png" alt="朱智博在Github上的Blog photo" class="author-photo"> <h4>朱智博在Github上的Blog</h4> <p>朱智博，朱智博的博客，zhuio,zhuio.github.io,</p> </li> <li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:185560083@qq.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/zhuio" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> <li> <a href="http://www.weibo.com/EDM_LOVER" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <li> <a href="#">Posts</a> <ul class="dl-submenu"> <li><a href="http://localhost:4000/posts/">All Posts</a></li> <li><a href="http://localhost:4000/tags/">All Tags</a></li> </ul> </li> <li><a href="http://localhost:4000/projects/">Projects</a></li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>Scrapy爬虫入门教程三 命令行工具介绍和示例</h1> <h4>09 Apr 2017</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~3 minutes </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="http://localhost:4000/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <h1 id="scrapy爬虫入门教程三-命令行工具介绍和示例">Scrapy爬虫入门教程三 命令行工具介绍和示例</h1> <p><strong>开发环境：</strong> <code class="highlighter-rouge">Python 3.6.0 版本</code> （当前最新） <code class="highlighter-rouge">Scrapy 1.3.2 版本</code> （当前最新）</p> <p>[toc]</p> <h2 id="命令行工具">命令行工具</h2> <p>Scrapy是通过scrapy命令行工具来控制的，当前最新版本0.10</p> <h3 id="配置设置">配置设置</h3> <p>Scrapy将scrapy.cfg在标准位置的ini样式文件中查找配置参数：</p> <p>1. 系统默认配置：<code class="highlighter-rouge">/etc/scrapy.cfg</code>或<code class="highlighter-rouge">c:\scrapy\scrapy.cfg</code></p> <p>2. 全局配置文件：<code class="highlighter-rouge">~/.config/scrapy.cfg</code>（<code class="highlighter-rouge">$XDG_CONFIG_HOME</code>）和<code class="highlighter-rouge">~/.scrapy.cfg</code>（<code class="highlighter-rouge">$HOME</code>）用于</p> <p>3. 项目配置文件：<code class="highlighter-rouge">scrapy.cfg</code> 在scrapy项目的根目录中。</p> <p>来自这些文件的设置将按照所列的优先顺序进行合并：用户定义的值比系统级默认值具有更高的优先级，<strong>项目范围的设置将在定义时覆盖所有其他设置</strong>。</p> <p>Scrapy也理解，并且可以通过配置一些环境变量。目前这些是：</p> <p>SCRAPY_SETTINGS_MODULE（<a href="http://scrapy.readthedocs.io/en/latest/topics/settings.html#topics-settings-module-envvar">请参阅指定设置</a>） SCRAPY_PROJECT SCRAPY_PYTHON_SHELL（<a href="http://scrapy.readthedocs.io/en/latest/topics/shell.html#topics-shell">见Scrapy shell</a>）</p> <hr> <h2 id="scrapy项目的默认结构">Scrapy项目的默认结构</h2> <p>在深入了解命令行工具及其子命令之前，让我们先了解Scrapy项目的目录结构。</p> <p>虽然可以修改，但所有Scrapy项目默认情况下具有相同的文件结构，类似于：</p> <div class="highlighter-rouge"><pre class="highlight"><code>scrapy.cfg
+myproject/
+    __init__.py
+    items.py
+    pipelines.py
+    settings.py
+    spiders/
+        __init__.py
+        spider1.py
+        spider2.py
+        ...
+</code></pre></div> <p>其中，目录scrapy.cfg文件位于项目的根目录。该文件包含定义项目设置的python模块的名称。这里是一个例子：</p> <div class="highlighter-rouge"><pre class="highlight"><code>[settings]
+default = myproject.settings
+</code></pre></div> <h2 id="使用scrapy工具">使用scrapy工具</h2> <p>您可以从运行没有参数的Scrapy工具开始，它将打印一些使用帮助和可用的命令： 直接在项目根目录的命令行输入： scrapy</p> <div class="highlighter-rouge"><pre class="highlight"><code>会得到如下提示：
+Scrapy 1.3.2 - no active project
+
+Usage:
+  scrapy &lt;command&gt; [options] [args]
+
+Available commands:
+  bench         Run quick benchmark test
+  commands
+  fetch         Fetch a URL using the Scrapy downloader
+  genspider     Generate new spider using pre-defined templates
+  runspider     Run a self-contained spider (without creating a project)
+  settings      Get settings values
+  shell         Interactive scraping console
+  startproject  Create new project
+  version       Print Scrapy version
+  view          Open URL in browser, as seen by Scrapy
+
+  [ more ]      More commands available when run from project directory
+
+Use "scrapy &lt;command&gt; -h" to see more info about a command
+</code></pre></div> <hr> <h3 id="创建项目">创建项目</h3> <p>你通常用这个scrapy工具做的第一件事是创建你的Scrapy项目： <code class="highlighter-rouge">scrapy startproject myproject [ project_dir ]</code></p> <p>这将在该project_dir目录下创建一个Scrapy项目。如果project_dir没有指定，project_dir将会和myproject名称一样。</p> <p>接下来，进入新的项目目录： <code class="highlighter-rouge">cd project_dir</code></p> <p>您可以使用scrapy命令从那里管理和控制您的项目。</p> <hr> <h3 id="控制项目">控制项目</h3> <p>您可以使用scrapy项目内部的工具来控制和管理它们。</p> <p><strong>大家不要着急一下子把所以东西都介绍到，具体细节后面都会写到。</strong></p> <p>例如，要创建一个新的爬虫： <code class="highlighter-rouge">scrapy genspider mydomain mydomain.com</code></p> <p>通过上述命令创建了一个spider name为mydomain的爬虫，start_urls为<a href="http://www.cnblogs.com/%E7%9A%84%E7%88%AC%E8%99%AB%E3%80%82">http://www.cnblogs.com/的爬虫。</a></p> <p>一些Scrapy命令（如crawl）必须从Scrapy项目内部运行。请参阅命令参考下文中的哪些命令必须从内部项目运行的<a href="http://scrapy.readthedocs.io/en/latest/topics/commands.html#topics-commands-ref">详细信息</a>。</p> <p>还要记住，一些命令在从项目中运行时可能有稍微不同的行为。例如，user_agent如果正在获取的URL与某个特定的爬虫相关联，fetch命令将使用爬虫覆盖的行为（例如属性覆盖用户代理）。这是有意的，因为该fetch命令用于检查爬虫程序如何下载页面。</p> <hr> <h2 id="常用的工具命令">常用的工具命令</h2> <p>此部分包含可用内置命令的列表，其中包含描述和一些用法示例。记住，您可以随时通过运行以下命令获得有关每个命令的更多信息：</p> <p><code class="highlighter-rouge">scrapy &lt;command&gt; -h</code></p> <p>你可以看到所有可用的命令： <code class="highlighter-rouge">scrapy -h</code></p> <p>上面两种命令，它们只能在Scrapy项目内部工作，也可以全局命令的情况下工作（但它们可能会被项目内的配置覆盖）。</p> <p>- 全局命令：</p> <ul> <li>[startproject]</li> <li>[genspider]</li> <li>[settings]</li> <li>[runspider]</li> <li>[shell]</li> <li>[fetch]</li> <li>[view]</li> <li>[version]</li> </ul> <p>- 仅项目命令：</p> <ul> <li>[crawl]</li> <li>[check]</li> <li>[list]</li> <li>[edit]</li> <li>[parse]</li> <li>[bench]</li> </ul> <h3 id="startproject">startproject</h3> <p>语法： <code class="highlighter-rouge">scrapy startproject &lt;project_name&gt; [project_dir]</code></p> <p>在目录project_name下创建一个名为的Scrapy项目project_dir 。如果project_dir没有指定，project_dir将会和myproject名称一样。</p> <p>用法示例： <code class="highlighter-rouge">$ scrapy startproject myproject</code></p> <h3 id="genspider">genspider</h3> <p>语法： <code class="highlighter-rouge">scrapy genspider [-t template] &lt;name&gt; &lt;domain&gt;</code></p> <p>在当前文件夹或当前项目的spiders文件夹中创建一个新的爬虫，如果从项目中调用。该<name>参数设置为爬虫的name，而<domain>用于生成allowed_domains和start_urls爬虫的属性。</domain></name></p> <p>用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy genspider -l
+Available templates:
+  basic
+  crawl
+  csvfeed
+  xmlfeed
+
+$ scrapy genspider example example.com
+Created spider 'example' using template 'basic'
+
+$ scrapy genspider -t crawl scrapyorg scrapy.org
+Created spider 'scrapyorg' using template 'crawl'
+</code></pre></div> <p>这只是一个方便的快捷命令，用于创建基于预定义模板的爬虫，但当然不是唯一的方式来创建爬虫。您可以自己创建爬虫源代码文件，而不是使用此命令。</p> <h3 id="crawl">crawl</h3> <p>语法： <code class="highlighter-rouge">scrapy crawl &lt;spider&gt;</code></p> <p>使用爬虫开始爬行。</p> <p>用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy crawl myspider
+[ ... myspider starts crawling ... ]
+</code></pre></div> <h3 id="check">check</h3> <p>语法： <code class="highlighter-rouge">scrapy check [-l] &lt;spider&gt;</code></p> <p>用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy check -l
+first_spider
+  * parse
+  * parse_item
+second_spider
+  * parse
+  * parse_item
+
+$ scrapy check
+[FAILED] first_spider:parse_item
+&gt;&gt;&gt; 'RetailPricex' field is missing
+
+[FAILED] first_spider:parse
+&gt;&gt;&gt; Returned 92 requests, expected 0..4
+</code></pre></div> <h3 id="list">list</h3> <p>语法： <code class="highlighter-rouge">scrapy list</code></p> <p>列出当前项目中的所有可用爬虫。每行输出一个爬虫。</p> <p>用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy列表
+spider1
+spider2
+</code></pre></div> <h3 id="edit">edit</h3> <p>语法： <code class="highlighter-rouge">scrapy edit &lt;spider&gt;</code></p> <p>此命令仅作为最常见情况的方便快捷方式提供，开发人员当然可以选择任何工具或IDE来编写和调试他的爬虫。</p> <p>用法示例：</p> <p><code class="highlighter-rouge">$ scrapy edit spider1</code></p> <h3 id="fetch">fetch</h3> <p>语法： <code class="highlighter-rouge">scrapy fetch &lt;url&gt;</code></p> <p>使用Scrapy下载器下载给定的URL，并将内容写入标准输出。</p> <p>这个命令的有趣的事情是它获取爬虫下载它的页面。例如，如果爬虫有一个USER_AGENT 属性覆盖用户代理，它将使用那个。</p> <p>所以这个命令可以用来“看”你的爬虫如何获取一个页面。</p> <p>如果在项目外部使用，将不应用特定的每个爬虫行为，它将只使用默认的Scrapy下载器设置。</p> <p>支持的选项：</p> <p>–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫 –headers：打印响应的HTTP头，而不是响应的正文 –no-redirect：不遵循HTTP 3xx重定向（默认是遵循它们）</p> <p>用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy fetch --nolog http://www.example.com/some/page.html
+[ ... html content here ... ]
+
+$ scrapy fetch --nolog --headers http://www.example.com/
+{'Accept-Ranges': ['bytes'],
+ 'Age': ['1263   '],
+ 'Connection': ['close     '],
+ 'Content-Length': ['596'],
+ 'Content-Type': ['text/html; charset=UTF-8'],
+ 'Date': ['Wed, 18 Aug 2010 23:59:46 GMT'],
+ 'Etag': ['"573c1-254-48c9c87349680"'],
+ 'Last-Modified': ['Fri, 30 Jul 2010 15:30:18 GMT'],
+ 'Server': ['Apache/2.2.3 (CentOS)']}
+</code></pre></div> <h3 id="view">view</h3> <p>语法: <code class="highlighter-rouge">scrapy view &lt;url&gt;</code></p> <p>在浏览器中打开给定的URL，因为您的Scrapy爬虫会“看到”它。有时，爬虫会看到与普通用户不同的网页，因此可以用来检查爬虫“看到了什么”并确认它是您期望的。</p> <p>支持的选项：</p> <p>–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫 –no-redirect：不遵循HTTP 3xx重定向（默认是遵循它们） 用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy view http://www.example.com/some/page.html
+[ ... browser starts ... ]
+</code></pre></div> <h3 id="shell">shell</h3> <p>语法: <code class="highlighter-rouge">scrapy shell [url]</code> 启动给定URL（如果给定）的Scrapy shell，如果没有给出URL，则为空。还支持UNIX样式的本地文件路径，相对于 ./或../前缀或绝对文件路径。有关详细信息，<a href="http://scrapy.readthedocs.io/en/latest/topics/shell.html#topics-shell">请参阅Scrapy shell。</a></p> <p>支持的选项：</p> <p>–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫 -c code：评估shell中的代码，打印结果并退出 –no-redirect：不遵循HTTP 3xx重定向（默认是遵循它们）; 这只影响你可以在命令行上作为参数传递的URL; 一旦你在shell中，fetch(url)默认情况下仍然会遵循HTTP重定向。 用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy shell http://www.example.com/some/page.html
+[ ... scrapy shell starts ... ]
+
+$ scrapy shell --nolog http://www.example.com/ -c '(response.status, response.url)'
+(200, 'http://www.example.com/')
+
+# shell follows HTTP redirects by default
+$ scrapy shell --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F -c '(response.status, response.url)'
+(200, 'http://example.com/')
+
+# you can disable this with --no-redirect
+# (only for the URL passed as command line argument)
+$ scrapy shell --no-redirect --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F -c '(response.status, response.url)'
+(302, 'http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F')
+</code></pre></div> <h3 id="parse">parse</h3> <p>语法： <code class="highlighter-rouge">scrapy parse &lt;url&gt; [options]</code></p> <p>获取给定的URL并使用处理它的爬虫解析它，使用通过–callback选项传递的方法，或者parse如果没有给出。</p> <p>支持的选项：</p> <p>–spider=SPIDER：绕过爬虫自动检测和强制使用特定的爬虫 –a NAME=VALUE：set spider argument（可以重复） –callback或者-c：spider方法用作回调来解析响应 –pipelines：通过管道处理项目 –rules或者-r：使用CrawlSpider 规则来发现用于解析响应的回调（即，spider方法） –noitems：不显示已抓取的项目 –nolinks：不显示提取的链接 –nocolour：避免使用pygments来着色输出 –depth或-d：请求应递归跟踪的深度级别（默认值：1） –verbose或-v：显示每个深度级别的信息 用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy parse http://www.example.com/ -c parse_item
+[ ... scrapy log lines crawling example.com spider ... ]
+
+&gt;&gt;&gt; STATUS DEPTH LEVEL 1 &lt;&lt;&lt;
+# Scraped Items  ------------------------------------------------------------
+[{'name': u'Example item',
+ 'category': u'Furniture',
+ 'length': u'12 cm'}]
+
+# Requests  -----------------------------------------------------------------
+[]
+</code></pre></div> <h3 id="settings">settings</h3> <p>语法： <code class="highlighter-rouge">scrapy settings [options]</code></p> <p>获取Scrapy设置的值。</p> <p>如果在项目中使用，它将显示项目设置值，否则将显示该设置的默认Scrapy值。</p> <p>用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy settings --get BOT_NAME
+scrapybot
+$ scrapy settings --get DOWNLOAD_DELAY
+0
+</code></pre></div> <h3 id="runspider">runspider</h3> <p>语法： <code class="highlighter-rouge">scrapy runspider &lt;spider_file.py&gt;</code></p> <p>运行一个自包含在Python文件中的爬虫，而不必创建一个项目。</p> <p>用法示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy runspider myspider.py
+[...爬虫开始爬行...]
+</code></pre></div> <h3 id="version">version</h3> <p>语法： <code class="highlighter-rouge">scrapy version [-v]</code></p> <p>打印Scrapy版本。如果使用-v它也打印Python，Twisted和平台信息，这是有用的错误报告。</p> <h3 id="bench">bench</h3> <p>新版本0.17。 语法： <code class="highlighter-rouge">scrapy bench</code></p> <p>运行快速基准测试。<a href="http://scrapy.readthedocs.io/en/latest/topics/benchmarking.html#benchmarking">基准</a></p> <h3 id="自定义项目命令">自定义项目命令</h3> <p>您还可以使用COMMANDS_MODULE设置添加自定义项目命令 。有关如何实现命令的示例，请参阅<a href="https://github.com/scrapy/scrapy/tree/master/scrapy/commands">scrapy/commands</a>中的Scrapy命令。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="http://localhost:4000/tags/#Scrapy" title="Pages tagged Scrapy" class="tag"><span class="term">Scrapy</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%89-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%A4%BA%E4%BE%8B/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Share</span> </a> <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%89-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%A4%BA%E4%BE%8B/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%89-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%A4%BA%E4%BE%8B/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <h101> <!-- 多说评论框 start --> <div class="ds-thread" data-thread-key="" data-title="Scrapy爬虫入门教程三 命令行工具介绍和示例" data-url="http://localhost:4000"></div> <!-- 多说评论框 end --> <!-- 多说公共JS代码 start (一个网页只需插入一次) --> <script type="text/javascript"> var duoshuoQuery = {short_name:"zhuio"}; (function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true; ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds); })(); </script> <!-- 多说公共JS代码 end --> </h101> </header> <!-- JS --> <script src="http://localhost:4000/assets/js/jquery-1.12.0.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.dlmenu.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.goup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.magnific-popup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.fitvid.min.js"></script> <script src="http://localhost:4000/assets/js/scripts.js"></script> <script type="text/javascript"> var disqus_shortname = 'zhuio-github-io'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> <!-- MathJax --> <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> </body> </html>

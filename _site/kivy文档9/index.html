@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>kivy文档9 – 朱智博在Github上的Blog</title> <meta name="description" content="朱智博，朱智博的博客，zhuio,zhuio.github.io,"> <meta name="keywords" content="kivy"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="http://localhost:4000/assets/img/logo.png"> <meta name="twitter:title" content="kivy文档9"> <meta name="twitter:description" content="Kivy中文编程指南：图形"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="kivy文档9"> <meta property="og:description" content="Kivy中文编程指南：图形"> <meta property="og:url" content="http://localhost:4000/kivy%E6%96%87%E6%A1%A39/"> <meta property="og:site_name" content="朱智博在Github上的Blog"> <meta property="og:image" content="http://localhost:4000/assets/img/logo.png"> <link rel="canonical" href="http://localhost:4000/kivy%E6%96%87%E6%A1%A39/"> <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="朱智博在Github上的Blog Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"> <!-- JS --> <script src="http://localhost:4000/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="http://localhost:4000/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png"> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(http://localhost:4000/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <li><a href="http://localhost:4000/">Home</a></li> <li> <a href="#">About</a> <ul class="dl-submenu"> <li> <img src="http://localhost:4000/assets/img/logo.png" alt="朱智博在Github上的Blog photo" class="author-photo"> <h4>朱智博在Github上的Blog</h4> <p>朱智博，朱智博的博客，zhuio,zhuio.github.io,</p> </li> <li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:185560083@qq.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/zhuio" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> <li> <a href="http://www.weibo.com/EDM_LOVER" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <li> <a href="#">Posts</a> <ul class="dl-submenu"> <li><a href="http://localhost:4000/posts/">All Posts</a></li> <li><a href="http://localhost:4000/tags/">All Tags</a></li> </ul> </li> <li><a href="http://localhost:4000/projects/">Projects</a></li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>kivy文档9</h1> <h4>07 Aug 2017</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~1 minute </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="http://localhost:4000/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <h1 id="kivy中文编程指南图形">Kivy中文编程指南：图形</h1> <p><a href="https://kivy.org/docs/guide/graphics.html">英文原文</a></p> <p>##译者前言 这一章节比前两章节简单很多，翻译的也比较顺了。</p> <h2 id="简介canvas">简介Canvas</h2> <p>Kivy中控件图形呈现是使用Canvas完成的，可以将其看作一个无限的绘图板，也是一组绘图指令。有很多种绘图指令都可以应用或者添加到你的Canvas伤，不过总体上分为两类：</p> <ul> <li><a href="https://kivy.org/docs/api-kivy.graphics.context_instructions.html#module-kivy.graphics.context_instructions" title="kivy.graphics.context_instructions"><code class="highlighter-rouge">context instructions</code>环境指令</a></li> <li><a href="https://kivy.org/docs/api-kivy.graphics.vertex_instructions.html#module-kivy.graphics.vertex_instructions" title="kivy.graphics.vertex_instructions"><code class="highlighter-rouge">vertex instructions</code>顶点指令</a></li> </ul> <p><a href="https://kivy.org/docs/api-kivy.graphics.context_instructions.html#module-kivy.graphics.context_instructions" title="kivy.graphics.context_instructions"><code class="highlighter-rouge">context instructions</code>环境指令</a>不绘制任何图形，但会改变<a href="https://kivy.org/docs/api-kivy.graphics.vertex_instructions.html#module-kivy.graphics.vertex_instructions" title="kivy.graphics.vertex_instructions"><code class="highlighter-rouge">vertex instructions</code>顶点指令</a>的绘制结果。</p> <p>Canvas都包含两个指令分支。分别是<a href="https://kivy.org/docs/api-kivy.graphics.html#kivy.graphics.Canvas.before" title="kivy.graphics.Canvas.before"><code class="highlighter-rouge">canvas.before</code></a>和<a href="https://kivy.org/docs/api-kivy.graphics.html#kivy.graphics.Canvas.after" title="kivy.graphics.Canvas.after"><code class="highlighter-rouge">canvas.after</code></a> 这两种指令群。这两组指令分别在<code class="highlighter-rouge">Canvas</code>图形绘制前后执行。 绘制前的会被绘制的图形覆盖掉，绘制后的会覆盖在图形上层。这些指令都在用户对它们读取之后才会被创建。</p> <p>要对一个控件添加Canvas绘图指令，需要使用Canvas环境指令：</p>
+<pre><code class="language-Python">class MyWidget(Widget):
+    def __init__(self, **kwargs):
+        super(MyWidget, self).__init__(**kwargs)
+        with self.canvas:
+            # add your instruction for main canvas here
+			# 这里是增加一个座位主绘图的指令
+
+        with self.canvas.before:
+            # you can use this to add instructions rendered before
+			# 这里可以在绘图之前添加指令
+
+        with self.canvas.after:
+            # you can use this to add instructions rendered after
+			# 这里可以在绘图之后添加指令
+</code></pre>
+<h2 id="环境指令">环境指令</h2> <p>环境指令是用于操作opengl环境。 可以旋转，翻译和缩放画布。还可以附加纹理或更改绘图颜色。下面这段代码里面的是最常用到的更改颜色的指令，其他的环境指令也都很有用处：</p>
+<pre><code class="language-Python">with self.canvas.before:
+    Color(1, 0, .4, mode='rgb')
+</code></pre>
+<h2 id="绘图指令">绘图指令</h2> <p>绘图指令可简可繁，最简单的比如画一个多边形，更复杂的比如绘制网格或者贝塞尔曲线都可以：</p>
+<pre><code class="language-Python">with self.canvas:
+   # draw a line using the default color
+   # 用默认颜色画一条线
+   Line(points=(x1, y1, x2, y2, x3, y3))
+
+   # lets draw a semi-transparent red square
+   # 接下来画一个半透明的红方块
+   Color(1, 0, 0, .5, mode='rgba')
+   Rectangle(pos=self.pos, size=self.size)
+</code></pre>
+<h2 id="操作指令">操作指令</h2> <p>有时候可能需要把之前添加到Canvas绘图上的指令进行更改或者删除，这可以有很多种办法，要根据具体需求来选择：</p> <p>可以给指令创建一个引用然后对其进行更新：</p>
+<pre><code class="language-Python">class MyWidget(Widget):
+    def __init__(self, **kwargs):
+        super(MyWidget, self).__init__(**kwargs)
+        with self.canvas:
+            self.rect = Rectangle(pos=self.pos, size=self.size)
+
+        self.bind(pos=self.update_rect)
+        self.bind(size=self.update_rect)
+
+    def update_rect(self, *args):
+        self.rect.pos = self.pos
+        self.rect.size = self.size
+</code></pre>
+<p>或者也可以清空Canvas画布然后重新画：</p>
+<pre><code class="language-Python">class MyWidget(Widget):
+    def __init__(self, **kwargs):
+        super(MyWidget, self).__init__(**kwargs)
+        self.draw_my_stuff()
+
+        self.bind(pos=self.draw_my_stuff)
+        self.bind(size=self.draw_my_stuff)
+
+    def draw_my_stuff(self):
+        self.canvas.clear()
+
+        with self.canvas:
+            self.rect = Rectangle(pos=self.pos, size=self.size)
+</code></pre>
+<p>要注意更新指令的方法是更好的选择，因为这样减少了开销，并且避免了创建新指令。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="http://localhost:4000/tags/#kivy" title="Pages tagged kivy" class="tag"><span class="term">kivy</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/kivy%E6%96%87%E6%A1%A39/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Share</span> </a> <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/kivy%E6%96%87%E6%A1%A39/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=http://localhost:4000/kivy%E6%96%87%E6%A1%A39/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <h101> <!-- 多说评论框 start --> <div class="ds-thread" data-thread-key="" data-title="kivy文档9" data-url="http://localhost:4000"></div> <!-- 多说评论框 end --> <!-- 多说公共JS代码 start (一个网页只需插入一次) --> <script type="text/javascript"> var duoshuoQuery = {short_name:"zhuio"}; (function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true; ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds); })(); </script> <!-- 多说公共JS代码 end --> </h101> </header> <!-- JS --> <script src="http://localhost:4000/assets/js/jquery-1.12.0.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.dlmenu.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.goup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.magnific-popup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.fitvid.min.js"></script> <script src="http://localhost:4000/assets/js/scripts.js"></script> <script type="text/javascript"> var disqus_shortname = 'zhuio-github-io'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> <!-- MathJax --> <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> </body> </html>

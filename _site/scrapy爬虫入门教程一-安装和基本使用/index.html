@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>Scrapy爬虫入门教程一 安装和基本使用 – 朱智博在Github上的Blog</title> <meta name="description" content="朱智博，朱智博的博客，zhuio,zhuio.github.io,"> <meta name="keywords" content="Scrapy"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="http://localhost:4000/assets/img/logo.png"> <meta name="twitter:title" content="Scrapy爬虫入门教程一 安装和基本使用"> <meta name="twitter:description" content="Scrapy爬虫入门教程一 安装和基本使用"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="Scrapy爬虫入门教程一 安装和基本使用"> <meta property="og:description" content="Scrapy爬虫入门教程一 安装和基本使用"> <meta property="og:url" content="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80-%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"> <meta property="og:site_name" content="朱智博在Github上的Blog"> <meta property="og:image" content="http://localhost:4000/assets/img/logo.png"> <link rel="canonical" href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80-%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"> <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="朱智博在Github上的Blog Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"> <!-- JS --> <script src="http://localhost:4000/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="http://localhost:4000/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png"> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(http://localhost:4000/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <li><a href="http://localhost:4000/">Home</a></li> <li> <a href="#">About</a> <ul class="dl-submenu"> <li> <img src="http://localhost:4000/assets/img/logo.png" alt="朱智博在Github上的Blog photo" class="author-photo"> <h4>朱智博在Github上的Blog</h4> <p>朱智博，朱智博的博客，zhuio,zhuio.github.io,</p> </li> <li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:185560083@qq.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/zhuio" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> <li> <a href="http://www.weibo.com/EDM_LOVER" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <li> <a href="#">Posts</a> <ul class="dl-submenu"> <li><a href="http://localhost:4000/posts/">All Posts</a></li> <li><a href="http://localhost:4000/tags/">All Tags</a></li> </ul> </li> <li><a href="http://localhost:4000/projects/">Projects</a></li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>Scrapy爬虫入门教程一 安装和基本使用</h1> <h4>07 Apr 2017</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~4 minutes </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="http://localhost:4000/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <h1 id="scrapy爬虫入门教程一-安装和基本使用">Scrapy爬虫入门教程一 安装和基本使用</h1> <p><strong>开发环境：</strong> <code class="highlighter-rouge">Python 3.6.0 版本</code> （当前最新） <code class="highlighter-rouge">Scrapy 1.3.2 版本</code> （当前最新）</p> <h3 id="scrapy安装">Scrapy安装</h3> <p>Scrapy在Python 2.7和Python 3.3或更高版本上运行（除了在Windows 3上不支持Python 3）。</p> <p>通用方式：可以从pip安装Scrapy及其依赖： <code class="highlighter-rouge">pip install Scrapy</code></p> <h3 id="创建项目">创建项目</h3> <p><code class="highlighter-rouge">scrapy startproject tutorial</code></p> <p>项目结构：</p> <div class="highlighter-rouge"><pre class="highlight"><code>tutorial/
+    scrapy.cfg            # 部署配置文件
+
+    tutorial/             # Python模块,代码写在这个目录下
+        __init__.py
+
+        items.py          # 项目项定义文件
+
+        pipelines.py      # 项目管道文件
+
+        settings.py       # 项目设置文件
+
+        spiders/          # 我们的爬虫/蜘蛛 目录
+            __init__.py
+</code></pre></div> <p>我们第一个爬虫 创建第一个爬虫类：tutorial/spiders/quotes_spider.py</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+
+    def start_requests(self):
+        urls = [
+            'http://quotes.toscrape.com/page/1/',
+            'http://quotes.toscrape.com/page/2/',
+        ]
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
+    def parse(self, response):
+        page = response.url.split("/")[-2]
+        filename = 'quotes-%s.html' % page
+        with open(filename, 'wb') as f:
+            f.write(response.body)
+        self.log('Saved file %s' % filename)
+</code></pre></div> <p>- 必须继承 scrapy.Spider</p> <p>- name：标识爬虫。它在项目中必须是唯一的，也就是说，您不能为不同的Spider设置相同的名称。</p> <p>- start_requests()：必须返回一个迭代的Requests（你可以返回请求列表或写一个生成器函数），Spider将开始抓取。后续请求将从这些初始请求连续生成。</p> <p>- parse()：将被调用来处理为每个请求下载的响应的方法。 response参数是一个TextResponse保存页面内容的实例，并且具有更多有用的方法来处理它。</p> <p>该parse()方法通常解析响应，提取抓取的数据作为词典，并且还找到要跟踪的新网址并从中创建新的请求（Request）。</p> <h3 id="如何运行我们爬虫">如何运行我们爬虫</h3> <p>进入项目根目录，也就是上面的tutorial目录 <code class="highlighter-rouge">cd tutorial</code> 执行爬虫： <code class="highlighter-rouge">scrapy crawl quotes</code></p> <blockquote> <p>quotes是上文写的爬虫名称</p> </blockquote> <div class="highlighter-rouge"><pre class="highlight"><code>... (omitted for brevity)
+2016-12-16 21:24:05 [scrapy.core.engine] INFO: Spider opened
+2016-12-16 21:24:05 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2016-12-16 21:24:05 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (404) &lt;GET http://quotes.toscrape.com/robots.txt&gt; (referer: None)
+2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/1/&gt; (referer: None)
+2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/2/&gt; (referer: None)
+2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-1.html
+2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-2.html
+2016-12-16 21:24:05 [scrapy.core.engine] INFO: Closing spider (finished)
+...
+</code></pre></div> <p>现在，检查当前目录中的文件。您应该注意到，已经创建了两个新文件：quotes-1.html和quotes-2.html，以及相应URL的内容，parse方法解析的内容。</p> <p>上图用的是pycharm的IDE。</p> <h3 id="提取数据">提取数据</h3> <p>学习如何使用Scrapy提取数据的最好方法是尝试使用shell Scrapy shell的选择器。</p> <p><code class="highlighter-rouge">scrapy shell 'http://quotes.toscrape.com/page/1/'</code></p> <blockquote> <p>记住，当从命令行运行Scrapy shell时，总是用引号引起url，否则包含参数的urls（即。&amp;字符）将不起作用。 在Windows上，请使用双引号： scrapy shell “<a href="http://quotes.toscrape.com/page/1/%E2%80%9D">http://quotes.toscrape.com/page/1/”</a></p> </blockquote> <p>你会看到类似：</p> <div class="highlighter-rouge"><pre class="highlight"><code>[... Scrapy log here ...]
+2016-09-19 12:09:27 [scrapy.core.engine] DEBUG：Crawled（200）&lt;GET http://quotes.toscrape.com/page/1/&gt;（referer：None）
+[s]可用Scrapy对象：
+[s] scrapy scrapy模块（包含scrapy.Request，scrapy.Selector等）
+[s] crawler &lt;scrapy.crawler.Crawler object at 0x7fa91d888c90&gt;
+[s] item {}
+[s] request &lt;GET http://quotes.toscrape.com/page/1/&gt;
+[s] response &lt;200 http://quotes.toscrape.com/page/1/&gt;
+[s] settings &lt;scrapy.settings.Settings object at 0x7fa91d888c10&gt;
+[s] spider &lt;DefaultSpider'default'at 0x7fa91c8af990&gt;
+[s]有用的快捷键：
+[s] shelp（）Shell帮助（打印此帮助）
+[s] fetch（req_or_url）Fetch请求（或URL）并更新本地对象
+[s] view（response）在浏览器中查看响应
+&gt;&gt;&gt;
+</code></pre></div> <h4 id="css选择元素">CSS选择元素</h4> <h4 id="提取标题">提取标题</h4> <p>尝试使用带有响应对象的CSS选择元素：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('title')
+[&lt;Selector xpath='descendant-or-self::title' data='&lt;title&gt;Quotes to Scrape&lt;/title&gt;'&gt;]
+</code></pre></div> <p>返回一个Selector 的集合。</p> <p>从上面的标题中提取文本，您可以：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('title::text').extract()
+['Quotes to Scrape']
+</code></pre></div> <p>这里有两个要注意的事情：一个是我们添加::text到CSS查询，意味着我们要直接在&lt;title&gt;元素内部选择文本元素 。如果我们不指定::text，我们将获得完整的title元素，包括其标签：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('title').extract()
+['&lt;title&gt;Quotes to Scrape&lt;/title&gt;']
+</code></pre></div> <p>另一件事是调用的结果.extract()是一个列表，因为我们处理的是一个实例SelectorList。当你知道你只想要第一个结果，在这种情况下，你可以做：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('title::text').extract_first()
+'Quotes to Scrape'
+</code></pre></div> <p>也可以这样写：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('title::text')[0].extract()
+'Quotes to Scrape'
+</code></pre></div> <p>但是，使用.extract_first()避免了IndexError，并且None在找不到与选择匹配的任何元素时返回 。</p> <p>除了extract()和 extract_first()方法，您还可以使用该re()方法使用正则表达式提取：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('title::text').re(r'Quotes.*')
+['Quotes to Scrape']
+&gt;&gt;&gt; response.css('title::text').re(r'Q\w+')
+['Quotes']
+&gt;&gt;&gt; response.css('title::text').re(r'(\w+) to (\w+)')
+['Quotes', 'Scrape']
+</code></pre></div> <p>了找到合适的CSS选择器使用，您可以用chrome和Firefox 的调试工具查看css。</p> <h4 id="xpath选择元素">XPath选择元素</h4> <p>除了CSS，Scrapy选择器还支持使用XPath表达式：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.xpath('//title')
+[&lt;Selector xpath='//title' data='&lt;title&gt;Quotes to Scrape&lt;/title&gt;'&gt;]
+&gt;&gt;&gt; response.xpath('//title/text()').extract_first()
+'Quotes to Scrape'
+</code></pre></div> <p>XPath表达式非常强大，是Scrapy选择器的基础。事实上，CSS选底层也是用XPath。</p> <p>虽然也许不像CSS选择器那么流行，XPath表达式提供了更多的功能，因为除了导航结构之外，它还可以查看内容。使用XPath，您可以选择以下内容：选择包含文本“下一页”的链接。这使得XPath非常适合于抓取任务，我们鼓励你学习XPath，即使你已经知道如何构建CSS选择器，它会使刮除更容易。</p> <p><strong>大家不要着急一下子把所以东西都介绍到，具体细节后面都会写到。</strong></p> <ul> <li>xpath 资料：</li> <li>使用XPath与Scrapy选择器在这里:<a href="http://scrapy.readthedocs.io/en/latest/topics/selectors.html#topics-selectors">http://scrapy.readthedocs.io/en/latest/topics/selectors.html#topics-selectors</a>
+</li> </ul> <h4 id="提取引号和作者">提取引号和作者</h4> <p><a href="http://quotes.toscrape.com">http://quotes.toscrape.com</a>都由以下HTML元素表示：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&lt;div class="quote"&gt;
+    &lt;span class="text"&gt;“The world as we have created it is a process of our
+    thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;
+    &lt;span&gt;
+        by &lt;small class="author"&gt;Albert Einstein&lt;/small&gt;
+        &lt;a href="/author/Albert-Einstein"&gt;(about)&lt;/a&gt;
+    &lt;/span&gt;
+    &lt;div class="tags"&gt;
+        Tags:
+        &lt;a class="tag" href="/tag/change/page/1/"&gt;change&lt;/a&gt;
+        &lt;a class="tag" href="/tag/deep-thoughts/page/1/"&gt;deep-thoughts&lt;/a&gt;
+        &lt;a class="tag" href="/tag/thinking/page/1/"&gt;thinking&lt;/a&gt;
+        &lt;a class="tag" href="/tag/world/page/1/"&gt;world&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div> <p>打开scrapy shell <code class="highlighter-rouge">$ scrapy shell'http://quotes.toscrape.com'</code> 网站内容，可能需要翻墙，截图如下：</p> <p>获取selectors元素列表 <code class="highlighter-rouge">&gt;&gt;&gt; response.css("div.quote")</code></p> <p>每个选择器允许我们对它们的子元素执行进一步的查询。 将第一个选择器分配给一个变量，以便我们可以直接对特定的引用运行我们的CSS选择器： <code class="highlighter-rouge">&gt;&gt;&gt; quote = response.css("div.quote")[0]</code></p> <p>现在，从刚刚创建的对象的quote对象，提取title、author、tags：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; title = quote.css("span.text::text").extract_first()
+&gt;&gt;&gt; title
+'“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”'
+&gt;&gt;&gt; author = quote.css("small.author::text").extract_first()
+&gt;&gt;&gt; author
+'Albert Einstein'
+</code></pre></div> <p>鉴于tags是字符串列表，我们可以使用该.extract()方法来获取所有的：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; tags = quote.css("div.tags a.tag::text").extract()
+&gt;&gt;&gt; tags
+['change', 'deep-thoughts', 'thinking', 'world']
+</code></pre></div> <p>现在可以遍历所有的引号元素，并将它们放在一起成为一个Python字典：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; for quote in response.css("div.quote"):
+...     text = quote.css("span.text::text").extract_first()
+...     author = quote.css("small.author::text").extract_first()
+...     tags = quote.css("div.tags a.tag::text").extract()
+...     print(dict(text=text, author=author, tags=tags))
+{'tags': ['change', 'deep-thoughts', 'thinking', 'world'], 'author': 'Albert Einstein', 'text': '“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”'}
+{'tags': ['abilities', 'choices'], 'author': 'J.K. Rowling', 'text': '“It is our choices, Harry, that show what we truly are, far more than our abilities.”'}
+    ... a few more of these, omitted for brevity
+&gt;&gt;&gt;
+</code></pre></div> <p>通过上面的demo，我们学会了一些基本的提取数据方法，现在我们尝试集成到我们上面的创建的爬虫中。</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+    start_urls = [
+        'http://quotes.toscrape.com/page/1/',
+        'http://quotes.toscrape.com/page/2/',
+    ]
+
+    def parse(self, response):
+        for quote in response.css('div.quote'):
+            yield {
+                'text': quote.css('span.text::text').extract_first(),
+                'author': quote.css('small.author::text').extract_first(),
+                'tags': quote.css('div.tags a.tag::text').extract(),
+            }
+</code></pre></div> <p>如果你运行这个爬虫，它将输出提取的数据与日志：</p> <div class="highlighter-rouge"><pre class="highlight"><code>2016-09-19 18:57:19 [scrapy.core.scraper] DEBUG：Scraped from &lt;200 http://quotes.toscrape.com/page/1/&gt;
+{'tags'：['life'，'love']，'author'：'AndréGide'，'text'：'“最好不要因为你的爱而被恨。 “'}
+2016-09-19 18:57:19 [scrapy.core.scraper] DEBUG：Scraped from &lt;200 http://quotes.toscrape.com/page/1/&gt;
+{'tags'：['edison'，'failure'，'inspirational'，'paraphrased']，'author'：'Thomas A. Edison'，'text'：“”我没有失败， 10,000种方式将无法工作。“”}
+</code></pre></div> <h3 id="存取数据">存取数据</h3> <p>最简单方法是直接制定导出文件： <code class="highlighter-rouge">scrapy crawl quotes -o quotes.json</code></p> <p>这将生成一个quotes.json包含所有被抓取的数据，以JSON序列化的文件。</p> <p>出于历史原因，<strong>Scrapy会附加到给定文件，而不是覆盖其内容。如果你运行这个命令两次，没有在第二次之前删除文件，你会得到一个破碎的JSON文件</strong>。</p> <p>您还可以使用其他格式： <code class="highlighter-rouge">scrapy crawl quotes -o quotes.jl</code></p> <h3 id="链接界面包含的链接">链接界面包含的链接</h3> <p>让我们说，不要只是从<a href="http://quotes.toscrape.com">http://quotes.toscrape.com</a>的前两个页面抓取东西，你想要从网站的所有页面的报价。</p> <p>现在，您知道如何从页面中提取数据，让我们看看如何跟踪他们的链接。</p> <p>首先是提取我们要关注的网页的链接。检查我们的页面，我们可以看到有一个链接到下一页与下面的标记：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&lt;ul class="pager"&gt;
+    &lt;li class="next"&gt;
+        &lt;a href="/page/2/"&gt;Next &lt;span aria-hidden="true"&gt;&amp;rarr;&lt;/span&gt;&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre></div> <p>我们可以尝试在shell中提取它：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('li.next a').extract_first()
+'&lt;a href="/page/2/"&gt;Next &lt;span aria-hidden="true"&gt;→&lt;/span&gt;&lt;/a&gt;'
+</code></pre></div> <p>这得到锚点元素，但我们想要的属性href。为此，Scrapy支持一个CSS扩展，让您选择属性内容，如下所示：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.css('li.next a::attr(href)').extract_first()
+'/page/2/'
+</code></pre></div> <p>让我们看看现在我们的爬虫被修改为递归的跟随到下一页的链接，从中提取数据：</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+    start_urls = [
+        'http://quotes.toscrape.com/page/1/',
+    ]
+
+    def parse(self, response):
+        for quote in response.css('div.quote'):
+            yield {
+                'text': quote.css('span.text::text').extract_first(),
+                'author': quote.css('small.author::text').extract_first(),
+                'tags': quote.css('div.tags a.tag::text').extract(),
+            }
+
+        next_page = response.css('li.next a::attr(href)').extract_first()
+        if next_page is not None:
+            next_page = response.urljoin(next_page)
+            yield scrapy.Request(next_page, callback=self.parse)
+</code></pre></div> <p>现在，在提取数据之后，该parse()方法寻找到下一页的链接，使用该urljoin()方法构建完整的绝对URL （因为链接可以是相对的）并且产生对下一页的新请求，将其注册为回调以处理针对下一页的数据提取，以及保持爬行通过所有页面。</p> <p>这里看到的是Scrapy的向下链接的机制：当你在回调方法中产生一个请求时，Scrapy会调度要发送的请求，并注册一个回调方法，在上次请求完成时执行。</p> <h3 id="更多示例和模式">更多示例和模式</h3> <p>这里是另一个爬虫，说明回调和以下链接，这一次提取作者信息：</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+
+
+class AuthorSpider(scrapy.Spider):
+    name = 'author'
+
+    start_urls = ['http://quotes.toscrape.com/']
+
+    def parse(self, response):
+        # follow links to author pages
+        for href in response.css('.author + a::attr(href)').extract():
+            yield scrapy.Request(response.urljoin(href),
+                                 callback=self.parse_author)
+
+        # follow pagination links
+        next_page = response.css('li.next a::attr(href)').extract_first()
+        if next_page is not None:
+            next_page = response.urljoin(next_page)
+            yield scrapy.Request(next_page, callback=self.parse)
+
+    def parse_author(self, response):
+        def extract_with_css(query):
+            return response.css(query).extract_first().strip()
+
+        yield {
+            'name': extract_with_css('h3.author-title::text'),
+            'birthdate': extract_with_css('.author-born-date::text'),
+            'bio': extract_with_css('.author-description::text'),
+        }
+</code></pre></div> <p>这个爬虫将从主页开始，它将跟随所有指向作者页面的链接parse_author，每个链接都调用它们的回调，并且还有parse我们之前看到的回调链接。</p> <p>该parse_author回调定义了一个辅助函数从一个CSS查询提取和清理数据，并产生了Python字典与作者的数据。</p> <p>即使有很多来自同一作者的爬虫，我们不需要担心访问同一作者页多次。默认情况下，Scrapy会过滤掉已访问过的网址的重复请求，从而避免由于编程错误而导致服务器过多的问题。这可以通过设置进行配置 DUPEFILTER_CLASS。</p> <p>此外，一个常见的模式是使用来自多个页面的数据构建项目，使用一个技巧将附加数据传递给回调。</p> <p><strong>大家不要着急一下子把所以东西都介绍到，具体细节后面都会写到。</strong></p> <h3 id="使用爬虫参数">使用爬虫参数</h3> <p>您可以通过-a 在运行它们时使用该选项为您的爬虫提供命令行参数： <code class="highlighter-rouge">scrapy crawl quotes -o quotes-humor.json -a tag=humor</code></p> <p>这些参数传递给Spider的<strong>init</strong>方法，默​​认情况下成为spider属性。</p> <p>在此示例中，为tag参数提供的值将通过self.tag。您可以使用它来使您的蜘蛛仅抓取带有特定标记的引号，根据参数构建网址：</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+
+    def start_requests(self):
+        url = 'http://quotes.toscrape.com/'
+        tag = getattr(self, 'tag', None)
+        if tag is not None:
+            url = url + 'tag/' + tag
+        yield scrapy.Request(url, self.parse)
+
+    def parse(self, response):
+        for quote in response.css('div.quote'):
+            yield {
+                'text': quote.css('span.text::text').extract_first(),
+                'author': quote.css('small.author::text').extract_first(),
+            }
+
+        next_page = response.css('li.next a::attr(href)').extract_first()
+        if next_page is not None:
+            next_page = response.urljoin(next_page)
+            yield scrapy.Request(next_page, self.parse)
+</code></pre></div> <p>如果您将tag=humor参数传递给此蜘蛛，您会注意到它只会访问humor代码中的网址，例如 <a href="http://quotes.toscrape.com/tag/humor">http://quotes.toscrape.com/tag/humor</a>。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="http://localhost:4000/tags/#Scrapy" title="Pages tagged Scrapy" class="tag"><span class="term">Scrapy</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80-%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Share</span> </a> <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80-%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80-%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <h101> <!-- 多说评论框 start --> <div class="ds-thread" data-thread-key="" data-title="Scrapy爬虫入门教程一 安装和基本使用" data-url="http://localhost:4000"></div> <!-- 多说评论框 end --> <!-- 多说公共JS代码 start (一个网页只需插入一次) --> <script type="text/javascript"> var duoshuoQuery = {short_name:"zhuio"}; (function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true; ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds); })(); </script> <!-- 多说公共JS代码 end --> </h101> </header> <!-- JS --> <script src="http://localhost:4000/assets/js/jquery-1.12.0.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.dlmenu.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.goup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.magnific-popup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.fitvid.min.js"></script> <script src="http://localhost:4000/assets/js/scripts.js"></script> <script type="text/javascript"> var disqus_shortname = 'zhuio-github-io'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> <!-- MathJax --> <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> </body> </html>

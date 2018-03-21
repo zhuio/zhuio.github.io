@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>Scrapy爬虫入门教程九 Item Pipeline（项目管道） – 朱智博在Github上的Blog</title> <meta name="description" content="朱智博，朱智博的博客，zhuio,zhuio.github.io,"> <meta name="keywords" content="Scrapy"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="http://localhost:4000/assets/img/logo.png"> <meta name="twitter:title" content="Scrapy爬虫入门教程九 Item Pipeline（项目管道）"> <meta name="twitter:description" content="Scrapy爬虫入门教程九 Item Pipeline（项目管道）"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="Scrapy爬虫入门教程九 Item Pipeline（项目管道）"> <meta property="og:description" content="Scrapy爬虫入门教程九 Item Pipeline（项目管道）"> <meta property="og:url" content="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/"> <meta property="og:site_name" content="朱智博在Github上的Blog"> <meta property="og:image" content="http://localhost:4000/assets/img/logo.png"> <link rel="canonical" href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/"> <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="朱智博在Github上的Blog Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"> <!-- JS --> <script src="http://localhost:4000/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="http://localhost:4000/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png"> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(http://localhost:4000/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <li><a href="http://localhost:4000/">Home</a></li> <li> <a href="#">About</a> <ul class="dl-submenu"> <li> <img src="http://localhost:4000/assets/img/logo.png" alt="朱智博在Github上的Blog photo" class="author-photo"> <h4>朱智博在Github上的Blog</h4> <p>朱智博，朱智博的博客，zhuio,zhuio.github.io,</p> </li> <li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:185560083@qq.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/zhuio" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> <li> <a href="http://www.weibo.com/EDM_LOVER" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <li> <a href="#">Posts</a> <ul class="dl-submenu"> <li><a href="http://localhost:4000/posts/">All Posts</a></li> <li><a href="http://localhost:4000/tags/">All Tags</a></li> </ul> </li> <li><a href="http://localhost:4000/projects/">Projects</a></li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>Scrapy爬虫入门教程九 Item Pipeline（项目管道）</h1> <h4>09 Apr 2017</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~2 minutes </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="http://localhost:4000/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <h1 id="scrapy爬虫入门教程九-item-pipeline项目管道">Scrapy爬虫入门教程九 Item Pipeline（项目管道）</h1> <p><strong>开发环境：</strong> <code class="highlighter-rouge">Python 3.6.0 版本</code> （当前最新） <code class="highlighter-rouge">Scrapy 1.3.2 版本</code> （当前最新）</p> <h1 id="item-pipeline项目管道">Item Pipeline（项目管道）</h1> <p>在项目被蜘蛛抓取后，它被发送到项目管道，它通过顺序执行的几个组件来处理它。</p> <p>每个项目管道组件（有时称为“Item Pipeline”）是一个实现简单方法的Python类。他们接收一个项目并对其执行操作，还决定该项目是否应该继续通过流水线或被丢弃并且不再被处理。</p> <p>项目管道的典型用途是：</p> <ul> <li>清理HTML数据</li> <li>验证抓取的数据（检查项目是否包含特定字段）</li> <li>检查重复（并删除）</li> <li>将刮取的项目存储在数据库中</li> </ul> <h2 id="编写自己的项目管道">编写自己的项目管道</h2> <p>每个项目管道组件是一个Python类，必须实现以下方法： <code class="highlighter-rouge">process_item(self, item, spider)</code></p> <p>对于每个项目管道组件调用此方法。process_item() 必须：返回一个带数据的dict，返回一个Item （或任何后代类）对象，返回一个Twisted Deferred或者raise DropItemexception。丢弃的项目不再由其他管道组件处理。</p> <p><strong>参数：</strong></p> <ul> <li>item（Itemobject或dict） - 剪切的项目</li> <li>Spider（Spider对象） - 抓取物品的蜘蛛</li> </ul> <p>另外，它们还可以实现以下方法：</p> <hr> <p><code class="highlighter-rouge">open_spider(self, spider)</code> 当蜘蛛打开时调用此方法。</p> <p><strong>参数：</strong></p> <ul> <li>蜘蛛（Spider对象） - 打开的蜘蛛</li> </ul> <hr> <p><code class="highlighter-rouge">close_spider(self, spider)</code> 当蜘蛛关闭时调用此方法。</p> <p><strong>参数：</strong></p> <ul> <li>蜘蛛（Spider对象） - 被关闭的蜘蛛</li> </ul> <hr> <p><code class="highlighter-rouge">from_crawler(cls, crawler)</code> 如果存在，则调用此类方法以从a创建流水线实例Crawler。它必须返回管道的新实例。Crawler对象提供对所有Scrapy核心组件（如设置和信号）的访问; 它是管道访问它们并将其功能挂钩到Scrapy中的一种方式。</p> <p><strong>参数：</strong></p> <ul> <li>crawler（Crawlerobject） - 使用此管道的crawler</li> </ul> <hr> <h2 id="项目管道示例">项目管道示例</h2> <h3 id="价格验证和丢弃项目没有价格">价格验证和丢弃项目没有价格</h3> <p>让我们来看看以下假设的管道，它调整 price那些不包括增值税（price_excludes_vat属性）的项目的属性，并删除那些不包含价格的项目：</p> <div class="highlighter-rouge"><pre class="highlight"><code>from scrapy.exceptions import DropItem
+
+class PricePipeline(object):
+
+    vat_factor = 1.15
+
+    def process_item(self, item, spider):
+        if item['price']:
+            if item['price_excludes_vat']:
+                item['price'] = item['price'] * self.vat_factor
+            return item
+        else:
+            raise DropItem("Missing price in %s" % item)
+</code></pre></div> <p>将项目写入JSON文件 以下管道将所有抓取的项目（来自所有蜘蛛）存储到单个items.jl文件中，每行包含一个项目，以JSON格式序列化：</p> <div class="highlighter-rouge"><pre class="highlight"><code>import json
+
+class JsonWriterPipeline(object):
+
+    def open_spider(self, spider):
+        self.file = open('items.jl', 'wb')
+
+    def close_spider(self, spider):
+        self.file.close()
+
+    def process_item(self, item, spider):
+        line = json.dumps(dict(item)) + "\n"
+        self.file.write(line)
+        return item
+</code></pre></div> <p><strong>注意</strong></p> <blockquote> <p>JsonWriterPipeline的目的只是介绍如何编写项目管道。如果您真的想要将所有抓取的项目存储到JSON文件中，则应使用Feed导出。</p> </blockquote> <hr> <h3 id="将项目写入mongodb">将项目写入MongoDB</h3> <p>在这个例子中，我们使用<a href="https://api.mongodb.org/python/current/">pymongo</a>将项目写入<a href="https://www.mongodb.org/">MongoDB</a>。MongoDB地址和数据库名称在Scrapy设置中指定; MongoDB集合以item类命名。</p> <p>这个例子的要点是显示如何使用<code class="highlighter-rouge">from_crawler()</code>方法和如何正确清理资源：</p> <div class="highlighter-rouge"><pre class="highlight"><code>import pymongo
+
+class MongoPipeline(object):
+
+    collection_name = 'scrapy_items'
+
+    def __init__(self, mongo_uri, mongo_db):
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            mongo_uri=crawler.settings.get('MONGO_URI'),
+            mongo_db=crawler.settings.get('MONGO_DATABASE', 'items')
+        )
+
+    def open_spider(self, spider):
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
+
+    def close_spider(self, spider):
+        self.client.close()
+
+    def process_item(self, item, spider):
+        self.db[self.collection_name].insert(dict(item))
+        return item
+</code></pre></div> <hr> <h3 id="拍摄项目的屏幕截图">拍摄项目的屏幕截图</h3> <p>此示例演示如何从方法返回Deferredprocess_item()。它使用Splash来呈现项目网址的屏幕截图。Pipeline请求本地运行的Splash实例。在请求被下载并且Deferred回调触发后，它将项目保存到一个文件并将文件名添加到项目。</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+import hashlib
+from urllib.parse import quote
+
+
+class ScreenshotPipeline(object):
+    """Pipeline that uses Splash to render screenshot of
+    every Scrapy item."""
+
+    SPLASH_URL = "http://localhost:8050/render.png?url={}"
+
+    def process_item(self, item, spider):
+        encoded_item_url = quote(item["url"])
+        screenshot_url = self.SPLASH_URL.format(encoded_item_url)
+        request = scrapy.Request(screenshot_url)
+        dfd = spider.crawler.engine.download(request, spider)
+        dfd.addBoth(self.return_item, item)
+        return dfd
+
+    def return_item(self, response, item):
+        if response.status != 200:
+            # Error happened, return item.
+            return item
+
+        # Save screenshot to file, filename will be hash of url.
+        url = item["url"]
+        url_hash = hashlib.md5(url.encode("utf8")).hexdigest()
+        filename = "{}.png".format(url_hash)
+        with open(filename, "wb") as f:
+            f.write(response.body)
+
+        # Store filename in item.
+        item["screenshot_filename"] = filename
+        return item
+</code></pre></div> <hr> <h3 id="复制过滤器">复制过滤器</h3> <p>用于查找重复项目并删除已处理的项目的过滤器。假设我们的项目具有唯一的ID，但是我们的蜘蛛会返回具有相同id的多个项目：</p> <div class="highlighter-rouge"><pre class="highlight"><code>from scrapy.exceptions import DropItem
+
+class DuplicatesPipeline(object):
+
+    def __init__(self):
+        self.ids_seen = set()
+
+    def process_item(self, item, spider):
+        if item['id'] in self.ids_seen:
+            raise DropItem("Duplicate item found: %s" % item)
+        else:
+            self.ids_seen.add(item['id'])
+            return item
+</code></pre></div> <hr> <h2 id="激活项目管道组件">激活项目管道组件</h2> <p>要激活项目管道组件，必须将其类添加到 ITEM_PIPELINES设置，类似于以下示例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>ITEM_PIPELINES = {
+    'myproject.pipelines.PricePipeline': 300,
+    'myproject.pipelines.JsonWriterPipeline': 800,
+}
+</code></pre></div> <p>您在此设置中分配给类的整数值确定它们运行的​​顺序：项目从较低值到较高值类。通常将这些数字定义在0-1000范围内。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="http://localhost:4000/tags/#Scrapy" title="Pages tagged Scrapy" class="tag"><span class="term">Scrapy</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Share</span> </a> <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B9%9D-item-pipeline-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E9%81%93/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <h101> <!-- 多说评论框 start --> <div class="ds-thread" data-thread-key="" data-title="Scrapy爬虫入门教程九 Item Pipeline（项目管道）" data-url="http://localhost:4000"></div> <!-- 多说评论框 end --> <!-- 多说公共JS代码 start (一个网页只需插入一次) --> <script type="text/javascript"> var duoshuoQuery = {short_name:"zhuio"}; (function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true; ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds); })(); </script> <!-- 多说公共JS代码 end --> </h101> </header> <!-- JS --> <script src="http://localhost:4000/assets/js/jquery-1.12.0.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.dlmenu.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.goup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.magnific-popup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.fitvid.min.js"></script> <script src="http://localhost:4000/assets/js/scripts.js"></script> <script type="text/javascript"> var disqus_shortname = 'zhuio-github-io'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> <!-- MathJax --> <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> </body> </html>

@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-29T13:00:53+08:00</updated><id>http://localhost:4000/</id><title type="html">朱智博在Github上的Blog</title><subtitle>朱智博，朱智博的博客，zhuio,zhuio.github.io,</subtitle><entry><title type="html">atom加速</title><link href="http://localhost:4000/atom%E5%8A%A0%E9%80%9F/" rel="alternate" type="text/html" title="atom加速" /><published>2017-08-29T12:59:00+08:00</published><updated>2017-08-29T12:59:00+08:00</updated><id>http://localhost:4000/atom%E5%8A%A0%E9%80%9F</id><content type="html" xml:base="http://localhost:4000/atom%E5%8A%A0%E9%80%9F/">&lt;h3 id=&quot;atom加速&quot;&gt;atom加速&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apm config set registry http://registry.npm.taobao.org/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="atom" /><summary type="html">atom加速</summary></entry><entry><title type="html">kivy文档21</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A321/" rel="alternate" type="text/html" title="kivy文档21" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A321</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A321/">&lt;h1 id=&quot;kivy中文编程指南更好用-android-打包虚拟机&quot;&gt;Kivy中文编程指南：更好用 Android 打包虚拟机&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://brizanmedia.com/wp/2016/07/10/the-fool-proof-guide/&quot;&gt;英文原文地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;译者的废话&quot;&gt;译者的废话&lt;/h2&gt;
+
+&lt;p&gt;开头先给干货，本文提到的&lt;a href=&quot;https://pan.baidu.com/s/1mhIUz3q&quot;&gt;虚拟机镜像的下载地址&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;从去年开始，我开始了 &lt;a href=&quot;https://github.com/cycleuser/Kivy-CN&quot;&gt;Kivy 编程指南中文翻译项目&lt;/a&gt;，把 Kivy Programming Guide 里面的全部内容翻译了一遍。大家可以去我的&lt;a href=&quot;https://zhuanlan.zhihu.com/python-kivy&quot;&gt;知乎专栏&lt;/a&gt;或者我的 &lt;a href=&quot;https://github.com/cycleuser&quot;&gt;GitHub&lt;/a&gt; 查看详细内容。&lt;/p&gt;
+
+&lt;p&gt;Kivy 的多平台支持以及使用 Python 这一新手友好的语言的两大特性都很棒，然而世事难求全，APK 生成和搭建有时候挺繁琐的，尤其对于一些不太熟悉 Linux 的纯新人。所以官方提供了很多文档，我也进行了翻译，包括&lt;a href=&quot;https://zhuanlan.zhihu.com/p/25576296&quot;&gt;KV Android 详细指南&lt;/a&gt;,&lt;a href=&quot;https://zhuanlan.zhihu.com/p/25571974&quot;&gt;打包为 Android 系统可执行文件&lt;/a&gt;，以及一个&lt;a href=&quot;https://zhuanlan.zhihu.com/p/25583908&quot;&gt; Kivy 开发团队提供的 Android 打包用的虚拟机镜像&lt;/a&gt;。国内的大拿 &lt;a href=&quot;https://github.com/nkiiiiid/&quot;&gt;nkiiiiid&lt;/a&gt; 也提供了一个他的定制版本的&lt;a href=&quot;https://github.com/nkiiiiid/kivy-apk-&quot;&gt;虚拟机镜像&lt;/a&gt;。更推荐用&lt;a href=&quot;https://github.com/nkiiiiid/&quot;&gt;nkiiiiid&lt;/a&gt; 提供的这个版本，16.04 用着更舒服。群里面大家也普遍喜欢用这个版本。&lt;/p&gt;
+
+&lt;p&gt;然后进有一位@郝好  的朋友提供了重要信息，说&lt;a href=&quot;http://brizanmedia.com&quot;&gt;brizanmedia.com&lt;/a&gt; 提供的这个 lubuntu 14.04.3 的 32bit 虚拟机镜像用着很不错。&lt;/p&gt;
+
+&lt;p&gt;然后作为常年搬运工的我，就顺手下载下来发到百度云，并且翻译一下原文咯。
+原文有很多叹号，我个人不喜欢用叹号，不过在本文我还是忠于原文的风格，在措辞和符号上与原文保持一致。&lt;/p&gt;
+
+&lt;p&gt;废话完毕，以下是 &lt;a href=&quot;http://brizanmedia.com&quot;&gt;brizanmedia.com&lt;/a&gt; 的原文翻译。&lt;/p&gt;
+
+&lt;p&gt;##使用 Python + Kivy 创建 Android 应用的防呆指南~&lt;/p&gt;
+
+&lt;p&gt;Kivy 是一个支持多点触摸的 Python 框架，可以运行于 Windows，OS X，Linux ，iOS 以及 Android 系统。不过在 Android 上运行 Kivy，还挺麻烦的，因为需要先把代码打包成一个应用。下面的指南是让你从 Python 代码打包到 Android 应用的方法，一定能够成功的哦~&lt;/p&gt;
+
+&lt;p&gt;Kivy 官方的指南上面，有一个&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html&quot;&gt;如何给 Android 系统打包的指南文档&lt;/a&gt;，（译者也翻译了一份&lt;a href=&quot;https://zhuanlan.zhihu.com/p/25571974&quot;&gt;中文版本的 Android 打包指南&lt;/a&gt;）。不过这些方法都不能用在 Windows 或者 OS X 上面，另外官方的指南很简略，略过了很多步骤。&lt;/p&gt;
+
+&lt;p&gt;本文提供的这个方案很简单，所有事情都在虚拟机里面解决，包括打包的步骤。目前来说，Kivy 团队确实做了开创性的工作，不过还有以下的问题：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;他们提供的虚拟机使用的是 Ubuntu 操作系统，这样性能开销比较大，用起来运行速度很慢；&lt;/li&gt;
+  &lt;li&gt;从代码打包生成应用的必备步骤并没有明确给出清晰透彻的指南。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;于是本文作者自己创建了一个虚拟机镜像，尽可能提高运行速度，争取做到和本机原生操作接近的体验。&lt;/p&gt;
+
+&lt;h3 id=&quot;初始步骤&quot;&gt;初始步骤&lt;/h3&gt;
+
+&lt;p&gt;第一步就是要下载本文作者提供的 &lt;a href=&quot;http://brizanmedia.com/wp/wp-content/LXLE14.04.3\(32bit\).vdi.zip&quot;&gt;Linux 虚拟机硬盘镜像&lt;/a&gt;。这个镜像文件挺大的，4G 左右，不过值得你为下载它而付出的等待。（译者注：毕竟能用就不错，而且平心而论这个 Lubuntu 14.04.4 32bit 的虚拟机镜像确实速度比较快，性能开销压力不大。）然后你还需要下载&lt;a href=&quot;http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html&quot;&gt; Oracle VM Virtualbox&lt;/a&gt; ，并且安装到你的系统中。关于怎么弄虚拟机这些就不给讲了，都很简单而且网上资料很多。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;下面这个特别重要&lt;/strong&gt;：安装完毕之后，运行 VirtualBox，然后创建一个新的虚拟机，使用刚刚下载的这个 vdi 文件作为硬盘。你唯一需要设置的是把操作系统设置为 Linux，版本&lt;strong&gt;必须&lt;/strong&gt;设置为 Ubuntu 32bit。如果你需要进一步的指南，可以看&lt;a href=&quot;https://www.youtube.com/watch?v=1P_l7iVKfgs&quot;&gt;这个视频&lt;/a&gt;。这个视频展示了如何安装 VirtualBox 以及用一个已有的 vdi 文件创建新的虚拟机，你就可以按照这个指南来做。（译者注：国内也有很多类似的视频，推荐自己搜索一下，这里就不搬运原版视频了。）&lt;/p&gt;
+
+&lt;h3 id=&quot;开始构建吧&quot;&gt;开始构建吧！&lt;/h3&gt;
+
+&lt;p&gt;打开虚拟机，启动到登录界面，&lt;strong&gt;用户名和密码都是&lt;/strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;osboxes.org&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/vbox1.jpg&quot; alt=&quot;vbox1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里顺路要感谢一下 &lt;a href=&quot;http://www.osboxes.org/&quot;&gt;osboxes.org&lt;/a&gt;。（译者注：这个网站分享各种已经装好的虚拟机镜像，VirtualBox 和 Vmware 的都有，非常赞，可以下载来当做各种测试环境。）&lt;/p&gt;
+
+&lt;p&gt;登陆之后就能看到桌面了：
+&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/vbox2-1024x640.jpg&quot; alt=&quot;vbox2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;本文作者把所有构建 APK 的相关指南都放到了桌面壁纸上面，不过这里还是会用很多屏幕截图来给讲述一遍。&lt;/p&gt;
+
+&lt;p&gt;1. 点击图示的按钮启动终端，（名字通常是 ROXTerm 之类的）。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/vbox3-1024x640.jpg&quot; alt=&quot;vbox3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2. 在终端中输入下面的命令，（或者也可以用向上的方向键来查看之前的输入历史，里面能找到，下同）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;cd ~/Desktop/kivycode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;输入之后，按回车键。这样就让你进入到 &lt;code class=&quot;highlighter-rouge&quot;&gt;kivycode&lt;/code&gt; 这个目录了。你必须进入这个目录，这样接下来的第 4 步才能成功。&lt;/p&gt;
+
+&lt;p&gt;3.  在终端中输入下面的命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;cp ~/Desktop/buildozer.spec ~Desktop/kivycode
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输入之后还是按回车键。这回把 buildozer.spec 文件复制到这个 &lt;code class=&quot;highlighter-rouge&quot;&gt;kivycode&lt;/code&gt; 目录以供使用。当然你也可以在图形界面下来复制粘贴过来。&lt;/p&gt;
+
+&lt;p&gt;4. 在终端中输入下面的命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;buildozer android debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;输入之后按回车咯。这一步是真正在创建 APK 文件。如果所有步骤都没问题，你的 APK 文件就会被生成放到桌面上。接下来就把 APK 文件安装到你的 Android 设备上面去试试吧！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/linux4Python4Android-1024x640.jpg&quot; alt=&quot;linux4Python4Android&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以上这样，你就创建了第一个 Android 安装包！&lt;/p&gt;
+
+&lt;h3 id=&quot;接下来开始用你的代码来创建&quot;&gt;接下来开始用你的代码来创建！&lt;/h3&gt;
+
+&lt;p&gt;你刚刚构建过一个 APK 了，不过这个 APK 并没有怎么充分利用这个虚拟机。而且代码还不是你自己的。所以咱们来试试你自己的代码。&lt;/p&gt;
+
+&lt;p&gt;首先咱们要让虚拟机能和外界交换文件。本文作者的选择是使用了一个外置硬盘。把外置硬盘插到机器（的宿主系统）中，然后把要变异的内容复制进去。接下来把 USB 设备从宿主机器移除，添加给虚拟机，这个操作反过来也可以，只需要在 VirtualBox 菜单栏中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Devices -&amp;gt; USB Devices&lt;/code&gt; 中对选中的设备进行点击即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/vbox4-1024x640.jpg&quot; alt=&quot;vbox4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;磁盘就会出现在虚拟机系统中了：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/vbox5-1024x640.jpg&quot; alt=&quot;vbox5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你没有外置磁盘，可以用浏览器来把文件传递到谷歌硬盘之类的云盘，然后虚拟机里面再下载。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/vbox8-1024x640.jpg&quot; alt=&quot;vbox8&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;VirtualBox 本来还是有一个共享文件夹功能的，可以让宿主机和虚拟机之间共用一个文件夹，不过本文作者没弄明白怎么搞定这个功能。如果有人能搞定这个请告诉&lt;strong&gt;本文作者&lt;/strong&gt;怎么实现，非常感谢。（译者注：^_^，不用留言给中文版这里，是英文原版作者不会实现共享文件夹。）&lt;/p&gt;
+
+&lt;p&gt;现在文件能够拷入拷出了，就可以编译你自己的代码了。把你要编译的代码放到桌面上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;kivycode&lt;/code&gt; 这个目录。只要把这个文件夹里面的所有文件都用你的代码文件替换了，就可以打包你自己的应用了。视频之类的一些东西还需要额外打包设定，你还得使用 Kivy 框架，不过目前来看，Python 2.7 的代码都能打包成功没问题。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://brizanmedia.com/wp/wp-content/uploads/2016/07/vbox6-1024x640.jpg&quot; alt=&quot;vbox6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;编译你自己代码之前的最后一件事了，就是把 &lt;code class=&quot;highlighter-rouge&quot;&gt;buildozer.spec&lt;/code&gt; 这个文件从桌面复制到 &lt;code class=&quot;highlighter-rouge&quot;&gt;kivycode&lt;/code&gt; 文件夹，然后对副本进行必要的编辑。各种选项相关的信息可以参考 &lt;a href=&quot;https://buildozer.readthedocs.io/en/latest/specifications.html&quot;&gt;Buildozer 的官方在线文档&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;比如你可能要修改加载图像 loading.png 以及图标文件 icon.png 等等，反正就那些了。接下来你就可以把你的 Python 代码构建成 Android 的 APK，然后从虚拟机的桌面找到这个 APK ，安装到你的 Android 设备上面来试试了。&lt;/p&gt;
+
+&lt;p&gt;好好玩吧！&lt;/p&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：更好用 Android 打包虚拟机</summary></entry><entry><title type="html">kivy文档20</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A320/" rel="alternate" type="text/html" title="kivy文档20" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A320</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A320/">&lt;p&gt;##解决Mac系统上Kivy-Desinger因Garden安装位置不匹配导致的filebrowser无法导入的问题&lt;/p&gt;
+
+&lt;p&gt;根据官方文档，首先要&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;kivy -m pip install -U watchdog pygments docutils jedi gitpython six kivy-garden
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;garden install filebrowser
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后你以为一切都很好，尝试运行Kivy-Designer，你会遇到类似下面的错误提示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[WARNING           ] stderr:     from designer.app import DesignerApp
+[WARNING           ] stderr:   File &quot;/Users/cycleuser/kivy-designer/designer/app.py&quot;, line 27, in &amp;lt;module&amp;gt;
+[WARNING           ] stderr:     from kivy.garden.filebrowser import FileBrowser
+[WARNING           ] stderr: ImportError: No module named filebrowser
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是因为，garden在Mac OS X下安装的位置是Linux下的 ~/.kivy/garden 目录下，而在Mac OS X下这个位置是无效的，必须要手动复制到 /Applications/Kivy.app/Contents/Resources/.kivy/garden 目录下。&lt;/p&gt;
+
+&lt;p&gt;读到这里你应该就能解决问题了，仔细阅读官方文档，虽然在garden安装位置这个bug上并没什么用。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;下面的内容是我在去年时候无脑尝试的记录，仅仅作为教训有参考意义而已，不要像我一样蠢。
+分割线下面的内容就不用看了，没什么意义~&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;At first, I ran the commands below to install Kivy on my Mac:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;最开始是安装依赖包，我用的是 brew，官方这么推荐就这么用了哈：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;brew install sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer
+pip install -I Cython==0.21.2
+USE_OSX_FRAMEWORKS=0 pip install git+https://github.com/kivy/kivy.git@1.9.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After that, I download the Kivy dmg from the official website.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;然后呢，就去官网下载最新的那个 kivy 的 dmg，这个是用来在 Mac 上面建立一个 Kivy 官方给打包好的 Python 虚拟环境，就不用自己折腾了。最下面哪句点击 MakeSymlinks 就是用来建立系统映射的一个脚本，到时候在终端直接输入 kivy 就是运行的 kivy.app 内部的一个 Python2.7了，而不用自己折腾配置了。你看这一句英文我翻译解释出这么多，是因为我觉得身边的小白蛮多，解释清楚点比较好。
+（虽然英文版的也是我写的，但我懒得写的那么细，网上英语资料很多，就让他们自己搜去吧。。。）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Download the latest version from http://kivy.org/#download
+Double-click to open it
+Drag the Kivy.app into your Applications folder
+Double click the makesymlinks script.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then I used git to download the kivy-designer.
+I thought it would work.
+So I typed in the command below following the official guide with hope:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;接着就用 git 下载来 kivy-designer。
+满心开心希望能用了。
+所以就根据官方指南输入下面的命令，满眼星星的期待呢：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;kivy main.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But I got this error:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;尼玛给老子来了个错误：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[WARNING           ] stderr: ImportError: No module named filebrowser
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Details here:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;细节是这样的：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[INFO              ] Logger: Record log in /Applications/Kivy.app/Contents/Resources/.kivy/logs/kivy_15-12-29_18.txt
+[INFO              ] Kivy: v1.9.0
+[INFO              ] Python: v2.7.10 (default, Jul 14 2015, 19:46:27)
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)]
+[INFO              ] Image: Providers: img_tex, img_imageio, img_dds, img_gif, img_sdl2 (img_pil, img_ffpyplayer ignored)
+[INFO              ] Factory: 173 symbols loaded
+[INFO              ] Text: Provider: sdl2
+[INFO              ] OSC: using &amp;lt;multiprocessing&amp;gt; for socket
+[INFO              ] Window: Provider: sdl2
+[INFO              ] GL: OpenGL version &amp;lt;2.1 INTEL-10.6.33&amp;gt;
+[INFO              ] GL: OpenGL vendor &amp;lt;Intel Inc.&amp;gt;
+[INFO              ] GL: OpenGL renderer &amp;lt;Intel HD Graphics 4000 OpenGL Engine&amp;gt;
+[INFO              ] GL: OpenGL parsed version: 2, 1
+[INFO              ] GL: Shading version &amp;lt;1.20&amp;gt;
+[INFO              ] GL: Texture max size &amp;lt;16384&amp;gt;
+[INFO              ] GL: Texture max units &amp;lt;16&amp;gt;
+[INFO              ] Window: auto add sdl2 input provider
+[INFO              ] Window: virtual keyboard not allowed, single mode, not docked
+[WARNING           ] stderr: Traceback (most recent call last):
+[WARNING           ] stderr:   File &quot;main.py&quot;, line 2, in &amp;lt;module&amp;gt;
+[WARNING           ] stderr:     from designer.app import DesignerApp
+[WARNING           ] stderr:   File &quot;/Users/cycleuser/kivy-designer/designer/app.py&quot;, line 27, in &amp;lt;module&amp;gt;
+[WARNING           ] stderr:     from kivy.garden.filebrowser import FileBrowser
+[WARNING           ] stderr: ImportError: No module named filebrowser
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yep, I found that the filebrowser was missing.
+So I run:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;对呗，filebrowser 没安装是吧，那就安装咯。
+就运行一下安装工具就是了：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;kivy -m pip install -U watchdog pygments docutils jedi gitpython six kivy-garden
+garden install filebrowser
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you run：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;当然，最开始其实我运行的是：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;pip install -U watchdog pygments docutils jedi gitpython six kivy-garden
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;instead of&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;而没注意官方告诉的要运行：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;kivy -m pip install -U watchdog pygments docutils jedi gitpython six kivy-garden
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;you may waste a lot of time…
+Because you can still run&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;这样就会浪费好多时间。。。
+因为两种方式安装之后，会发现都能运行下面的命令来安装 filebrowser ：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;garden install filebrowser
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But the location of garden would be in the user path of “~/.kivy/garden” instead of the right location as below:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;但安装位置是不一样的！！！如果像我那样安装就跑到用户目录下面安装了，而不是安装在正确位置，下面的位置是正确位置：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;/Applications/Kivy.app/Contents/Resources/.kivy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The kivy.app run when you type “ kivy main.py “ from the location below:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;当运行 kivy.app 的时候，跑的是 kivy.app 路径里面的 Python，也会在这个里面找 filebrowser，如果安装到用户路径去了，当然就找不到了啊：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;/Applications/Kivy.app/Contents/Resources/.kivy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So if you install garden and filebrowser in the home dir, you can copy the garden dir from “ ~/.kivy “ to “ /Applications/Kivy.app/Contents/Resources/.kivy “.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;所以如果你跟我一样安装到用户目录了，就把东西从” ~/.kivy “复制到” /Applications/Kivy.app/Contents/Resources/.kivy “就可以了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Then try to run “kivy main.py” and everything is OK now.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;然后再运行”kivy main.py”，就发现可以跑界面设计工具了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Always remember to add “kivy -m “ before “pip install”!
+I hope that this could help other on similar problems.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;一定要记住，在”pip install”的前面要添加”kivy -m “，这样才能安装到 Kivy.app 的路径内，而不是系统路径中！
+唉，希望能帮助其他遇到类似问题的小伙伴吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I hope kivy can give a tip about the location of garden installed so we careless people may save a lot of time.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;其实安装 garden 的时候 kivy 如果能给提示一下安装路径该有多好，这样起码容易注意到这个问题了。&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">##解决Mac系统上Kivy-Desinger因Garden安装位置不匹配导致的filebrowser无法导入的问题</summary></entry><entry><title type="html">kivy文档19</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A319/" rel="alternate" type="text/html" title="kivy文档19" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A319</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A319/">&lt;h1 id=&quot;kivy中文编程指南授权协议&quot;&gt;Kivy中文编程指南：授权协议&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html&quot;&gt;英文原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;警告&quot;&gt;警告&lt;/h4&gt;
+
+&lt;p&gt;这并不是一个律师咨询指南！ Kivy 的开发组织，本指南的作者以及参与者，对任何信息缺失、产生误导，以及任何基于这份指南的行为产生的任何后果都不负任何责任。这个指南只是提供一些信息，目的是帮助缺乏经验的用户。&lt;/p&gt;
+
+&lt;p&gt;你的代码本身并不一定需要包括协议信息和对其他用到的软件的版权声明，不过二进制文件就不一样了。&lt;/p&gt;
+
+&lt;p&gt;当你创建一个二进制文件（比如 exe，app 或者 APK 等等）的时候，里面包括了 Kivy 以及其他的一些依赖项目或者你的应用程序用到的其他的包，其中的某些就可能有声明需要你再自己的应用程序中进行版权信息声明。在你对这些二进制文件进行发布之前，一定要检查所有不属于你源代码的&lt;strong&gt;创建出来的文件&lt;/strong&gt;，（比如 dll，pyd，so 等等）然后如果某一个文件需要有版权信息，记得加进去版权声明。这样你才能满足 Kivy 开发需要的版权要求。&lt;/p&gt;
+
+&lt;h2 id=&quot;依赖包&quot;&gt;依赖包&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#dependencies&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;在 Kivy 支持的每个平台上都或多或少地用到了下面这些依赖包，所以你需要添加这些授权协议进去，基本都是只要你粘贴一段版权声明到你的应用中，而不能当作自己写了这些功能代码。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sf.net/p/docutils/code/HEAD/tree/trunk/docutils/COPYING.txt&quot;&gt;docutils&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bitbucket.org/birkenfeld/pygments-main/src/tip/LICENSE&quot;&gt;pygments&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.libsdl.org/license.php&quot;&gt;sdl2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://glew.sourceforge.net/glew.txt&quot;&gt;glew&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/GStreamer/gstreamer/blob/master/COPYING&quot;&gt;gstreamer&lt;/a&gt; (如果用到了再添加)&lt;/li&gt;
+  &lt;li&gt;图像和音频库(例如 &lt;a href=&quot;http://hg.libsdl.org/SDL_mixer/file/default/VisualC/external/lib/x86&quot;&gt;SDL_mixer&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对于图像和音频库，可能需要你手动去检查一下，一般都是以  &lt;code class=&quot;highlighter-rouge&quot;&gt;lib&lt;/code&gt; 这三个字母开头的。这些程序的 &lt;code class=&quot;highlighter-rouge&quot;&gt;LICENSE*&lt;/code&gt; 授权协议文件会在 PyInstaller 里面包含，但在 python-for-android 则没有，所以你得自己查找一下。&lt;/p&gt;
+
+&lt;h2 id=&quot;windows-操作系统-pyinstaller&quot;&gt;Windows 操作系统 (PyInstaller)&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#windows-pyinstaller&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;要使用 Windows API 功能， Kivy 使用了 &lt;a href=&quot;https://pypi.python.org/pypi/pypiwin32&quot;&gt;pypiwin32&lt;/a&gt; 。这个包是基于  &lt;a href=&quot;https://opensource.org/licenses/Python-2.0&quot;&gt;PSF 协议&lt;/a&gt;发布的。&lt;/p&gt;
+
+&lt;h3 id=&quot;vs-可再发行组件&quot;&gt;VS 可再发行组件&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#vs-redistributables&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;使用 Visual Studio 编译的 Python（官方版本）使用了来自微软的一些文件，在特定条件下基于 CRT license 可以重新发布这些组件。包括这些文件名以及&lt;a href=&quot;https://hg.python.org/sandbox/2.7/file/tip/Tools/msi/crtlicense.txt&quot;&gt;Py2 CRT 协议&lt;/a&gt; 或者 &lt;a href=&quot;https://hg.python.org/cpython/file/tip/Tools/msi/exe/crtlicense.txt&quot;&gt;Py3 CRT 协议&lt;/a&gt;，主要看你用的是哪个版本的解释器，所以要针对你的发布对象来具体情况具体对待。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/8kche8ah(v=vs.90).aspx&quot;&gt;可再发行组件列表&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;其他链接库&quot;&gt;其他链接库&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#other-libraries&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/madler/zlib/blob/master/README&quot;&gt;zlib&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;特别注意&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;对那些没有直接使用，但是打包的时候用到的包要列出，比如在 Windows 系统上面用的 PyInstaller。&lt;/p&gt;
+
+&lt;h2 id=&quot;linux&quot;&gt;Linux&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#linux&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;GNU/Linux 操作系统现在有好多发行版，所以没有一个能够通用给所有发行版的指南。这部分也属于 RPi （不知道是什么鬼东西）。然而可以简化成两种打包方式，（还是用 PyInstaller 来打包）提供包含的二进制文件，或者不提供。&lt;/p&gt;
+
+&lt;p&gt;如果包含了二进制文件，应该逐个检查这些文件，比如 so 为扩展名的，除了你的代码之外，要找到对应这些文件的授权协议。根据这个协议你可能需要在你的程序里面添加一条对应的版权信息。&lt;/p&gt;
+
+&lt;p&gt;如果没有包含二进制文件，比如你用 deb 等格式的文件进行打包，那就&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#avoid&quot;&gt;把麻烦扔给你的用户了&lt;/a&gt;。你可以自己决定是否要满足其他授权的要求，例如在你的应用中是否添加额外的版权信息。&lt;/p&gt;
+
+&lt;h2 id=&quot;android&quot;&gt;Android&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#android&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;APK 实际上只是一个文件压缩包，所以可以解压缩这个文件（就像 Windows 里面那样做）然后检查每个文件。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;APK/assets/private.mp3/private.mp3/&lt;/code&gt;这个文件夹内有所有包含的文件。大多数的都是和 Kivy 、Python 或者你的代码相关的，不过那些与这些无关的就需要检查一下了。&lt;/p&gt;
+
+&lt;p&gt;已知的包：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bitbucket.org/pygame/pygame/src/tip/LGPL&quot;&gt;pygame&lt;/a&gt; (如果用了旧的工具链)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/ghaering/pysqlite/blob/master/LICENSE&quot;&gt;sqlite3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bitbucket.org/gutworth/six/src/tip/LICENSE&quot;&gt;six&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;有的包含的链接库是 Kivy 直接使用或者通过 Pygame/SDL2 来使用的，他们的位置在 &lt;code class=&quot;highlighter-rouge&quot;&gt;APK/lib/armeabi/&lt;/code&gt;。大多数都是和依赖包相关，要么就是由 python-for-android 产生，并且可能就是 python-for-android 的一部分。例如&lt;code class=&quot;highlighter-rouge&quot;&gt;libapplication.so&lt;/code&gt;等。&lt;/p&gt;
+
+&lt;h2 id=&quot;mac&quot;&gt;Mac&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#mac&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Missing.
+这部分 Kivy 官方文档没写其他内容。&lt;/p&gt;
+
+&lt;h2 id=&quot;ios&quot;&gt;iOS&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#ios&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Missing.
+这部分 Kivy 官方文档没写其他内容。&lt;/p&gt;
+
+&lt;h2 id=&quot;避免二进制文件&quot;&gt;避免二进制文件&lt;a href=&quot;https://kivy.org/docs/guide/licensing.html#avoiding-binaries&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;有一种方法也许能够避免这种很狗很麻烦的授权协议什么的鬼东西，就是不用任何第三方的鬼扯玩意来构建你的应用。你可以用 Python 来自己创立一个模块，在其中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;__main__.py&lt;/code&gt;都只有你自己的代码，而 &lt;code class=&quot;highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; 列出需要的依赖包。&lt;/p&gt;
+
+&lt;p&gt;这样你依然可以发布你的应用—就是你的&lt;strong&gt;代码&lt;/strong&gt;，然后你就不用管任何其他的授权协议了。不过这样就更像是搭配使用，而不太算是发布程序了。这时候满足各种授权的依赖关系，就转移到你的程序的用户身上了，他们需要自行搞定运行环境来使用这个模块。如果你比较关心自己的用户，建议你还是花点时间来阅读一下&lt;a href=&quot;http://programmers.stackexchange.com/a/234295&quot;&gt;可能导致的后果&lt;/a&gt;。&lt;/p&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：授权协议</summary></entry><entry><title type="html">kivy文档18</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A318/" rel="alternate" type="text/html" title="kivy文档18" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A318</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A318/">&lt;h1 id=&quot;kivy中文编程指南打包为-ios-系统可执行文件&quot;&gt;Kivy中文编程指南：打包为 iOS 系统可执行文件&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html&quot;&gt;英文原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;特别注意&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;目前还只能用 Python 2.7 来针对 iOS 平台打包应用程序。 Python 3.3 以上的支持还在开发中。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;The overall process for creating a package for IOS can be explained in 4 steps:&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;总体上创建一个 iOS 应用程序需要四步：
+（译者注：对，你没有看错，官方文档就是写的 4 steps，所以我特地留下了上面这行原文，可见估计 Kivy 的开发者们也没太注意这点小错误吧。。。）&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;针对 iOS 编译 Python 和 需要的模块；&lt;/li&gt;
+  &lt;li&gt;创建一个 Xcode 项目，链接你的源代码；&lt;/li&gt;
+  &lt;li&gt;进行定制修改。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;预先准备&quot;&gt;预先准备&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#prerequisites&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;首先要安装一些依赖包，比如 cython，autotools 等等。Kivy 的开发者推荐你使用 &lt;a href=&quot;http://mxcl.github.com/homebrew/&quot;&gt;Homebrew&lt;/a&gt; 来安装这些依赖包：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;brew install autoconf automake libtool pkg-config
+brew link libtool
+sudo easy_install pip
+sudo pip install cython==0.23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多细节参考 &lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios-prerequisites.html#packaging-ios-prerequisites&quot;&gt;IOS Prerequisites&lt;/a&gt;。一定要在下一步开始之前保证依赖关系都满足了。&lt;/p&gt;
+
+&lt;h2 id=&quot;编译发布版&quot;&gt;编译发布版&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#compile-the-distribution&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Open a terminal, and type:&lt;/p&gt;
+
+&lt;p&gt;打开终端，输入下面的命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;git clone git://github.com/kivy/kivy-ios
+cd kivy-ios
+./toolchain.py build kivy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Python 发型版中大部分内容都会被打包到 python27.zip 这个文件中。如果遇到了问题，可以参考&lt;a href=&quot;https://groups.google.com/forum/#!forum/kivy-users&quot;&gt;谷歌论坛用户组&lt;/a&gt; 或者 &lt;a href=&quot;https://github.com/kivy/kivy-ios&quot;&gt;kivy-ios 项目页面&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;创建一个-xcode-项目&quot;&gt;创建一个 Xcode 项目&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#create-an-xcode-project&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;在进行下一步之前，要保证你的程序运行起点是一个名为 main.py 的文件。&lt;/p&gt;
+
+&lt;p&gt;Kivy 官方提供了一个脚本，可以创建一个初始的 Xcode 项目。在下面的代码样例中，把 Touchtracer 这个换成你的项目名字。名字一定不能有空格或者其他非法字符。（译者注：吐槽一下，那什么算是非法字符倒是说说啊。）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;./toolchain.py create &amp;lt;title&amp;gt; &amp;lt;app_directory&amp;gt;
+./toolchain.py create Touchtracer ~/code/kivy/examples/demo/touchtracer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;特别注意-1&quot;&gt;特别注意&lt;/h4&gt;
+&lt;p&gt;上面这一步中，应用程序的路径一定要用完整路径。&lt;/p&gt;
+
+&lt;p&gt;接下来会有一个名字为&lt;code class=&quot;highlighter-rouge&quot;&gt; &amp;lt;title&amp;gt;&lt;/code&gt;-ios 的目录被创建，里面就是 Xcode 项目了。可以打开这个项目：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;open touchtracer-ios/touchtracer.xcodeproj
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后点击 Play 运行，就可以了。&lt;/p&gt;
+
+&lt;h4 id=&quot;特别注意-2&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;每次点击 Play 的时候， 你的应用目录都会同步到&lt;code class=&quot;highlighter-rouge&quot;&gt; &amp;lt;title&amp;gt;&lt;/code&gt;-ios/YourApp 这个目录。不要直接对这个目录进行修改。&lt;/p&gt;
+
+&lt;h2 id=&quot;更新-xcode-项目project&quot;&gt;更新 Xcode 项目project&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#updating-an-xcode-project&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;举个例子，加入你要在你的项目中添加 numpy，但在之前创建这个 Xcode 项目的时候没有编译进去。那首先就构建 numpy ：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;./toolchain.py build numpy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后更新一下你的 Xcode 项目：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;./toolchain.py update touchtracer-ios
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样所有相关的链接库、框架就都被添加到你的 Xcode 项目里去了。&lt;/p&gt;
+
+&lt;h2 id=&quot;定制修改&quot;&gt;定制修改&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#customize&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;有很多方法能对你的应用进行修改和设置。可以参考 &lt;a href=&quot;http://www.github.com/kivy/kivy-ios&quot;&gt;kivy-ios&lt;/a&gt; 的文档来查看更详细的信息。&lt;/p&gt;
+
+&lt;h2 id=&quot;已知的问题&quot;&gt;已知的问题&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#known-issues&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;目前关于 iOS 打包的所有已知问题都可以在 &lt;a href=&quot;https://github.com/kivy/kivy-ios/issues&quot;&gt;Kivy-iOS 的 GitHub issues 页面&lt;/a&gt; 查看到。如果你遇到的问题不在其中，请创建一个新的 issue，Kivy 开发者会尽快跟进处理。&lt;/p&gt;
+
+&lt;p&gt;已知的问题中绝大部分都太技术性了，没必要在这里写了，其中一个重要的问题是目前没办法移除一些链接库（比如 SDL_Mixer) ，因为 Kivy 项目需要这些链接库。在后续的版本中， Kivy 开发者会解决掉这些问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#faq&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;程序异常退出&quot;&gt;程序异常退出&lt;img src=&quot;https://kivy.org/docs/guide/packaging-ios.html#application-quit-abnormally&quot; alt=&quot;¶&quot; title=&quot;Permalink to this headline&quot; /&gt;&lt;/h3&gt;
+
+&lt;p&gt;默认情况下，所有控制台和文件中的 print 语句都被忽视了。如果你运行程序的时候碰到异常状况了，可以激活 log 日志功能，在 main.m 文件中把下面这一行去掉注释：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;putenv(&quot;KIVY_NO_CONSOLELOG=1&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后你就可以在 Xcode 控制台中看到 Kivy 的日志了。&lt;/p&gt;
+
+&lt;h3 id=&quot;渣果公司怎样才能接受一个-python-app&quot;&gt;渣果公司怎样才能接受一个 Python APP?&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#how-can-apple-accept-a-python-app&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Kivy 开发者将所有链接库的 app 二进制文件合并成了一个名为 libpython 的二进制文件。这就意味着所有二进制模块都会提前价值，所以不会有动态加载。&lt;/p&gt;
+
+&lt;h3 id=&quot;是否已经向渣果的-app-store-提交过-kivy-应用&quot;&gt;是否已经向渣果的 App store 提交过 Kivy 应用?&lt;a href=&quot;https://kivy.org/docs/guide/packaging-ios.html#have-you-already-submited-a-kivy-application-to-the-app-store&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;是，例如下面的就是：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://itunes.apple.com/us/app/deflectouch/id505729681&quot;&gt;Defletouch on iTunes&lt;/a&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://itunes.apple.com/us/app/processcraft/id526377075&quot;&gt;ProcessCraft on iTunes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;更详细的列表可以参考 &lt;a href=&quot;https://github.com/kivy/kivy/wiki/List-of-Kivy-Projects&quot;&gt;Kivy wiki&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：打包为 iOS 系统可执行文件</summary></entry><entry><title type="html">kivy文档17</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A317/" rel="alternate" type="text/html" title="kivy文档17" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A317</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A317/">&lt;h1 id=&quot;kivy中文编程指南打包为-mac-系统可执行文件&quot;&gt;Kivy中文编程指南：打包为 Mac 系统可执行文件&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kivy.org/docs/guide/packaging-osx.html&quot;&gt;英文原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;特别注意&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;本文所提供的打包 Kivy 应用程序的方法必须在 OS X 系统内进行，而且不再支持 32 位平台。&lt;/p&gt;
+
+&lt;h2 id=&quot;使用-buildozer&quot;&gt;使用 Buildozer&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;pip install git+http://github.com/kivy/buildozer cd /to/where/I/Want/to/package buildozer init
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（译者注：这里的/to/where/I/Want/to/package 就是你要打包的应用所在目录。）&lt;/p&gt;
+
+&lt;p&gt;然后就还是修改 buildozer.spec 文件，在里面添加好你的应用需要用到的信息。添加依赖包的位置在 requirements= 的那个位置。&lt;/p&gt;
+
+&lt;p&gt;默认情况下，requirements 位置所指定的 Kivy 版本会被忽略掉。&lt;/p&gt;
+
+&lt;p&gt;如果你在应用程序目录下有 Kivy.app （/Applications/Kivy.app），那就会用这个来打包。如果没有，还可以从 Kivy.org 下载最新版来用了。&lt;/p&gt;
+
+&lt;p&gt;如果你要用 Python3 来打包，就就直接从 Kivy.org 的下载页面下载 Kivy3.7z 这个包，然后把它解压缩到应用目录 /Applications 下，命名为 Kivy.app，然后运行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;buildozer osx debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;打包好应用之后，就可以移除用不上的包了，比如如果你不用视频功能，那就可以去掉 gstreamer。同理，其他的用不上的功能，也都可以去掉，这就可以保证打包出来的应用能够有尽量小的体积，足够运行就好了。&lt;/p&gt;
+
+&lt;p&gt;作为示例，我们用这个方法打包好了一个应用，Python2 的版本大概 9MB 多一点，Python3 的是 15MB 左右，可以在&lt;a href=&quot;https://drive.google.com/drive/folders/0B1WO07-OL50_alFzSXJUajBFdnc&quot;&gt;官方提供的谷歌网盘&lt;/a&gt;下载来体验一下。（译者注：如果你身处大陆而无法访问谷歌这种不存在的网站，那么可以试试&lt;a href=&quot;https://pan.baidu.com/s/1gfBSD4B&quot;&gt;我的百度网盘分享&lt;/a&gt;。）&lt;/p&gt;
+
+&lt;p&gt;就这么多，动手试试吧。&lt;/p&gt;
+
+&lt;p&gt;目前的 Buildozer 使用了 Kivy SDK 来打包你的应用程序。如果你想对你的程序进行更深入的修改定制，而 buildozer 不足以满足你的需求，你可以试试直接使用 SDK，下面就要详细介绍一下这部分。&lt;/p&gt;
+
+&lt;h2 id=&quot;使用-kivy-sdk&quot;&gt;使用 Kivy SDK&lt;/h2&gt;
+
+&lt;p&gt;从 1.9.0 版本开始，Kivy 就开始发布针对 OS X 平台的自我包含的便捷包。&lt;/p&gt;
+
+&lt;p&gt;用下面描述的方法就可以使用 Kivy SDK 来打包和发布应用程序了，要添加一些诸如 SDL2 或者 GStreamer 之类的包也都更简单了。&lt;/p&gt;
+
+&lt;p&gt;1 首先要确保有未修改过的原版 Kivy SDK，也就是从下载页面获取的 Kivy.app 这个文件。&lt;/p&gt;
+
+&lt;p&gt;2 然后运行下面的命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;mkdir packaging
+cd packaging
+packaging&amp;gt; git clone https://github.com/kivy/kivy-sdk-packager
+packaging&amp;gt; cd kivy-sdk-packager/osx
+osx&amp;gt; cp -a /Applications/Kivy.app ./Kivy.App
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;特别注意-1&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;上面这一步是至关重要的，一定要确保目录和权限都没有问题。&lt;code class=&quot;highlighter-rouge&quot;&gt;cp -rf&lt;/code&gt; 这样的命令也能实现复制，但会让应用程序无法运行，并且在后续步骤中导致各种错误。&lt;/p&gt;
+
+&lt;p&gt;3 接下来就是要把你用 Kivy.app 编译好的应用程序包含进目标文件夹，使用如下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;osx&amp;gt; ./package-app.sh /path/to/your/app_folder_name&amp;gt;/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;app_folder_name&gt; 就是你应用程序的名字。
+
+这个命令会把 Kivy.app 复制成 &lt;app_folder_name&gt;.app，并把应用程序的一份编译好的副本包含进去。
+
+
+4 就这些了，你的应用程序已经打包完毕，可以拿出去安装了。接下来可以按照下面的方法对你的应用进行更进一步的定制了。
+
+### 安装模块
+
+OS X 上的 Kivy 包邮自己的虚拟环境，当你使用 kivy 命令来运行的时候就会激活这个虚拟环境。如果要安装额外的一些模块，可以用如下命令：
+
+```Bash
+kivy -m pip install
+```
+
+
+### 模块和文件安到哪了？
+
+在 Kivy.app 这个文件内部，虚拟环境位置如下：
+
+```Bash
+Kivy.app/Contents/Resources/venv/
+```
+
+如果你安装了一个安装二进制的模块，比如 kivy-garden。那么这些二进制文件只能在虚拟环境中才是可用的，就比如你先运行了下面这个命令：
+
+```Bash
+kivy -m pip install kivy-garden
+```
+
+
+然后安装的 garden lib 就只在你激活这个虚拟环境的时候才可用。
+
+```Bash
+source /Applications/Kivy.app/Contents/Resources/venv/bin/activate garden install mapview deactivate
+```
+
+### 安装二进制文件
+
+这个比较简单，就把二进制文件复制到虚拟目录下的 bin 文件夹就可以了。（Kivy.app/Contents/Resources/venv/bin/）
+
+
+
+### 包含其他框架
+
+Kivy.app 已经自带了 SDL2 和 Gstreamer 这两个框架。要包含其他框架可以参考下面的方法：
+
+```Bash
+git clone http://github.com/tito/osxrelocator
+export PYTHONPATH=~/path/to/osxrelocator
+cd Kivy.app
+python -m osxrelocator -r . /Library/Frameworks/&lt;Framework_name&gt;.framework/ \
+@executable_path/../Frameworks/&lt;Framework_name&gt;.framework/
+```
+
+Do not forget to replace  with your framework. This tool osxrelocator essentially changes the path for the libs in the framework such that they are relative to the executable within the .app, making the Framework portable with the .app.
+
+一定别忘了把上面样例中的 &lt;Framework_name&gt;  替换成你要安装的框架名字。osxrelocator 这个工具可以改变框架中的链接库的路径，这样就能让它们指向 .app 文件内的可执行文件，也就让此框架成为 .app 文件内可用的内置框架了。
+
+
+#### 缩小应用体积
+
+现在这个应用程序的体积可能已经相当大了，好在很多没有用上的部分可以从包中移除。
+
+举例来说，如果你没有使用 Gstreamer，就可以从你应用程序的 .app 文件内的 /Contents/Frameworks 目录中把它删除掉。类似的像是在 /Applications/Kivy.app/Contents/Resources/kivy/ 目录下的 examples，tools，docs 等等这些文件夹都可以删掉的。
+
+这样就可以让你的包只包含你的应用程序用到的内容。
+
+#### 修改设置
+
+通过修改应用程序的 .app 文件内 /Contents/info.plist 这个文件，就可以修改图标和其他的设置了。
+
+
+#### 创建 DMG
+
+用如下命令就可以创建一个 DMG 镜像文件了：
+
+```Bash
+osx&amp;gt; ./create-osx-dmg.sh YourApp.app
+```
+
+一定要注意末尾没有额外的 /。 这样就能生成一个压缩的 DMG 文件，能进一步缩小应用发布时候的体积了。
+
+
+
+## 使用 PyInstaller，无 HomeBrew
+
+首先是安装 Kivy 和依赖包，不用 HomeBrew 的方法可以在[官方文档](http://kivy.org/docs/installation/installation.html#development-version) 或者[译者的博客](http://blog.cycleuser.org/kivy-installment-tutorial.html)或者[译者的专栏](https://zhuanlan.zhihu.com/p/24644473)中查找。
+
+安装好了Kivy 以及依赖包之后，就需要安装 PyInstaller 了。
+
+（译者注：PyInstaller 目前不支持 Python3.6，时间为2017-03-02。）
+
+假设用一个名为 testpackaging 的文件夹：
+
+
+```Bash
+cd testpackaging
+git clone http://github.com/pyinstaller/pyinstaller
+```
+
+在这个目录中创建一个名为 touchtracer.spec 的配置文件，然后添加如下的代码到该文件中：
+
+
+```Bash
+# -*- mode: python -*-
+
+block_cipher = None
+from kivy.tools.packaging.pyinstaller_hooks import get_deps_all, hookspath, runtime_hooks
+
+a = Analysis(['/path/to/yout/folder/containing/examples/demo/touchtracer/main.py'],
+             pathex=['/path/to/yout/folder/containing/testpackaging'],
+             binaries=None,
+             win_no_prefer_redirects=False,
+             win_private_assemblies=False,
+             cipher=block_cipher,
+             hookspath=hookspath(),
+             runtime_hooks=runtime_hooks(),
+             **get_deps_all())
+pyz = PYZ(a.pure, a.zipped_data,
+             cipher=block_cipher)
+exe = EXE(pyz,
+          a.scripts,
+          exclude_binaries=True,
+          name='touchtracer',
+          debug=False,
+          strip=False,
+          upx=True,
+          console=False )
+coll = COLLECT(exe, Tree('../kivy/examples/demo/touchtracer/'),
+               Tree('/Library/Frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework'),
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=False,
+               upx=True,
+               name='touchtracer')
+app = BUNDLE(coll,
+             name='touchtracer.app',
+             icon=None,
+         bundle_identifier=None)
+```
+
+
+把路径改到你的相对路径：
+
+```Bash
+a = Analysis(['/path/to/yout/folder/containing/examples/demo/touchtracer/main.py'],
+            pathex=['/path/to/yout/folder/containing/testpackaging'],
+...
+...
+coll = COLLECT(exe, Tree('../kivy/examples/demo/touchtracer/'),
+```
+
+然后运行如下命令：
+
+```Bash
+pyinstaller/pyinstaller.py touchtracer.spec
+```
+
+
+
+把这里的 touchtracer  替换成你的应用名称。之后就可以在 dist 文件夹下看到你的 .app 文件了。
+
+
+## 使用 PyInstaller + HomeBrew
+
+
+
+#### 特别注意
+
+打包你的应用程序的时候，你定要在你要兼容的最老版本的 OS X 系统上进行。
+
+
+
+### 完整指南
+
+1 安装 [Homebrew](http://brew.sh/)
+
+2 安装 Python:
+
+```Bash
+brew install python
+```
+
+#### 特别注意
+如果要用 Python3 ，就用 `brew install python3` ，然后把下文中的 `pip` 改成 `pip3` 就可以了。
+
+
+
+3 (Re)install your dependencies with `--build-bottle` to make sure they can be used on other machines:
+
+```Bash
+brew reinstall --build-bottle sdl2 sdl2_image sdl2_ttf sdl2_mixer
+```
+
+
+#### 特别注意
+
+如果你的项目依赖 Gstreamer 或者其他的链接库，一定要按照下文的方法添加 `--build-bottle` 来安装。
+
+4 安装 Cython 和 Kivy:
+
+```Bash
+pip install -I Cython==0.23
+USE_OSX_FRAMEWORKS=0 pip install -U kivy
+```
+
+
+
+5 安装 PyInstaller:
+
+```Bash
+pip install -U pyinstaller
+```
+
+6 使用到 main.py 的路径来打包应用：
+
+```Bash
+pyinstaller -y --clean --windowed --name touchtracer \
+      --exclude-module _tkinter \
+      --exclude-module Tkinter \
+      --exclude-module enchant \
+      --exclude-module twisted \
+      /usr/local/share/kivy-examples/demo/touchtracer/main.py
+
+
+#### 特别注意
+
+这样不能把额外的图像和声音文件复制进去。要添加这些内容还是要创建一个专门的`.spec`配置文件。
+
+### 编辑`.spec` 配置文件
+
+咱们用的这个配置文件是 touchtracer.spec ， 位置在刚刚运行了 pyinstaller 的目录。
+
+需要对配置文件中的 COLLECT() 调用的部分进行修改，要添加上 touchtracer 用到的资源（比如touchtracer.kv， particle.png，等等）。修改这一行，添加一个 Tree() 对象。这个 Tree 会搜索 touchtracer 目录下的所有文件，并添加到你的包当中。 COLLECT 的那部分代码应该大概如下所示：
+
+
+```Bash
+coll = COLLECT(exe, Tree('/usr/local/share/kivy-examples/demo/touchtracer/'),
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=None,
+               upx=True,
+               name='touchtracer')
+```
+
+这样会把需要的文件都添加进去，这样 PyInstaller 就能包含需要用到的 Kivy 文件了。弄妥了之后，你的 spec 配置文件就可以执行了。
+
+
+### 使用 spec 来构建并打包成 DMG
+
+
+1 打开终端。
+
+2 进入到 PyInstaller 的目录，然后用如下命令进行构建：
+
+```Bash
+pyinstaller -y --clean --windowed touchtracer.spec
+```
+
+3 运行来试试：
+
+```Bash
+pushd dist
+hdiutil create ./Touchtracer.dmg -srcfolder touchtracer.app -ov
+popd
+```
+
+4 然后就能在 dist 目录下找到 Touchtracer.dmg 这个文件了。
+
+### 额外的链接库
+
+#### GStreamer
+
+如果你的项目需要 GStreamer，那就运行如下命令：
+
+```Bash
+brew reinstall --build-bottle gstreamer gst-plugins-{base,good,bad,ugly}
+```
+
+#### 特别注意
+
+如果你的项目需要对 Ogg Vorbis（音频压缩格式，类似于MP3，完全免费、开放和没有专利限制，支持多声道） 的支持，一定要在上面的命令后加上 `--with-libvorbis`。
+
+如果你用的是通过 HomeBrew 安装的 Python，那就还需要下面这一步，除非[这个问题](https://github.com/Homebrew/homebrew/pull/46097)弄妥了：
+
+```Bash
+brew reinstall --with-python --build-bottle https://github.com/cbenhagen/homebrew/raw/patch-3/Library/Formula/gst-python.rb
+```
+&lt;/Framework_name&gt;&lt;/Framework_name&gt;&lt;/Framework_name&gt;&lt;/app_folder_name&gt;&lt;/app_folder_name&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：打包为 Mac 系统可执行文件</summary></entry><entry><title type="html">kivy文档16</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A316/" rel="alternate" type="text/html" title="kivy文档16" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A316</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A316/">&lt;h1 id=&quot;kivy中文编程指南kivy-虚拟机&quot;&gt;Kivy中文编程指南：Kivy 虚拟机&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android-vm.html&quot;&gt;英文原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;简介&quot;&gt;简介&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android-vm.html#introduction&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;目前，Kivy 的 Android 应用程序构建只能在配置有 python-for-android、 Android SDK 和 NDK 的 Linux 环境进行。这对于 Windows 或者 OS X 的用户来说，搭建起来就有点麻烦，所以 Kivy 官方提供了一个完全配置好的 &lt;a href=&quot;http://www.virtualbox.org/&quot;&gt;VirtualBox&lt;/a&gt; 虚拟机磁盘镜像，用来减轻自己搭建的哀伤与痛苦。&lt;/p&gt;
+
+&lt;p&gt;如果你对于虚拟机不太了解，建议去阅读以下&lt;a href=&quot;http://en.wikipedia.org/wiki/Virtualization&quot;&gt;维基百科上面的虚拟机页面&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;上手&quot;&gt;上手&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android-vm.html#getting-started&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;首先是到&lt;a href=&quot;http://kivy.org/#download&quot;&gt; Kivy 下载页面&lt;/a&gt; 找到 &lt;strong&gt;Virtual Machine&lt;/strong&gt; 这一部分。下载的文件超过 2GB ，解压缩之后是大概 6GB。解压缩文件之后别忘掉 vdi 虚拟磁盘的位置。&lt;/li&gt;
+  &lt;li&gt;根据你机器的操作系统版本，去&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt; VirtualBox 下载页面&lt;/a&gt; 下载对应的安装包，然后安装。&lt;/li&gt;
+  &lt;li&gt;启动 VirtualBox，点击新建按钮。然后选择操作系统为 “linux” ，版本设置为 “Ubuntu 64-bit”。&lt;/li&gt;
+  &lt;li&gt;在 “Hard drive” 硬盘这个选项，选择“Use an existing virtual hard drive file”，即使用已有的虚拟硬盘文件。这时候找到上面你下载并解压出来的那个 vdi 文件，选中使用它。&lt;/li&gt;
+  &lt;li&gt;到虚拟机设置的页面。在“Display -&amp;gt; Video” 显示器-&amp;gt;显卡，这一部分，吧显存增加到至少 32MB 以上。启用 3D 加速来提高用户体验。&lt;/li&gt;
+  &lt;li&gt;启动虚拟机，然后看看桌面上的 readme 文件，根据指示操作就行了。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;构建-apk&quot;&gt;构建 APK&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android-vm.html#building-the-apk&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;虚拟机家在之后，就根据 python-for-android 打包指南里面的讲解来构建 APK 文件里了：&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#packaging-your-application-into-apk&quot;&gt;英文原版&lt;/a&gt;，&lt;a href=&quot;http://blog.cycleuser.org/kivy-pack-android.html&quot;&gt;中文翻译版本&lt;/a&gt;或者&lt;a href=&quot;https://zhuanlan.zhihu.com/p/25571974&quot;&gt;知乎专栏的镜像&lt;/a&gt;。也根本不用使用 git clone 下载什么的了，因为虚拟机里面的 python-for-android 已经安装配置好了，就在虚拟系统的 home 目录里面了。&lt;/p&gt;
+
+&lt;h2 id=&quot;提示建议&quot;&gt;提示建议&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android-vm.html#hints-and-tips&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;共享文件夹
+ 通常情况下，你的开发环境和工具链都在宿主机中，而 APK 的构建在客户机里面。好在 VirtualBox 提供了共享文件夹的功能，允许你的客户机直接读取宿主机中的某个文件夹。
+ 可以选中‘Permanent’（永久挂载）和 ‘Auto-mount’（自动挂载）这两个选项，这样把构建好的 APK 文件复制到宿主机就更方便了。写一个小脚本就可以很简单地实现自动复制或者移动这个步骤。&lt;/li&gt;
+  &lt;li&gt;复制粘贴
+ 默认情况下，宿主机和客户机的剪贴板是不能共享的。可以在“Settings -&amp;gt; General -&amp;gt; Advanced”（设置-&amp;gt;通用-&amp;gt;高级）中启用 “bi-directional”（双向复制粘贴）的选项。&lt;/li&gt;
+  &lt;li&gt;虚拟机快照
+ 如果你正在用 Kivy 开发环境的分支，同步最新版本有时候可能会出问题（Kivy 开发者尽量在避免这种情况）。所以可以在更新之前建立一个虚拟机快照来避免这类问题。这能让你很方便恢复到之前能用的状态。&lt;/li&gt;
+  &lt;li&gt;补充内存
+如果虚拟机分配的内存不够，可能会因为一些很神奇的错误导致编译失败，比如：
+    &lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;arm-linux-androideabi-gcc: Internal error: Killed (program cc1)
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;如果出现了上面这种情况，检查一下 Kivy 虚拟机的剩余内存，如果内存不足，就在虚拟机设置里面多增加一些吧。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：Kivy 虚拟机</summary></entry><entry><title type="html">kivy文档15</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A315/" rel="alternate" type="text/html" title="kivy文档15" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A315</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A315/">&lt;h1 id=&quot;kivy中文编程指南打包为-android-系统可执行文件&quot;&gt;Kivy中文编程指南：打包为 Android 系统可执行文件&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html&quot;&gt;英文原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;你可以通过 &lt;a href=&quot;https://github.com/kivy/python-for-android&quot;&gt;python-for-android&lt;/a&gt; 这个项目来打包一个 Android 应用。本页面详细讲解如何下载和打包，可以在你自己的机器上直接进行（参考&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#packaging-your-application-into-apk&quot;&gt;此页面&lt;/a&gt;），或者使用预先构建好的&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android-vm.html#kivy-android-vm&quot;&gt;Kivy Android 虚拟机&lt;/a&gt;，或者使用&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#buildozer&quot;&gt;Buildozer&lt;/a&gt; 来自动化完成整个过程。还可以参考 &lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#packaging-your-application-for-kivy-launcher&quot;&gt;针对 Kivy Launcher 进行打包&lt;/a&gt; 这样就不用编译就能运行 Kivy 应用。&lt;/p&gt;
+
+&lt;p&gt;对新手，Kivy 官方推荐使用 &lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#buildozer&quot;&gt;Buildozer&lt;/a&gt; ，这是制作完整 APK 的最简单的途径。或者也可以使用 &lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#packaging-your-application-for-kivy-launcher&quot;&gt;Kivy Launcher&lt;/a&gt; 这个应用来运行你的 Kivy 应用，而不用编译了。&lt;/p&gt;
+
+&lt;p&gt;Kivy 应用可以&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#release-on-the-market&quot;&gt;发布到 Android 应用市场&lt;/a&gt;，比如谷歌的 Play 市场等等，只需要额外几步来创建一个完整签名的 APK 就可以了。&lt;/p&gt;
+
+&lt;p&gt;Kivy 项目包含了一系列读取 Android API 的工具，可以实现震动、传感器读取、信息发送等等功能。相关的详细信息都可以参考&lt;a href=&quot;https://kivy.org/docs/guide/android.html&quot;&gt; Kivy 的 Android 专题页面&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&quot;特别注意&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;Android 平台目前已经支持 Python 3 了，不过还处于实验阶段。&lt;/p&gt;
+
+&lt;h2 id=&quot;buildozer&quot;&gt;Buildozer&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#buildozer&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Buildozer 是一个将整个构建过程自动化的工具。它会下载和设置 python-for-android 需要的所有依赖项目，包括 Android 的 SDK 和 NDK，然后会构建 APK ，这个 APK 可以自动推送到设备上。&lt;/p&gt;
+
+&lt;p&gt;目前 Buildozer 只能用在 Linux 上面，而且还不是正式版，处于测试阶段，发布的是 alpha 版本，不过目前用起来还不错，能显著简化 APK 构建的过程。&lt;/p&gt;
+
+&lt;p&gt;可以到&lt;a href=&quot;https://github.com/kivy/buildozer&quot;&gt; Buildozer 的项目页面&lt;/a&gt; 下载获取 Buildozer。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;git clone https://github.com/kivy/buildozer.git
+cd buildozer
+sudo python2.7 setup.py install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的命令就会把 Buildozer 安装到你的操作系统中。接下来就是到你的项目目录然后运行如下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;buildozer init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这会在你的目录下创建一个名为 buildozer.spec 的文件，这个文件是控制项目构建选项的。估计你需要编辑修改一下这个文件，比如设置你应用的名字等等。在这里可以设置传递给 python-for-android 的全部或者大部分参数。&lt;/p&gt;
+
+&lt;p&gt;安装&lt;a href=&quot;https://buildozer.readthedocs.io/en/latest/installation.html#targeting-android&quot;&gt; Buildozer 的依赖项目&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;最后一步了，连接上你的 Android 设备然后运行下面的命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;buildozer android debug deploy run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样就可以创建、推送 APK 到你的设备上，然后就可以自动运行了。&lt;/p&gt;
+
+&lt;p&gt;Buildozer 有很多可以控制的选项和工具，对你都会游泳，上面这些步骤只是创建 APK 的最简单的方法。可以到&lt;a href=&quot;http://buildozer.readthedocs.org/en/latest/&quot;&gt; Buildozer 的官方文档页面&lt;/a&gt;查看完整说明。也可以看看&lt;a href=&quot;https://github.com/kivy/buildozer&quot;&gt; Buildozer 项目页面&lt;/a&gt;的 README 文件。&lt;/p&gt;
+
+&lt;h2 id=&quot;通过-python-for-android-打包&quot;&gt;通过 python-for-android 打包&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#packaging-with-python-for-android&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;你还可以直接用 python-for-android 来打包应用，这样你可以有更多控制选项，但需要手动下载和设置 Android 工具链。&lt;/p&gt;
+
+&lt;p&gt;参考&lt;a href=&quot;https://python-for-android.readthedocs.io/en/latest/quickstart/&quot;&gt;python-for-android 官方文档&lt;/a&gt; 查看全部细节。&lt;/p&gt;
+
+&lt;h2 id=&quot;针对-kivy-launcher-打包&quot;&gt;针对 Kivy Launcher 打包&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#packaging-your-application-for-the-kivy-launcher&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=org.kivy.pygame&amp;amp;hl=en&quot;&gt;Kivy launcher&lt;/a&gt; 是一个 Android 应用，可以运行存储到 SD 卡里面的 Kivy 样例。可以用下面的方法来安装 Kivy launcher：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;前往&lt;a href=&quot;https://market.android.com/details?id=org.kivy.pygame&quot;&gt;谷歌 Play 市场中的 Kivy Launcher 页面&lt;/a&gt;；&lt;/li&gt;
+  &lt;li&gt;点击安装；&lt;/li&gt;
+  &lt;li&gt;选择你的设备，然后就搞定了。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;如果你的设备无法访问谷歌 Play 市场（我大天朝么。。。），可以从&lt;a href=&quot;http://kivy.org/#download&quot;&gt; Kivy 官网的下载页面&lt;/a&gt; 手动下载安装 APK 文件。&lt;/p&gt;
+
+&lt;p&gt;安装了 Kivy launcher 之后，就可以把你的 Kivy 应用放到外置存储的 Kivy 文件夹中，（通常是在 &lt;code class=&quot;highlighter-rouge&quot;&gt;/sdcard&lt;/code&gt; 目录下），例如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;/sdcard/kivy/yourapplication&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;yourapplication&amp;gt;&lt;/code&gt;你的应用应该是一个&lt;strong&gt;文件夹&lt;/strong&gt;，包含以下文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;# 程序主文件：
+main.py
+# Kivy 需要的关于你应用的信息：
+android.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以下信息是 android.txt 这个文件&lt;strong&gt;必须包含&lt;/strong&gt;的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;title=&amp;lt;Application Title&amp;gt; #这是应用的标题
+	author=&amp;lt;Your Name&amp;gt;  #这是作者签名
+orientation=&amp;lt;portrait|landscape&amp;gt; #设定屏幕方向为水平或竖直
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面这些都是非常基础的设置。如果你要用上面的工具来构建自己的 APK，还得调整很多其他的设定。&lt;/p&gt;
+
+&lt;h3 id=&quot;安装样例项目&quot;&gt;安装样例项目&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#installation-of-examples&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Kivy 自带了很多歌样例，可以先用这些来试一试 Kivy Launcher。可以用如下的方法来运行：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;下载 &lt;a href=&quot;https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/kivy/kivydemo-for-android.zip&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Kivy demos for Android&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;解压缩然后进入目录&lt;code class=&quot;highlighter-rouge&quot;&gt;kivydemo-for-android&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;把目录内所有子目录等内容复制到 &lt;code class=&quot;highlighter-rouge&quot;&gt;/sdcard/kivy&lt;/code&gt; 这个目录&lt;/li&gt;
+  &lt;li&gt;运行 Kivy Launcher 然后从样例中选择一个来试试，Pictures, Showcase, Touchtracer, Cymunk 等等都可以。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;发布到应用市场&quot;&gt;发布到应用市场&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#release-on-the-market&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;如果你用 Buildozer 或者 python-for-android 构建了 APK 文件，就可以创建一个 release 版本来发布到谷歌 Play 市场或者其他 Android 应用市场。&lt;/p&gt;
+
+&lt;p&gt;要想发布，就必须在运行 Buildozer 的时候添加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;release&lt;/code&gt; 参数，例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;buildozer android release&lt;/code&gt;，如果用了 python-for-android 就在 build.py 进行编译的时候加上&lt;code class=&quot;highlighter-rouge&quot;&gt;--release&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;这样就能在 &lt;code class=&quot;highlighter-rouge&quot;&gt;bin&lt;/code&gt; 目录里面创建一个正式发布的 release 版的 APK 文件，需要你做好签名和 zipalign 压缩优化（译者注：zipalign，优化apk应用程序的工具，使包内未压缩的数据能够有序的排列）。&lt;/p&gt;
+
+&lt;p&gt;上面这些操作的详细过程可以参考 &lt;a href=&quot;https://developer.android.com/studio/publish/app-signing.html#signing-manually&quot;&gt;Android 官方文档&lt;/a&gt; ，所有用到的工具都在 Android SDK 里面了。&lt;/p&gt;
+
+&lt;h2 id=&quot;设定-android-&quot;&gt;设定 Android &lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#targeting-android&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Kivy 的设计定位是提供跨平台的相同操作体验，因此也有一些清晰地设计特点。Kivy 包含了自己独有的一套控件，在默认情况下，用所有需要的依赖包和链接库来构建 APK 文件。&lt;/p&gt;
+
+&lt;p&gt;也可以指定特定的 Android 功能，可以直接进行，也可以用（某些）跨平台的方式来实现。更多细节可以参考&lt;a href=&quot;https://kivy.org/docs/guide/android.html&quot;&gt; Kivy 的 Android 专题页面&lt;/a&gt; 中关于使用 Android API 的部分。&lt;/p&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：打包为 Android 系统可执行文件</summary></entry><entry><title type="html">kivy文档14</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A314/" rel="alternate" type="text/html" title="kivy文档14" /><published>2017-08-07T16:10:00+08:00</published><updated>2017-08-07T16:10:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A314</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A314/">&lt;h1 id=&quot;kivy中文编程指南kv-android-详细指南&quot;&gt;Kivy中文编程指南：KV Android 详细指南&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kivy.org/docs/guide/android.html&quot;&gt;英文原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在 Android 设备上，只要是支持 OpenGL ES 2.0 （至少为 Android 2.2 以及其后的版本），就基本都能运行 Kivy 应用程序。OpenGL ES 2.0 基本上是现代设备的标准了；根据谷歌的报道说，至少有 &lt;a href=&quot;https://developer.android.com/about/dashboards/index.html&quot;&gt;99.9% 的设备都是支持的&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;Kivy 的 APK 就是常规的 Android APP，和其他的 APP 一样可以四处发布，比如谷歌 Play 商店等等。在暂停或者重启的时候这些应用的行为也都很正常，下面要介绍道的是 Kivy APP 用到的 Android 服务和需要用到的大多数常规的 Java API。&lt;/p&gt;
+
+&lt;p&gt;下面的内容依次讲解了如何 &lt;a href=&quot;https://kivy.org/docs/guide/android.html#package-for-android&quot;&gt;针对 Android 平台打包 APP&lt;/a&gt;， &lt;a href=&quot;https://kivy.org/docs/guide/android.html#debug-android&quot;&gt;在设备上调试 APP&lt;/a&gt;，以及使用震动或者读取传感器等等  &lt;a href=&quot;https://kivy.org/docs/guide/android.html#using-android-apis&quot;&gt;Android API&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;针对-android-平台打包-app&quot;&gt;针对 Android 平台打包 APP&lt;a href=&quot;https://kivy.org/docs/guide/android.html#package-for-android&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Kivy 项目提供了针对 Android 平台打包 APP 所需的全部必备工具，可以构建单个的 APK 文件发布到谷歌 Play 市场之类的应用商店。详细内容可以参考&lt;a href=&quot;https://kivy.org/docs/guide/packaging-android.html#packaging-android&quot;&gt;针对 Android 打包应用程序的英文原版文档&lt;/a&gt;或者中文翻译版本：&lt;a href=&quot;http://blog.cycleuser.org/kivy-pack-android.html&quot;&gt;个人博客地址&lt;/a&gt;，&lt;a href=&quot;https://zhuanlan.zhihu.com/p/25571974&quot;&gt;知乎专栏地址&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;在-android-设备上调试-app&quot;&gt;在 Android 设备上调试 APP&lt;a href=&quot;https://kivy.org/docs/guide/android.html#debugging-your-application-on-the-android-platform&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;通过 Android Logcat 流，可以观察代码的常规输出（比如 stdout，stderr），也可以查看常规的 Kivy 日志。这需要使用 adb 来查看，adb 包含在 &lt;a href=&quot;http://developer.android.com/sdk/index.html&quot;&gt;Android SDK&lt;/a&gt; 内。这首先就要求你再设备上开启&lt;strong&gt;开发者模式&lt;/strong&gt;，然后启用 USB 调试功能来启用 adb，接着把设备连接到计算机，在终端中运行下面的命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;adb logcat
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样就能看到日志输出了，包括标准输出和出错信息（ stdout/stderr ）以及 Kivy 的日志。&lt;/p&gt;
+
+&lt;p&gt;如果你用 Buildozer 打包的 APP，那么有可能 adb 工具没有包含在你的 &lt;code class=&quot;highlighter-rouge&quot;&gt;$PATH&lt;/code&gt;  环境变量中，这样上面的命令就可能没有效果。这时候可以用下面的方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;buildozer android logcat
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面这样就是运行了 Buildozer 伴随安装的 adb 工具，或者还可以去&lt;code class=&quot;highlighter-rouge&quot;&gt;$HOME/.buildozer/android/platform&lt;/code&gt; 这个目录找到 Buildozer 伴随安装的 SDK。&lt;/p&gt;
+
+&lt;p&gt;或者还可以下载&lt;a href=&quot;https://play.google.com/store/apps/details?id=org.kivy.pygame&amp;amp;hl=en&quot;&gt;Kivy Launcher&lt;/a&gt;来运行和调试应用程序。如果用这种方法运行 Kivy 应用程序，可以在你的应用程序所在目录下找到一个名字为 &lt;code class=&quot;highlighter-rouge&quot;&gt;/.kivy/logs&lt;/code&gt; 的子目录，里面就是日志文件。&lt;/p&gt;
+
+&lt;h2 id=&quot;使用-android-api&quot;&gt;使用 Android API&lt;a href=&quot;https://kivy.org/docs/guide/android.html#using-android-apis&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;虽然 Kivy 是一个 Python 框架，Kivy 项目也还维护了一套用来调用常规 Java API 的工具，可以用来处理震动、传感器、发送短信或邮件等等。&lt;/p&gt;
+
+&lt;p&gt;对新用户来说，推荐阅读 &lt;a href=&quot;https://kivy.org/docs/guide/android.html#plyer&quot;&gt;Plyer&lt;/a&gt;。要想有更深入的使用或者调用一些目前没有封装的 API，可以直接使用 &lt;a href=&quot;https://kivy.org/docs/guide/android.html#pyjnius&quot;&gt;Pyjnius&lt;/a&gt;。Kivy 还内置了一个  &lt;a href=&quot;https://kivy.org/docs/guide/android.html#android-module&quot;&gt;Android 模块&lt;/a&gt; 来实现 Android 的一些基础功能。&lt;/p&gt;
+
+&lt;p&gt;在 &lt;a href=&quot;https://github.com/kivy/kivy/wiki#mobiles&quot;&gt;Kivy wiki&lt;/a&gt; 上可以找到用户提供的 Android 代码和样例。&lt;/p&gt;
+
+&lt;h3 id=&quot;plyer&quot;&gt;Plyer&lt;a href=&quot;https://kivy.org/docs/guide/android.html#plyer&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/kivy/plyer&quot;&gt;Plyer&lt;/a&gt; 是一个 Python 风格的，独立于平台的 API，用于使用各种平台上都普遍具有的功能，尤其是移动平台。其设计思路是你的应用可以简单地调用一个 Plyer 函数，例如给用户一个消息通知，然后 Ply会处理在不同的平台或者操作系统下分别如何把这件事完成。在 Plyer 的内部，在 Android 平台使用的是 Pyjnius，在 iOS 平台使用了 Pyobjus，在桌面平台又用了其他的特定 API。&lt;/p&gt;
+
+&lt;p&gt;例如，下面的代码就会让你的 Android 设备震动，或者当你在其他平台不恰当地使用的时候就会跑出一个 NotImplementError，例如在桌面平台等没有对应硬件的情况下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;from plyer import vibrator
+vibrator.vibrate(10)  # vibrate for 10 seconds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Plyer 支持的 API 越来越多了，可以在 &lt;a href=&quot;https://github.com/kivy/plyer&quot;&gt; Plyer GitHub 页面的 README 文件&lt;/a&gt;中查看完整的支持列表。&lt;/p&gt;
+
+&lt;h3 id=&quot;pyjnius&quot;&gt;Pyjnius&lt;a href=&quot;https://kivy.org/docs/guide/android.html#pyjnius&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Pyjnius 是一个 Python 模块，它允许你直接在 Python 中读取 Java 类，自动转换参数成正确的类型，还允许你把 Java 的运行结果转换给 Python。&lt;/p&gt;
+
+&lt;p&gt;Pyjnius 可以从 &lt;a href=&quot;https://github.com/kivy/pyjnius&quot;&gt;它的 GitHub 地址&lt;/a&gt;下载获得，并且有一份&lt;a href=&quot;http://pyjnius.readthedocs.org/en/latest/&quot;&gt;详细的文档&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;下面的代码是一个简单的小例子，展示了如何使用 Pyjnius 来读取常规的 Android 震动 API，就跟上面 Plyer 的代码效果一样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# 'autoclass' 接收一个Java 类，然后打包给 Python；
+from jnius import autoclass
+
+# Context 是 Android API 中一个常用的 Java 类；
+Context = autoclass('android.content.Context')
+
+# PythonActivity 是在 python-for-android 内由 Kivy bootstrap app 提供的一个类；
+PythonActivity = autoclass('org.renpy.android.PythonActivity')
+
+# 这里的 PythonActivity 存储了一个指向当前运行的 Activity 的引用；
+# 我们要用它来读取 震动服务
+activity = PythonActivity.mActivity
+
+# 底下的这个振动器代码和 Java 里面基本一样的；
+vibrator = activity.getSystemService(Context.VIBRATOR_SERVICE)
+
+vibrator.vibrate(10000)  # 这个值是毫秒为单位，这里设置的 10 000 毫秒相当于 10 秒。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的代码直接用了 Java API 函数来调用了振动器，Pyjnius 自动把 API 转换出给了 Python 代码使用，而又把我们的调用都回传给了 Java。相比 Plyer 的实现，这种方法更繁琐一些，也更像 Java 的风格，在这个例子中没有什么优势。不过 Plyer 也并没有对 Pyjnius 的所有 API 都进行了封装。&lt;/p&gt;
+
+&lt;p&gt;Pyjnius 还有一个强大的功能就是实现 Java 接口，这在封装某些 API 的时候非常重要，不过这里就不详细讲这么多了，有兴趣的话去&lt;a href=&quot;http://pyjnius.readthedocs.org/en/latest/&quot;&gt; Pyjnius 的官方文档&lt;/a&gt;来了解更深层次内容吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;android-模块&quot;&gt;Android 模块&lt;a href=&quot;https://kivy.org/docs/guide/android.html#android-module&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Python-for-android 项目中包含了一个 Python 模块（实际上是用 cython 封装的 Java）来读取一系列有限的 Android API。这个很大程度上已经被上面的 Pyjnius 和 Pyler 取代了，因为后者更加灵活方便，不过有时候可能这个模块还有些用处。所有可用的文档都可以在 &lt;a href=&quot;http://python-for-android.readthedocs.org/en/latest/&quot;&gt;python-for-android 官方文档&lt;/a&gt;中查阅到。&lt;/p&gt;
+
+&lt;p&gt;这其中就包括了计费/应用内购买的代码，以及创建或者读取某些 Android 服务的代码，其他工具目前还没能提供这方面的功能。&lt;/p&gt;
+
+&lt;h2 id=&quot;项目状态以及通过测试的设备&quot;&gt;项目状态以及通过测试的设备&lt;a href=&quot;https://kivy.org/docs/guide/android.html#status-of-the-project-and-tested-devices&quot; title=&quot;Permalink to this headline&quot;&gt;¶&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;前面的章节讲述了 Kivy 在 Android 系统的构建工具，以及他们各自的缺陷还有就是已知能够使用的设备。&lt;/p&gt;
+
+&lt;p&gt;Android 工具链现在挺稳定的，一定程度上基本能适用于各种设备了；Kivy 的最低要求是 OpenGL ES 2.0 以及 Android 2.2。这现在绝对是覆盖面很广泛了— Kivy 已经都可以在 Android 智能手表上面运行了。&lt;/p&gt;
+
+&lt;p&gt;当前在技术上存在的一个限制就是 Android 构建工具只能生成 ARM 平台的 APK 文件，这些文件不能运行于 X86 处理器的 Android 设备上，好在目前 这类 X86 的 Android 设备还不是主流。不过对 X86 处理器的 Android 设备的支持是后续要添加的。&lt;/p&gt;
+
+&lt;p&gt;因为目前 Kivy 基本上能在绝大多数 Android 设备上面良好运行了，所以之前的那个设备支持列表就关荣退休了—只要满足上面的要求的 Android 设备，基本就都能够使用。&lt;/p&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：KV Android 详细指南</summary></entry><entry><title type="html">kivy文档13</title><link href="http://localhost:4000/kivy%E6%96%87%E6%A1%A313/" rel="alternate" type="text/html" title="kivy文档13" /><published>2017-08-07T16:09:00+08:00</published><updated>2017-08-07T16:09:00+08:00</updated><id>http://localhost:4000/kivy%E6%96%87%E6%A1%A313</id><content type="html" xml:base="http://localhost:4000/kivy%E6%96%87%E6%A1%A313/">&lt;h1 id=&quot;kivy中文编程指南打包为-windows-系统可执行文件&quot;&gt;Kivy中文编程指南：打包为 Windows 系统可执行文件&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kivy.org/docs/guide/packaging-windows.html&quot;&gt;英文原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;特别注意&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;本文档仅适用于&lt;code class=&quot;highlighter-rouge&quot;&gt;1.9.1&lt;/code&gt;以及更新版本的 Kivy。&lt;/p&gt;
+
+&lt;p&gt;要打包 Windows 平台的应用程序，&lt;strong&gt;只能在 Windows 操作系统下完成&lt;/strong&gt;。另外一定要注意，本文后续内容中都是在 &lt;strong&gt;wheels&lt;/strong&gt; 安装的 Kivy 下通过测试的，如果你用其他安装方法，参考结尾部分吧。&lt;/p&gt;
+
+&lt;p&gt;打包出来的程序是 32 位还是 64 位&lt;strong&gt;只取决于&lt;/strong&gt;你打包使用的 Python，而不取决于 Windows 操作系统的版本。&lt;/p&gt;
+
+&lt;h2 id=&quot;依赖包&quot;&gt;依赖包&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;最新版本&lt;/strong&gt;的Kivy （参考安装指南 &lt;a href=&quot;https://kivy.org/docs/installation/installation-windows.html#installation-windows&quot;&gt;Installation on Windows&lt;/a&gt;）&lt;/li&gt;
+  &lt;li&gt;PyInstaller 3.1或者更新的版本 (&lt;code class=&quot;highlighter-rouge&quot;&gt;pip install --upgrade pyinstaller&lt;/code&gt;)。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（译者注：PyInstaller 目前（2017年03月01日）还不支持 Python 3.6 哦~，好多朋友都坑到这里了，所以推荐使用 3.5.2。）&lt;/p&gt;
+
+&lt;h1 id=&quot;pyinstaller-的基本用法&quot;&gt;PyInstaller 的基本用法&lt;/h1&gt;
+
+&lt;p&gt;本节内容是要让 PyInstaller（3.1或者更新版本）包含 Kivy 的 Hook（钩子， Windows 消息处理机制的一个平台）。要覆盖默认的 Hook ，下面的样例代码需要稍微修改一下。参考 &lt;a href=&quot;https://kivy.org/docs/guide/packaging-windows.html#overwrite-win-hook&quot;&gt; 覆盖默认 Hook&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;打包一个简单的-app&quot;&gt;打包一个简单的 APP&lt;/h2&gt;
+
+&lt;p&gt;这个例子里面，咱们要把样例中的 &lt;strong&gt;touchtracer&lt;/strong&gt; 这个项目进行打包，并且添加一个自定义图标。这里 Kivy 的样例目录要注意，如果是用 wheels 安装的，在 &lt;code class=&quot;highlighter-rouge&quot;&gt;python\\share\\kivy-examples&lt;/code&gt; 这个位置，如果从 github 上面下载的，就在 &lt;code class=&quot;highlighter-rouge&quot;&gt;kivy\\examples&lt;/code&gt; 这个位置。为了避免混乱，这里就用 &lt;code class=&quot;highlighter-rouge&quot;&gt;examples-path&lt;/code&gt; 来指代这个目录的完整路径。然后 touchtracer 这个样例在 &lt;code class=&quot;highlighter-rouge&quot;&gt;examples-path\\demo\\touchtracer&lt;/code&gt; 这个文件夹里，代码文件是 &lt;code class=&quot;highlighter-rouge&quot;&gt;main.py&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;###1 确保 Python
+打开命令行确保 Python 包含在环境变量内，也就是说，输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; 会出现解释器提示符。（译者注：cmd 或者 powershell 都可以，更推荐用后者，语法和 Bash 比较相似。）&lt;/p&gt;
+
+&lt;p&gt;###2 创建文件夹
+在要打包 APP 的位置创建一个文件夹。比如咱们这次就创建一个名字为 &lt;code class=&quot;highlighter-rouge&quot;&gt;TouchApp&lt;/code&gt; 的文件夹，然后用类似 &lt;code class=&quot;highlighter-rouge&quot;&gt;cd TouchApp&lt;/code&gt; 这样的命令&lt;a href=&quot;http://www.computerhope.com/cdhlp.htm&quot;&gt;进入到这个新建目录内&lt;/a&gt;。之后输入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;python -m PyInstaller --name touchtracer examples-path\demo\touchtracer\main.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还可以增加一个 icon.ico 文件到这个应用目录，这样就可以让程序有自己的图标了。如果没有自己的 .ico 图标文件，可以把你的 icon.png 文件转换成 ico，用这个 &lt;a href=&quot;http://www.convertico.com/&quot;&gt;ConvertICO&lt;/a&gt; 在线的应用就可以了。保存 icon.ico 到 touchtracer 这个目录里面，然后输入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;python -m PyInstaller --name touchtracer --icon examples-path\demo\touchtracer\icon.ico examples-path\demo\touchtracer\main.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多其它选项，请参考  &lt;a href=&quot;http://pythonhosted.org/PyInstaller/&quot;&gt;PyInstaller 官方说明&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;###3 编辑配置文件
+在 &lt;code class=&quot;highlighter-rouge&quot;&gt;TouchApp&lt;/code&gt; 里面会有一个配置文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;touchtracer.spec&lt;/code&gt;。咱们需要编辑修改一下这个文件，在里面增加一些依赖包的 hook，这样才能保证正确创建 exe。接下来就是打开编辑器了，爱用啥都行，然后在配置文件的开头添加上下面这句：（这里是假设用的是 sdl2， 现在 Kivy 默认使用这个）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;from kivy.deps import sdl2, glew
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后，用搜索，找到 &lt;code class=&quot;highlighter-rouge&quot;&gt;COLLECT()&lt;/code&gt; 这个位置，添加上 touchtracer 用到的其他文件（touchtracer.kv, particle.png,等等）：修改示例中的行位置，添加一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tree()&lt;/code&gt; 对象，例如这里的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tree('examples-path\\demo\\touchtracer\\')&lt;/code&gt;。这个 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tree()&lt;/code&gt; 会搜索在当前这个 touchtracer 文件夹的所有文件，并添加到你最终打包的程序中。&lt;/p&gt;
+
+&lt;p&gt;要添加额外的依赖包，就要在 COLLECT 的&lt;strong&gt;第一个关键词参数的前面&lt;/strong&gt;，为每一个依赖包的路径添加一个 Tree 对象。例如下面的就是以 &lt;code class=&quot;highlighter-rouge&quot;&gt;*[Tree(p) for p in(sdl2.dep_bins + glew.dep_bins)]&lt;/code&gt; 为例：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;coll = COLLECT(exe, Tree('examples-path\\demo\\touchtracer\\'),
+                   a.binaries,
+                   a.zipfiles,
+                   a.datas,
+                   *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
+                   strip=False,
+                   upx=True,
+                   name='touchtracer')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###4 进行构建
+接下来就用 &lt;code class=&quot;highlighter-rouge&quot;&gt;TouchApp&lt;/code&gt; 里面这个 spec 配置文件来进行构建了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;python -m PyInstaller touchtracer.spec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###5 生成位置
+编译好的包会在 TouchApp\dist\touchtracer 这个目录。&lt;/p&gt;
+
+&lt;h2 id=&quot;使用-gstreamer-创建一个视频应用&quot;&gt;使用 gstreamer 创建一个视频应用&lt;/h2&gt;
+
+&lt;p&gt;接下来就是修改一下上面的这个样例了，这回要打包的 APP 是一个使用了 gstreamer 的视频应用。咱们这回用样例中的视频播放器的例子 &lt;code class=&quot;highlighter-rouge&quot;&gt;videoplayer&lt;/code&gt;，代码在&lt;code class=&quot;highlighter-rouge&quot;&gt;examples-path\widgets\videoplayer.py&lt;/code&gt;。另外创建一个名字为 &lt;code class=&quot;highlighter-rouge&quot;&gt;VideoPlayer&lt;/code&gt; 的文件夹，然后在命令行中进入到这个文件夹，之后操作如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;python -m PyInstaller --name gstvideo examples-path\widgets\videoplayer.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这回要修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;gstvideo.spec&lt;/code&gt; 这个文件。跟上文的方法类似，也就是把 gstreamer 的依赖包放进去：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;from kivy.deps import sdl2, glew, gstreamer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后就是增加 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tree()&lt;/code&gt; 来包含好要用的视频文件，&lt;code class=&quot;highlighter-rouge&quot;&gt;Tree('examples-path\\widgets')&lt;/code&gt; 和 gstreamer 依赖都得弄好，大概如下所示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;coll = COLLECT(exe, Tree('examples-path\\widgets'),
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins + gstreamer.dep_bins)],
+               strip=False,
+               upx=True,
+               name='gstvideo')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接下来就是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;VideoPlayer&lt;/code&gt; 文件夹中的这个 spec 配置文件来进行构建了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;python -m PyInstaller gstvideo.spec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后你就能在 &lt;code class=&quot;highlighter-rouge&quot;&gt;VideoPlayer\dist\gstvideo&lt;/code&gt; 这个位置找到 gstvideo.exe 这个文件了，运行一下就能播放视频了。&lt;/p&gt;
+
+&lt;h4 id=&quot;特别注意-1&quot;&gt;特别注意&lt;/h4&gt;
+
+&lt;p&gt;如果你用了 Pygame，或者你打包的程序需要 Pygame，那在你的 spec 文件里面就还得添加如下的代码，在 import 导入语句的后面添加（详情参考 &lt;a href=&quot;github.com/kivy/kivy/issues&quot;&gt;kivy issue #1638&lt;/a&gt;）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def getResource(identifier, *args, **kwargs):
+    if identifier == 'pygame_icon.tiff':
+        raise IOError()
+    return _original_getResource(identifier, *args, **kwargs)
+
+import pygame.pkgdata
+_original_getResource = pygame.pkgdata.getResource
+pygame.pkgdata.getResource = getResource
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;覆盖默认-hook&quot;&gt;覆盖默认 Hook&lt;/h1&gt;
+
+&lt;h2 id=&quot;包含移除视频音频以及缩小应用体积&quot;&gt;包含/移除视频音频以及缩小应用体积&lt;/h2&gt;
+
+&lt;p&gt;PyInstallers 默认会将 Kivy 用到的所有核心模块和这些模块的依赖包，&lt;strong&gt;全部&lt;/strong&gt;都添加成 hook，比如音频，视频，拼写等等（然而 gstreamer 的 dll 还是需要你用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tree()&lt;/code&gt; 来手动添加，参考上文）。有的 Hook 并没有用到或者想要缩小应用的体积，就都可以尝试着移除一些模块，比如如果没有用到音频和视频，就可以用自定义的 Hook了。&lt;/p&gt;
+
+&lt;p&gt;Kivy 在&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.hookspath&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.hookspath&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hookspath()&lt;/code&gt;&lt;/a&gt; 提供了可选的 Hook。&lt;/p&gt;
+
+&lt;p&gt;此外，当且仅当 PyInstaller 没有默认的 hook 的时候，就必须得提供一个&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.runtime_hooks&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.runtime_hooks&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;runtime_hooks()&lt;/code&gt;&lt;/a&gt;。 覆盖 hook的时候，这个&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.runtime_hooks&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.runtime_hooks&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;runtime_hooks()&lt;/code&gt;&lt;/a&gt; 不需要覆盖。&lt;/p&gt;
+
+&lt;p&gt;可选自定义的&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.hookspath&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.hookspath&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hookspath()&lt;/code&gt;&lt;/a&gt; hook不包含任何 Kivy 的 provider。要添加电话，就要用&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.get_deps_minimal&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.get_deps_minimal&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get_deps_minimal()&lt;/code&gt;&lt;/a&gt; 或者 &lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.get_deps_all&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.get_deps_all&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get_deps_all()&lt;/code&gt;&lt;/a&gt;来添加。可以看看相关的文档以及&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#module-kivy.tools.packaging.pyinstaller_hooks&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pyinstaller_hooks&lt;/code&gt;&lt;/a&gt;来了解更多信息。不过&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.get_deps_all&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.get_deps_all&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get_deps_all()&lt;/code&gt;&lt;/a&gt;跟默认的 hook一样，都是把所有 provider 都添加进去；而&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.get_deps_minimal&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.get_deps_minimal&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get_deps_minimal()&lt;/code&gt;&lt;/a&gt; 只添加在应用程序运行的时候加载了的内容。&lt;/p&gt;
+
+&lt;p&gt;这两个方法都提供了一个 Kivy 隐藏导入列表，以及排除的导入，可以传递出来给 &lt;code class=&quot;highlighter-rouge&quot;&gt;Analysis&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;还可以生成一个自定义 hook，一个个列出每一个 kivy 的 provider 模块，然后把其中用不上的就注释掉就行了。&lt;/p&gt;
+
+&lt;p&gt;参考 &lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#module-kivy.tools.packaging.pyinstaller_hooks&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pyinstaller_hooks&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;要在上面的例子中使用自定义 hook，要按照下面给出的范例来修改，以&lt;code class=&quot;highlighter-rouge&quot;&gt;hookspath()&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;runtime_hooks&lt;/code&gt;（必要情况下），然后是&lt;code class=&quot;highlighter-rouge&quot;&gt;**get_deps_minimal()&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;**get_deps_all()&lt;/code&gt;来制定好各种 provider。&lt;/p&gt;
+
+&lt;p&gt;例如，增加了导入语句 &lt;code class=&quot;highlighter-rouge&quot;&gt;from kivy.tools.packaging.pyinstaller_hooks import  get_deps_minimal, get_deps_all, hookspath,runtime_hooks&lt;/code&gt; ，然后按照如下方式修改&lt;code class=&quot;highlighter-rouge&quot;&gt;Analysis&lt;/code&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;a = Analysis(['examples-path\\demo\\touchtracer\\main.py'],
+             ...
+             hookspath=hookspath(),
+             runtime_hooks=runtime_hooks(),
+             ...
+             **get_deps_all())
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面这个实际上跟默认 hook 一样包含全部了。或者可以：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;a = Analysis(['examples-path\\demo\\touchtracer\\main.py'],
+             ...
+             hookspath=hookspath(),
+             runtime_hooks=runtime_hooks(),
+             ...
+             **get_deps_minimal(video=None, audio=None))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样就是移除了声音视频的 provider，这就只加载了用到的核心模块了。&lt;/p&gt;
+
+&lt;p&gt;关键就是要提供自定义的 &lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.hookspath&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.hookspath&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hookspath()&lt;/code&gt;&lt;/a&gt;，这个默认并不会列出全部的 kivy provider，而是手动的来设定隐藏导入的模块和需要用的 provider，通过&lt;a href=&quot;https://kivy.org/docs/api-kivy.tools.packaging.pyinstaller_hooks.html#kivy.tools.packaging.pyinstaller_hooks.get_deps_minimal&quot; title=&quot;kivy.tools.packaging.pyinstaller_hooks.get_deps_minimal&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get_deps_minimal()&lt;/code&gt;&lt;/a&gt;来移除用不上的模块 (比如上面的是声音影像)。&lt;/p&gt;
+
+&lt;h2 id=&quot;其他安装方式&quot;&gt;其他安装方式&lt;/h2&gt;
+
+&lt;p&gt;前面的这些例子都用到了 &lt;code class=&quot;highlighter-rouge&quot;&gt;*[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins + gstreamer.dep_bins)],&lt;/code&gt; 这样的语句来保证 PyInstaller 把所有依赖包用到的 dll 都添加进去。如果不是用 wheel 的方法安装的 Kivy，那么这些命令就很可能失败，比如 &lt;code class=&quot;highlighter-rouge&quot;&gt;kivy.deps.sdl2&lt;/code&gt; 可能就无法导入。这时候，你就必须得找到这些 dll 文件的位置，然后手动地一个个传递给 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tree&lt;/code&gt; 类，传递方法和上面说的基本差不多了。&lt;/p&gt;
+
+&lt;p&gt;（译者注：Windows 平台还是推荐用 wheel 二进制安装，省心多了。）&lt;/p&gt;</content><author><name></name></author><category term="kivy" /><summary type="html">Kivy中文编程指南：打包为 Windows 系统可执行文件</summary></entry></feed>

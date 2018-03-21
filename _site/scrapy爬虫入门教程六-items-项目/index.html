@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>Scrapy爬虫入门教程六 Items（项目） – 朱智博在Github上的Blog</title> <meta name="description" content="朱智博，朱智博的博客，zhuio,zhuio.github.io,"> <meta name="keywords" content="Scrapy"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="http://localhost:4000/assets/img/logo.png"> <meta name="twitter:title" content="Scrapy爬虫入门教程六 Items（项目）"> <meta name="twitter:description" content="Scrapy爬虫入门教程六 Items（项目）"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="Scrapy爬虫入门教程六 Items（项目）"> <meta property="og:description" content="Scrapy爬虫入门教程六 Items（项目）"> <meta property="og:url" content="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/"> <meta property="og:site_name" content="朱智博在Github上的Blog"> <meta property="og:image" content="http://localhost:4000/assets/img/logo.png"> <link rel="canonical" href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/"> <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="朱智博在Github上的Blog Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"> <!-- JS --> <script src="http://localhost:4000/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="http://localhost:4000/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png"> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(http://localhost:4000/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <li><a href="http://localhost:4000/">Home</a></li> <li> <a href="#">About</a> <ul class="dl-submenu"> <li> <img src="http://localhost:4000/assets/img/logo.png" alt="朱智博在Github上的Blog photo" class="author-photo"> <h4>朱智博在Github上的Blog</h4> <p>朱智博，朱智博的博客，zhuio,zhuio.github.io,</p> </li> <li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:185560083@qq.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/zhuio" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> <li> <a href="http://www.weibo.com/EDM_LOVER" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <li> <a href="#">Posts</a> <ul class="dl-submenu"> <li><a href="http://localhost:4000/posts/">All Posts</a></li> <li><a href="http://localhost:4000/tags/">All Tags</a></li> </ul> </li> <li><a href="http://localhost:4000/projects/">Projects</a></li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>Scrapy爬虫入门教程六 Items（项目）</h1> <h4>09 Apr 2017</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~2 minutes </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="http://localhost:4000/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <h1 id="scrapy爬虫入门教程六-items项目">Scrapy爬虫入门教程六 Items（项目）</h1> <p><strong>开发环境：</strong> <code class="highlighter-rouge">Python 3.6.0 版本</code> （当前最新） <code class="highlighter-rouge">Scrapy 1.3.2 版本</code> （当前最新）</p> <h1 id="items">Items</h1> <p>主要目标是从非结构化来源（通常是网页）提取结构化数据。Scrapy爬虫可以将提取的数据作为Python语句返回。虽然方便和熟悉，Python dicts缺乏结构：很容易在字段名称中输入错误或返回不一致的数据，特别是在与许多爬虫的大项目。</p> <p>要定义公共输出数据格式，Scrapy提供Item类。 Item对象是用于收集所抓取的数据的简单容器。它们提供了一个<a href="https://docs.python.org/2/library/stdtypes.html#dict">类似字典</a>的 API，具有用于声明其可用字段的方便的语法。</p> <p>各种Scrapy组件使用项目提供的额外信息：导出器查看声明的字段以计算要导出的列，序列化可以使用项字段元数据trackref 定制，跟踪项实例以帮助查找内存泄漏（请参阅使用<a href="http://scrapy.readthedocs.io/en/latest/topics/leaks.html#topics-leaks-trackrefs">trackref</a>调试内存泄漏）等。</p> <h2 id="声明项目">声明项目</h2> <p>使用简单的类定义语法和Field 对象来声明项目。这里是一个例子：</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+
+class Product(scrapy.Item):
+    name = scrapy.Field()
+    price = scrapy.Field()
+    stock = scrapy.Field()
+    last_updated = scrapy.Field(serializer=str)
+</code></pre></div> <p><strong>注意</strong></p> <blockquote> <p>熟悉Django的人会注意到Scrapy Items被声明为类似于Django Models，只是Scrapy Items比较简单，因为没有不同字段类型的概念。</p> </blockquote> <h2 id="项目字段">项目字段</h2> <p><code class="highlighter-rouge">Field</code>对象用于为每个字段指定元数据。例如，<code class="highlighter-rouge">last_updated</code>上面示例中所示的字段的序列化函数。</p> <p>您可以为每个字段指定任何种类的元数据。对Field对象接受的值没有限制。出于同样的原因，没有所有可用元数据键的参考列表。Field对象中定义的每个键可以由不同的组件使用，并且只有那些组件知道它。您也可以定义和使用Field项目中的任何其他 键，为您自己的需要。Field对象的主要目标 是提供一种在一个地方定义所有字段元数据的方法。通常，那些行为取决于每个字段的组件使用某些字段键来配置该行为。您必须参考他们的文档，以查看每个组件使用哪些元数据键。</p> <p>重要的是要注意，Field用于声明项目的对象不会被分配为类属性。相反，可以通过<code class="highlighter-rouge">Item.fields</code>属性访问它们。</p> <h3 id="使用项目">使用项目</h3> <p>下面是使用上面声明的Product项目对项目执行的常见任务的一些示例 。你会注意到API非常类似于dict API。</p> <h4 id="创建项目">创建项目</h4> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; product = Product(name='Desktop PC', price=1000)
+&gt;&gt;&gt; print product
+Product(name='Desktop PC', price=1000)
+</code></pre></div> <h4 id="获取字段值">获取字段值</h4> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; product['name']
+Desktop PC
+&gt;&gt;&gt; product.get('name')
+Desktop PC
+
+&gt;&gt;&gt; product['price']
+1000
+
+&gt;&gt;&gt; product['last_updated']
+Traceback (most recent call last):
+    ...
+KeyError: 'last_updated'
+
+&gt;&gt;&gt; product.get('last_updated', 'not set')
+not set
+
+&gt;&gt;&gt; product['lala'] # getting unknown field
+Traceback (most recent call last):
+    ...
+KeyError: 'lala'
+
+&gt;&gt;&gt; product.get('lala', 'unknown field')
+'unknown field'
+
+&gt;&gt;&gt; 'name' in product  # is name field populated?
+True
+
+&gt;&gt;&gt; 'last_updated' in product  # is last_updated populated?
+False
+
+&gt;&gt;&gt; 'last_updated' in product.fields  # is last_updated a declared field?
+True
+
+&gt;&gt;&gt; 'lala' in product.fields  # is lala a declared field?
+False
+</code></pre></div> <h4 id="设置字段值">设置字段值</h4> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; product [ 'last_updated' ]  =  'today'
+&gt;&gt;&gt; product [ 'last_updated' ]
+today
+
+&gt;&gt;&gt; product [ 'lala' ]  =  'test'  ＃设置未知字段
+Traceback（最近调用最后一次）：
+    ...
+KeyError：'产品不支持字段：lala'
+</code></pre></div> <h4 id="访问所有填充值">访问所有填充值</h4> <p>要访问所有填充值，只需使用典型的dict API：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; product.keys()
+['price', 'name']
+
+&gt;&gt;&gt; product.items()
+[('price', 1000), ('name', 'Desktop PC')]
+</code></pre></div> <h4 id="其他常见任务">其他常见任务</h4> <p>复制项目：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; product2 = Product(product)
+&gt;&gt;&gt; print product2
+Product(name='Desktop PC', price=1000)
+
+&gt;&gt;&gt; product3 = product2.copy()
+&gt;&gt;&gt; print product3
+Product(name='Desktop PC', price=1000)
+</code></pre></div> <h4 id="从项目创建词典">从项目创建词典：</h4> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; dict(product) # create a dict from all populated values
+{'price': 1000, 'name': 'Desktop PC'}
+</code></pre></div> <h4 id="从短片创建项目">从短片创建项目：</h4> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; Product({'name': 'Laptop PC', 'price': 1500})
+Product(price=1500, name='Laptop PC')
+
+&gt;&gt;&gt; Product({'name': 'Laptop PC', 'lala': 1500}) # warning: unknown field in dict
+Traceback (most recent call last):
+    ...
+KeyError: 'Product does not support field: lala'
+</code></pre></div> <h3 id="扩展项目">扩展项目</h3> <p>您可以通过声明原始项的子类来扩展项（以添加更多字段或更改某些字段的某些元数据）。</p> <p>例如：</p> <div class="highlighter-rouge"><pre class="highlight"><code>class DiscountedProduct(Product):
+    discount_percent = scrapy.Field(serializer=str)
+    discount_expiration_date = scrapy.Field()
+</code></pre></div> <p>您还可以通过使用先前的字段元数据并附加更多值或更改现有值来扩展字段元数据，如下所示：</p> <div class="highlighter-rouge"><pre class="highlight"><code>class SpecificProduct(Product):
+    name = scrapy.Field(Product.fields['name'], serializer=my_serializer)
+</code></pre></div> <p>添加（或替换）字段的serializer元数据键name，保留所有以前存在的元数据值。</p> <h4 id="项目对象">项目对象</h4> <p><code class="highlighter-rouge">class scrapy.item.Item([arg])</code> 返回一个可以从给定参数初始化的新项目。</p> <p>项目复制标准<a href="https://docs.python.org/2/library/stdtypes.html#dict">dict API</a>，包括其构造函数。Items提供的唯一附加属性是：</p> <p><code class="highlighter-rouge">fields</code> 包含字典中的所有声明的字段为这个项目，不仅是那些填充。键是字段名称，值是<code class="highlighter-rouge">Field</code>在<a href="http://scrapy.readthedocs.io/en/latest/topics/items.html#topics-items-declaring">项目声明中</a>使用的 对象。</p> <h4 id="字段对象">字段对象</h4> <p><code class="highlighter-rouge">class scrapy.item.Field([arg])</code> <code class="highlighter-rouge">Field</code>类只是一个别名内置字典类和不提供任何额外的功能或属性。换句话说， <code class="highlighter-rouge">Field</code>对象是普通的<code class="highlighter-rouge">Python</code>代码。单独的类用于支持 基于类属性的项声明语法。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="http://localhost:4000/tags/#Scrapy" title="Pages tagged Scrapy" class="tag"><span class="term">Scrapy</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Share</span> </a> <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AD-items-%E9%A1%B9%E7%9B%AE/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <h101> <!-- 多说评论框 start --> <div class="ds-thread" data-thread-key="" data-title="Scrapy爬虫入门教程六 Items（项目）" data-url="http://localhost:4000"></div> <!-- 多说评论框 end --> <!-- 多说公共JS代码 start (一个网页只需插入一次) --> <script type="text/javascript"> var duoshuoQuery = {short_name:"zhuio"}; (function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true; ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds); })(); </script> <!-- 多说公共JS代码 end --> </h101> </header> <!-- JS --> <script src="http://localhost:4000/assets/js/jquery-1.12.0.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.dlmenu.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.goup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.magnific-popup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.fitvid.min.js"></script> <script src="http://localhost:4000/assets/js/scripts.js"></script> <script type="text/javascript"> var disqus_shortname = 'zhuio-github-io'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> <!-- MathJax --> <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> </body> </html>

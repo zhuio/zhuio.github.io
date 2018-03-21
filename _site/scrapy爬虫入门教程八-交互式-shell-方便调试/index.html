@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>Scrapy爬虫入门教程八 交互式 shell 方便调试 – 朱智博在Github上的Blog</title> <meta name="description" content="朱智博，朱智博的博客，zhuio,zhuio.github.io,"> <meta name="keywords" content="Scrapy"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="http://localhost:4000/assets/img/logo.png"> <meta name="twitter:title" content="Scrapy爬虫入门教程八 交互式 shell 方便调试"> <meta name="twitter:description" content="Scrapy爬虫入门教程八 交互式 shell 方便调试"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="Scrapy爬虫入门教程八 交互式 shell 方便调试"> <meta property="og:description" content="Scrapy爬虫入门教程八 交互式 shell 方便调试"> <meta property="og:url" content="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/"> <meta property="og:site_name" content="朱智博在Github上的Blog"> <meta property="og:image" content="http://localhost:4000/assets/img/logo.png"> <link rel="canonical" href="http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/"> <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="朱智博在Github上的Blog Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"> <!-- JS --> <script src="http://localhost:4000/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="http://localhost:4000/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png"> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(http://localhost:4000/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <li><a href="http://localhost:4000/">Home</a></li> <li> <a href="#">About</a> <ul class="dl-submenu"> <li> <img src="http://localhost:4000/assets/img/logo.png" alt="朱智博在Github上的Blog photo" class="author-photo"> <h4>朱智博在Github上的Blog</h4> <p>朱智博，朱智博的博客，zhuio,zhuio.github.io,</p> </li> <li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:185560083@qq.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/zhuio" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> <li> <a href="http://www.weibo.com/EDM_LOVER" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <li> <a href="#">Posts</a> <ul class="dl-submenu"> <li><a href="http://localhost:4000/posts/">All Posts</a></li> <li><a href="http://localhost:4000/tags/">All Tags</a></li> </ul> </li> <li><a href="http://localhost:4000/projects/">Projects</a></li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>Scrapy爬虫入门教程八 交互式 shell 方便调试</h1> <h4>09 Apr 2017</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~2 minutes </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="http://localhost:4000/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <h1 id="scrapy爬虫入门教程八-交互式-shell-方便调试">Scrapy爬虫入门教程八 交互式 shell 方便调试</h1> <p><strong>开发环境：</strong> <code class="highlighter-rouge">Python 3.6.0 版本</code> （当前最新） <code class="highlighter-rouge">Scrapy 1.3.2 版本</code> （当前最新）</p> <h1 id="scrapy-shell">Scrapy shell</h1> <p>Scrapy shell是一个交互式shell，您可以在此快速尝试和调试您的抓取代码，而无需运行爬虫程序。它用于测试数据提取代码，但实际上可以使用它来测试任何类型的代码，因为它也是一个常规的Python shell。</p> <p>shell用于测试XPath或CSS表达式，并查看它们如何工作，以及他们从您要尝试抓取的网页中提取的数据。它允许您在编写爬虫时交互式测试表达式，而无需运行爬虫来测试每个更改。</p> <p>一旦你熟悉了Scrapy shell，你会发现它是开发和调试你的爬虫的一个非常宝贵的工具。</p> <h2 id="配置shell">配置shell</h2> <p>如果你安装了<a href="http://ipython.org/">IPython</a>，Scrapy shell会使用它（而不是标准的Python控制台）。该IPython的控制台功能更强大，并提供智能自动完成和彩色输出，等等。</p> <p>我们强烈建议您安装IPython，特别是如果你正在使用Unix系统（IPython擅长）。有关 详细信息，请参阅<a href="http://ipython.org/install.html">IPython安装指南</a>。</p> <p>Scrapy还支持<a href="http://www.bpython-interpreter.org/">bpython</a>，并且将尝试在IPython 不可用的地方使用它。</p> <p>通过scrapy的设置，您可以配置为使用中的任何一个 <code class="highlighter-rouge">ipython</code>，<code class="highlighter-rouge">bpython</code>或标准<code class="highlighter-rouge">python</code>外壳，安装无论哪个。这是通过设置<code class="highlighter-rouge">SCRAPY_PYTHON_SHELL</code>环境变量来完成的; 或通过在scrapy.cfg中定义它：</p> <div class="highlighter-rouge"><pre class="highlight"><code>[settings]
+shell = bpython
+</code></pre></div> <h2 id="启动shell">启动shell</h2> <p>要启动Scrapy shell，可以使用如下shell命令：</p> <div class="highlighter-rouge"><pre class="highlight"><code>scrapy shell &lt;url&gt;
+</code></pre></div> <p>其中，<url>是您要抓取的网址。</url></p> <p>shell也适用于本地文件。如果你想玩一个网页的本地副本，这可以很方便。shell了解本地文件的以下语法：</p> <div class="highlighter-rouge"><pre class="highlight"><code># UNIX-style
+scrapy shell ./path/to/file.html
+scrapy shell ../other/path/to/file.html
+scrapy shell /absolute/path/to/file.html
+
+# File URI
+scrapy shell file:///absolute/path/to/file.html
+</code></pre></div> <p><strong>注意</strong></p> <blockquote> <p>当使用相对文件路径时，是显式的，并在它们前面./（或../相关时）。 将不会像一个人所期望的那样工作（这是设计，而不是一个错误）。scrapy shell index.html 因为shell喜欢文件URI上的HTTP URL，并且index.html在语法上类似example.com， shell会将其视为index.html域名并触发DNS查找错误：</p> </blockquote> <div class="highlighter-rouge"><pre class="highlight"><code>$ scrapy shell index.html
+[ ... scrapy shell starts ... ]
+[ ... traceback ... ]
+twisted.internet.error.DNSLookupError: DNS lookup failed:
+address 'index.html' not found: [Errno -5] No address associated with hostname.
+</code></pre></div> <p>shell将不会预先测试index.html 当前目录中是否存在调用的文件。再次，明确。</p> <h2 id="使用shell">使用shell</h2> <p>Scrapy shell只是一个普通的Python控制台（或IPython控制台，如果你有它），为方便起见，它提供了一些额外的快捷方式功能。</p> <h3 id="可用快捷键">可用快捷键</h3> <ul> <li>
+<code class="highlighter-rouge">shelp()</code> - 打印有可用对象和快捷方式列表的帮助 *<code class="highlighter-rouge">fetch(url[, redirect=True])</code> - 从给定的URL获取新的响应，并相应地更新所有相关对象。你可以选择要求HTTP 3xx重定向，不要通过redirect=False</li> <li>
+<code class="highlighter-rouge">fetch(request)</code> - 从给定请求获取新响应，并相应地更新所有相关对象。</li> <li>
+<code class="highlighter-rouge">view(response)</code> - 在本地Web浏览器中打开给定的响应，以进行检查。这将向响应正文添加一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base"><base>标记</a>，以便正确显示外部链接（如图片和样式表）。但请注意，这将在您的计算机中创建一个临时文件，不会自动删除。</li> </ul> <h3 id="可用scrapy对象">可用Scrapy对象</h3> <p>Scrapy shell自动从下载的页面创建一些方便的对象，如Response对象和 Selector对象（对于HTML和XML内容）。</p> <p>这些对象是：</p> <ul> <li>crawler- 当前Crawler对象。</li> <li>spider- 已知处理URL的Spider，或者Spider如果没有为当前URL找到的爬虫，则为 对象</li> <li>request- Request最后一个抓取页面的对象。您可以replace() 使用fetch 快捷方式或使用快捷方式获取新请求（而不离开shell）来修改此请求。</li> <li>response- 包含Response最后一个抓取页面的对象</li> <li>settings- 当前<a href="http://scrapy.readthedocs.io/en/latest/topics/settings.html#topics-settings">Scrapy设置</a>
+</li> </ul> <h2 id="shell会话的示例">shell会话的示例</h2> <p>下面是一个典型的shell会话示例，我们首先抓取 <a href="http://scrapy.org%E9%A1%B5%E9%9D%A2%EF%BC%8C%E7%84%B6%E5%90%8E%E7%BB%A7%E7%BB%AD%E6%8A%93%E5%8F%96https://reddit.com">http://scrapy.org页面，然后继续抓取https://reddit.com</a> 页面。最后，我们将（Reddit）请求方法修改为POST并重新获取它获取错误。我们通过在Windows中键入Ctrl-D（在Unix系统中）或Ctrl-Z结束会话。</p> <p>请记住，在这里提取的数据可能不一样，当你尝试它，因为那些网页不是静态的，可能已经改变了你测试这个。这个例子的唯一目的是让你熟悉Scrapy shell的工作原理。</p> <p>首先，我们启动shell： <code class="highlighter-rouge">scrapy shell 'http://scrapy.org' --nolog</code></p> <p>然后，shell获取URL（使用Scrapy下载器）并打印可用对象和有用的快捷方式列表（您会注意到这些行都以[s]前缀开头）：</p> <div class="highlighter-rouge"><pre class="highlight"><code>[s] Available Scrapy objects:
+[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)
+[s]   crawler    &lt;scrapy.crawler.Crawler object at 0x7f07395dd690&gt;
+[s]   item       {}
+[s]   request    &lt;GET http://scrapy.org&gt;
+[s]   response   &lt;200 https://scrapy.org/&gt;
+[s]   settings   &lt;scrapy.settings.Settings object at 0x7f07395dd710&gt;
+[s]   spider     &lt;DefaultSpider 'default' at 0x7f0735891690&gt;
+[s] Useful shortcuts:
+[s]   fetch(url[, redirect=True]) Fetch URL and update local objects (by default, redirects are followed)
+[s]   fetch(req)                  Fetch a scrapy.Request and update local objects
+[s]   shelp()           Shell help (print this help)
+[s]   view(response)    View response in a browser
+
+&gt;&gt;&gt;
+</code></pre></div> <p>之后，我们可以开始使用对象：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.xpath('//title/text()').extract_first()
+'Scrapy | A Fast and Powerful Scraping and Web Crawling Framework'
+
+&gt;&gt;&gt; fetch("http://reddit.com")
+
+&gt;&gt;&gt; response.xpath('//title/text()').extract()
+['reddit: the front page of the internet']
+
+&gt;&gt;&gt; request = request.replace(method="POST")
+
+&gt;&gt;&gt; fetch(request)
+
+&gt;&gt;&gt; response.status
+404
+
+&gt;&gt;&gt; from pprint import pprint
+
+&gt;&gt;&gt; pprint(response.headers)
+{'Accept-Ranges': ['bytes'],
+ 'Cache-Control': ['max-age=0, must-revalidate'],
+ 'Content-Type': ['text/html; charset=UTF-8'],
+ 'Date': ['Thu, 08 Dec 2016 16:21:19 GMT'],
+ 'Server': ['snooserv'],
+ 'Set-Cookie': ['loid=KqNLou0V9SKMX4qb4n; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
+                'loidcreated=2016-12-08T16%3A21%3A19.445Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
+                'loid=vi0ZVe4NkxNWdlH7r7; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure',
+                'loidcreated=2016-12-08T16%3A21%3A19.459Z; Domain=reddit.com; Max-Age=63071999; Path=/; expires=Sat, 08-Dec-2018 16:21:19 GMT; secure'],
+ 'Vary': ['accept-encoding'],
+ 'Via': ['1.1 varnish'],
+ 'X-Cache': ['MISS'],
+ 'X-Cache-Hits': ['0'],
+ 'X-Content-Type-Options': ['nosniff'],
+ 'X-Frame-Options': ['SAMEORIGIN'],
+ 'X-Moose': ['majestic'],
+ 'X-Served-By': ['cache-cdg8730-CDG'],
+ 'X-Timer': ['S1481214079.394283,VS0,VE159'],
+ 'X-Ua-Compatible': ['IE=edge'],
+ 'X-Xss-Protection': ['1; mode=block']}
+&gt;&gt;&gt;
+</code></pre></div> <h2 id="从爬虫调用shell检查响应">从爬虫调用shell检查响应</h2> <p>有时候，你想检查在爬虫的某一点被处理的响应，如果只检查你期望的响应到达那里。</p> <p>这可以通过使用该<code class="highlighter-rouge">scrapy.shell.inspect_response</code>功能来实现。</p> <p>下面是一个如何从爬虫调用它的例子：</p> <div class="highlighter-rouge"><pre class="highlight"><code>import scrapy
+
+
+class MySpider(scrapy.Spider):
+    name = "myspider"
+    start_urls = [
+        "http://example.com",
+        "http://example.org",
+        "http://example.net",
+    ]
+
+    def parse(self, response):
+        # We want to inspect one specific response.
+        if ".org" in response.url:
+            from scrapy.shell import inspect_response
+            inspect_response(response, self)
+
+        # Rest of parsing code.
+</code></pre></div> <p>当你运行爬虫，你会得到类似的东西：</p> <div class="highlighter-rouge"><pre class="highlight"><code>2014-01-23 17:48:31-0400 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://example.com&gt; (referer: None)
+2014-01-23 17:48:31-0400 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://example.org&gt; (referer: None)
+[s] Available Scrapy objects:
+[s]   crawler    &lt;scrapy.crawler.Crawler object at 0x1e16b50&gt;
+...
+
+&gt;&gt;&gt; response.url
+'http://example.org'
+</code></pre></div> <p>然后，您可以检查提取代码是否正常工作：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; response.xpath('//h1[@class="fn"]')
+[]
+</code></pre></div> <p>不，不是。因此，您可以在Web浏览器中打开响应，看看它是否是您期望的响应：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; view(response)
+True
+</code></pre></div> <p>最后，您按Ctrl-D（或Windows中的Ctrl-Z）退出外壳并继续抓取：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; ^D
+2014-01-23 17:50:03-0400 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://example.net&gt; (referer: None)
+...
+</code></pre></div> <p>请注意，您不能使用fetch此处的快捷方式，因为Scrapy引擎被shell阻止。然而，在你离开shell之后，爬虫会继续爬到它停止的地方，如上图所示。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="http://localhost:4000/tags/#Scrapy" title="Pages tagged Scrapy" class="tag"><span class="term">Scrapy</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Share</span> </a> <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=http://localhost:4000/scrapy%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%85%AB-%E4%BA%A4%E4%BA%92%E5%BC%8F-shell-%E6%96%B9%E4%BE%BF%E8%B0%83%E8%AF%95/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <h101> <!-- 多说评论框 start --> <div class="ds-thread" data-thread-key="" data-title="Scrapy爬虫入门教程八 交互式 shell 方便调试" data-url="http://localhost:4000"></div> <!-- 多说评论框 end --> <!-- 多说公共JS代码 start (一个网页只需插入一次) --> <script type="text/javascript"> var duoshuoQuery = {short_name:"zhuio"}; (function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true; ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds); })(); </script> <!-- 多说公共JS代码 end --> </h101> </header> <!-- JS --> <script src="http://localhost:4000/assets/js/jquery-1.12.0.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.dlmenu.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.goup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.magnific-popup.min.js"></script> <script src="http://localhost:4000/assets/js/jquery.fitvid.min.js"></script> <script src="http://localhost:4000/assets/js/scripts.js"></script> <script type="text/javascript"> var disqus_shortname = 'zhuio-github-io'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript> <!-- MathJax --> <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> </body> </html>
